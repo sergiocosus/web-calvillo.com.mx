@@ -1,0 +1,38 @@
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  flex: 1;
+  background-color: 	#ccf2cc;
+
+  box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+
+  ul{
+    display:inline-flex;
+    width: 100%;
+    margin: 0 ;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+
+    >li{
+      display: flex;
+      flex: 1 0 auto;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial;
+      font-weight: bolder;
+      padding: .5em .25em;
+      background-color: 	#ccf2cc;
+      border-left: 1px green;
+      color: #4b8a4b;
+      cursor: pointer;
+      line-height: 1.2em;
+      &:hover{
+        background-color: darken(#69c269, 10%);
+      }
+    }
+  }
+}

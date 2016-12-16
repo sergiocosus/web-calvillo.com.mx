@@ -1,0 +1,138 @@
+import { Injectable } from '@angular/core';
+import {Http, RequestOptionsArgs, Response, Headers} from '@angular/http';
+import {Observable} from 'rxjs';
+
+import {environment} from "../../environments/environment";
+
+
+@Injectable()
+export class ApiHttp {
+  private apiUrl;
+
+  constructor(private config:ApiConfig, private http:Http) {
+    this.apiUrl = config.apiUrl;
+  }
+
+  get(url:string, data?:any, options?:RequestOptionsArgs):Observable<any> {
+    if(options){
+      options.body = '';
+    }else {
+      options = {body:''};
+    }
+    return this.http.get(this.apiUrl + url + this.serializeGetParams(data), this.appendHeaders(options))
+      .map(this.mapJson)
+      .catch(this.handleError);
+  }
+
+  post(url:string, body?:any, options?:RequestOptionsArgs):Observable<any> {
+    return this.http.post(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options))
+      .map(this.mapJson)
+      .catch(this.handleError);
+  }
+
+  put(url:string, body:any, options?:RequestOptionsArgs):Observable<any> {
+    return this.http.put(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options))
+      .map(this.mapJson)
+      .catch(this.handleError);
+  }
+
+  delete(url:string, options?:RequestOptionsArgs):Observable<any> {
+    if (!options) {
+      options = { body: "" };
+    }
+
+    return this.http.delete(this.apiUrl + url, this.appendHeaders(options))
+      .map(this.mapJson)
+      .catch(this.handleError);
+  }
+
+  patch(url:string, body?:any, options?:RequestOptionsArgs):Observable<any> {
+    return this.http.patch(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options))
+      .map(this.mapJson)
+      .catch(this.handleError);
+  }
+
+  head(url:string, options?:RequestOptionsArgs):Observable<any> {
+    return this.http.head(this.apiUrl + url, this.appendHeaders(options))
+      .map(this.mapJson)
+      .catch(this.handleError);
+  }
+
+  private mapJson(res:Response):any {
+    return res.json().data;
+  }
+
+  private appendHeaders(options?:RequestOptionsArgs):RequestOptionsArgs {
+    if (!options) {
+      options = {};
+    }
+
+    if (!options.headers) {
+      options.headers = new Headers();
+    }
+    var headers = options.headers;
+/*    headers.append('X-Auth-Token', localStorage.getItem('X-Auth-Token'));
+    headers.append('X-Auth-Key', this.config.apiKey);
+    headers.append('X-Auth-Secret-Key', this.config.apiSecretKey);*/
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    return options;
+  }
+
+  private handleError(error:any, observable:Observable<any>) {
+    // In a real world app, we might send the error to remote logging infrastructure
+    var json = error.json();
+    console.error(json);
+
+    return Observable.throw(json);
+  }
+
+  private serializeGetParams(object:any):string {
+    if (!object) {
+      return "";
+    }
+
+    var str = "?";
+    for (var key in object) {
+      if (str != "") {
+        str += "&";
+      }
+      if(Array.isArray(object[key])){
+        object[key].forEach(value => {
+          str += key + encodeURIComponent('[]') + "="
+            + (value ? encodeURIComponent(value) : '') + '&';
+        });
+      } else {
+        str += key + "=" + (object[key] ? encodeURIComponent(object[key]) : '');
+      }
+    }
+    return str;
+  }
+}
+
+export class ApiConfig {
+  constructor(public apiUrl:string,
+             /* public apiKey:string,
+              public apiSecretKey:string*/) {
+  }
+}
+
+
+
+export function apiHttpServiceFactory (http: Http)  {
+  return new ApiHttp(new ApiConfig(
+    environment.apiUrl,
+  /*  environment.apiKey,
+    environment.apiSecretKey*/
+  ), http);
+}
+
+
+export let apiHttpServiceProvider =
+  {
+    provide: ApiHttp,
+    useFactory: apiHttpServiceFactory,
+    deps: [Http]
+  };
+
+

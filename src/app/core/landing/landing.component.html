@@ -1,0 +1,30 @@
+<section>
+  <div class="title">
+    <h1>
+      Calvillo.com.mx
+    </h1>
+    <span>
+      Capital de la guayaba, cuna del deshilado
+    </span>
+  </div>
+  <div class="images">
+    <ul *ngIf="category">
+      <li *ngFor="let cat of category.categories">
+        <img [src]="cat.image_url + '_sm'"/>
+        <div><span>{{cat.title}}</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="button">
+    <button>
+      ¡Suscríbete!
+    </button>
+  </div>
+
+
+  <div class="social">
+    Social networks
+  </div>
+</section>
+<link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">
