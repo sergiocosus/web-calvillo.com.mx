@@ -27,10 +27,15 @@ nav{
       padding: .5em .25em;
       background-color: 	#ccf2cc;
       border-left: 1px green;
-      color: #4b8a4b;
-      cursor: pointer;
       line-height: 1.2em;
+
+      a{
+        color: #4b8a4b;
+        text-decoration: none;
+      }
+
       &:hover{
+        color: white;
         background-color: darken(#69c269, 10%);
       }
     }

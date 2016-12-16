@@ -7,6 +7,7 @@ import {CategoryService} from './category.service';
     SharedModule
   ],
   declarations: [
+
   ],
   providers: [
     CategoryService,

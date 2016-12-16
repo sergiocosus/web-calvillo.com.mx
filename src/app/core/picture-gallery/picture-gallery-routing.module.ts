@@ -1,19 +1,20 @@
 import {NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {PictureGalleryComponent} from './picture-gallery.component';
 
 
 
 export const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: 'app/core/core.module#CoreModule',
+    component: PictureGalleryComponent,
   },
   { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forChild(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class PictureGalleryRoutingModule {}
 

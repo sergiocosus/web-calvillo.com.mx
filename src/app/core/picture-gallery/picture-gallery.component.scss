@@ -1,0 +1,40 @@
+:host{
+  text-align: center;
+  background-color: rgba(black, .5);
+
+  font-family: Arial;
+  display: flex;
+  flex-direction: column;
+}
+
+
+section{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(black, .5);
+
+  h3{
+    background-color: rgba(black, .5);
+    color: white;
+  }
+
+  ul{
+    display: flex;
+    padding: 0;
+    margin: 0;
+
+    li{
+      list-style: none;
+      img{
+        height: 6em;
+      }
+      div{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+}

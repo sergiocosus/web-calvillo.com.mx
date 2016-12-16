@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../shared/api-http.service';
+import {Category} from './category.model';
 
 @Injectable()
 export class CategoryService {
@@ -8,6 +9,6 @@ export class CategoryService {
 
   get(category_id: number) {
     return this.apiHttp.get('category/' + category_id)
-      .map(json => json.category);
+      .map(json => new Category().parse(json.category));
   }
 }

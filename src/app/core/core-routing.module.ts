@@ -12,6 +12,11 @@ export const appRoutes: Routes = [
       {
         path: '',
         loadChildren: 'app/core/landing/landing.module#LandingModule',
+        pathMatch: 'full'
+      },
+      {
+        path: 'galeria',
+        loadChildren: 'app/core/picture-gallery/picture-gallery.module#PictureGalleryModule',
       }
     ]
   },
