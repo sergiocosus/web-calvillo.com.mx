@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CoreComponent} from './core.component';
 import {landingRoutes} from './landing/landing-routing.module';
+import {pictureGalleryRoutes} from './picture-gallery/picture-gallery-routing.module';
 
 
 
@@ -17,7 +18,8 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'galeria',
-        loadChildren: 'app/core/picture-gallery/picture-gallery.module#PictureGalleryModule',
+        children: pictureGalleryRoutes,
+        //loadChildren: 'app/core/picture-gallery/picture-gallery.module#PictureGalleryModule',
       }
     ]
   },

@@ -14,11 +14,7 @@ import {CoreModule} from './core/core.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    SharedModule,
-    CategoryModule,
-    CoreModule
+
 
   ],
   providers: [],

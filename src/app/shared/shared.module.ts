@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { apiHttpServiceProvider } from './api-http.service';
-import {HttpModule} from '@angular/http';
+import {UniversalModule} from 'angular2-universal';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    UniversalModule,
   ],
   declarations: [],
   providers: [
