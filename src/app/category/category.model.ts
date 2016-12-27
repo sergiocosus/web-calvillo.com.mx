@@ -1,6 +1,10 @@
 import {Model} from '../shared/classes/model';
+import {ImageableModel} from '../shared/classes/imageable.model';
+import {Picture} from '../picture/picture.model';
+import {Directory} from '../directory/directory.model';
+import {Video} from '../video/video.model';
 
-export class Category extends Model{
+export class Category extends ImageableModel{
   id: number;
   title: string;
   link: string;
@@ -13,6 +17,9 @@ export class Category extends Model{
   deleted_at: string;
 
   categories: Category[];
+  pictures: Picture[];
+  videos: Video[];
+  directories: Directory[];
 
   parse(obj): any {
     let category = super.parse(obj);
@@ -21,15 +28,19 @@ export class Category extends Model{
       this.categories = Category.parseArray(this.categories);
     }
 
-    return category;
-  }
-
-  image(size = null) {
-    if (size) {
-      return this.image_url + '_' + size;
-    } else {
-      return this.image_url;
+    if (this.pictures) {
+      this.pictures = Picture.parseArray(this.pictures);
     }
+
+    if (this.videos) {
+      this.videos = Video.parseArray(this.videos);
+    }
+
+    if (this.directories) {
+      this.directories = Directory.parseArray(this.directories);
+    }
+
+    return category;
   }
 
   static parseArray(objs:any[]):Category[] {

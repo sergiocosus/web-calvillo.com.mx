@@ -50,12 +50,6 @@ section{
         img{
           height: 100px;
           transition: all .25s;
-          &:hover{
-            transform: scale(1.5, 1.5);
-            +div{
-              opacity: 1;
-            }
-          }
         }
 
         >div{

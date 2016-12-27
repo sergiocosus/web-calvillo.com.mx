@@ -9,6 +9,10 @@ export const appRoutes: Routes = [
     path: '',
     component: PictureGalleryComponent,
   },
+  {
+    path: ':category_id',
+    component: PictureGalleryComponent,
+  },
   { path: '**', redirectTo: '/' },
 ];
 

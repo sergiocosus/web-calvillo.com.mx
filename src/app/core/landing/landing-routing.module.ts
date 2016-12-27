@@ -4,7 +4,7 @@ import {LandingComponent} from './landing.component';
 
 
 
-export const appRoutes: Routes = [
+export const landingRoutes: Routes = [
   {
     path: '',
     component: LandingComponent,
@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(appRoutes)],
+  imports: [RouterModule.forChild(landingRoutes)],
   exports: [RouterModule]
 })
 export class LandingRoutingModule {}

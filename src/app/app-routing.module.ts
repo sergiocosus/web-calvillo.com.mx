@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {CoreRoutingModule, coreRoutes} from './core/core-routing.module';
 
 
 
 export const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: 'app/core/core.module#CoreModule',
+    children: coreRoutes,
+    //loadChildren: 'app/core/core.module#CoreModule',
   },
   { path: '**', redirectTo: '/' },
 ];

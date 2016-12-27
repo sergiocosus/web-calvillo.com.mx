@@ -1,17 +1,18 @@
 import {NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CoreComponent} from './core.component';
+import {landingRoutes} from './landing/landing-routing.module';
 
 
 
-export const appRoutes: Routes = [
+export const coreRoutes: Routes = [
   {
     path: '',
     component: CoreComponent,
     children: [
       {
         path: '',
-        loadChildren: 'app/core/landing/landing.module#LandingModule',
+        children: landingRoutes,
         pathMatch: 'full'
       },
       {
@@ -24,7 +25,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(appRoutes)],
+  imports: [RouterModule.forChild(coreRoutes)],
   exports: [RouterModule]
 })
 export class CoreRoutingModule {}

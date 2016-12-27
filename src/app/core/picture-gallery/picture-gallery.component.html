@@ -1,14 +1,16 @@
 <ng-container *ngIf="category">
   <h2>{{category.title}}</h2>
+  <p>{{category.description}}</p>
   <section>
     <h3>Secciones</h3>
     <ul>
-      <li *ngFor="let subcategory of category.categories"
-          (click)="loadCategory(subcategory.id)">
-        <img src="{{subcategory.image('sm')}}"/>
-        <div>
-          <span>{{subcategory.title}}</span>
-        </div>
+      <li *ngFor="let subcategory of category.categories">
+        <a [routerLink]="'/galeria/' + subcategory.id">
+          <img src="{{subcategory.image('sm')}}"/>
+          <div>
+            <span>{{subcategory.title}}</span>
+          </div>
+        </a>
       </li>
     </ul>
   </section>
@@ -17,10 +19,12 @@
     <ul>
       <li *ngFor="let video of category.videos"
           (click)="loadVideo(video.id)">
-        <img src="{{video.image('sm')}}"/>
-        <div>
-          <span>{{video.title}}</span>
-        </div>
+        <a [routerLink]="'/galeria/' + category_id + '/video/' + video.id">
+          <img src="{{video.image('sm')}}"/>
+          <div>
+            <span>{{video.title}}</span>
+          </div>
+        </a>
       </li>
     </ul>
   </section>
@@ -29,10 +33,12 @@
     <ul>
       <li *ngFor="let picture of category.pictures"
           (click)="loadPicture(picture.id)">
-        <img src="{{picture.image('sm')}}"/>
-        <div>
-          <span>{{picture.title}}</span>
-        </div>
+        <a [routerLink]="'/galeria/' + category_id + '/foto/' + picture.id">
+          <img src="{{picture.image('sm')}}"/>
+          <div>
+            <span>{{picture.title}}</span>
+          </div>
+        </a>
       </li>
     </ul>
   </section>
@@ -41,10 +47,12 @@
     <ul>
       <li *ngFor="let directory of category.directories"
           (click)="loadDirectory(directory.id)">
-        <img src="{{directory.image('sm')}}"/>
-        <div>
-          <span>{{directory.title}}</span>
-        </div>
+        <a [routerLink]="'/galeria/' + category_id + '/directory/' + directory.id">
+          <img src="{{directory.image('sm')}}"/>
+          <div>
+            <span>{{directory.title}}</span>
+          </div>
+        </a>
       </li>
     </ul>
   </section>

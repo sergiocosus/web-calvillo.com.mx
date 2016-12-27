@@ -22,19 +22,39 @@ section{
     display: flex;
     padding: 0;
     margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
 
     li{
+      display: flex;
       list-style: none;
+      position: relative;
+      overflow: hidden;
+
       img{
-        height: 6em;
+        height: 8em;
+        transition: all .25s;
       }
       div{
         position: absolute;
         bottom: 0;
         width: 100%;
         text-align: center;
+        opacity: 1;
         color: white;
+        transition: all .25s;
+        background-color: rgba(black, .5);
       }
+
+      &:hover{
+        >img{
+          transform: scale(1.5, 1.5);
+        }
+        >div{
+          opacity: .1;
+        }
+      }
+
     }
   }
 }
