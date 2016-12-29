@@ -1,11 +1,13 @@
+$navbarBackgroundColor: #4b8a4b;
+$navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
+
 nav{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   flex: 1;
-  background-color: 	#ccf2cc;
-
+  background-color: $navbarBackgroundColor;
   box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
 
   ul{
@@ -24,19 +26,34 @@ nav{
       align-items: center;
       font-family: Arial;
       font-weight: bolder;
-      padding: .5em .25em;
-      background-color: 	#ccf2cc;
-      border-left: 1px green;
       line-height: 1.2em;
 
       a{
-        color: #4b8a4b;
+        display: flex;
+        flex: 1 0 0;
+        align-items: stretch;
+        justify-content: center;
+        color: white;
         text-decoration: none;
+        padding: .5em .25em;
+        background-color: $navbarBackgroundColor;
+
+        i {
+          margin-right: .25em;
+        }
+
+        &:hover, &.active{
+          background-color: $navbarBackgroundColorSelected;
+          box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+        }
       }
 
-      &:hover{
-        color: white;
-        background-color: darken(#69c269, 10%);
+      &.main{
+        a{
+          padding-left: 1em;
+          padding-right: 1em;
+          background-color:  darken($navbarBackgroundColorSelected, 10%);
+        }
       }
     }
   }

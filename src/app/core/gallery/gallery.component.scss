@@ -1,3 +1,5 @@
+@import "src/app/vars";
+
 :host{
   text-align: center;
   background-color: rgba(black, .5);
@@ -20,39 +22,43 @@ section{
 
   ul{
     display: flex;
-    padding: 0;
+    padding: 1em;
     margin: 0;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
+
+    app-picture-thumbnail{
+      margin: .5em .25em;
+    }
 
     li{
       display: flex;
       list-style: none;
       position: relative;
       overflow: hidden;
+      a{
+        margin: .5em .25em;
 
-      img{
-        height: 8em;
-        transition: all .25s;
-      }
-      div{
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        opacity: 1;
-        color: white;
-        transition: all .25s;
-        background-color: rgba(black, .5);
-      }
+        img{
+          height: 10em;
+          transition: all .5s;
+        }
 
-      &:hover{
-        >img{
-          transform: scale(1.5, 1.5);
+        div{
+          @extend .thumbnail-label;
         }
-        >div{
-          opacity: .1;
+
+
+
+        &:hover{
+          >img{
+            transform: scale(1.75, 1.75) translate(0, 5%);
+          }
+          >div{
+            opacity: 0;
+          }
         }
+
       }
 
     }

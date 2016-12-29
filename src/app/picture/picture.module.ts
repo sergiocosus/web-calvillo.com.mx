@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PictureComponent } from './picture.component';
+import { PictureThumbnailComponent } from './components/picture-thumbnail/picture-thumbnail.component';
+import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule
+    SharedModule,
   ],
-  declarations: [PictureComponent]
+  declarations: [
+    PictureThumbnailComponent
+  ],
+  exports: [
+    PictureThumbnailComponent
+  ]
 })
 export class PictureModule { }

@@ -1,0 +1,19 @@
+@import "../node_modules/font-face-mixin/_fontface.scss";
+
+
+@include font-face(QuickSand,
+  "../node_modules/connect-fonts-quicksand/fonts/latin/quicksand-regular",
+  normal, normal, eot woff ttf svg);
+
+@include font-face(QuickSand,
+  "../node_modules/connect-fonts-quicksand/fonts/latin/quicksand-bold",
+  bold, normal, eot woff ttf svg);
+
+
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+

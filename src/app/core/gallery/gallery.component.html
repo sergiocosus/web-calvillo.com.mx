@@ -1,8 +1,11 @@
 <ng-container *ngIf="category">
   <h2>{{category.title}}</h2>
   <p>{{category.description}}</p>
-  <section>
-    <h3>Secciones</h3>
+  <section *ngIf="category.categories.length">
+    <h3>
+      <i class="fa fa-folder" aria-hidden="true"></i>
+      Secciones
+    </h3>
     <ul>
       <li *ngFor="let subcategory of category.categories">
         <a [routerLink]="'/galeria/' + subcategory.id">
@@ -14,8 +17,11 @@
       </li>
     </ul>
   </section>
-  <section>
-    <h3>Videos</h3>
+  <section *ngIf="category.videos.length">
+    <h3>
+      <i class="fa fa-video-camera" aria-hidden="true"></i>
+      Videos
+    </h3>
     <ul>
       <li *ngFor="let video of category.videos"
           (click)="loadVideo(video.id)">
@@ -28,22 +34,23 @@
       </li>
     </ul>
   </section>
-  <section>
-    <h3>Fotografías</h3>
+  <section *ngIf="category.pictures.length">
+    <h3>
+      <i class="fa fa-camera" aria-hidden="true"></i>
+       Fotografías
+    </h3>
     <ul>
       <li *ngFor="let picture of category.pictures"
           (click)="loadPicture(picture.id)">
-        <a [routerLink]="'/galeria/' + category_id + '/foto/' + picture.id">
-          <img src="{{picture.image('sm')}}"/>
-          <div>
-            <span>{{picture.title}}</span>
-          </div>
-        </a>
+        <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
       </li>
     </ul>
   </section>
-  <section>
-    <h3>Directorio</h3>
+  <section *ngIf="category.directories.length">
+    <h3>
+      <i class="fa fa-book" aria-hidden="true"></i>
+      Directorio
+    </h3>
     <ul>
       <li *ngFor="let directory of category.directories"
           (click)="loadDirectory(directory.id)">

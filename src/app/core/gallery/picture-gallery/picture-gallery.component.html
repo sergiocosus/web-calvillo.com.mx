@@ -1,0 +1,16 @@
+{{category_id}}
+{{picture_id}}
+
+{{picture | json}}
+
+<section *ngIf="category && category.pictures.length">
+  <ul>
+    <li *ngFor="let picture of category.pictures">
+      <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <img *ngIf="picture" [src]="picture.image_url"/>
+</section>

@@ -1,16 +1,53 @@
 <nav>
   <ul>
+    <li class="main">
+      <a routerLink="/" routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }" >
+        <i class="fa fa-home"></i>
+        <span>Calvillo.com.mx</span>
+      </a>
+    </li>
     <li>
-      <a routerLink="/galeria">
-        <i class="fa fa-picture"></i>
+      <a routerLink="/galeria" routerLinkActive="active">
+        <i class="fa fa-camera"></i>
         <span>Galería Fotográfica</span>
       </a>
     </li>
-    <li><span>Artesanías</span></li>
-    <li><span>Cultura</span></li>
-    <li><span>Historia</span></li>
-    <li><span>Mitos y leyendas</span></li>
-    <li><span>Mapa</span></li>
-    <li><span>Contacto</span></li>
+    <li>
+      <a routerLink="/artesanias" routerLinkActive="active">
+        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+        <span>Artesanías</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/cultura" routerLinkActive="active">
+        <i class="fa fa-camera"></i>
+        <span>Cultura</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/historia" routerLinkActive="active">
+        <i class="fa fa-book" aria-hidden="true"></i>
+        <span>Historia</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/mitos-leyendas" routerLinkActive="active">
+        <i class="fa fa-camera"></i>
+        <span>Mitos y leyendas</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/mapa" routerLinkActive="active">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        <span>Mapa</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/contacto" routerLinkActive="active">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>Contacto</span>
+      </a>
+    </li>
   </ul>
 </nav>
