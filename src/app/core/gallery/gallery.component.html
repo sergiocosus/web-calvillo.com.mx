@@ -1,6 +1,11 @@
 <ng-container *ngIf="category">
-  <h2>{{category.title}}</h2>
-  <p>{{category.description}}</p>
+  <header [ngStyle]="{'background-image':  'url(' + category.image('sm') + ')'}">
+    <div class="gradient"></div>
+    <h1>{{category.title}}</h1>
+    <div class="content" [innerHTML]="category.description"></div>
+  </header>
+
+
   <section *ngIf="category.categories.length">
     <h3>
       <i class="fa fa-folder" aria-hidden="true"></i>

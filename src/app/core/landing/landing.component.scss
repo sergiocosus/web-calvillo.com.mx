@@ -6,6 +6,7 @@ section{
   min-height: 100vh;
   background: url("/assets/background2.jpg");
   background-size: cover;
+  background-attachment: fixed;
 
   .title {
     display: flex;

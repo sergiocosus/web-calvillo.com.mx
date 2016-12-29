@@ -9,6 +9,7 @@ nav{
   flex: 1;
   background-color: $navbarBackgroundColor;
   box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+  z-index: 10;
 
   ul{
     display:inline-flex;
