@@ -9,6 +9,7 @@ import {Picture} from '../../picture.model';
 export class PictureThumbnailComponent implements OnInit {
   @Input() picture: Picture;
   @Input() category_id: Picture;
+  @Input() size = 'sm';
 
   constructor() { }
 

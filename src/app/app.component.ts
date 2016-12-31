@@ -8,9 +8,7 @@ import {CategoryService} from './category/category.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit{
-  asdf = 'asdf';
   constructor() {
-
   }
 
   ngOnInit(): void {

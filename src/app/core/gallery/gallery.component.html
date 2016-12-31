@@ -1,8 +1,9 @@
 <ng-container *ngIf="category">
-  <header [ngStyle]="{'background-image':  'url(' + category.image('sm') + ')'}">
+  <header [ngStyle]="{'background-image':  'url(' + category.image('xlg') + ')'}">
     <div class="gradient"></div>
     <h1>{{category.title}}</h1>
     <div class="content" [innerHTML]="category.description"></div>
+    <!-- TODO put related gallery -->
   </header>
 
 
@@ -69,3 +70,4 @@
     </ul>
   </section>
 </ng-container>
+<router-outlet></router-outlet>

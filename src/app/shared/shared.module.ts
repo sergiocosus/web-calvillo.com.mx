@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { apiHttpServiceProvider } from './api-http.service';
 import {UniversalModule} from 'angular2-universal';
 import {RouterModule} from '@angular/router';
+import { VoidComponent } from './components/void/void.component';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import {RouterModule} from '@angular/router';
     UniversalModule,
     RouterModule,
   ],
-  declarations: [],
+  declarations: [
+    VoidComponent
+  ],
   providers: [
     apiHttpServiceProvider,
   ],
@@ -19,6 +22,7 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     UniversalModule,
     RouterModule,
+    VoidComponent,
   ]
 })
 export class SharedModule { }

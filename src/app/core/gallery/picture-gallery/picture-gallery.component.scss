@@ -1,5 +1,239 @@
+@import 'src/app/vars';
+
+$thumbSize: 60px;
+$thumbMargin: 2px;
+
+$topSpace: $thumbSize + ($thumbMargin * 2);
+
+$titleFontSize: 2.5em;
+$subtitleFontSize: 2em;
+
+$arrowBackgroundColor: rgba(black, .5);
+
 :host{
-  width: 100vh;
-  height: 100vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - #{$navBarTop});
   background-color: rgba(black, .5);
+}
+
+
+
+header{
+  position: relative;
+  z-index: 5;
+
+  h1{
+    margin: .25em 0;
+    text-align: center;
+    color: white;
+    line-height: .8em;
+    font-size: 1em;
+
+    @media (min-width: $smScreen) {
+
+    }
+
+    @media (min-width: $mdScreen) {
+      font-size: $titleFontSize;
+    }
+
+  }
+  a{
+    color: white;
+    text-decoration: none;
+    i{
+      background-color: $arrowBackgroundColor;
+      padding: .25em;
+    }
+    &:visited{
+      color: white;
+    }
+  }
+}
+
+.list{
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  background-color: rgba(black, .5);
+  z-index: 5;
+
+  .prev, .next{
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 10px;
+    background-color: $arrowBackgroundColor;
+    color: white;
+    font-size: 3em;
+    cursor: pointer;
+
+    &:hover{
+      i{
+        transition: all .5s;
+        transform: scale(1.5, 1.5);
+        color: gray;
+      }
+    }
+  }
+
+  ul{
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    li{
+      list-style: none;
+      a{
+        display: flex;
+        overflow: hidden;
+        margin: $thumbMargin;
+
+        picture{
+          display: inline-block;
+          height: $thumbSize;
+          width: $thumbSize;
+          background-position: center;
+          background-size: cover;
+          transition: all .5s;
+        }
+      }
+
+      &:hover{
+        a {
+          picture {
+            transform: scale(1.75, 1.75) translate(0, 5%);
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.picture {
+  position: fixed;
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-top: calc(#{$topSpace} + 2em) solid transparent;
+  flex: 1 0 0;
+  flex-direction: column;
+
+  picture{
+    position: relative;
+    flex: 1 0 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+
+  .prev, .next{
+    position: absolute;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    padding: 1em;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 5;
+
+    color: white;
+    font-size: 3em;
+    cursor: pointer;
+
+    i{
+      background-color: $arrowBackgroundColor;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    &:hover{
+      i{
+        transition: all .5s;
+        transform: scale(1.5, 1.5);
+        color: gray;
+      }
+    }
+  }
+
+  .prev{
+    left: 0;
+  }
+
+  .next{
+    right: 0;
+  }
+}
+
+
+.description {
+  position: relative;
+  margin-top: calc(100vh - 10em - #{$topSpace});
+  width: 100%;
+  color: white;
+  padding: 2em 2em;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+
+  background: rgba(0,0,0,0);
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(20%, rgba(0,0,0,0.35)), color-stop(100%, rgba(0,0,0,0.75)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+
+
+
+  @media (min-width: $mdScreen) {
+    margin-top: calc(100vh - 15em - #{$topSpace});
+  }
+
+
+  header{
+    text-align: center;
+    width: 100%;
+
+    h2{
+      font-size: $subtitleFontSize;
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  }
+
+  .content{
+    display: inline-block;
+    max-width: 1080px;
+  }
+
 }

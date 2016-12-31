@@ -1,16 +1,61 @@
-{{category_id}}
-{{picture_id}}
+<header *ngIf="category">
+  <h1>
+    <a routerLink="../">
+      <i class="fa fa-caret-up" aria-hidden="true"></i>
+    </a>
+    {{category.title}}
+  </h1>
+</header>
 
-{{picture | json}}
+<section class="list" #list >
+  <div class="prev"
+       *ngIf="!isFirstPage"
+       (click)="prevPage()">
+    <i class="fa fa-caret-left" aria-hidden="true"></i>
+  </div>
 
-<section *ngIf="category && category.pictures.length">
-  <ul>
-    <li *ngFor="let picture of category.pictures">
-      <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
-    </li>
+  <ul *ngIf="category && category.pictures.length">
+    <ng-container *ngFor="let picture of category.pictures; let i = index;">
+      <li *ngIf="indexInPage(i)">
+        <a [routerLink]="'/galeria/' + category_id + '/foto/' + picture.id">
+          <picture
+            [ngStyle]="{'background-image':  'url(' + picture.image('xs') + ')'}">
+          </picture>
+        </a>
+      </li>
+    </ng-container>
   </ul>
+
+  <div class="next"
+       *ngIf="!isLastPage"
+       (click)="nextPage()">
+    <i class="fa fa-caret-right" aria-hidden="true"></i>
+  </div>
 </section>
 
-<section>
-  <img *ngIf="picture" [src]="picture.image_url"/>
+<section *ngIf="picture" class="picture">
+
+  <div class="prev"
+       *ngIf="!isFirstPicture"
+       (click)="prevPicture()">
+    <i class="fa fa-caret-left" aria-hidden="true"></i>
+  </div>
+  <picture  [ngStyle]="{'background-image':  'url(' + picture.image('xlg') + ')'}">
+  </picture>
+  <div class="next"
+       *ngIf="!isLastPicture"
+       (click)="nextPicture()">
+    <i class="fa fa-caret-right" aria-hidden="true"></i>
+  </div>
+
 </section>
+
+<div *ngIf="picture" class="description">
+  <header>
+    <h1>{{picture.title}}</h1>
+  </header>
+  <div class="content" [innerHTML]="picture.description">
+  </div>
+</div>
+
+<router-outlet></router-outlet>

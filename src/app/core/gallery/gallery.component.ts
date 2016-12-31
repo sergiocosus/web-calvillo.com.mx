@@ -18,7 +18,7 @@ export class GalleryComponent implements OnInit {
 
   category_id = null;
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
+    let sub = this.activatedRoute.children[0].params.subscribe(
       route => {
         if (route['category_id']) {
           this.loadCategory(route['category_id']);
@@ -30,8 +30,6 @@ export class GalleryComponent implements OnInit {
   }
 
   sanitize(content){
-    console.log(content);
-    console.log(this.satinizer.bypassSecurityTrustHtml(content));
       return this.satinizer.bypassSecurityTrustHtml(content);
   }
 

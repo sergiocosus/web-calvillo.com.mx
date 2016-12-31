@@ -43,6 +43,12 @@ nav{
           margin-right: .25em;
         }
 
+        @media (max-width: 768px) {
+          span {
+            display: none;
+          }
+        }
+
         &:hover, &.active{
           background-color: $navbarBackgroundColorSelected;
           box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
