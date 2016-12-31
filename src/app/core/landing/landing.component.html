@@ -9,9 +9,8 @@
   </div>
   <div class="images">
     <ul *ngIf="category">
-      <li *ngFor="let cat of category.categories">
-        <img [src]="cat.image_url + '_sm'"/>
-        <div><span>{{cat.title}}</span></div>
+      <li *ngFor="let subcategory of category.categories">
+        <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
       </li>
     </ul>
   </div>
@@ -22,9 +21,7 @@
     </button>
   </div>
 
-
   <div class="social">
     Social networks
   </div>
 </section>
-<link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">

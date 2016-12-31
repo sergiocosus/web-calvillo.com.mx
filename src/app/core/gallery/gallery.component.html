@@ -14,12 +14,7 @@
     </h3>
     <ul>
       <li *ngFor="let subcategory of category.categories">
-        <a [routerLink]="'/galeria/' + subcategory.id">
-          <img src="{{subcategory.image('sm')}}"/>
-          <div>
-            <span>{{subcategory.title}}</span>
-          </div>
-        </a>
+        <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
       </li>
     </ul>
   </section>

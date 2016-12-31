@@ -1,0 +1,30 @@
+@import "src/app/vars";
+
+:host {
+  display: flex;
+  list-style: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 6px 6px 5px -1px rgba(0,0,0,0.26);
+
+  &:hover{
+    a {
+      img {
+        transform: scale(1.75, 1.75) translate(0, 5%);
+      }
+      div {
+        opacity: 0;
+      }
+    }
+  }
+
+  img{
+    height: 10em;
+    transition: all .5s;
+  }
+
+  div{
+    @extend .thumbnail-label;
+  }
+}
+
