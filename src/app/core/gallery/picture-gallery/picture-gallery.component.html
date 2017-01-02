@@ -40,7 +40,9 @@
        (click)="prevPicture()">
     <i class="fa fa-caret-left" aria-hidden="true"></i>
   </div>
-  <picture  [ngStyle]="{'background-image':  'url(' + picture.image('xlg') + ')'}">
+  <picture *ngFor="let selectedPicture of pictureTail"
+            [@picture]="selectedPicture.state"
+           [ngStyle]="{'background-image':  'url(' + selectedPicture.picture.image('xlg') + ')'}">
   </picture>
   <div class="next"
        *ngIf="!isLastPicture"

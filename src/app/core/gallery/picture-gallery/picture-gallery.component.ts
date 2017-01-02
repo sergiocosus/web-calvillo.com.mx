@@ -1,5 +1,8 @@
-import {Component, OnInit, ElementRef, HostBinding, ViewChild, HostListener} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {
+  Component, OnInit, ElementRef, HostBinding, ViewChild, HostListener, trigger, state,
+  transition, style, animate
+} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../category/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
@@ -7,7 +10,44 @@ import {Picture} from '../../../picture/picture.model';
 @Component({
   selector: 'app-picture-gallery',
   templateUrl: './picture-gallery.component.html',
-  styleUrls: ['./picture-gallery.component.scss']
+  styleUrls: ['./picture-gallery.component.scss'],
+  animations: [
+    trigger('picture', [
+      transition('void => activeLeft', [
+        style({
+          transform: 'translateX(-100%) scale(1)',
+        }),
+        animate('500ms ease-out', style({
+          transform: 'translateX(0) scale(1)'
+        }))
+      ]),
+      transition('void => activeRight', [
+        style({
+          transform: 'translateX(100%) scale(1)'
+        }),
+        animate('500ms ease-out', style({
+          transform: 'translateX(0) scale(1)'
+        }))
+      ]),
+      transition('void => active', [
+        style({
+          transform: 'scale(.5)',
+          opacity: 0
+        }),
+        animate('500ms ease-out', style({
+          transform: 'scale(1)',
+          opacity: 1
+        }))
+      ]),
+      transition('* => void', [
+        animate('500ms ease-out', style({
+          opacity: 0,
+          zIndex: 0,
+          transform: 'scale(.5)',
+        }))
+      ])
+    ])
+  ]
 })
 export class PictureGalleryComponent implements OnInit {
   @ViewChild('list') list: ElementRef;
@@ -15,17 +55,32 @@ export class PictureGalleryComponent implements OnInit {
     this.initPages();
   }
 
-  category_id = null;
+  @HostListener('window:keydown', ['$event']) onKeydonw(event: any) {
+    switch (event.code) {
+      case 'ArrowRight':
+        this.nextPicture();
+        break;
+      case 'ArrowLeft':
+        this.prevPicture();
+      break;
+    }
+  }
+
+
+    category_id = null;
   picture_id = null;
 
   category: Category;
+  pictureTail: {picture: Picture, state: string}[] = [];
   picture: Picture;
 
   index: number;
+  oldIndex: number = null;
   pictureLength: number;
 
   constructor(private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -75,10 +130,15 @@ export class PictureGalleryComponent implements OnInit {
       (picture, index) => {
         if (picture.id === this.picture_id) {
           this.picture = picture;
+          if (this.oldIndex !== null) {
+            this.oldIndex = this.index;
+          }
           this.index = index;
         }
       }
-    )
+    );
+
+    this.changePicture();
   }
 
   pictureWidth = 70;
@@ -118,24 +178,41 @@ export class PictureGalleryComponent implements OnInit {
 
   nextPicture() {
     if (this.index + 1 >= this.pictureLength) {
-      this.index = this.pictureLength - 1;
+      this.changeRoutePicture(this.pictureLength - 1);
     } else {
-      this.index++;
+      this.changeRoutePicture(this.index + 1);
     }
-    this.changePicture();
   }
 
   prevPicture() {
-    if (this.pictureLength <= 0) {
-      this.index = 0;
+    if (this.index <= 0) {
+      this.changeRoutePicture(0);
     } else {
-      this.index--;
+      this.changeRoutePicture(this.index - 1);
     }
-    this.changePicture();
+  }
+
+  changeRoutePicture(index:number) {
+    console.log(index);
+    this.router.navigate(['galeria', this.category_id, 'foto', this.category.pictures[index].id]);
   }
 
   changePicture() {
-    this.picture = this.category.pictures[this.index];
+    let state = 'active';
+    if (this.oldIndex !== null) {
+      state = (this.index > this.oldIndex) ? 'activeRight' : 'activeLeft'
+    }
+
+    this.pictureTail.push({
+      picture: this.picture,
+      state: state
+    });
+
+    if (this.pictureTail.length >= 2) {
+      this.pictureTail.shift();
+    }
+
+    this.oldIndex = this.index;
   }
 
   indexInPage(index) {
