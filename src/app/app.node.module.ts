@@ -14,8 +14,15 @@ import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module';
 import {CoreModule} from './core/core.node.module';
-// import { RouterModule } from '@angular/router';
-// import { pictureGalleryRoutes } from './app/app.routing';
+import {__platform_browser_private__} from '@angular/platform-browser';
+
+// Hack to work HammerJs with universal
+__platform_browser_private__.HammerGesturesPlugin.prototype.supports = function hackySupports(eventName: string): boolean {
+  if (!this.isCustomEvent(eventName)) {
+    return false;
+  }
+  return true;
+};
 
 /**
  * Top-level NgModule "container"

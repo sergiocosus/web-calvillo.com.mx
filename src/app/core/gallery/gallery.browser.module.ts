@@ -5,6 +5,7 @@ import {GalleryRoutingModule} from './gallery-routing.module';
 import {GalleryComponent} from './gallery.component';
 import { PictureGalleryComponent } from './picture-gallery/picture-gallery.component';
 import {CategoryModule} from '../../category/category.module';
+import {ResponsiveModule} from 'ng2-responsive';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {CategoryModule} from '../../category/category.module';
     GalleryRoutingModule,
     PictureModule,
     CategoryModule,
+    ResponsiveModule,
   ],
   declarations: [
     GalleryComponent,

@@ -7,7 +7,9 @@
   </h1>
 </header>
 
-<section class="list" #list >
+<section class="list" #list
+         (swipeleft)="nextPage()"
+         (swiperight)="prevPage()">
   <div class="prev"
        *ngIf="!isFirstPage"
        (click)="prevPage()">
@@ -33,17 +35,24 @@
   </div>
 </section>
 
-<section *ngIf="picture" class="picture">
+<section *ngIf="picture" class="picture"
+         (swipeleft)="onSwipeLeft($event.type)"
+         (swiperight)="onSwipeRight($event.type)"
+>
 
   <div class="prev"
        *ngIf="!isFirstPicture"
        (click)="prevPicture()">
     <i class="fa fa-caret-left" aria-hidden="true"></i>
   </div>
-  <picture *ngFor="let selectedPicture of pictureTail"
-            [@picture]="selectedPicture.state"
-           [ngStyle]="{'background-image':  'url(' + selectedPicture.picture.image('xlg') + ')'}">
-  </picture>
+
+  <ng-container *ngFor="let selectedPicture of pictureTail">
+    <picture [@picture]="selectedPicture.state"
+             [ngStyle]="{'background-image':  'url(' + selectedPicture.picture.image(imgSize) + ')'}">
+    </picture>
+  </ng-container>
+
+  <div class="wrapper"></div>
   <div class="next"
        *ngIf="!isLastPicture"
        (click)="nextPicture()">

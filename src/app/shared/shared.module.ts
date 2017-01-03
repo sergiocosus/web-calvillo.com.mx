@@ -4,6 +4,7 @@ import { apiHttpServiceProvider } from './api-http.service';
 import {UniversalModule} from 'angular2-universal';
 import {RouterModule} from '@angular/router';
 import { VoidComponent } from './components/void/void.component';
+import {ResolutionService} from './services/resolution.service';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { VoidComponent } from './components/void/void.component';
   ],
   providers: [
     apiHttpServiceProvider,
+    ResolutionService,
   ],
   exports: [
     CommonModule,

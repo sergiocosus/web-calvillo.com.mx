@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../category/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
+import {isBrowser} from 'angular2-universal';
+import {ResolutionService} from '../../../shared/services/resolution.service';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -52,6 +54,7 @@ import {Picture} from '../../../picture/picture.model';
 export class PictureGalleryComponent implements OnInit {
   @ViewChild('list') list: ElementRef;
   @HostListener('window:resize') resize() {
+    this.initImgSize();
     this.initPages();
   }
 
@@ -62,12 +65,13 @@ export class PictureGalleryComponent implements OnInit {
         break;
       case 'ArrowLeft':
         this.prevPicture();
-      break;
+        break;
     }
   }
 
+  imgSize = null;
 
-    category_id = null;
+  category_id = null;
   picture_id = null;
 
   category: Category;
@@ -80,9 +84,11 @@ export class PictureGalleryComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private resolutionService: ResolutionService) { }
 
   ngOnInit() {
+    this.initImgSize();
     this.activatedRoute.params.subscribe(
       route => {
         if (route['category_id'] && route['category_id'] !== this.category_id) {
@@ -103,6 +109,42 @@ export class PictureGalleryComponent implements OnInit {
     );
   }
 
+  initImgSize() {
+    let resolutionSize = this.resolutionService.getSize();
+
+    switch (resolutionSize) {
+      case 'xs':
+        this.imgSize = 'md';
+        break;
+      case 'sm':
+      case 'md':
+        this.imgSize = 'lg';
+        break;
+      case 'xl':
+      case 'lg':
+        this.imgSize = 'xlg';
+        break;
+      default:
+        this.imgSize = 'xs';
+    }
+  }
+
+  onSwipeLeft(event: any) {
+    this.nextPicture();
+  }
+
+  onSwipeRight(event: any) {
+    this.prevPicture();
+  }
+
+
+  preloadImage(src) {
+    if (isBrowser) {
+      let image = new Image();
+      image.src = src;
+      console.log(src);
+    }
+  }
 
   loadCategory(category_id: number) {
     this.category_id = category_id;
@@ -213,6 +255,10 @@ export class PictureGalleryComponent implements OnInit {
     }
 
     this.oldIndex = this.index;
+
+    if (this.index < this.category.pictures.length - 1) {
+      this.preloadImage(this.category.pictures[this.index + 1].image(this.imgSize));
+    }
   }
 
   indexInPage(index) {
