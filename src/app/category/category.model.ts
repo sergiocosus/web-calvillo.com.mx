@@ -16,6 +16,7 @@ export class Category extends ImageableModel{
   updated_at: string;
   deleted_at: string;
 
+  category: Category;
   categories: Category[];
   pictures: Picture[];
   videos: Video[];
@@ -23,6 +24,10 @@ export class Category extends ImageableModel{
 
   parse(obj): any {
     let category = super.parse(obj);
+
+    if (this.category) {
+      this.category = new Category().parse(this.category);
+    }
 
     if (this.categories) {
       this.categories = Category.parseArray(this.categories);

@@ -23,6 +23,16 @@
     transition: all .5s;
   }
 
+  &.fit{
+    a{
+      width: 100%;
+      img{
+        height: 100%;
+      }
+    }
+
+  }
+
   div{
     @extend .thumbnail-label;
   }

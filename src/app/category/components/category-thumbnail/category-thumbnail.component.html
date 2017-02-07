@@ -1,6 +1,6 @@
 <a [routerLink]="'/galeria/' + category.id">
   <img src="{{category.image(size)}}"/>
-  <div>
+  <div *ngIf="showText">
     <span>{{category.title}}</span>
   </div>
 </a>

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, HostBinding} from '@angular/core';
 import {Category} from '../../category.model';
 
 @Component({
@@ -9,6 +9,8 @@ import {Category} from '../../category.model';
 export class CategoryThumbnailComponent implements OnInit {
   @Input() category: Category;
   @Input() size = 'sm';
+  @Input() showText = true;
+  @Input() fit = false;
 
   constructor() { }
 
