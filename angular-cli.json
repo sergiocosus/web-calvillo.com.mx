@@ -1,12 +1,12 @@
 {
   "project": {
-    "version": "1.0.0-alpha.universal.2-2",
+    "version": "1.0.0-alpha.universal.3",
     "name": "web-calvillo-com-mx"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "dist/client",
       "assets": [
         "assets",
         "favicon.ico"

@@ -2,7 +2,7 @@ import {Component, OnInit, SecurityContext} from '@angular/core';
 import {CategoryService} from '../../category/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../category/category.model';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gallery',
@@ -14,7 +14,7 @@ export class GalleryComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
-              private satinizer: DomSanitizer,
+              private sanitizer: DomSanitizer,
               private router: Router) { }
 
   currRoute = '';
@@ -33,7 +33,7 @@ export class GalleryComponent implements OnInit {
   }
 
   sanitize(content){
-      return this.satinizer.bypassSecurityTrustHtml(content);
+      return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
   loadCategory(category_id: number) {

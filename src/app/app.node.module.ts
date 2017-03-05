@@ -47,7 +47,7 @@ __platform_browser_private__.HammerGesturesPlugin.prototype.supports = function 
     /**
      * using routes
      */
-    // RouterModule.forRoot(pictureGalleryRoutes)
+    // RouterModule.forRoot(appRoutes)
   ]
 })
 export class AppModule {

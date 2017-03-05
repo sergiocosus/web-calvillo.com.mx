@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {CategoryService} from './category/category.service';
 
 @Component({
   selector: 'app-root',

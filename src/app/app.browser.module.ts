@@ -15,7 +15,7 @@ import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module';
 import {CoreModule} from './core/core.browser.module';
 // import { RouterModule } from '@angular/router';
-// import { pictureGalleryRoutes } from './app/app.routing';
+// import { appRoutes } from './app/app.routing';
 
 /**
  * Top-level NgModule "container"
@@ -40,7 +40,7 @@ import {CoreModule} from './core/core.browser.module';
     /**
      * using routes
      */
-    // RouterModule.forRoot(pictureGalleryRoutes)
+    // RouterModule.forRoot(appRoutes)
   ]
 })
 export class AppModule {
