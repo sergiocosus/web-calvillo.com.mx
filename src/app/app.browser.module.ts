@@ -14,6 +14,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module';
 import {CoreModule} from './core/core.browser.module';
+import {ShareButtonsModule} from 'ng2-sharebuttons';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 
@@ -36,7 +37,8 @@ import {CoreModule} from './core/core.browser.module';
     AppRoutingModule,
     SharedModule,
     CategoryModule,
-    CoreModule
+    CoreModule,
+    ShareButtonsModule.forRoot()
     /**
      * using routes
      */

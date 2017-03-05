@@ -142,7 +142,7 @@ export class PictureGalleryComponent implements OnInit {
     if (isBrowser) {
       let image = new Image();
       image.src = src;
-      console.log(src);
+      // console.log(src);
     }
   }
 
@@ -235,7 +235,7 @@ export class PictureGalleryComponent implements OnInit {
   }
 
   changeRoutePicture(index:number) {
-    console.log(index);
+    // console.log(index);
     this.router.navigate(['galeria', this.category_id, 'foto', this.category.pictures[index].id]);
   }
 

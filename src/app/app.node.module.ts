@@ -15,6 +15,7 @@ import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module';
 import {CoreModule} from './core/core.node.module';
 import {__platform_browser_private__} from '@angular/platform-browser';
+import {ShareButtonsModule} from 'ng2-sharebuttons';
 
 // Hack to work HammerJs with universal
 __platform_browser_private__.HammerGesturesPlugin.prototype.supports = function hackySupports(eventName: string): boolean {

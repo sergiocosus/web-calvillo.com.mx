@@ -41,8 +41,8 @@ export class GalleryComponent implements OnInit {
     this.categoryService.get(category_id).subscribe(
       category => {
         this.category = category;
-        console.log( this.category)
-      }
+      },
+      error => {console.error(error);}
     )
   }
 }

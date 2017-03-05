@@ -73,9 +73,7 @@ header{
   share-buttons{
     position: relative;
     z-index: 10;
-    /deep/ .sb-container{
-      background-color: rgba(white, .75);
-    }
+
   }
 }
 

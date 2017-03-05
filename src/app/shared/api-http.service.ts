@@ -81,8 +81,12 @@ export class ApiHttp {
 
   private handleError(error:any, observable:Observable<any>) {
     // In a real world app, we might send the error to remote logging infrastructure
-    var json = error.json();
-    console.error(json);
+    try {
+      var json = error.json();
+      console.error(json);
+    } catch (e) {
+      console.error(error);
+    }
 
     return Observable.throw(json);
   }
