@@ -5,7 +5,7 @@ import {GalleryRoutingModule} from './gallery-routing.module';
 import {GalleryComponent} from './gallery.component';
 import { PictureGalleryComponent } from './picture-gallery/picture-gallery.component';
 import {CategoryModule} from '../../category/category.module';
-import {ShareButtonsModule} from 'ng2-sharebuttons';
+import {DirectoryModule} from '../../directory/directory.module';
 
 @NgModule({
   imports: [
@@ -13,6 +13,7 @@ import {ShareButtonsModule} from 'ng2-sharebuttons';
     GalleryRoutingModule,
     PictureModule,
     CategoryModule,
+    DirectoryModule,
   ],
   declarations: [
     GalleryComponent,

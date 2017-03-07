@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DirectoryComponent } from './directory.component';
+import {DirectoryComponent} from './directory.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    SharedModule,
   ],
-  declarations: [DirectoryComponent]
+  declarations: [
+    DirectoryComponent,
+  ],
+  exports: [
+    DirectoryComponent,
+  ]
 })
 export class DirectoryModule { }

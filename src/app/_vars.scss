@@ -5,6 +5,12 @@ $mdScreen: 768px;
 $lgScreen: 992px;
 $xlgScreen: 1200px;
 
+$thumbnail-label-background-color: rgba(#EEE, 1);
+
+
+$fb-color: #4267b2;
+$youtube-color: #db4437;
+
 .thumbnail-label{
   position: absolute;
   bottom: 10%;
@@ -18,5 +24,5 @@ $xlgScreen: 1200px;
   color: #333;
   transition: all .5s;
   box-shadow: 6px 6px 5px -1px rgba(0,0,0,0.26);
-  background-color: rgba(#EEE, 1);
+  background-color: $thumbnail-label-background-color;
 }

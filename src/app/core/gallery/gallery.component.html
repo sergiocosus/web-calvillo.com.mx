@@ -66,12 +66,8 @@
     <ul>
       <li *ngFor="let directory of category.directories"
           (click)="loadDirectory(directory.id)">
-        <a [routerLink]="'/galeria/' + category_id + '/directory/' + directory.id">
-          <img src="{{directory.image('sm')}}"/>
-          <div>
-            <span>{{directory.title}}</span>
-          </div>
-        </a>
+        <app-directory [category_id]="category_id" [directory]="directory">
+        </app-directory>
       </li>
     </ul>
   </section>

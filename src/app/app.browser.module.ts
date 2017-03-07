@@ -15,6 +15,7 @@ import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module';
 import {CoreModule} from './core/core.browser.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
+import { DirectoryComponent } from './directory/directory.component';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 

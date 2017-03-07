@@ -1,0 +1,54 @@
+<!--
+<a [routerLink]="'/galeria/' + category_id + '/directory/' + directory.id">
+-->
+<picture>
+  <img src="{{directory.image('sm')}}"/>
+</picture>
+<header>
+  <span>{{directory.title}}</span>
+</header>
+<div class="content">
+  <header>
+    <span>{{directory.title}}</span>
+  </header>
+  <div [innerHTML]="directory.description"><</div>
+
+  <table>
+    <tr>
+      <th>Dirección</th>
+      <td>{{directory.address}}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{directory.email}}</td>
+    </tr>
+    <tr>
+      <th>Teléfono</th>
+      <td>{{directory.phone}}</td>
+    </tr>
+    <tr>
+      <th>Celular</th>
+      <td>{{directory.cellphone}}</td>
+    </tr>
+    <tr>
+      <th>Sitio web</th>
+      <td>
+        <a [href]="directory.website_url" target="_blank">
+          {{directory.website_url}}
+        </a>
+      </td>
+    </tr>
+  </table>
+  <div class="buttons">
+    <a class="facebook"
+       *ngIf="directory.facebook_url.length"
+       [href]="directory.facebook_url" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+    <a class="youtube"
+       *ngIf="directory.youtube_url.length"
+       [href]="directory.youtube_url" target="_blank">
+      <i class="fa fa-youtube"></i>
+    </a>
+  </div>
+</div>
