@@ -1,14 +1,20 @@
 <ng-container *ngIf="category">
   <header [ngStyle]="{'background-image':  'url(' + category.image('xlg') + ')'}">
     <div class="gradient"></div>
+    <!--
     <div class="back-category">
       <i class="fa fa-undo" aria-hidden="true"></i>
       <app-category-thumbnail
         [showText]="false" class="fit"
         [category]="category.category"></app-category-thumbnail>
     </div>
-
-    <h1>{{category.title}}</h1>
+-->
+    <h1>
+      <a [routerLink]="category.category.routerLink">
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </a>
+      {{category.title}}
+    </h1>
     <div class="content" [innerHTML]="category.description"></div>
 
     <share-buttons [url]="'http://calvillo.com.mx' + currRoute"
@@ -64,8 +70,7 @@
       Directorio
     </h3>
     <ul>
-      <li *ngFor="let directory of category.directories"
-          (click)="loadDirectory(directory.id)">
+      <li *ngFor="let directory of category.directories">
         <app-directory [category_id]="category_id" [directory]="directory">
         </app-directory>
       </li>

@@ -11,6 +11,17 @@ $thumbnail-label-background-color: rgba(#EEE, 1);
 $fb-color: #4267b2;
 $youtube-color: #db4437;
 
+
+$thumbSize: 60px;
+$thumbMargin: 2px;
+
+$topSpace: $thumbSize + ($thumbMargin * 2);
+
+$titleFontSize: 2em;
+$subtitleFontSize: 2em;
+
+$arrowBackgroundColor: rgba(black, .5);
+
 .thumbnail-label{
   position: absolute;
   bottom: 10%;

@@ -22,6 +22,10 @@ export class Category extends ImageableModel{
   videos: Video[];
   directories: Directory[];
 
+  get routerLink() {
+    return '/galeria/' + this.id;
+  }
+
   parse(obj): any {
     let category = super.parse(obj);
 

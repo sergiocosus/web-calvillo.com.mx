@@ -5,6 +5,7 @@ import {UniversalModule} from 'angular2-universal';
 import {RouterModule} from '@angular/router';
 import { VoidComponent } from './components/void/void.component';
 import {ResolutionService} from './services/resolution.service';
+import {ModalModule} from 'ng2-bootstrap';
 
 
 @NgModule({
@@ -12,9 +13,10 @@ import {ResolutionService} from './services/resolution.service';
     CommonModule,
     UniversalModule,
     RouterModule,
+    ModalModule,
   ],
   declarations: [
-    VoidComponent
+    VoidComponent,
   ],
   providers: [
     apiHttpServiceProvider,
@@ -24,6 +26,7 @@ import {ResolutionService} from './services/resolution.service';
     CommonModule,
     UniversalModule,
     RouterModule,
+    ModalModule,
     VoidComponent,
   ]
 })

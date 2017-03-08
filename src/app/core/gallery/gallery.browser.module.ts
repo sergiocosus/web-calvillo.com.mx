@@ -6,7 +6,8 @@ import {GalleryComponent} from './gallery.component';
 import { PictureGalleryComponent } from './picture-gallery/picture-gallery.component';
 import {CategoryModule} from '../../category/category.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
-import {DirectoryModule} from '../../directory/directory.module';
+import {DirectoryModule} from '../../directory/directory.module.browser';
+import {AgmCoreModule} from 'angular2-google-maps/core';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {DirectoryModule} from '../../directory/directory.module';
     CategoryModule,
     DirectoryModule,
     ShareButtonsModule,
+    AgmCoreModule
   ],
   declarations: [
     GalleryComponent,

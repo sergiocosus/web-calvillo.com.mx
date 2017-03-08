@@ -62,6 +62,18 @@ header{
 
   h1{
     margin-top: 1em;
+
+    a{
+      color: white;
+      text-decoration: none;
+      i{
+        background-color: $arrowBackgroundColor;
+        padding: .25em;
+      }
+      &:visited{
+        color: white;
+      }
+    }
   }
   .content{
     display: inline-block;
@@ -116,8 +128,6 @@ section{
           @extend .thumbnail-label;
         }
 
-
-
         &:hover{
           >img{
             transform: scale(1.75, 1.75) translate(0, 5%);
@@ -131,4 +141,8 @@ section{
 
     }
   }
+}
+
+sebm-google-map{
+  height: 80vh;
 }

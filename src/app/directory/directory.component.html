@@ -7,30 +7,32 @@
 <header>
   <span>{{directory.title}}</span>
 </header>
-<div class="content">
+<div class="content"
+     *ngIf="expanded"
+     [@directory]="'active'">
   <header>
     <span>{{directory.title}}</span>
   </header>
   <div [innerHTML]="directory.description"><</div>
 
   <table>
-    <tr>
+    <tr *ngIf="directory.address.length">
       <th>Dirección</th>
       <td>{{directory.address}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="directory.email.length">
       <th>Email</th>
       <td>{{directory.email}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="directory.phone.length">
       <th>Teléfono</th>
       <td>{{directory.phone}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="directory.cellphone.length">
       <th>Celular</th>
       <td>{{directory.cellphone}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="directory.website_url.length">
       <th>Sitio web</th>
       <td>
         <a [href]="directory.website_url" target="_blank">
@@ -40,6 +42,12 @@
     </tr>
   </table>
   <div class="buttons">
+    <a class="map"
+     *ngIf="directory.longitude && directory.latitude"
+     (click)="openMapModal()">
+      <i class="fa fa-map-marker"></i>
+    </a>
+
     <a class="facebook"
        *ngIf="directory.facebook_url.length"
        [href]="directory.facebook_url" target="_blank">
@@ -52,3 +60,28 @@
     </a>
   </div>
 </div>
+
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">
+          {{directory.title}}
+        </h4>
+        <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <sebm-google-map *ngIf="!hidden" [latitude]="directory.latitude" [longitude]="directory.longitude">
+          <sebm-google-map-marker
+            [latitude]="directory.latitude"
+            [longitude]="directory.longitude"
+            [label]="directory.title">
+          </sebm-google-map-marker>
+        </sebm-google-map>
+      </div>
+    </div>
+  </div>
+</div>
+

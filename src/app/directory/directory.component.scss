@@ -51,6 +51,7 @@
 
     .content{
       text-align: left;
+
       header{
         font-weight: bolder;
         font-size: 1.25em;
@@ -88,4 +89,16 @@
   @extend .social;
 
   background-color: $youtube-color;
+}
+
+.map{
+  @extend .social;
+
+  background-color: dimgray;
+  i {
+    color: white;
+  }
+}
+sebm-google-map{
+  height: 80vh;
 }

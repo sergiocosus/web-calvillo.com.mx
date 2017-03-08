@@ -1,14 +1,6 @@
 @import 'src/app/vars';
 
-$thumbSize: 60px;
-$thumbMargin: 2px;
 
-$topSpace: $thumbSize + ($thumbMargin * 2);
-
-$titleFontSize: 2em;
-$subtitleFontSize: 2em;
-
-$arrowBackgroundColor: rgba(black, .5);
 
 :host{
   display: flex;

@@ -16,6 +16,9 @@ import {CategoryModule} from './category/category.module';
 import {CoreModule} from './core/core.browser.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import { DirectoryComponent } from './directory/directory.component';
+import {AgmCoreModule} from 'angular2-google-maps/core';
+import {environment} from '../environments/environment';
+import {ModalModule} from 'ng2-bootstrap';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 
@@ -39,7 +42,11 @@ import { DirectoryComponent } from './directory/directory.component';
     SharedModule,
     CategoryModule,
     CoreModule,
-    ShareButtonsModule.forRoot()
+    ShareButtonsModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleMapsApiKey
+    }),
+    ModalModule.forRoot(),
     /**
      * using routes
      */
