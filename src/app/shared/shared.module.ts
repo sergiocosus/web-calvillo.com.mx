@@ -6,6 +6,8 @@ import {RouterModule} from '@angular/router';
 import { VoidComponent } from './components/void/void.component';
 import {ResolutionService} from './services/resolution.service';
 import {ModalModule} from 'ng2-bootstrap';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {LocalStorageService} from './services/local-storage.service';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import {ModalModule} from 'ng2-bootstrap';
     UniversalModule,
     RouterModule,
     ModalModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     VoidComponent,
@@ -21,9 +25,12 @@ import {ModalModule} from 'ng2-bootstrap';
   providers: [
     apiHttpServiceProvider,
     ResolutionService,
+    LocalStorageService,
   ],
   exports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     UniversalModule,
     RouterModule,
     ModalModule,

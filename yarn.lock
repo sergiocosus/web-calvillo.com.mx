@@ -3876,6 +3876,10 @@ nested-error-stacks@^1.0.0:
   dependencies:
     inherits "~2.0.1"
 
+ng2-adsense@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ng2-adsense/-/ng2-adsense-2.0.3.tgz#61576c33f837541e5a8dfd41bb713d698612a26b"
+
 ng2-bootstrap@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ng2-bootstrap/-/ng2-bootstrap-1.4.0.tgz#72f814d0d6abf2e16fa37b26acb5910f44c59598"

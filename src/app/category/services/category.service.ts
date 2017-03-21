@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ApiHttp} from '../shared/api-http.service';
-import {Category} from './category.model';
+import {ApiHttp} from '../../shared/api-http.service';
+import {Category} from '../category.model';
 import {Observable} from 'rxjs';
 
 @Injectable()
@@ -10,6 +10,11 @@ export class CategoryService {
 
   get(category_id: number) {
     return this.apiHttp.get('category/' + category_id)
+      .map(json => new Category().parse(json.category));
+  }
+
+  post(data) {
+    return this.apiHttp.post('category', data)
       .map(json => new Category().parse(json.category));
   }
 }

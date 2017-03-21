@@ -3,13 +3,17 @@ import {Http, RequestOptionsArgs, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs';
 
 import {environment} from "../../environments/environment";
+import {LocalStorageService} from './services/local-storage.service';
 
 
 @Injectable()
 export class ApiHttp {
   private apiUrl;
 
-  constructor(private config:ApiConfig, private http:Http) {
+  constructor(private config: ApiConfig,
+              private http: Http,
+              private localStorage: LocalStorageService
+  ) {
     this.apiUrl = config.apiUrl;
   }
 
@@ -70,11 +74,8 @@ export class ApiHttp {
     if (!options.headers) {
       options.headers = new Headers();
     }
-    var headers = options.headers;
-/*    headers.append('X-Auth-Token', localStorage.getItem('X-Auth-Token'));
-    headers.append('X-Auth-Key', this.config.apiKey);
-    headers.append('X-Auth-Secret-Key', this.config.apiSecretKey);*/
-    headers.append('Accept', 'application/json');
+    let headers = options.headers;
+    headers.append('Authorization', 'Bearer ' + this.localStorage.get('access_token'));
     headers.append('Content-Type', 'application/json');
     return options;
   }
@@ -115,20 +116,16 @@ export class ApiHttp {
 }
 
 export class ApiConfig {
-  constructor(public apiUrl:string,
-             /* public apiKey:string,
-              public apiSecretKey:string*/) {
+  constructor(public apiUrl:string) {
   }
 }
 
 
 
-export function apiHttpServiceFactory (http: Http)  {
+export function apiHttpServiceFactory (http: Http, localStorage: LocalStorageService)  {
   return new ApiHttp(new ApiConfig(
     environment.apiUrl,
-  /*  environment.apiKey,
-    environment.apiSecretKey*/
-  ), http);
+  ), http, localStorage);
 }
 
 
@@ -136,7 +133,7 @@ export let apiHttpServiceProvider =
   {
     provide: ApiHttp,
     useFactory: apiHttpServiceFactory,
-    deps: [Http]
+    deps: [Http, LocalStorageService]
   };
 
 

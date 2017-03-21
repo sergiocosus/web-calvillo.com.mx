@@ -8,6 +8,7 @@ import {CategoryModule} from '../../category/category.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import {DirectoryModule} from '../../directory/directory.module.browser';
 import {AgmCoreModule} from 'angular2-google-maps/core';
+import {AdsenseModule} from 'ng2-adsense';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {AgmCoreModule} from 'angular2-google-maps/core';
     CategoryModule,
     DirectoryModule,
     ShareButtonsModule,
-    AgmCoreModule
+    AgmCoreModule,
+    AdsenseModule,
   ],
   declarations: [
     GalleryComponent,

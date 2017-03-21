@@ -5,13 +5,15 @@ import {SharedModule} from '../shared/shared.module';
 import {CoreRoutingModule} from './core-routing.module';
 import {LandingModule} from './landing/landing.module';
 import {GalleryModule} from './gallery/gallery.browser.module';
+import {AuthModule} from '../auth/auth.module.browser';
 
 @NgModule({
   imports: [
     SharedModule,
     CoreRoutingModule,
     LandingModule,
-    GalleryModule
+    GalleryModule,
+    AuthModule,
   ],
   declarations: [
     CoreComponent,

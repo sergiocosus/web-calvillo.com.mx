@@ -1,20 +1,14 @@
 <ng-container *ngIf="category">
   <header [ngStyle]="{'background-image':  'url(' + category.image('xlg') + ')'}">
     <div class="gradient"></div>
-    <!--
     <div class="back-category">
       <i class="fa fa-undo" aria-hidden="true"></i>
       <app-category-thumbnail
         [showText]="false" class="fit"
         [category]="category.category"></app-category-thumbnail>
     </div>
--->
-    <h1>
-      <a [routerLink]="category.category.routerLink">
-        <i class="fa fa-caret-up" aria-hidden="true"></i>
-      </a>
-      {{category.title}}
-    </h1>
+    <h1>{{category.title}}</h1>
+
     <div class="content" [innerHTML]="category.description"></div>
 
     <share-buttons [url]="'http://calvillo.com.mx' + currRoute"
@@ -22,9 +16,8 @@
     ></share-buttons>
     <!-- TODO put related gallery -->
   </header>
-
-
   <section *ngIf="category.categories.length">
+    <ng2-adsense ></ng2-adsense>
     <h3>
       <i class="fa fa-folder" aria-hidden="true"></i>
       Secciones

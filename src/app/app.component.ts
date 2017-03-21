@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AuthService} from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,8 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit{
-  constructor() {
+  constructor(private authService: AuthService) {
+    this.authService.updateLoggedUserObservable().subscribe(() => {});
   }
 
   ngOnInit(): void {

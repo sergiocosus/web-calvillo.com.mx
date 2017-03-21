@@ -7,6 +7,7 @@
  */
 
 import { NgModule } from '@angular/core';
+
 import { UniversalModule } from 'angular2-universal';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
@@ -19,6 +20,7 @@ import { DirectoryComponent } from './directory/directory.component';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 import {environment} from '../environments/environment';
 import {ModalModule} from 'ng2-bootstrap';
+import {AdsenseModule} from 'ng2-adsense';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 
@@ -47,6 +49,10 @@ import {ModalModule} from 'ng2-bootstrap';
       apiKey: environment.googleMapsApiKey
     }),
     ModalModule.forRoot(),
+    AdsenseModule.forRoot({
+      adClient: environment.adSenseAdClient,
+      adSlot: environment.adSenseAdSlot
+    }),
     /**
      * using routes
      */

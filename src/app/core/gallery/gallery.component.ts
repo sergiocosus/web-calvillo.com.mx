@@ -1,8 +1,9 @@
 import {Component, OnInit, SecurityContext} from '@angular/core';
-import {CategoryService} from '../../category/category.service';
+import {CategoryService} from '../../category/services/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../category/category.model';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-gallery',
@@ -11,14 +12,16 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 })
 export class GalleryComponent implements OnInit {
   category: Category;
+  currRoute = '';
+  category_id = null;
+  adSenseEnabled = environment.adSenseEnabled;
 
   constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private router: Router) { }
 
-  currRoute = '';
-  category_id = null;
+
   ngOnInit() {
     let sub = this.activatedRoute.children[0].params.subscribe(
       route => {
@@ -30,10 +33,6 @@ export class GalleryComponent implements OnInit {
         }
       }
     );
-  }
-
-  sanitize(content){
-      return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
   loadCategory(category_id: number) {

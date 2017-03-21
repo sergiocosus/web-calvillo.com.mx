@@ -1,10 +1,6 @@
 import {ImageableModel} from '../shared/classes/imageable.model';
 
 export class Directory extends ImageableModel{
-  static parseArray(objs:any[]):Directory[] {
-    return objs.map(obj => {return new Directory().parse(obj)})
-  }
-
   id: number;
   title: string;
   link: string;
@@ -22,5 +18,9 @@ export class Directory extends ImageableModel{
   created_at: string;
   updated_at: string;
   deleted_at: string;
+
+  static parseArray(objs:any[]):Directory[] {
+    return objs.map(obj => {return new Directory().parse(obj)})
+  }
 
 }

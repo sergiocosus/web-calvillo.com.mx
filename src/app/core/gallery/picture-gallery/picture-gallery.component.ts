@@ -3,11 +3,12 @@ import {
   transition, style, animate
 } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CategoryService} from '../../../category/category.service';
+import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
 import {isBrowser} from 'angular2-universal';
 import {ResolutionService} from '../../../shared/services/resolution.service';
+import {ModalDirective} from 'ng2-bootstrap';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -53,6 +54,8 @@ import {ResolutionService} from '../../../shared/services/resolution.service';
 })
 export class PictureGalleryComponent implements OnInit {
   @ViewChild('list') list: ElementRef;
+  @ViewChild('modal') modal: ModalDirective;
+
   @HostListener('window:resize') resize() {
     this.initImgSize();
     this.initPages();
@@ -81,6 +84,7 @@ export class PictureGalleryComponent implements OnInit {
   index: number;
   oldIndex: number = null;
   pictureLength: number;
+  hiddenMap = true;
 
   constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
@@ -284,6 +288,11 @@ export class PictureGalleryComponent implements OnInit {
 
   get isLastPicture() {
     return this.index === this.pictureLength - 1;
+  }
+
+  openMapModal() {
+    this.modal.show();
+    setTimeout(() => this.hiddenMap = false, 200);
   }
 
 }
