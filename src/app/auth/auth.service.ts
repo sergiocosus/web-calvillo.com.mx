@@ -6,7 +6,6 @@ import {User} from '../user/user.model';
 import {LocalStorageService} from '../shared/services/local-storage.service';
 import {ApiHttp} from '../shared/api-http.service';
 import {UserService} from '../user/user.service';
-import {OAuthService} from 'angular-oauth2-oidc';
 import {environment} from '../../environments/environment';
 import {Http, URLSearchParams, Headers} from '@angular/http';
 

@@ -1,0 +1,45 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">
+          Crear category
+        </h4>
+        <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  *ngIf="category" (submit)="submit()">
+          <md-input-container>
+            <input mdInput required
+                   [(ngModel)]="category.title"
+                   name="title"
+                   placeholder="Título"  >
+          </md-input-container>
+          <md-input-container>
+            <input mdInput
+                   [(ngModel)]="category.link"
+                   name="link"
+                   placeholder="Titulo para enlace">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput
+                   [(ngModel)]="category.description"
+                   name="description"
+                   placeholder="Descripción"  >
+          </md-input-container>
+          <input class="input-picture" image-upload
+                 (imageSelected)="selected($event)"
+                 accept="image/*" name="picture" type="file">
+          <picture *ngIf="src" [ngStyle]="{
+              'background-image' : 'url('+src+')'
+            }">
+          </picture>
+          <button md-button>Subir categoría</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

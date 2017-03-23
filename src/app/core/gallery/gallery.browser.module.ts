@@ -4,11 +4,12 @@ import {PictureModule} from '../../picture/picture.module';
 import {GalleryRoutingModule} from './gallery-routing.module';
 import {GalleryComponent} from './gallery.component';
 import { PictureGalleryComponent } from './picture-gallery/picture-gallery.component';
-import {CategoryModule} from '../../category/category.module';
+import {CategoryModule} from '../../category/category.module.browser';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import {DirectoryModule} from '../../directory/directory.module.browser';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 import {AdsenseModule} from 'ng2-adsense';
+import {AuthModule} from '../../auth/auth.module.browser';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {AdsenseModule} from 'ng2-adsense';
     ShareButtonsModule,
     AgmCoreModule,
     AdsenseModule,
+    AuthModule,
   ],
   declarations: [
     GalleryComponent,

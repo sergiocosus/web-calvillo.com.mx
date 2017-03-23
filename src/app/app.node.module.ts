@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
-import {CategoryModule} from './category/category.module';
+import {CategoryModule} from './category/category.module.node';
 import {CoreModule} from './core/core.node.module';
 import {__platform_browser_private__} from '@angular/platform-browser';
 import {ShareButtonsModule} from 'ng2-sharebuttons';

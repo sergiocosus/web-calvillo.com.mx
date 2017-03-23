@@ -43,6 +43,10 @@
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.2.3.tgz#84941d638c961ebae248091d6d51ac6f241be882"
 
+"@angular/material@^2.0.0-beta.2":
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.2.tgz#65ee8733990347b7518b7f42113e02e069dc109b"
+
 "@angular/platform-browser-dynamic@2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.2.3.tgz#80f68c13c0b51bac890beed05548bc7597b9ff6d"
@@ -3885,6 +3889,10 @@ ng2-bootstrap@^1.4.0:
   resolved "https://registry.yarnpkg.com/ng2-bootstrap/-/ng2-bootstrap-1.4.0.tgz#72f814d0d6abf2e16fa37b26acb5910f44c59598"
   dependencies:
     moment "2.17.1"
+
+ng2-imageupload@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/ng2-imageupload/-/ng2-imageupload-1.3.1.tgz#488c5b392448ff93efcf39c924a5c04519d0894e"
 
 ng2-responsive@^0.8.3:
   version "0.8.3"

@@ -18,7 +18,6 @@ export class GalleryComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
-              private sanitizer: DomSanitizer,
               private router: Router) { }
 
 
@@ -43,5 +42,10 @@ export class GalleryComponent implements OnInit {
       },
       error => {console.error(error);}
     )
+  }
+
+  pushCategory(category) {
+    console.log(category);
+    this.category.categories.push(category);
   }
 }
