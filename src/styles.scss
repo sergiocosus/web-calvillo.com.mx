@@ -17,3 +17,10 @@ body{
   overflow-x: hidden;
 }
 
+.picker-modal{
+  position: static !important;
+}
+
+.picker-modal-main{
+  height: auto !important;
+}

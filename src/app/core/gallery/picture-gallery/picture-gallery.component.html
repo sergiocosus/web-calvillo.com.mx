@@ -71,7 +71,7 @@
         <i class="fa fa-map-marker"></i>
       </a>
     </h1>
-
+    <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
   <div class="content" [innerHTML]="picture.description">
   </div>

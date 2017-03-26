@@ -36,11 +36,12 @@
                    [(ngModel)]="picture.longitude" name="longitude"
                    placeholder="Longitud">
           </md-input-container>
-          <md-input-container>
-            <input mdInput type="datetime-local"
-                   [(ngModel)]="picture.taken_at" name="taken_at"
-                   placeholder="Fecha en la que fue tomada">
-          </md-input-container>
+
+          <input [ngModel]="picture.taken_at | date: 'short'"
+                 name="taken_at"  mode="popup"
+                 [(dateTimePicker)]="picture.taken_at" readonly
+                 placeholder="Fecha en la que fue tomada"/>
+
           <input class="input-picture"
                  image-upload (imageSelected)="selected($event)"
                  accept="image/*" name="picture" type="file">

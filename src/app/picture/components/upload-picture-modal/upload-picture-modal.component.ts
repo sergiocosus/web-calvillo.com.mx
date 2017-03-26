@@ -42,11 +42,15 @@ export class UploadPictureModalComponent implements OnInit {
 
   selected(imageResult: ImageResult) {
     this.src = imageResult.dataURL;
-    let exif = this.exifService.readEXIFFromBase64(imageResult.dataURL);
-    let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
-    this.picture.taken_at = <any>dateTime.utc(true).toISOString().slice(0,19)
+    try {
+      let exif = this.exifService.readEXIFFromBase64(imageResult.dataURL);
+      if (exif.DateTime) {
+        let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
+        this.picture.taken_at = <any>dateTime;
+      }
+    } catch (e) {
+      console.error('Error getting datetime from exif',e);
+    }
 
-    console.log(exif);
-    console.log(dateTime);
   }
 }

@@ -5,12 +5,14 @@ import { UploadPictureModalComponent } from './components/upload-picture-modal/u
 import {MaterialModule} from '@angular/material';
 import {PictureService} from './services/picture.service';
 import {ImageUploadModule} from 'ng2-imageupload';
+import {DateTimePickerModule} from 'ng2-date-time-picker';
 
 @NgModule({
   imports: [
     SharedModule,
     MaterialModule,
     ImageUploadModule,
+    DateTimePickerModule,
   ],
   declarations: [
     PictureThumbnailComponent,
