@@ -16,8 +16,8 @@
     ></share-buttons>
     <!-- TODO put related gallery -->
   </header>
-  <section *ngIf="category.categories.length">
-    <ng2-adsense ></ng2-adsense>
+  <section *ngIf="category.categories.length || loggedUser">
+    <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
     <h3>
       <i class="fa fa-folder" aria-hidden="true"></i>
       Secciones
@@ -34,10 +34,15 @@
       </li>
     </ul>
   </section>
-  <section *ngIf="category.videos.length">
+  <section *ngIf="category.videos.length || loggedUser">
     <h3>
       <i class="fa fa-video-camera" aria-hidden="true"></i>
       Videos
+      <span *appIfLogged="true"
+            class="add-button"
+            (click)="categoryModal.open(category.id)">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </span>
     </h3>
     <ul>
       <li *ngFor="let video of category.videos"
@@ -51,10 +56,15 @@
       </li>
     </ul>
   </section>
-  <section *ngIf="category.pictures.length">
+  <section *ngIf="category.pictures.length || loggedUser">
     <h3>
       <i class="fa fa-camera" aria-hidden="true"></i>
        Fotografías
+      <span *appIfLogged="true"
+            class="add-button"
+            (click)="pictureModal.open(category.id)">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </span>
     </h3>
     <ul>
       <li *ngFor="let picture of category.pictures"
@@ -63,10 +73,15 @@
       </li>
     </ul>
   </section>
-  <section *ngIf="category.directories.length">
+  <section *ngIf="category.directories.length || loggedUser">
     <h3>
       <i class="fa fa-book" aria-hidden="true"></i>
       Directorio
+      <span *appIfLogged="true"
+            class="add-button"
+            (click)="categoryModal.open(category.id)">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </span>
     </h3>
     <ul>
       <li *ngFor="let directory of category.directories">
@@ -81,3 +96,6 @@
 <app-add-category-modal
   (created)="pushCategory($event)"
   #categoryModal></app-add-category-modal>
+<app-upload-picture-modal
+  (created)="pushPicture($event)"
+  #pictureModal></app-upload-picture-modal>

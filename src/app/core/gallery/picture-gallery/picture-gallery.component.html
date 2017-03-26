@@ -93,11 +93,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <sebm-google-map *ngIf="!hiddenMap" [latitude]="picture.latitude" [longitude]="picture.longitude">
+        <sebm-google-map *ngIf="!hiddenMap"
+                         [latitude]="picture.latitude"
+                         [longitude]="picture.longitude"
+                         [zoom]="19">
           <sebm-google-map-marker
             [latitude]="picture.latitude"
             [longitude]="picture.longitude"
-            [label]="picture.title">
+            [label]="picture.title"
+          >
           </sebm-google-map-marker>
         </sebm-google-map>
       </div>

@@ -1,27 +1,38 @@
-import {Component, OnInit, SecurityContext} from '@angular/core';
+import {Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../category/category.model';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
+import {AuthService} from '../../auth/auth.service';
+import {User} from '../../user/user.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, OnDestroy {
+
   category: Category;
   currRoute = '';
   category_id = null;
   adSenseEnabled = environment.adSenseEnabled;
+  loggedUser: User;
+  subscription: Subscription;
+
 
   constructor(private categoryService: CategoryService,
+              private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
 
   ngOnInit() {
+    this.subscription = this.authService.getLoggedUser().subscribe(
+      user => this.loggedUser = user
+    );
+
     let sub = this.activatedRoute.children[0].params.subscribe(
       route => {
         this.currRoute = this.router.url;
@@ -32,6 +43,10 @@ export class GalleryComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   loadCategory(category_id: number) {
@@ -45,7 +60,10 @@ export class GalleryComponent implements OnInit {
   }
 
   pushCategory(category) {
-    console.log(category);
     this.category.categories.push(category);
+  }
+
+  pushPicture(picture) {
+    this.category.pictures.push(picture);
   }
 }

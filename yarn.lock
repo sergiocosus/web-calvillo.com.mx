@@ -128,6 +128,12 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-0.0.28.tgz#57c3a60e773632066c82b0d046bf768c9b401ff6"
 
+"@types/moment@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+  dependencies:
+    moment "*"
+
 "@types/node@*", "@types/node@^6.0.42", "@types/node@^6.0.46":
   version "6.0.64"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.64.tgz#cdc901411f6301e1437dfed23bc68f54442e4dc8"
@@ -1890,6 +1896,10 @@ execa@^0.4.0:
     object-assign "^4.0.1"
     path-key "^1.0.0"
     strip-eof "^1.0.0"
+
+exif-js@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/exif-js/-/exif-js-2.1.1.tgz#2962e6aa6600340a454b24c52e458b81ccf1e6d6"
 
 exists-sync@0.0.3:
   version "0.0.3"
@@ -3825,6 +3835,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
 mktemp@~0.3.4:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/mktemp/-/mktemp-0.3.5.tgz#a1504c706d0d2b198c6a0eb645f7fdaf8181f7de"
+
+moment@*, moment@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 moment@2.17.1:
   version "2.17.1"

@@ -8,6 +8,7 @@ import {ResolutionService} from './services/resolution.service';
 import {ModalModule} from 'ng2-bootstrap';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {LocalStorageService} from './services/local-storage.service';
+import {EXIFService} from './services/exif.service';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {LocalStorageService} from './services/local-storage.service';
     apiHttpServiceProvider,
     ResolutionService,
     LocalStorageService,
+    EXIFService,
   ],
   exports: [
     CommonModule,

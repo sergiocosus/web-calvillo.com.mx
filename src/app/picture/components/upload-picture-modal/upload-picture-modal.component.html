@@ -1,0 +1,57 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">
+          Subir foto
+        </h4>
+        <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="picture" (submit)="submit()">
+          <md-input-container>
+            <input mdInput required
+                   [(ngModel)]="picture.title" name="title"
+                   placeholder="Título"  >
+          </md-input-container>
+          <md-input-container>
+            <input mdInput
+                   [(ngModel)]="picture.link" name="link"
+                   placeholder="Titulo para enlace">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput
+                   [(ngModel)]="picture.description" name="description"
+                   placeholder="Descripción"  >
+          </md-input-container>
+          <md-input-container>
+            <input mdInput type="number" min="-90" max="90" step=".0000001"
+                   [(ngModel)]="picture.latitude" name="latitude"
+                   placeholder="Latitud">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput type="number" min="-180" max="180" step=".0000001"
+                   [(ngModel)]="picture.longitude" name="longitude"
+                   placeholder="Longitud">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput type="datetime-local"
+                   [(ngModel)]="picture.taken_at" name="taken_at"
+                   placeholder="Fecha en la que fue tomada">
+          </md-input-container>
+          <input class="input-picture"
+                 image-upload (imageSelected)="selected($event)"
+                 accept="image/*" name="picture" type="file">
+          <picture *ngIf="src" [ngStyle]="{
+              'background-image' : 'url('+src+')'
+            }">
+          </picture>
+          <button md-button>Subir categoría</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
