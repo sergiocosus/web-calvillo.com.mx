@@ -1,9 +1,44 @@
-picture{
-  height: 200px;
-  width: 100%;
-  display: inline-block;
 
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.picture-form-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1em 0;
+  position: relative;
+
+  .lock{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparentize(black, .5);
+    color: white;
+
+    &.uploading{
+      display: inline-block;
+    }
+  }
+  picture{
+    height: 200px;
+    width: 100%;
+    display: inline-block;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .picture-container{
+    flex: 1 0 200px
+  }
+
+  .picture-form{
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+
+    /deep/ .mat-input-wrapper {
+      margin: 0 0 1em .5em;
+    }
+  }
 }

@@ -261,7 +261,7 @@ export class PictureGalleryComponent implements OnInit {
     this.oldIndex = this.index;
 
     if (this.index < this.category.pictures.length - 1) {
-      this.preloadImage(this.category.pictures[this.index + 1].image(this.imgSize));
+      this.preloadImage(this.category.pictures[this.index + 1].imageUrl(this.imgSize));
     }
   }
 

@@ -21,7 +21,7 @@
       <li *ngIf="indexInPage(i)">
         <a [routerLink]="'/galeria/' + category_id + '/foto/' + picture.id">
           <picture
-            [ngStyle]="{'background-image':  'url(' + picture.image('xs') + ')'}">
+            [ngStyle]="{'background-image':  'url(' + picture.imageUrl('xs') + ')'}">
           </picture>
         </a>
       </li>
@@ -48,7 +48,7 @@
 
   <ng-container *ngFor="let selectedPicture of pictureTail">
     <picture [@picture]="selectedPicture.state"
-             [ngStyle]="{'background-image':  'url(' + selectedPicture.picture.image(imgSize) + ')'}">
+             [ngStyle]="{'background-image':  'url(' + selectedPicture.picture.imageUrl(imgSize) + ')'}">
     </picture>
   </ng-container>
 

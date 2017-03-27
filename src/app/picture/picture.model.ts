@@ -17,3 +17,9 @@ export class Picture extends ImageableModel{
     return objs.map(obj => {return new Picture().parse(obj)})
   }
 }
+
+export class PictureRequest extends Picture{
+  src: string;
+  image: string;
+  category_id: number;
+}

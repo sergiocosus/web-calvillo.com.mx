@@ -1,5 +1,5 @@
 <ng-container *ngIf="category">
-  <header [ngStyle]="{'background-image':  'url(' + category.image('xlg') + ')'}">
+  <header [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
     <div class="gradient"></div>
     <div class="back-category">
       <i class="fa fa-undo" aria-hidden="true"></i>
@@ -48,7 +48,7 @@
       <li *ngFor="let video of category.videos"
           (click)="loadVideo(video.id)">
         <a [routerLink]="'/galeria/' + category_id + '/video/' + video.id">
-          <img src="{{video.image('sm')}}"/>
+          <img src="{{video.imageUrl('sm')}}"/>
           <div>
             <span>{{video.title}}</span>
           </div>
