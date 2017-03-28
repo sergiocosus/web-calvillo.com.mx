@@ -20,6 +20,7 @@ import {AgmCoreModule} from 'angular2-google-maps/core';
 import {environment} from '../environments/environment';
 import {ModalModule} from 'ng2-bootstrap';
 import {AdsenseModule} from 'ng2-adsense';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 
@@ -38,20 +39,20 @@ import {AdsenseModule} from 'ng2-adsense';
      */
     UniversalModule,
     FormsModule,
-
     AppRoutingModule,
     SharedModule,
     CategoryModule,
     CoreModule,
     ShareButtonsModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsApiKey
+        apiKey: environment.googleMapsApiKey
     }),
     ModalModule.forRoot(),
     AdsenseModule.forRoot({
       adClient: environment.adSenseAdClient,
-      adSlot: environment.adSenseAdSlot
+      adSlot: environment.adSenseAdSlot,
     }),
+    SimpleNotificationsModule.forRoot(),
     /**
      * using routes
      */

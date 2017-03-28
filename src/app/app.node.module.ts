@@ -6,7 +6,7 @@
  * client.ts and server.ts
  */
 
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { UniversalModule } from 'angular2-universal';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
@@ -55,7 +55,8 @@ __platform_browser_private__.HammerGesturesPlugin.prototype.supports = function 
      * using routes
      */
     // RouterModule.forRoot(appRoutes)
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {
 

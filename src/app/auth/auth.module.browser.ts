@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
@@ -26,6 +26,6 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
   exports: [
     LoginModalComponent,
     IfLoggedDirective,
-  ]
+  ],
 })
 export class AuthModule { }

@@ -6,6 +6,7 @@ import {EXIFService} from '../../../shared/services/exif.service';
 import {Picture, PictureRequest} from '../../picture.model';
 
 import * as moment from 'moment';
+import {NotifyService} from '../../../shared/services/notify.service';
 
 @Component({
   selector: 'app-upload-picture-modal',
@@ -15,12 +16,17 @@ import * as moment from 'moment';
 export class UploadPictureModalComponent implements OnInit {
   @ViewChild('modal') modal: ModalDirective;
   @Output() created = new EventEmitter;
+
+  takeTitleFromFiles = false;
+
   pictures: PictureRequest[] = [];
   currentUploadingPicture = null;
   parent_category_id: number = null;
   uploading = false;
   constructor(private pictureService: PictureService,
-              private exifService: EXIFService) { }
+              private exifService: EXIFService,
+              private notify: NotifyService
+  ) { }
 
   ngOnInit() {
   }
@@ -33,30 +39,7 @@ export class UploadPictureModalComponent implements OnInit {
     this.modal.show();
   }
 
-  submit() {
-    this.currentUploadingPicture = 0;
-    this.selectPictureToUpload();
-  }
 
-  selectPictureToUpload() {
-    if (this.pictures.length >= (this.currentUploadingPicture + 1)) {
-      this.uploadPicture(this.pictures[this.currentUploadingPicture]);
-      this.currentUploadingPicture++;
-    } else {
-      this.pictures = [];
-      this.modal.hide();
-    }
-  }
-
-  uploadPicture(picture: PictureRequest) {
-    this.pictureService.post(picture).subscribe(
-      category => {
-        this.created.emit(category);
-        console.log(picture, 'uploaded');
-        this.selectPictureToUpload();
-      }
-    );
-  }
 
   selected(imageResult: ImageResult) {
     console.log(imageResult);
@@ -64,7 +47,11 @@ export class UploadPictureModalComponent implements OnInit {
     picture.category_id = this.parent_category_id;
     picture.src = imageResult.dataURL;
     picture.image = picture.src ? picture.src.split(',')[1] : null;
-
+    if (this.takeTitleFromFiles) {
+      let filename = imageResult.file.name;
+      picture.title = filename.replace(/\.[^/.]+$/, "");
+      picture.link = picture.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+    }
     this.pictures.push(picture);
 
     this.processExif(imageResult.dataURL, picture);
@@ -73,6 +60,7 @@ export class UploadPictureModalComponent implements OnInit {
   processExif(base64, picture: PictureRequest) {
     try {
       let exif = this.exifService.readEXIFFromBase64(base64);
+      console.log(exif);
       if (exif.DateTime) {
         let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
         picture.taken_at = <any>dateTime;
@@ -80,5 +68,47 @@ export class UploadPictureModalComponent implements OnInit {
     } catch (e) {
       console.error('Error getting datetime from exif',e);
     }
+  }
+
+  remove(picture: PictureRequest) {
+    let index = this.pictures.indexOf(picture);
+    this.pictures.splice(index, 1);
+  }
+
+  titleChanged(picture: PictureRequest){
+    picture.link = picture.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  }
+
+  submit() {
+    this.currentUploadingPicture = 0;
+    this.selectPictureToUpload();
+  }
+
+  selectPictureToUpload() {
+    if (this.pictures.length) {
+      this.uploadPicture(this.pictures[this.currentUploadingPicture]);
+     // this.currentUploadingPicture++;
+    } else {
+      this.pictures = [];
+      this.modal.hide();
+      this.notify.success('Las fotografias han sido subidas'  );
+    }
+  }
+
+  uploadPicture(pictureRequest: PictureRequest) {
+    this.uploading = true;
+    this.pictureService.post(pictureRequest).subscribe(
+      picture => {
+        this.created.emit(picture);
+        console.log('Uploaded: ' + picture.title);
+        this.remove(pictureRequest);
+        this.selectPictureToUpload();
+        this.uploading = false;
+      },
+      error => {
+        this.notify.serviceError(error);
+        this.uploading = false;
+      }
+    );
   }
 }

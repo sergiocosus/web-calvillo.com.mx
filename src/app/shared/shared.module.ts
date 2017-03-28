@@ -9,6 +9,8 @@ import {ModalModule} from 'ng2-bootstrap';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {LocalStorageService} from './services/local-storage.service';
 import {EXIFService} from './services/exif.service';
+import {SimpleNotificationsModule} from 'angular2-notifications';
+import {NotifyService} from './services/notify.service';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import {EXIFService} from './services/exif.service';
     ModalModule,
     FormsModule,
     ReactiveFormsModule,
+    SimpleNotificationsModule,
   ],
   declarations: [
     VoidComponent,
@@ -28,6 +31,7 @@ import {EXIFService} from './services/exif.service';
     ResolutionService,
     LocalStorageService,
     EXIFService,
+    NotifyService,
   ],
   exports: [
     CommonModule,

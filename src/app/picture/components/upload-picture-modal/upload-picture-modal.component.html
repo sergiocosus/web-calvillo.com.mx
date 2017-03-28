@@ -3,54 +3,65 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">
-          Subir foto
+          Subir fotografías
         </h4>
         <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+
       </div>
       <div class="modal-body">
-        <input class="input-picture"
-               image-upload (imageSelected)="selected($event)"
-               accept="image/*" name="picture" type="file" multiple>
+        <section class="example-section">
+          <md-checkbox [(ngModel)]="takeTitleFromFiles" color="#3D8EB9">
+            Obtener título de archivo
+          </md-checkbox>
+          <input class="input-picture"
+                 image-upload (imageSelected)="selected($event)"
+                 accept="image/*" name="picture" type="file" multiple>
+        </section>
 
-        <form (submit)="submit()">
+
           <div *ngFor="let picture of pictures; let i = index"
-               class="picture-form-container"
-          >
-            <section class="lock" [class.uploading]="i === (currentUploadingPicture - 1)">
-              <i class="fa fa-spinner" aria-hidden="true"></i>
+               class="picture-form-container">
+            <section class="lock" [class.uploading]="i === currentUploadingPicture && uploading">
+              <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
             </section>
+
             <section class="picture-container">
+              <button md-mini-fab (click)="remove(picture)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
               <picture *ngIf="picture.image" [ngStyle]="{
                 'background-image' : 'url('+picture.src+')'
               }">
               </picture>
             </section>
+
             <section class="picture-form">
               <md-input-container>
                 <input mdInput required
-                       [(ngModel)]="picture.title" name="title"
+                       [(ngModel)]="picture.title"
+                       (ngModelChange)="titleChanged(picture)"
                        placeholder="Título">
               </md-input-container>
+
+              <!-- TODO Check when typing this -->
               <md-input-container>
-                <input mdInput
-                       [(ngModel)]="picture.link" name="link"
+                <input mdInput [(ngModel)]="picture.link"
                        placeholder="Titulo para enlace">
               </md-input-container>
               <md-input-container>
-                <input mdInput
-                       [(ngModel)]="picture.description" name="description"
+                <input mdInput [(ngModel)]="picture.description"
                        placeholder="Descripción"  >
               </md-input-container>
               <md-input-container>
                 <input mdInput type="number" min="-90" max="90" step=".0000001"
-                       [(ngModel)]="picture.latitude" name="latitude"
+                       [(ngModel)]="picture.latitude"
                        placeholder="Latitud">
               </md-input-container>
               <md-input-container>
                 <input mdInput type="number" min="-180" max="180" step=".0000001"
-                       [(ngModel)]="picture.longitude" name="longitude"
+                       [(ngModel)]="picture.longitude"
                        placeholder="Longitud">
               </md-input-container>
               <md-input-container>
@@ -60,9 +71,9 @@
                        placeholder="Fecha en la que fue tomada"/>
               </md-input-container>
             </section>
+
           </div>
-          <button md-button>Subir categoría</button>
-        </form>
+          <button md-button (click)="submit()">Subir fotografías</button>
       </div>
     </div>
   </div>

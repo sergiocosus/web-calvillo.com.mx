@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 
 import {environment} from "../../environments/environment";
 import {LocalStorageService} from './services/local-storage.service';
+import {NotificationsService} from 'angular2-notifications';
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class ApiHttp {
 
   constructor(private config: ApiConfig,
               private http: Http,
-              private localStorage: LocalStorageService
+              private localStorage: LocalStorageService,
   ) {
     this.apiUrl = config.apiUrl;
   }
@@ -77,6 +78,7 @@ export class ApiHttp {
     let headers = options.headers;
     headers.append('Authorization', 'Bearer ' + this.localStorage.get('access_token'));
     headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
     return options;
   }
 

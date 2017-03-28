@@ -227,6 +227,10 @@ angular2-google-maps@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/angular2-google-maps/-/angular2-google-maps-0.17.0.tgz#ad8366fa4e5c56de0b8b20f003b5f7a1da06ffe3"
 
+angular2-notifications@^0.4.53:
+  version "0.4.53"
+  resolved "https://registry.yarnpkg.com/angular2-notifications/-/angular2-notifications-0.4.53.tgz#d308f1a10a58723a7fa68b488b855473b6d12f32"
+
 angular2-platform-node@2.1.0-rc.1, angular2-platform-node@~2.1.0-rc.1:
   version "2.1.0-rc.1"
   resolved "https://registry.yarnpkg.com/angular2-platform-node/-/angular2-platform-node-2.1.0-rc.1.tgz#ab92d093951ffeede4f1570aec8de1a454b91645"
@@ -601,7 +605,7 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@asdf:
+bootstrap@4.0.0-alpha.5:
   version "4.0.0-alpha.5"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.5.tgz#a126b648c3bd2f52b8fad4bbc5e2d0ad2abf7064"
   dependencies:

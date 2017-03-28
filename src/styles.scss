@@ -24,3 +24,10 @@ body{
 .picker-modal-main{
   height: auto !important;
 }
+
+simple-notifications{
+  .simple-notification-wrapper{
+    z-index: 1100; // To be up to the modals
+  }
+}
+

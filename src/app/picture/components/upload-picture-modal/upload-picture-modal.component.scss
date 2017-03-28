@@ -5,31 +5,44 @@
   flex-wrap: wrap;
   margin: 1em 0;
   position: relative;
+  border-bottom: 1px solid lightgray;
 
   .lock{
     display: none;
     position: absolute;
     width: 100%;
     height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
     background-color: transparentize(black, .5);
     color: white;
 
     &.uploading{
-      display: inline-block;
+      display: flex;
     }
-  }
-  picture{
-    height: 200px;
-    width: 100%;
-    display: inline-block;
-
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
   }
 
   .picture-container{
-    flex: 1 0 200px
+    flex: 1 0 200px;
+    position: relative;
+
+    picture{
+      height: 200px;
+      width: 100%;
+      display: inline-block;
+
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    button {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: .5em;
+    }
   }
 
   .picture-form{

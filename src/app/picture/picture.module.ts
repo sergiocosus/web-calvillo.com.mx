@@ -6,6 +6,7 @@ import {MaterialModule} from '@angular/material';
 import {PictureService} from './services/picture.service';
 import {ImageUploadModule} from 'ng2-imageupload';
 import {DateTimePickerModule} from 'ng2-date-time-picker';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import {DateTimePickerModule} from 'ng2-date-time-picker';
     MaterialModule,
     ImageUploadModule,
     DateTimePickerModule,
+    SimpleNotificationsModule,
   ],
   declarations: [
     PictureThumbnailComponent,
