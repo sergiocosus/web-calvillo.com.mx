@@ -1,12 +1,15 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {ModalDirective} from 'ng2-bootstrap';
 import {ImageResult} from 'ng2-imageupload';
 import {PictureService} from '../../services/picture.service';
 import {EXIFService} from '../../../shared/services/exif.service';
-import {Picture, PictureRequest} from '../../picture.model';
+import {PictureRequest} from '../../picture.model';
 
 import * as moment from 'moment';
 import {NotifyService} from '../../../shared/services/notify.service';
+import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
 
 @Component({
   selector: 'app-upload-picture-modal',
@@ -15,23 +18,78 @@ import {NotifyService} from '../../../shared/services/notify.service';
 })
 export class UploadPictureModalComponent implements OnInit {
   @ViewChild('modal') modal: ModalDirective;
+  @ViewChild(SelectFromMapModalComponent) mapModal: SelectFromMapModalComponent;
+
+
   @Output() created = new EventEmitter;
 
   takeTitleFromFiles = false;
 
   pictures: PictureRequest[] = [];
+  pictureOnModal: FormGroup = null;
   currentUploadingPicture = null;
   parent_category_id: number = null;
   uploading = false;
+
+
+
+  formGroup: FormGroup;
+
   constructor(private pictureService: PictureService,
               private exifService: EXIFService,
-              private notify: NotifyService
-  ) { }
+              private notify: NotifyService,
+              private fb: FormBuilder
+  ) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.formGroup = this.fb.group({
+      pictures: this.fb.array([])
+    });
+  }
 
   ngOnInit() {
   }
 
+  initForm() {
+    this.formGroup.reset();
+    // this.setAddresses(this.hero.addresses);
+
+    this.formArray.controls.forEach(
+      pictureControl => {
+        console.log(pictureControl);
+      }
+    )
+  }
+
+  get formArray(): FormArray {
+    return this.formGroup.get('pictures') as FormArray;
+  }
+
+  addPicture() {
+  }
+
+  initPictureFormGroup(formGroup: FormGroup) {
+    let title = formGroup.get('title');
+    let link = formGroup.get('link');
+
+    title.valueChanges.forEach(
+      (title) => link.setValue(title.replace(/[^a-z0-9]/gi, '-').toLowerCase())
+    );
+
+    link.valueChanges.forEach(
+      (link) => {
+        this.pictureService.getLinkExists(link).subscribe(
+          success => formGroup.patchValue({linkUsed: success.exists})
+        )
+      }
+    );
+  }
+
   open(parent_category_id: number) {
+    this.initForm();
+    this.addPicture();
     this.parent_category_id = parent_category_id;
     this.pictures = [];
     this.currentUploadingPicture = null;
@@ -39,44 +97,64 @@ export class UploadPictureModalComponent implements OnInit {
     this.modal.show();
   }
 
-
-
   selected(imageResult: ImageResult) {
     console.log(imageResult);
-    let  picture = new PictureRequest();
-    picture.category_id = this.parent_category_id;
-    picture.src = imageResult.dataURL;
-    picture.image = picture.src ? picture.src.split(',')[1] : null;
+    let title;
+    let link;
     if (this.takeTitleFromFiles) {
       let filename = imageResult.file.name;
-      picture.title = filename.replace(/\.[^/.]+$/, "");
-      picture.link = picture.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+      title = filename.replace(/\.[^/.]+$/, "");
+      link  = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
     }
-    this.pictures.push(picture);
+    let image = imageResult.dataURL;
 
-    this.processExif(imageResult.dataURL, picture);
+    const picture = this.fb.group({
+      title: [title, [
+        Validators.required
+      ]],
+      link: [link, [
+        Validators.required
+      ]],
+      description: '',
+      latitude: [null, [
+        Validators.required,
+        CustomValidators.min(-90),
+        CustomValidators.max(90),
+      ]],
+      longitude: [null, [
+        Validators.required,
+        CustomValidators.min(-180),
+        CustomValidators.max(180),
+      ]],
+      taken_at: this.processExif(image),
+      category_id: this.parent_category_id,
+      src: image,
+      image: image ? image.split(',')[1] : null,
+      linkUsed: false
+    });
+
+    this.initPictureFormGroup(picture);
+
+    this.formArray.push(picture);
   }
 
-  processExif(base64, picture: PictureRequest) {
+  processExif(base64) {
     try {
       let exif = this.exifService.readEXIFFromBase64(base64);
       console.log(exif);
       if (exif.DateTime) {
         let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
-        picture.taken_at = <any>dateTime;
+        return dateTime as any;
       }
     } catch (e) {
       console.error('Error getting datetime from exif',e);
     }
+    return null;
   }
 
-  remove(picture: PictureRequest) {
-    let index = this.pictures.indexOf(picture);
-    this.pictures.splice(index, 1);
-  }
-
-  titleChanged(picture: PictureRequest){
-    picture.link = picture.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  remove(picture: FormGroup) {
+    let index = this.formArray.controls.indexOf(picture);
+    this.formArray.controls.splice(index, 1);
   }
 
   submit() {
@@ -85,8 +163,8 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   selectPictureToUpload() {
-    if (this.pictures.length) {
-      this.uploadPicture(this.pictures[this.currentUploadingPicture]);
+    if (this.formArray.controls.length) {
+      this.uploadPicture(this.formArray.controls[this.currentUploadingPicture] as FormGroup);
      // this.currentUploadingPicture++;
     } else {
       this.pictures = [];
@@ -95,13 +173,13 @@ export class UploadPictureModalComponent implements OnInit {
     }
   }
 
-  uploadPicture(pictureRequest: PictureRequest) {
+  uploadPicture(formGroup: FormGroup) {
     this.uploading = true;
-    this.pictureService.post(pictureRequest).subscribe(
+    this.pictureService.post(formGroup.value).subscribe(
       picture => {
         this.created.emit(picture);
         console.log('Uploaded: ' + picture.title);
-        this.remove(pictureRequest);
+        this.remove(formGroup);
         this.selectPictureToUpload();
         this.uploading = false;
       },
@@ -111,4 +189,17 @@ export class UploadPictureModalComponent implements OnInit {
       }
     );
   }
+
+  openMapModal(picture: FormGroup) {
+    this.pictureOnModal = picture;
+    this.mapModal.openModal();
+  }
+
+  setCoordinates(coordinates) {
+    this.pictureOnModal.patchValue({
+      longitude: coordinates.longitude,
+      latitude: coordinates.latitude
+    });
+  }
+
 }

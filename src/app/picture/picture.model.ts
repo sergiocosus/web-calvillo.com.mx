@@ -22,4 +22,5 @@ export class PictureRequest extends Picture{
   src: string;
   image: string;
   category_id: number;
+  linkUsed: boolean;
 }

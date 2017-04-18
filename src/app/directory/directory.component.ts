@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import {Directory} from './directory.model';
 import {ModalDirective} from 'ng2-bootstrap';
+import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
 
 @Component({
   selector: 'app-directory',
@@ -32,13 +33,12 @@ import {ModalDirective} from 'ng2-bootstrap';
   ]
 })
 export class DirectoryComponent implements OnInit {
-  @ViewChild('modal') modal: ModalDirective;
+  @ViewChild(PlaceOnMapModalComponent) mapModal: PlaceOnMapModalComponent;
+
   @HostBinding('class.expanded') expanded = false;
   @HostListener('click') clicked () {
     this.show();
   }
-
-  hidden = true;
 
   @Input() category_id: number;
   @Input() directory: Directory;
@@ -53,8 +53,6 @@ export class DirectoryComponent implements OnInit {
   }
 
   openMapModal() {
-    this.modal.show();
-    setTimeout(() => this.hidden = false, 200);
+    this.mapModal.openModal();
   }
-
 }

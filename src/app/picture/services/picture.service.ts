@@ -5,11 +5,15 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class PictureService {
-
+  basePath = 'picture';
   constructor(private apiHttp: ApiHttp) { }
 
   post(data) {
-    return this.apiHttp.post('picture', data)
+    return this.apiHttp.post(this.basePath, data)
       .map(json => new Picture().parse(json.picture));
+  }
+
+  getLinkExists(link) {
+    return this.apiHttp.get(this.basePath + '/link-exists', {link:link});
   }
 }
