@@ -31,8 +31,6 @@ export class UploadPictureModalComponent implements OnInit {
   parent_category_id: number = null;
   uploading = false;
 
-
-
   formGroup: FormGroup;
 
   constructor(private pictureService: PictureService,
@@ -78,11 +76,17 @@ export class UploadPictureModalComponent implements OnInit {
       (title) => link.setValue(title.replace(/[^a-z0-9]/gi, '-').toLowerCase())
     );
 
+    this.validateLink(formGroup, link.value);
+
     link.valueChanges.forEach(
-      (link) => {
-        this.pictureService.getLinkExists(link).subscribe(
-          success => formGroup.patchValue({linkUsed: success.exists})
-        )
+      (link) => this.validateLink(formGroup, link)
+    );
+  }
+
+  validateLink(formGroup: FormGroup, link) {
+    this.pictureService.getLinkExists(link).subscribe(
+      success => {
+        formGroup.patchValue({linkUsed: success.exists});
       }
     );
   }
@@ -117,12 +121,10 @@ export class UploadPictureModalComponent implements OnInit {
       ]],
       description: '',
       latitude: [null, [
-        Validators.required,
         CustomValidators.min(-90),
         CustomValidators.max(90),
       ]],
       longitude: [null, [
-        Validators.required,
         CustomValidators.min(-180),
         CustomValidators.max(180),
       ]],

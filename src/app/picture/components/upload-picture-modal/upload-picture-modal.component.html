@@ -11,7 +11,7 @@
 
       </div>
       <div class="modal-body">
-        <section>
+        <section class="header-form">
           <md-checkbox [(ngModel)]="takeTitleFromFiles">
             Obtener título de archivo
           </md-checkbox>
@@ -19,14 +19,13 @@
                  image-upload (imageSelected)="selected($event)"
                  accept="image/*" name="picture" type="file" multiple>
         </section>
-        <form [formGroup]="formGroup">
+        <form [formGroup]="formGroup" (ngSubmit)="submit()">
           <div formArrayName="pictures">
-            <div *ngFor="let picture of formArray.controls; let i=index"
-                 [formGroupName]="i"
-                 class="picture-form-container">
-
+            <md-card *ngFor="let picture of formArray.controls; let i=index"
+                     [formGroupName]="i"
+                     class="picture-form-container">
               <section class="lock" [class.uploading]="i === currentUploadingPicture && uploading">
-                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                <md-spinner></md-spinner>
               </section>
 
               <section class="picture-container">
@@ -47,11 +46,12 @@
                 <md-input-container>
                   <input mdInput formControlName="link"
                          placeholder="Titulo para enlace"/>
-                  <span *ngIf="picture.get('linkUsed').value" class="error">
+                  <md-hint *ngIf="picture.get('linkUsed').value" class="error">
                     El link esta siendo utilizado, cambielo por otro
-                  </span>
+                  </md-hint>
                 </md-input-container>
-                <md-input-container hintLabel="holiii">
+
+                <md-input-container>
                   <input mdInput formControlName="description"
                          placeholder="Descripción"/>
                 </md-input-container>
@@ -80,76 +80,11 @@
                          placeholder="Fecha en la que fue tomada"/>
                 </md-input-container>
               </section>
-            </div>
+            </md-card>
           </div>
+
+          <button md-button >Subir fotografías</button>
         </form>
-<!--
-          <div *ngFor="let picture of pictures; let i = index"
-               class="picture-form-container">
-            <section class="lock" [class.uploading]="i === currentUploadingPicture && uploading">
-              <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-            </section>
-
-            <section class="picture-container">
-              <button md-mini-fab (click)="remove(picture)">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
-              <picture *ngIf="picture.image" [ngStyle]="{
-                'background-image' : 'url('+picture.src+')'
-              }">
-              </picture>
-            </section>
-
-            <section class="picture-form">
-              <md-input-container>
-                <input mdInput required
-                       [(ngModel)]="picture.title"
-                       (ngModelChange)="titleChanged(picture)"
-                       placeholder="Título">
-              </md-input-container>
-
-              <md-input-container>
-                <input mdInput [(ngModel)]="picture.link"
-                       (ngModelChange)="linkChanged(picture)"
-                       placeholder="Titulo para enlace">
-                <span *ngIf="picture.linkUsed" class="error">
-                  El link esta siendo utilizado, cambielo por otro
-                </span>
-              </md-input-container>
-              <md-input-container>
-                <input mdInput [(ngModel)]="picture.description"
-                       placeholder="Descripción"  >
-              </md-input-container>
-
-              <section class="coordinates">
-                <a class="map"
-                   (click)="openMapModal(picture)">
-                  <i class="fa fa-map-marker"></i>
-                </a>
-                <md-input-container>
-                  <input mdInput type="number" min="-90" max="90" step=".0000001"
-                         [(ngModel)]="picture.latitude"
-                         placeholder="Latitud">
-                </md-input-container>
-                <md-input-container>
-                  <input mdInput type="number" min="-180" max="180" step=".0000001"
-                         [(ngModel)]="picture.longitude"
-                         placeholder="Longitud">
-                </md-input-container>
-              </section>
-
-
-              <md-input-container>
-                <input [ngModel]="picture.taken_at | date: 'short'"
-                       name="taken_at"  mode="popup" mdInput
-                       [(dateTimePicker)]="picture.taken_at" readonly
-                       placeholder="Fecha en la que fue tomada"/>
-              </md-input-container>
-            </section>
-
-          </div>
-          -->
-          <button md-button (click)="submit()">Subir fotografías</button>
       </div>
     </div>
   </div>

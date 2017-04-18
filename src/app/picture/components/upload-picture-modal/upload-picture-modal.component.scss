@@ -1,11 +1,15 @@
-
+.header-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .picture-form-container{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 1em 0;
   position: relative;
-  border-bottom: 1px solid lightgray;
 
   .lock{
     display: none;
@@ -50,10 +54,6 @@
     flex: 1 0 auto;
     flex-direction: column;
 
-    /deep/ .mat-input-wrapper {
-      margin: 0 0 1em .5em;
-    }
-
     .coordinates{
       display: flex;
 
@@ -65,7 +65,7 @@
 
     .error{
       color: red;
-      font-size: .5em;
+      font-weight: bold;
     }
   }
 }
