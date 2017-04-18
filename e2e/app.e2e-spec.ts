@@ -1,10 +1,10 @@
-import { WebCalvilloComMxPage } from './app.po';
+import { UpgradeProjectPage } from './app.po';
 
-describe('web-calvillo-com-mx App', function() {
-  let page: WebCalvilloComMxPage;
+describe('upgrade-project App', () => {
+  let page: UpgradeProjectPage;
 
   beforeEach(() => {
-    page = new WebCalvilloComMxPage();
+    page = new UpgradeProjectPage();
   });
 
   it('should display message saying app works', () => {

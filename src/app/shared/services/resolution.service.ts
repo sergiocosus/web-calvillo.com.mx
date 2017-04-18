@@ -1,14 +1,14 @@
-import {Injectable, HostListener} from '@angular/core';
-import {isBrowser} from 'angular2-universal';
+import {Injectable, HostListener, Inject, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 
 @Injectable()
 export class ResolutionService {
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   getSize() {
-    if (isBrowser) {
-      let width = window.innerWidth
+    if (isPlatformBrowser(this.platformId)) {
+      let width = window.innerWidth;
       if (width < 576) {
         return 'xs';
       } else if (width < 768 ) {

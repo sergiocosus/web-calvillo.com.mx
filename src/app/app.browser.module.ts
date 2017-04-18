@@ -8,7 +8,6 @@
 
 import { NgModule } from '@angular/core';
 
-import { UniversalModule } from 'angular2-universal';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
 import {AppRoutingModule} from './app-routing.module';
@@ -21,6 +20,8 @@ import {environment} from '../environments/environment';
 import {ModalModule} from 'ng2-bootstrap';
 import {AdsenseModule} from 'ng2-adsense';
 import {SimpleNotificationsModule} from 'angular2-notifications';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 
@@ -37,7 +38,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
      * NOTE: Needs to be your first import (!)
      * BrowserModule, HttpModule, and JsonpModule are included
      */
-    UniversalModule,
+    BrowserModule.withServerTransition({appId: 'web-calvillo-com-mx'}),
     FormsModule,
     AppRoutingModule,
     SharedModule,
@@ -52,6 +53,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
       adClient: environment.adSenseAdClient,
       adSlot: environment.adSenseAdSlot,
     }),
+    BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
     /**
      * using routes

@@ -1,14 +1,14 @@
 import {
   Component, OnInit, ElementRef, HostBinding, ViewChild, HostListener, trigger, state,
-  transition, style, animate
+  transition, style, animate, PLATFORM_ID, Inject
 } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
-import {isBrowser} from 'angular2-universal';
 import {ResolutionService} from '../../../shared/services/resolution.service';
 import {ModalDirective} from 'ng2-bootstrap';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -86,7 +86,8 @@ export class PictureGalleryComponent implements OnInit {
   pictureLength: number;
   hiddenMap = true;
 
-  constructor(private categoryService: CategoryService,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private resolutionService: ResolutionService) { }
@@ -143,7 +144,7 @@ export class PictureGalleryComponent implements OnInit {
 
 
   preloadImage(src) {
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let image = new Image();
       image.src = src;
       // console.log(src);

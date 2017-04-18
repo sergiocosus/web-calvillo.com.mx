@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class WebCalvilloComMxPage {
+export class UpgradeProjectPage {
   navigateTo() {
     return browser.get('/');
   }
