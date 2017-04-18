@@ -18,7 +18,7 @@
 
   <ul *ngIf="category && category.pictures.length">
     <ng-container *ngFor="let picture of category.pictures; let i = index;">
-      <li *ngIf="indexInPage(i)">
+      <li *ngIf="indexInPage(i)" [mdTooltip]="picture.title">
         <a [routerLink]="'/galeria/' + category_id + '/foto/' + picture.id">
           <picture
             [ngStyle]="{'background-image':  'url(' + picture.imageUrl('xs') + ')'}">
