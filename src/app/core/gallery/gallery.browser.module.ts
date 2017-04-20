@@ -10,11 +10,12 @@ import {DirectoryModule} from '../../directory/directory.module.browser';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 import {AdsenseModule} from 'ng2-adsense';
 import {AuthModule} from '../../auth/auth.module.browser';
-import {MdTooltipModule} from '@angular/material';
+import {MdButtonModule, MdTooltipModule} from '@angular/material';
 
 @NgModule({
   imports: [
     MdTooltipModule,
+    MdButtonModule,
     SharedModule,
     GalleryRoutingModule,
     PictureModule,

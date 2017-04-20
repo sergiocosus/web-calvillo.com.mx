@@ -5,11 +5,25 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class PictureService {
-  basePath = 'picture';
+  basePath = 'picture/';
   constructor(private apiHttp: ApiHttp) { }
 
   post(data) {
     return this.apiHttp.post(this.basePath, data)
+      .map(json => new Picture().parse(json.picture));
+  }
+
+  remove(picture_id: number) {
+    return this.apiHttp.delete(this.basePath + picture_id)
+      .map(json => new Picture().parse(json.picture));
+  }
+
+  delete(picture_id: number) {
+    return this.apiHttp.delete(this.basePath + 'force/' + picture_id);
+  }
+
+  restore(picture_id: number) {
+    return this.apiHttp.patch(this.basePath + picture_id)
       .map(json => new Picture().parse(json.picture));
   }
 

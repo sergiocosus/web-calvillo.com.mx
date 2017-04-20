@@ -6,6 +6,8 @@ import {environment} from '../../../environments/environment';
 import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
 import {Subscription} from 'rxjs';
+import {PictureService} from '../../picture/services/picture.service';
+import {NotifyService} from '../../shared/services/notify.service';
 
 @Component({
   selector: 'app-gallery',
@@ -23,6 +25,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
 
   constructor(private categoryService: CategoryService,
+              private pictureService: PictureService,
+              private notify: NotifyService,
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
@@ -65,5 +69,40 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   pushPicture(picture) {
     this.category.pictures.push(picture);
+  }
+
+  removePicture(picture) {
+    this.pictureService.remove(picture.id).subscribe(
+      deletedPicture => {
+        this.notify.success('Fotografía borrada');
+        this.category.pictures.splice(
+          this.category.pictures.indexOf(picture), 1
+        );
+        this.category.deleted_pictures.push(deletedPicture);
+      }
+    );
+  }
+
+  deletePicture(picture) {
+    this.pictureService.delete(picture.id).subscribe(
+      () => {
+        this.notify.success('Fotografía borrada permanentemente');
+        this.category.deleted_pictures.splice(
+          this.category.deleted_pictures.indexOf(picture), 1
+        );
+      }
+    );
+  }
+
+  restorePicture(picture) {
+    this.pictureService.restore(picture.id).subscribe(
+      restoredPicture => {
+        this.notify.success('Fotografía restaurada');
+        this.category.deleted_pictures.splice(
+          this.category.deleted_pictures.indexOf(picture), 1
+        );
+        this.category.pictures.push(restoredPicture);
+      }
+    );
   }
 }

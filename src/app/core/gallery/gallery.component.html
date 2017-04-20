@@ -70,8 +70,32 @@
       <li *ngFor="let picture of category.pictures"
           (click)="loadPicture(picture.id)">
         <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
+        <button *appIfLogged="true" md-mini-fab class="remove"
+                (click)="removePicture(picture)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
       </li>
     </ul>
+    <ng-container *appIfLogged="true">
+      <h3>
+        Fotografías eliminadas
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      </h3>
+      <ul>
+        <li *ngFor="let picture of category.deleted_pictures">
+          <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
+          <button  md-mini-fab class="remove"
+                   (click)="deletePicture(picture)">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+          <button  md-mini-fab class="restore"
+                   (click)="restorePicture(picture)">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+        </li>
+      </ul>
+    </ng-container>
+
   </section>
   <section *ngIf="category.directories.length || loggedUser">
     <h3>

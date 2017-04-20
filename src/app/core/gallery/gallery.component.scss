@@ -116,6 +116,20 @@ section{
       list-style: none;
       position: relative;
       overflow: hidden;
+
+      button.remove{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: .5em;
+      }
+      button.restore{
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: .5em;
+      }
+
       a{
         margin: .5em .25em;
 

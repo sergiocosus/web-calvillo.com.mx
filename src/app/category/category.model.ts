@@ -19,6 +19,7 @@ export class Category extends ImageableModel{
   category: Category;
   categories: Category[];
   pictures: Picture[];
+  deleted_pictures: Picture[];
   videos: Video[];
   directories: Directory[];
 
@@ -39,6 +40,10 @@ export class Category extends ImageableModel{
 
     if (this.pictures) {
       this.pictures = Picture.parseArray(this.pictures);
+    }
+
+    if (this.deleted_pictures) {
+      this.deleted_pictures = Picture.parseArray(this.deleted_pictures);
     }
 
     if (this.videos) {
