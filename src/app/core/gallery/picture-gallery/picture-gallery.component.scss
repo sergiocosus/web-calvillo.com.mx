@@ -89,6 +89,9 @@ header{
         overflow: hidden;
         margin: $thumbMargin;
 
+        &.active{
+          border-bottom: white solid 2px;
+        }
         picture{
           display: inline-block;
           height: $thumbSize;
@@ -98,6 +101,8 @@ header{
           transition: all .5s;
         }
       }
+
+
 
       &:hover{
         a {

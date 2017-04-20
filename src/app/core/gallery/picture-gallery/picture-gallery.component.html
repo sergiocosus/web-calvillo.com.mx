@@ -17,11 +17,13 @@
   </div>
 
   <ul *ngIf="category && category.pictures.length">
-    <ng-container *ngFor="let picture of category.pictures; let i = index;">
-      <li *ngIf="indexInPage(i)" [mdTooltip]="picture.title">
-        <a [routerLink]="'/galeria/' + category_id + '/foto/' + picture.id">
+    <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
+      <li *ngIf="indexInPage(i)"
+          [mdTooltip]="pictureList.title">
+        <a [routerLink]="'/galeria/' + category_id + '/foto/' + pictureList.id"
+           [routerLinkActive]="['active']">
           <picture
-            [ngStyle]="{'background-image':  'url(' + picture.imageUrl('xs') + ')'}">
+            [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
           </picture>
         </a>
       </li>

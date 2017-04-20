@@ -61,7 +61,7 @@ export class PictureGalleryComponent implements OnInit {
     this.initPages();
   }
 
-  @HostListener('window:keydown', ['$event']) onKeydonw(event: any) {
+  @HostListener('window:keydown', ['$event']) onKeyDown(event: any) {
     switch (event.code) {
       case 'ArrowRight':
         this.nextPicture();
@@ -260,19 +260,22 @@ export class PictureGalleryComponent implements OnInit {
     }
 
     this.oldIndex = this.index;
+    this.page = this.pageOfIndex(this.index);
 
     if (this.index < this.category.pictures.length - 1) {
       this.preloadImage(this.category.pictures[this.index + 1].imageUrl(this.imgSize));
     }
   }
 
+  pageOfIndex(index) {
+    return Math.floor(index / this.elementsByPage);
+  }
+
   indexInPage(index) {
-    if (index >= this.page * this.elementsByPage
-        && index < (this.page + 1) * this.elementsByPage) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.pageOfIndex(index) == this.page;
+
+
+
   }
 
   get isFirstPage() {
