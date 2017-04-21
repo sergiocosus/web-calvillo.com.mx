@@ -20,18 +20,18 @@ export class UploadPictureModalComponent implements OnInit {
   @ViewChild('modal') modal: ModalDirective;
   @ViewChild(SelectFromMapModalComponent) mapModal: SelectFromMapModalComponent;
 
-
   @Output() created = new EventEmitter;
 
   takeTitleFromFiles = false;
 
   pictures: PictureRequest[] = [];
-  pictureOnModal: FormGroup = null;
   currentUploadingPicture = null;
   parent_category_id: number = null;
   uploading = false;
 
   formGroup: FormGroup;
+
+  pictureOnModal: FormGroup = null;
 
   constructor(private pictureService: PictureService,
               private exifService: EXIFService,
@@ -203,5 +203,4 @@ export class UploadPictureModalComponent implements OnInit {
       latitude: coordinates.latitude
     });
   }
-
 }

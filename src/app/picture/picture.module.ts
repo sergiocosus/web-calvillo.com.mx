@@ -8,6 +8,7 @@ import {ImageUploadModule} from 'ng2-imageupload';
 import {DateTimePickerModule} from 'ng2-date-time-picker';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {MapsModule} from '../maps/maps.module';
+import { PictureFormComponent } from './components/picture-form/picture-form.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {MapsModule} from '../maps/maps.module';
   declarations: [
     PictureThumbnailComponent,
     UploadPictureModalComponent,
+    PictureFormComponent,
   ],
   providers: [
     PictureService,
@@ -30,6 +32,7 @@ import {MapsModule} from '../maps/maps.module';
   exports: [
     PictureThumbnailComponent,
     UploadPictureModalComponent,
+    PictureFormComponent,
   ]
 })
 export class PictureModule { }
