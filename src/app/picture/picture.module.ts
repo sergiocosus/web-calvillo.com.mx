@@ -9,6 +9,8 @@ import {DateTimePickerModule} from 'ng2-date-time-picker';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {MapsModule} from '../maps/maps.module';
 import { PictureFormComponent } from './components/picture-form/picture-form.component';
+import { PictureGalleryListComponent } from './components/picture-gallery-list/picture-gallery-list.component';
+import {AuthModule} from '../auth/auth.module.browser';
 
 @NgModule({
   imports: [
@@ -20,11 +22,13 @@ import { PictureFormComponent } from './components/picture-form/picture-form.com
     DateTimePickerModule,
     SimpleNotificationsModule,
     MapsModule,
+    AuthModule,
   ],
   declarations: [
     PictureThumbnailComponent,
     UploadPictureModalComponent,
     PictureFormComponent,
+    PictureGalleryListComponent,
   ],
   providers: [
     PictureService,
@@ -33,6 +37,7 @@ import { PictureFormComponent } from './components/picture-form/picture-form.com
     PictureThumbnailComponent,
     UploadPictureModalComponent,
     PictureFormComponent,
+    PictureGalleryListComponent,
   ]
 })
 export class PictureModule { }

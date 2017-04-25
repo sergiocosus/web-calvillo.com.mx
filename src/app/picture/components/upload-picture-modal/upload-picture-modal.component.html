@@ -3,7 +3,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">
-          Subir fotografías
+          <ng-container *ngIf="createMode; else elseCreateMode">
+            Subir fotografías
+          </ng-container>
+          <ng-template #elseCreateMode>
+            Editar fotografía
+          </ng-template>
         </h4>
         <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -11,7 +16,7 @@
 
       </div>
       <div class="modal-body">
-        <section class="header-form">
+        <section class="header-form" *ngIf="createMode">
           <md-checkbox [(ngModel)]="takeTitleFromFiles">
             Obtener título de archivo
           </md-checkbox>
@@ -25,13 +30,24 @@
                      [formGroupName]="i">
               <app-picture-form [picture]="picture"
                                 [uploading]="i === currentUploadingPicture && uploading"
-                                (removed)="remove($event)"
                                 (coordsRequested)="openMapModal($event)"
                                 >
               </app-picture-form>
+              <button *ngIf="createMode"
+                      type="button" md-mini-fab class="remove"
+                      (click)="remove(picture)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
             </md-card>
           </div>
-          <button md-button >Subir fotografías</button>
+          <button md-button>
+            <ng-container *ngIf="createMode; else elseCreateMode">
+              Subir fotografías
+            </ng-container>
+            <ng-template #elseCreateMode>
+              Actualizar fotografía
+            </ng-template>
+          </button>
         </form>
       </div>
     </div>

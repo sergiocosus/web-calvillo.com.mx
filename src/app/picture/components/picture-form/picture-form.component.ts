@@ -11,9 +11,7 @@ export class PictureFormComponent implements OnInit {
   @Input() uploading: boolean;
   @Input() picture: FormGroup;
 
-  @Output() removed = new EventEmitter();
   @Output() coordsRequested = new EventEmitter();
-
 
   constructor() { }
 

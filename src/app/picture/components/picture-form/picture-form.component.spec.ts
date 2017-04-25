@@ -19,7 +19,7 @@ describe('PictureFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should createMode', () => {
     expect(component).toBeTruthy();
   });
 });

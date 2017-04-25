@@ -57,45 +57,11 @@
     </ul>
   </section>
   <section *ngIf="category.pictures.length || loggedUser">
-    <h3>
-      <i class="fa fa-camera" aria-hidden="true"></i>
-       Fotografías
-      <span *appIfLogged="true"
-            class="add-button"
-            (click)="pictureModal.open(category.id)">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      </span>
-    </h3>
-    <ul>
-      <li *ngFor="let picture of category.pictures"
-          (click)="loadPicture(picture.id)">
-        <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
-        <button *appIfLogged="true" md-mini-fab class="remove"
-                (click)="removePicture(picture)">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
-      </li>
-    </ul>
-    <ng-container *appIfLogged="true">
-      <h3>
-        Fotografías eliminadas
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
-      </h3>
-      <ul>
-        <li *ngFor="let picture of category.deleted_pictures">
-          <app-picture-thumbnail [category_id]="category_id" [picture]="picture"></app-picture-thumbnail>
-          <button  md-mini-fab class="remove"
-                   (click)="deletePicture(picture)">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </button>
-          <button  md-mini-fab class="restore"
-                   (click)="restorePicture(picture)">
-            <i class="fa fa-check" aria-hidden="true"></i>
-          </button>
-        </li>
-      </ul>
-    </ng-container>
-
+    <app-picture-gallery-list
+      [category_id]="category_id"
+      [pictures]="category.pictures"
+      [deleted_pictures]="category.deleted_pictures"
+    ></app-picture-gallery-list>
   </section>
   <section *ngIf="category.directories.length || loggedUser">
     <h3>
@@ -118,8 +84,4 @@
 <router-outlet></router-outlet>
 
 <app-add-category-modal
-  (created)="pushCategory($event)"
-  #categoryModal></app-add-category-modal>
-<app-upload-picture-modal
-  (created)="pushPicture($event)"
-  #pictureModal></app-upload-picture-modal>
+  (created)="pushCategory($event)"></app-add-category-modal>

@@ -13,6 +13,11 @@ export class PictureService {
       .map(json => new Picture().parse(json.picture));
   }
 
+  put(data) {
+    return this.apiHttp.put(this.basePath + data.id , data)
+      .map(json => new Picture().parse(json.picture));
+  }
+
   remove(picture_id: number) {
     return this.apiHttp.delete(this.basePath + picture_id)
       .map(json => new Picture().parse(json.picture));
@@ -28,6 +33,6 @@ export class PictureService {
   }
 
   getLinkExists(link) {
-    return this.apiHttp.get(this.basePath + '/link-exists', {link:link});
+    return this.apiHttp.get(this.basePath + 'link-exists', {link:link});
   }
 }

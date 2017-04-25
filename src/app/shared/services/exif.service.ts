@@ -1,10 +1,25 @@
 import { Injectable } from '@angular/core';
 declare let EXIF;
+import * as moment from 'moment';
 
 @Injectable()
 export class EXIFService {
 
   constructor() { }
+
+  getDateTimeFromPicture(base64){
+    try {
+      let exif = this.readEXIFFromBase64(base64);
+      console.log(exif);
+      if (exif.DateTime) {
+        let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
+        return dateTime as any;
+      }
+    } catch (e) {
+      console.error('Error getting datetime from exif',e);
+    }
+    return null;
+  }
 
   readEXIFFromBase64(base64Image) {
     let arrayBuffer = this.base64ToArrayBuffer(base64Image);

@@ -89,7 +89,7 @@ header{
   }
 }
 
-section{
+section /deep/ {
   display: flex;
   flex-direction: column;
   background-color: rgba(black, .5);
@@ -98,6 +98,10 @@ section{
     background-color: rgba(black, .5);
     color: white;
     margin: 0;
+
+    .add-button{
+      cursor: pointer;
+    }
   }
 
   ul{
@@ -123,7 +127,15 @@ section{
         right: 0;
         margin: .5em;
       }
+
       button.restore{
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: .5em;
+      }
+
+      button.edit{
         position: absolute;
         top: 0;
         left: 0;
@@ -164,6 +176,3 @@ ng2-adsense{
   width: 100%;
 }
 
-.add-button{
-  cursor: pointer;
-}

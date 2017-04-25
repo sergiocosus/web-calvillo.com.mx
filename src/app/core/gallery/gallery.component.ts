@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
+import {Component, OnDestroy, OnInit, SecurityContext, ViewChild} from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../category/category.model';
@@ -8,6 +8,9 @@ import {User} from '../../user/user.model';
 import {Subscription} from 'rxjs';
 import {PictureService} from '../../picture/services/picture.service';
 import {NotifyService} from '../../shared/services/notify.service';
+import {Picture} from '../../picture/picture.model';
+import {UploadPictureModalComponent} from '../../picture/components/upload-picture-modal/upload-picture-modal.component';
+import {AddCategoryModalComponent} from '../../category/components/add-category-modal/add-category-modal.component';
 
 @Component({
   selector: 'app-gallery',
@@ -15,7 +18,7 @@ import {NotifyService} from '../../shared/services/notify.service';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit, OnDestroy {
-
+  @ViewChild(AddCategoryModalComponent) categoryModal: AddCategoryModalComponent;
   category: Category;
   currRoute = '';
   category_id = null;
@@ -67,42 +70,4 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.category.categories.push(category);
   }
 
-  pushPicture(picture) {
-    this.category.pictures.push(picture);
-  }
-
-  removePicture(picture) {
-    this.pictureService.remove(picture.id).subscribe(
-      deletedPicture => {
-        this.notify.success('Fotografía borrada');
-        this.category.pictures.splice(
-          this.category.pictures.indexOf(picture), 1
-        );
-        this.category.deleted_pictures.push(deletedPicture);
-      }
-    );
-  }
-
-  deletePicture(picture) {
-    this.pictureService.delete(picture.id).subscribe(
-      () => {
-        this.notify.success('Fotografía borrada permanentemente');
-        this.category.deleted_pictures.splice(
-          this.category.deleted_pictures.indexOf(picture), 1
-        );
-      }
-    );
-  }
-
-  restorePicture(picture) {
-    this.pictureService.restore(picture.id).subscribe(
-      restoredPicture => {
-        this.notify.success('Fotografía restaurada');
-        this.category.deleted_pictures.splice(
-          this.category.deleted_pictures.indexOf(picture), 1
-        );
-        this.category.pictures.push(restoredPicture);
-      }
-    );
-  }
 }

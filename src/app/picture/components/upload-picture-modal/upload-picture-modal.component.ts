@@ -1,11 +1,10 @@
-import {Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {ModalDirective} from 'ng2-bootstrap';
 import {ImageResult} from 'ng2-imageupload';
 import {PictureService} from '../../services/picture.service';
 import {EXIFService} from '../../../shared/services/exif.service';
-import {PictureRequest} from '../../picture.model';
+import {Picture, PictureRequest} from '../../picture.model';
 
-import * as moment from 'moment';
 import {NotifyService} from '../../../shared/services/notify.service';
 import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -21,16 +20,16 @@ export class UploadPictureModalComponent implements OnInit {
   @ViewChild(SelectFromMapModalComponent) mapModal: SelectFromMapModalComponent;
 
   @Output() created = new EventEmitter;
+  @Output() updated = new EventEmitter;
 
   takeTitleFromFiles = false;
-
-  pictures: PictureRequest[] = [];
   currentUploadingPicture = null;
   parent_category_id: number = null;
   uploading = false;
 
-  formGroup: FormGroup;
+  createMode = true;
 
+  formGroup: FormGroup;
   pictureOnModal: FormGroup = null;
 
   constructor(private pictureService: PictureService,
@@ -52,35 +51,10 @@ export class UploadPictureModalComponent implements OnInit {
 
   initForm() {
     this.formGroup.reset();
-    // this.setAddresses(this.hero.addresses);
-
-    this.formArray.controls.forEach(
-      pictureControl => {
-        console.log(pictureControl);
-      }
-    )
   }
 
   get formArray(): FormArray {
     return this.formGroup.get('pictures') as FormArray;
-  }
-
-  addPicture() {
-  }
-
-  initPictureFormGroup(formGroup: FormGroup) {
-    let title = formGroup.get('title');
-    let link = formGroup.get('link');
-
-    title.valueChanges.forEach(
-      (title) => link.setValue(title.replace(/[^a-z0-9]/gi, '-').toLowerCase())
-    );
-
-    this.validateLink(formGroup, link.value);
-
-    link.valueChanges.forEach(
-      (link) => this.validateLink(formGroup, link)
-    );
   }
 
   validateLink(formGroup: FormGroup, link) {
@@ -91,67 +65,89 @@ export class UploadPictureModalComponent implements OnInit {
     );
   }
 
-  open(parent_category_id: number) {
+  openToCreate(parent_category_id: number) {
+    this.createMode = true;
     this.initForm();
-    this.addPicture();
     this.parent_category_id = parent_category_id;
-    this.pictures = [];
     this.currentUploadingPicture = null;
     this.uploading = false;
     this.modal.show();
   }
 
+  openToEdit(picture: Picture) {
+    this.createMode = false;
+    this.initForm();
+    let pictureData = new PictureRequest;
+
+    pictureData.id = picture.id;
+    pictureData.title = picture.title;
+    pictureData.link  = picture.link;
+    pictureData.description = picture.description;
+    pictureData.src = picture.imageUrl('sm');
+    pictureData.taken_at = picture.taken_at;
+
+    this.formArray.push(this.createPictureFormGroup(pictureData));
+
+    this.modal.show();
+  }
+
   selected(imageResult: ImageResult) {
-    console.log(imageResult);
-    let title;
-    let link;
+    let pictureData = new PictureRequest;
+
     if (this.takeTitleFromFiles) {
       let filename = imageResult.file.name;
-      title = filename.replace(/\.[^/.]+$/, "");
-      link  = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+      pictureData.title = filename.replace(/\.[^/.]+$/, "");
+      pictureData.link  = pictureData.title
+        .replace(/[^a-z0-9]/gi, '-').toLowerCase();
     }
-    let image = imageResult.dataURL;
 
-    const picture = this.fb.group({
-      title: [title, [
-        Validators.required
-      ]],
-      link: [link, [
-        Validators.required
-      ]],
-      description: '',
-      latitude: [null, [
-        CustomValidators.min(-90),
-        CustomValidators.max(90),
-      ]],
-      longitude: [null, [
-        CustomValidators.min(-180),
-        CustomValidators.max(180),
-      ]],
-      taken_at: this.processExif(image),
-      category_id: this.parent_category_id,
-      src: image,
-      image: image ? image.split(',')[1] : null,
-      linkUsed: false
-    });
+    pictureData.category_id = this.parent_category_id;
+    pictureData.description = '';
+    pictureData.src = imageResult.dataURL;
+    pictureData.image = pictureData.src ? pictureData.src.split(',')[1] : null;
+    pictureData.taken_at = this.exifService.getDateTimeFromPicture(pictureData.image);
 
-    this.initPictureFormGroup(picture);
-
+    const picture = this.createPictureFormGroup(pictureData);
     this.formArray.push(picture);
   }
 
-  processExif(base64) {
-    try {
-      let exif = this.exifService.readEXIFFromBase64(base64);
-      console.log(exif);
-      if (exif.DateTime) {
-        let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
-        return dateTime as any;
-      }
-    } catch (e) {
-      console.error('Error getting datetime from exif',e);
-    }
-    return null;
+  createPictureFormGroup(pictureData: PictureRequest) {
+    const picture = this.fb.group({
+      id: pictureData.id,
+      title: [pictureData.title, [
+        Validators.required
+      ]],
+      link: [pictureData.link, [
+        Validators.required
+      ]],
+      description: pictureData.description,
+      latitude: [pictureData.latitude, [
+        CustomValidators.min(-90),
+        CustomValidators.max(90),
+      ]],
+      longitude: [pictureData.longitude, [
+        CustomValidators.min(-180),
+        CustomValidators.max(180),
+      ]],
+      taken_at: pictureData.taken_at,
+      category_id: pictureData.category_id,
+      src: pictureData.src,
+      image: pictureData.image,
+      linkUsed: false
+    });
+
+    let link = picture.get('link');
+
+    picture.get('title').valueChanges.forEach(
+      (title) => link.setValue(title.replace(/[^a-z0-9]/gi, '-').toLowerCase())
+    );
+
+    this.validateLink(picture, link.value);
+    link.valueChanges.forEach(
+      (link) => this.validateLink(picture, link)
+    );
+
+    return picture;
   }
 
   remove(picture: FormGroup) {
@@ -166,21 +162,46 @@ export class UploadPictureModalComponent implements OnInit {
 
   selectPictureToUpload() {
     if (this.formArray.controls.length) {
-      this.uploadPicture(this.formArray.controls[this.currentUploadingPicture] as FormGroup);
-     // this.currentUploadingPicture++;
+      let formToProcess = this.formArray.controls[
+        this.currentUploadingPicture] as FormGroup;
+      if (this.createMode) {
+        this.uploadPicture(formToProcess);
+      } else {
+        this.putPicture(formToProcess);
+      }
     } else {
-      this.pictures = [];
       this.modal.hide();
-      this.notify.success('Las fotografias han sido subidas'  );
+      this.notify.success('Las fotografias han sido subidas');
     }
   }
 
   uploadPicture(formGroup: FormGroup) {
     this.uploading = true;
-    this.pictureService.post(formGroup.value).subscribe(
+    const pictureData = formGroup.value;
+    pictureData.src = null;
+
+    this.pictureService.post(pictureData).subscribe(
       picture => {
         this.created.emit(picture);
         console.log('Uploaded: ' + picture.title);
+        this.remove(formGroup);
+        this.selectPictureToUpload();
+        this.uploading = false;
+      },
+      error => {
+        this.notify.serviceError(error);
+        this.uploading = false;
+      }
+    );
+  }
+
+  putPicture(formGroup: FormGroup) {
+    this.uploading = true;
+    const pictureData = formGroup.value;
+
+    this.pictureService.put(pictureData).subscribe(
+      picture => {
+        this.updated.emit(picture);
         this.remove(formGroup);
         this.selectPictureToUpload();
         this.uploading = false;

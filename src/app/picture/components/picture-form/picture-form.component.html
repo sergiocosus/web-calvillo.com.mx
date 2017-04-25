@@ -4,9 +4,6 @@
   </section>
 
   <section class="picture-container">
-    <button type="button" md-mini-fab (click)="removed.emit(picture)">
-      <i class="fa fa-trash-o" aria-hidden="true"></i>
-    </button>
     <picture *ngIf="picture.get('src').value"
              [ngStyle]="{
                     'background-image' : 'url('+picture.get('src').value+')'
