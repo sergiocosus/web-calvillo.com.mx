@@ -1,6 +1,8 @@
 @import 'src/app/vars';
 
-
+:host-context(body){
+  @extend .gradient-background;
+}
 
 :host{
   display: flex;
@@ -10,50 +12,18 @@
   background-color: rgba(black, .5);
 }
 
-
-
-header{
-  position: relative;
-  z-index: 5;
-
-  h1{
-    margin: .25em 0;
-    text-align: center;
-    color: white;
-    line-height: .8em;
-    font-size: 1em;
-
-    @media (min-width: $smScreen) {
-
-    }
-
-    @media (min-width: $mdScreen) {
-      font-size: $titleFontSize;
-    }
-
-  }
-  a{
-    color: white;
-    text-decoration: none;
-    i{
-      background-color: $arrowBackgroundColor;
-      padding: .25em;
-    }
-    &:visited{
-      color: white;
-    }
-  }
-  time{
-    float: right;
-  }
-}
-
 .list{
   position: relative;
   display: flex;
   flex: 0 0 auto;
   background-color: rgba(black, .5);
   z-index: 5;
+  opacity: .75;
+  transition: all .5s;
+
+  &:hover{
+    opacity: 1;
+  }
 
   .prev, .next{
     display: flex;
@@ -103,8 +73,6 @@ header{
         }
       }
 
-
-
       &:hover{
         a {
           picture {
@@ -127,11 +95,6 @@ header{
   height: 100%;
   box-sizing: border-box;
 
-  border-top: calc(#{$topSpace} + .5em) solid transparent;
-
-  @media (min-width: $mdScreen) {
-    border-top: calc(#{$topSpace} + #{$titleFontSize}) solid transparent;
-  }
 
   picture{
     position: absolute;
@@ -185,6 +148,38 @@ header{
   .next{
     right: 0;
   }
+
+
+  header{
+    position: relative;
+    z-index: 5;
+    margin-top: $topSpace;
+
+    h1{
+      margin: .25em 0;
+      text-align: center;
+      color: white;
+      line-height: .8em;
+      font-size: $titleFontSize;
+      text-shadow: 3px 3px 6px black;
+
+      @media (min-width: $mdScreen) {
+        font-size: $titleFontSize + .5em;
+      }
+
+    }
+    a{
+      color: white;
+      text-decoration: none;
+      i{
+        background-color: $arrowBackgroundColor;
+        padding: .25em;
+      }
+      &:visited{
+        color: white;
+      }
+    }
+  }
 }
 
 
@@ -193,29 +188,18 @@ header{
   margin-top: calc(100vh - 10em - #{$topSpace});
   width: 100%;
   color: white;
-  padding: 2em 2em;
+  padding: 1em 1em;
   box-sizing: border-box;
   overflow: hidden;
   text-align: center;
 
-  background: rgba(0,0,0,0);
-  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(20%, rgba(0,0,0,0.35)), color-stop(100%, rgba(0,0,0,0.75)));
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
-  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
-  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+  @extend .dark-transparent-gradient;
 
-
-  /* These are technically the same, but use both */
   overflow-wrap: break-word;
   word-wrap: break-word;
 
   -ms-word-break: break-all;
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
   word-break: break-all;
-  /* Instead use this non-standard one: */
   word-break: break-word;
 
   /* Adds a hyphen where the word breaks, if supported (No Blink) */
@@ -225,29 +209,49 @@ header{
   hyphens: auto;
 
 
-
-
-  @media (min-width: $mdScreen) {
-    margin-top: calc(100vh - 15em - #{$topSpace});
-  }
-
-
   header{
     text-align: center;
     width: 100%;
 
-    h2{
+    h1{
       font-size: $subtitleFontSize;
       margin-top: 1em;
       margin-bottom: 1em;
+      text-shadow: 3px 3px 6px black;
+    }
+
+    time{
+      float: right;
     }
   }
 
   .content{
     display: inline-block;
     max-width: 1080px;
+    width: 100%;
+    line-height: 1.25em;
+    font-size: 1em;
+    margin-right: -1em;
+    margin-left: -1em;
+    padding: 1em;
+
+    background: rgba(0,0,0, .5);
   }
 
+  @media (min-width: $mdScreen) {
+    margin-top: calc(100vh - 14em - #{$topSpace});
+    padding: 2em 2em;
+
+    header{
+      h1{
+        font-size: $subtitleFontSize + .5em;
+      }
+    }
+
+    .content{
+      font-size: 1.2em;
+    }
+  }
 }
 
 
@@ -271,4 +275,3 @@ header{
 sebm-google-map{
   height: 80vh;
 }
-

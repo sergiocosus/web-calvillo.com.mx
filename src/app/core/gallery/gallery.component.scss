@@ -1,12 +1,15 @@
 @import "src/app/vars";
 
+:host-context(body){
+  @extend .gradient-background;
+}
+
 :host{
   text-align: center;
-  background-color: rgba(black, .5);
-
   font-family: Arial;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - #{$navBarTop});
 }
 
 header{
@@ -79,7 +82,7 @@ header{
     display: inline-block;
     max-width: 1080px;
     padding: 2em;
-
+    line-height: 1.25em;
   }
 
   share-buttons{

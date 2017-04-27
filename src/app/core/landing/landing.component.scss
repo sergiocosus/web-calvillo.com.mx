@@ -1,3 +1,4 @@
+@import 'src/app/vars';
 
 section{
   display:flex;
@@ -7,6 +8,12 @@ section{
   background: url("/assets/background2.jpg");
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
+}
+
+
+section.first{
+  margin-top: -35px;
 
   .title {
     display: flex;
@@ -14,66 +21,39 @@ section{
     flex: 10 0 auto;
     align-items: center;
     justify-content: center;
-
-
+    text-shadow: .2em .2em .8em black;
+    font-weight: bold;
     h1{
       display: inline-block;
       text-align: center;
       font-family: Arial;
-      font-size: 5em;
+      font-size: 2.5em;
       color: white;
       margin: 0;
+
+      @media (min-width: $mdScreen) {
+        font-size: 5em;
+      }
     }
 
     span{
       font-family: Arial;
       color: white;
-    }
-  }
+      padding: 1em;
 
-  .images{
-    display: flex;
-    flex: 0 0 auto;
+      text-align: center;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
 
-    ul{
-      display: flex;
-      align-items: center;
-      background-color: rgba(white, .5);
-      margin: 0;
-      padding: 0;
-
-      li{
-        display: flex;
-        position: relative;
-        overflow: hidden;
-
-
-        img{
-          height: 100px;
-          transition: all .25s;
-        }
-
-        >div{
-          position: absolute;
-          text-align: center;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          opacity: 0;
-          color: white;
-          transition: all .25s;
-          background-color: rgba(black, .5);
-        }
-
-        &:hover{
-          >img{
-            transform: scale(1.5, 1.5);
-          }
-          >div{
-            opacity: 1;
-          }
-        }
-
+      @media (min-width: $mdScreen) {
+        padding: 0;
       }
     }
   }
@@ -94,16 +74,56 @@ section{
     display: flex;
     flex: 0 0 auto;
     align-self: center;
-    border-radius: 10px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, .75);
+    padding: .5em;
+    width: 100%;
 
     /deep/ .sb-buttons {
       margin: 0;
     }
+  }
+}
 
-    /deep/ h3 {
-      margin: 0;
+section.second{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1 0 0;
+
+  ul{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+
+    li{
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      flex: 1 0 auto;
+
+      /deep/ app-category-thumbnail {
+        flex: 1 0 auto;
+
+        a{
+          flex: 1 0 auto;
+          text-align: center;
+        }
+
+
+
+        img {
+          transform: scale(1.5,1.5);
+        }
+        &:hover{
+          img {
+            transform: scale(1.75, 1.75) translate(0, 5%);
+          }
+        }
+
+      }
     }
   }
-
 }

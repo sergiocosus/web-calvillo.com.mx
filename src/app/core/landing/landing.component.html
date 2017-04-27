@@ -1,4 +1,4 @@
-<section>
+<section class="first">
   <div class="title">
     <h1>
       Calvillo.com.mx
@@ -7,13 +7,7 @@
       Capital de la guayaba, cuna del deshilado
     </span>
   </div>
-  <div class="images">
-    <ul *ngIf="category">
-      <li *ngFor="let subcategory of category.categories">
-        <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
-      </li>
-    </ul>
-  </div>
+
 
   <div class="button">
     <button>
@@ -26,4 +20,11 @@
                    [showCount]="true"
     ></share-buttons>
   </div>
+</section>
+<section class="second">
+  <ul *ngIf="categories">
+    <li *ngFor="let category of categories">
+      <app-category-thumbnail [category]="category"></app-category-thumbnail>
+    </li>
+  </ul>
 </section>

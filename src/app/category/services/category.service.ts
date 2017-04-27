@@ -13,6 +13,11 @@ export class CategoryService {
       .map(json => new Category().parse(json.category));
   }
 
+  getNewest(elements?: number) {
+    return this.apiHttp.get('category/newest', {elements: elements})
+      .map(json => Category.parseArray(json.categories));
+  }
+
   post(data) {
     return this.apiHttp.post('category', data)
       .map(json => new Category().parse(json.category));

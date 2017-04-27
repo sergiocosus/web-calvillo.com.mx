@@ -1,11 +1,4 @@
-<header *ngIf="category">
-  <h1>
-    <a routerLink="../">
-      <i class="fa fa-caret-up" aria-hidden="true"></i>
-    </a>
-    {{category.title}}
-  </h1>
-</header>
+
 
 <section class="list" #list
          (swipeleft)="nextPage()"
@@ -41,7 +34,14 @@
          (swipeleft)="onSwipeLeft($event.type)"
          (swiperight)="onSwipeRight($event.type)"
 >
-
+  <header *ngIf="category">
+    <h1>
+      <a routerLink="../">
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </a>
+      {{category.title}}
+    </h1>
+  </header>
   <div class="prev"
        *ngIf="!isFirstPicture"
        (click)="prevPicture()">
@@ -75,6 +75,7 @@
     </h1>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
+  <br>
   <div class="content" [innerHTML]="picture.description">
   </div>
 </div>

@@ -17,8 +17,8 @@ $thumbMargin: 2px;
 
 $topSpace: $thumbSize + ($thumbMargin * 2);
 
-$titleFontSize: 2em;
-$subtitleFontSize: 2em;
+$titleFontSize: 1.5em;
+$subtitleFontSize: 1.5em;
 
 $arrowBackgroundColor: rgba(black, .5);
 
@@ -36,4 +36,24 @@ $arrowBackgroundColor: rgba(black, .5);
   transition: all .5s;
   box-shadow: 6px 6px 5px -1px rgba(0,0,0,0.26);
   background-color: $thumbnail-label-background-color;
+}
+
+.gradient-background{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(top,  #1e5799 0%, #7db9e8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #1e5799 0%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #1e5799 0%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+}
+
+.dark-transparent-gradient{
+  background: rgba(0,0,0,0);
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 20%, rgba(0,0,0,0.85) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(20%, rgba(0,0,0,0.45)), color-stop(100%, rgba(0,0,0,0.85)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 20%, rgba(0,0,0,0.85) 100%);
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 20%, rgba(0,0,0,0.85) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 20%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 20%, rgba(0,0,0,0.85) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 }

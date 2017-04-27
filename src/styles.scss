@@ -2,11 +2,11 @@
 
 
 @include font-face(QuickSand,
-  "../node_modules/connect-fonts-quicksand/fonts/latin/quicksand-regular",
+  "~connect-fonts-quicksand/fonts/latin/quicksand-regular",
   normal, normal, eot woff ttf svg);
 
 @include font-face(QuickSand,
-  "../node_modules/connect-fonts-quicksand/fonts/latin/quicksand-bold",
+  "~connect-fonts-quicksand/fonts/latin/quicksand-bold",
   bold, normal, eot woff ttf svg);
 
 

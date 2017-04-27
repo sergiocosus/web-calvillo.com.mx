@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
+import {Category} from '../../category/category.model';
 
 @Component({
   selector: 'app-landing',
@@ -8,14 +9,14 @@ import {CategoryService} from '../../category/services/category.service';
 })
 export class LandingComponent implements OnInit {
 
-  category: any[];
+  categories: Category[];
   constructor(private categoryService:CategoryService) {
 
   }
 
   ngOnInit(): void {
-    this.categoryService.get(1).subscribe(
-      category => this.category = category
+    this.categoryService.getNewest(50).subscribe(
+      categories => this.categories = categories
     );
   }
 }
