@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ModalDirective} from 'ng2-bootstrap';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-place-on-map-modal',
@@ -7,21 +6,20 @@ import {ModalDirective} from 'ng2-bootstrap';
   styleUrls: ['./place-on-map-modal.component.scss']
 })
 export class PlaceOnMapModalComponent implements OnInit {
-  @ViewChild('modal') modal: ModalDirective;
-
   @Input() longitude;
   @Input() latitude;
-  @Output() closed = new EventEmitter;
-
+  title: string;
   hidden = true;
 
   constructor() { }
 
   ngOnInit() {
+    setTimeout(() => this.hidden = false, 200);
   }
 
-  openModal() {
-    this.modal.show();
-    setTimeout(() => this.hidden = false, 200);
+  setData(lon, lat, title) {
+    this.longitude = lon;
+    this.latitude = lat;
+    this.title = title;
   }
 }

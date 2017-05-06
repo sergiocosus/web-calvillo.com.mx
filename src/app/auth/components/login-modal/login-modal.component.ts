@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ModalDirective} from 'ng2-bootstrap';
 import {AuthService} from '../../auth.service';
+import {MdDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-login-modal',
@@ -8,24 +8,19 @@ import {AuthService} from '../../auth.service';
   styleUrls: ['./login-modal.component.scss']
 })
 export class LoginModalComponent implements OnInit {
-  @ViewChild('modal') modal: ModalDirective;
-
   email: string;
   password: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private dialog: MdDialogRef<LoginModalComponent>) { }
 
   ngOnInit() {
-  }
-
-  open() {
-    this.modal.show();
   }
 
   login() {
     this.authService.login(this.email, this.password).subscribe(
       success => {
-        this.modal.hide();
+        this.dialog.close();
       }
     );
   }

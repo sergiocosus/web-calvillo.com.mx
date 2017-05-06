@@ -17,7 +17,6 @@ import {CoreModule} from './core/core.browser.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 import {environment} from '../environments/environment';
-import {ModalModule} from 'ng2-bootstrap';
 import {AdsenseModule} from 'ng2-adsense';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {BrowserModule} from '@angular/platform-browser';
@@ -48,7 +47,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AgmCoreModule.forRoot({
         apiKey: environment.googleMapsApiKey
     }),
-    ModalModule.forRoot(),
     AdsenseModule.forRoot({
       adClient: environment.adSenseAdClient,
       adSlot: environment.adSenseAdSlot,

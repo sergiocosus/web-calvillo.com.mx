@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {ModalDirective} from 'ng2-bootstrap';
 import {ImageResult} from 'ng2-imageupload';
 import {PictureService} from '../../services/picture.service';
 import {EXIFService} from '../../../shared/services/exif.service';
@@ -87,6 +86,8 @@ export class UploadPictureModalComponent implements OnInit {
     pictureData.description = picture.description;
     pictureData.src = picture.imageUrl('sm');
     pictureData.taken_at = picture.taken_at;
+    pictureData.latitude = picture.latitude;
+    pictureData.longitude = picture.longitude;
 
     this.formArray.push(this.createPictureFormGroup(pictureData));
   }
@@ -221,7 +222,7 @@ export class UploadPictureModalComponent implements OnInit {
       +picture.get('latitude').value,
     );
     dialog.componentInstance.closed.subscribe(
-      coordinates => this.setCoordinates(this.setCoordinates(coordinates))
+      coordinates => this.setCoordinates(coordinates)
     );
   }
 

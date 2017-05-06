@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core';
 import {Category} from '../../category.model';
-import {ModalDirective} from 'ng2-bootstrap';
 import {CategoryService} from '../../services/category.service';
 import {ImageResult} from 'ng2-imageupload';
+import {MdDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-add-category-modal',
@@ -10,19 +10,20 @@ import {ImageResult} from 'ng2-imageupload';
   styleUrls: ['./add-category-modal.component.scss']
 })
 export class AddCategoryModalComponent implements OnInit {
-  @ViewChild('modal') modal: ModalDirective;
   @Output() created = new EventEmitter;
+
   src: string = null;
   category: Category;
-  constructor(private categoryService: CategoryService) { }
+
+  constructor(private categoryService: CategoryService,
+              private dialog: MdDialogRef<AddCategoryModalComponent>) { }
 
   ngOnInit() {
   }
 
-  open(parent_category_id: number) {
+  init(parent_category_id: number){
     this.category = new Category;
     this.category.category_id = parent_category_id;
-    this.modal.show();
   }
 
   submit() {
@@ -31,7 +32,7 @@ export class AddCategoryModalComponent implements OnInit {
     this.categoryService.post(this.category).subscribe(
       category => {
         this.created.emit(category);
-        this.modal.hide();
+        this.dialog.close();
       }
     )
   }

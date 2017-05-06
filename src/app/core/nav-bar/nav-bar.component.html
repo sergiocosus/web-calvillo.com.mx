@@ -51,7 +51,7 @@
     </li>
     <li>
       <a *appIfLogged="false"
-         (click)="loginModal.open()">
+         (click)="openLoginDialog()">
         <i class="fa fa-user" aria-hidden="true"></i>
         <span>Login</span>
       </a>
@@ -63,4 +63,3 @@
     </li>
   </ul>
 </nav>
-<app-login-modal #loginModal></app-login-modal>

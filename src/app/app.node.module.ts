@@ -15,7 +15,6 @@ import {CategoryModule} from './category/category.module.node';
 import {CoreModule} from './core/core.node.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import { DirectoryComponent } from './directory/directory.component';
-import {ModalModule} from 'ng2-bootstrap';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 import {environment} from '../environments/environment';
 
@@ -38,8 +37,6 @@ import {environment} from '../environments/environment';
     SharedModule,
     CategoryModule,
     CoreModule,
-    ModalModule.forRoot(),
-
     /**
      * using routes
      */

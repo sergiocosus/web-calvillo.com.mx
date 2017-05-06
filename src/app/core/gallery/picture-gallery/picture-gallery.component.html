@@ -1,5 +1,3 @@
-
-
 <section class="list" #list
          (swipeleft)="nextPage()"
          (swiperight)="prevPage()">
@@ -81,34 +79,3 @@
 </div>
 
 <router-outlet></router-outlet>
-
-
-<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg"
-       *ngIf="picture && picture.longitude && picture.latitude">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">
-          {{picture.title}}
-        </h4>
-        <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <sebm-google-map *ngIf="!hiddenMap"
-                         [latitude]="picture.latitude"
-                         [longitude]="picture.longitude"
-                         [zoom]="19">
-          <sebm-google-map-marker
-            [latitude]="picture.latitude"
-            [longitude]="picture.longitude"
-            [label]="picture.title"
-          >
-          </sebm-google-map-marker>
-        </sebm-google-map>
-      </div>
-    </div>
-  </div>
-</div>
-

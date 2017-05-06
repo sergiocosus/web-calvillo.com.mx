@@ -3,8 +3,8 @@ import {
   trigger, animate
 } from '@angular/core';
 import {Directory} from './directory.model';
-import {ModalDirective} from 'ng2-bootstrap';
 import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'app-directory',
@@ -33,8 +33,6 @@ import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/pl
   ]
 })
 export class DirectoryComponent implements OnInit {
-  @ViewChild(PlaceOnMapModalComponent) mapModal: PlaceOnMapModalComponent;
-
   @HostBinding('class.expanded') expanded = false;
   @HostListener('click') clicked () {
     this.show();
@@ -43,7 +41,7 @@ export class DirectoryComponent implements OnInit {
   @Input() category_id: number;
   @Input() directory: Directory;
 
-  constructor() { }
+  constructor(private dialog:MdDialog) { }
 
   ngOnInit() {
   }
@@ -53,6 +51,11 @@ export class DirectoryComponent implements OnInit {
   }
 
   openMapModal() {
-    this.mapModal.openModal();
+    const dialog = this.dialog.open(PlaceOnMapModalComponent);
+    dialog.componentInstance.setData(
+      this.directory.longitude,
+      this.directory.latitude,
+      this.directory.title
+    );
   }
 }

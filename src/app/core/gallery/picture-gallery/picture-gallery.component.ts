@@ -1,14 +1,16 @@
 import {
   Component, OnInit, ElementRef, HostBinding, ViewChild, HostListener, trigger, state,
-  transition, style, animate, PLATFORM_ID, Inject
+  transition, style, animate, PLATFORM_ID, Inject, OnDestroy
 } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
 import {ResolutionService} from '../../../shared/services/resolution.service';
-import {ModalDirective} from 'ng2-bootstrap';
 import {isPlatformBrowser} from '@angular/common';
+import {MdDialog} from '@angular/material';
+import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
+import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -52,9 +54,8 @@ import {isPlatformBrowser} from '@angular/common';
     ])
   ]
 })
-export class PictureGalleryComponent implements OnInit {
+export class PictureGalleryComponent implements OnInit, OnDestroy {
   @ViewChild('list') list: ElementRef;
-  @ViewChild('modal') modal: ModalDirective;
 
   @HostListener('window:resize') resize() {
     this.initImgSize();
@@ -86,15 +87,18 @@ export class PictureGalleryComponent implements OnInit {
   pictureLength: number;
   hiddenMap = true;
 
+  private sub = new SubscriptionManager;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
               private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private resolutionService: ResolutionService) { }
+              private resolutionService: ResolutionService,
+              private dialog: MdDialog) { }
 
   ngOnInit() {
     this.initImgSize();
-    this.activatedRoute.params.subscribe(
+    const subCategory = this.activatedRoute.params.subscribe(
       route => {
         if (route['category_id'] && route['category_id'] !== this.category_id) {
           this.loadCategory(+route['category_id']);
@@ -104,7 +108,7 @@ export class PictureGalleryComponent implements OnInit {
       }
     );
 
-    let sub = this.activatedRoute.children[0].params.subscribe(
+    const subPicture = this.activatedRoute.children[0].params.subscribe(
       route => {
         if (route['picture_id']) {
           this.picture_id = +route['picture_id'];
@@ -112,6 +116,13 @@ export class PictureGalleryComponent implements OnInit {
         }
       }
     );
+
+    this.sub.push(subCategory);
+    this.sub.push(subPicture);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.clear();
   }
 
   initImgSize() {
@@ -147,7 +158,6 @@ export class PictureGalleryComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       let image = new Image();
       image.src = src;
-      // console.log(src);
     }
   }
 
@@ -240,7 +250,6 @@ export class PictureGalleryComponent implements OnInit {
   }
 
   changeRoutePicture(index:number) {
-    // console.log(index);
     this.router.navigate(['galeria', this.category_id, 'foto', this.category.pictures[index].id]);
   }
 
@@ -273,9 +282,6 @@ export class PictureGalleryComponent implements OnInit {
 
   indexInPage(index) {
     return this.pageOfIndex(index) == this.page;
-
-
-
   }
 
   get isFirstPage() {
@@ -295,8 +301,11 @@ export class PictureGalleryComponent implements OnInit {
   }
 
   openMapModal() {
-    this.modal.show();
-    setTimeout(() => this.hiddenMap = false, 200);
+    const dialog = this.dialog.open(PlaceOnMapModalComponent);
+    dialog.componentInstance.setData(
+      this.picture.longitude,
+      this.picture.latitude,
+      this.picture.title
+    );
   }
-
 }

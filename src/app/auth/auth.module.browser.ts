@@ -23,6 +23,9 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
   providers: [
     AuthService,
   ],
+  entryComponents: [
+    LoginModalComponent,
+  ],
   exports: [
     LoginModalComponent,
     IfLoggedDirective,

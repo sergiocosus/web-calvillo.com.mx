@@ -3,7 +3,7 @@
   Secciones
   <span *appIfLogged="true"
         class="add-button"
-        (click)="categoryModal.open(category.id)">
+        (click)="openCreateCategory(category.id)">
     <i class="fa fa-plus-circle" aria-hidden="true"></i>
   </span>
 </h3>
@@ -12,5 +12,3 @@
     <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
   </li>
 </ul>
-<app-add-category-modal
-  (created)="pushCategory($event)"></app-add-category-modal>
