@@ -3,7 +3,7 @@
   Fotografías
   <span *appIfLogged="true"
         class="add-button"
-        (click)="pictureModal.openToCreate(category_id)">
+        (click)="openDialog()">
     <i class="fa fa-plus-circle" aria-hidden="true"></i>
   </span>
 </h3>
@@ -41,7 +41,3 @@
     </li>
   </ul>
 </ng-container>
-
-<app-upload-picture-modal
-  (created)="pushPicture($event)"
-  (updated)="updatePicture($event)"></app-upload-picture-modal>

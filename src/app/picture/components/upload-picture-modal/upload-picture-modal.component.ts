@@ -9,6 +9,7 @@ import {NotifyService} from '../../../shared/services/notify.service';
 import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
+import {MdDialog, MdDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-upload-picture-modal',
@@ -16,7 +17,6 @@ import {CustomValidators} from 'ng2-validation';
   styleUrls: ['./upload-picture-modal.component.scss']
 })
 export class UploadPictureModalComponent implements OnInit {
-  @ViewChild('modal') modal: ModalDirective;
   @ViewChild(SelectFromMapModalComponent) mapModal: SelectFromMapModalComponent;
 
   @Output() created = new EventEmitter;
@@ -35,9 +35,12 @@ export class UploadPictureModalComponent implements OnInit {
   constructor(private pictureService: PictureService,
               private exifService: EXIFService,
               private notify: NotifyService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private uploadPictureDialog: MdDialogRef<UploadPictureModalComponent>,
+              private dialog: MdDialog
   ) {
     this.createForm();
+
   }
 
   createForm() {
@@ -65,16 +68,15 @@ export class UploadPictureModalComponent implements OnInit {
     );
   }
 
-  openToCreate(parent_category_id: number) {
+  initCreateMode(parent_category_id: number) {
     this.createMode = true;
     this.initForm();
     this.parent_category_id = parent_category_id;
     this.currentUploadingPicture = null;
     this.uploading = false;
-    this.modal.show();
   }
 
-  openToEdit(picture: Picture) {
+  initEditMode(picture: Picture) {
     this.createMode = false;
     this.initForm();
     let pictureData = new PictureRequest;
@@ -87,8 +89,6 @@ export class UploadPictureModalComponent implements OnInit {
     pictureData.taken_at = picture.taken_at;
 
     this.formArray.push(this.createPictureFormGroup(pictureData));
-
-    this.modal.show();
   }
 
   selected(imageResult: ImageResult) {
@@ -170,7 +170,7 @@ export class UploadPictureModalComponent implements OnInit {
         this.putPicture(formToProcess);
       }
     } else {
-      this.modal.hide();
+      this.uploadPictureDialog.close();
       this.notify.success('Las fotografias han sido subidas');
     }
   }
@@ -215,7 +215,14 @@ export class UploadPictureModalComponent implements OnInit {
 
   openMapModal(picture: FormGroup) {
     this.pictureOnModal = picture;
-    this.mapModal.openModal();
+    const dialog = this.dialog.open(SelectFromMapModalComponent);
+    dialog.componentInstance.setCoords(
+      +picture.get('longitude').value,
+      +picture.get('latitude').value,
+    );
+    dialog.componentInstance.closed.subscribe(
+      coordinates => this.setCoordinates(this.setCoordinates(coordinates))
+    );
   }
 
   setCoordinates(coordinates) {

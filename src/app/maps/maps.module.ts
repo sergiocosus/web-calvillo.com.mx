@@ -14,6 +14,9 @@ import {AgmCoreModule} from 'angular2-google-maps/core';
     SelectFromMapModalComponent,
     PlaceOnMapModalComponent,
   ],
+  entryComponents: [
+    SelectFromMapModalComponent,
+  ],
   exports: [
     SelectFromMapModalComponent,
     PlaceOnMapModalComponent,

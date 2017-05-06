@@ -1,57 +1,48 @@
-<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">
-          <ng-container *ngIf="createMode; else elseCreateMode">
-            Subir fotografías
-          </ng-container>
-          <ng-template #elseCreateMode>
-            Editar fotografía
-          </ng-template>
-        </h4>
-        <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+<h4 md-dialog-title>
+  {{createMode ? 'Subir fotografías': 'Editar fotografía'}}
+</h4>
+
+<button type="button" class="close pull-right" tabindex="-1"
+        md-dialog-close>
+  <span aria-hidden="true">&times;</span>
+</button>
+
+<section class="header-form" *ngIf="createMode">
+  <md-checkbox [(ngModel)]="takeTitleFromFiles" >
+    Obtener título de archivo
+  </md-checkbox>
+  <input class="input-picture"
+         image-upload (imageSelected)="selected($event)"
+         accept="image/*" name="picture" type="file" multiple>
+</section>
+
+<md-dialog-content>
+  <form id="picture-form" [formGroup]="formGroup" (ngSubmit)="submit()">
+    <div formArrayName="pictures">
+      <md-card *ngFor="let picture of formArray.controls; let i=index"
+               [formGroupName]="i">
+        <app-picture-form [picture]="picture"
+                          [uploading]="i === currentUploadingPicture && uploading"
+                          (coordsRequested)="openMapModal($event)"
+                          >
+        </app-picture-form>
+        <button *ngIf="createMode"
+                type="button" md-mini-fab class="remove"
+                (click)="remove(picture)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
-
-      </div>
-      <div class="modal-body">
-        <section class="header-form" *ngIf="createMode">
-          <md-checkbox [(ngModel)]="takeTitleFromFiles">
-            Obtener título de archivo
-          </md-checkbox>
-          <input class="input-picture"
-                 image-upload (imageSelected)="selected($event)"
-                 accept="image/*" name="picture" type="file" multiple>
-        </section>
-        <form [formGroup]="formGroup" (ngSubmit)="submit()">
-          <div formArrayName="pictures">
-            <md-card *ngFor="let picture of formArray.controls; let i=index"
-                     [formGroupName]="i">
-              <app-picture-form [picture]="picture"
-                                [uploading]="i === currentUploadingPicture && uploading"
-                                (coordsRequested)="openMapModal($event)"
-                                >
-              </app-picture-form>
-              <button *ngIf="createMode"
-                      type="button" md-mini-fab class="remove"
-                      (click)="remove(picture)">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
-            </md-card>
-          </div>
-          <button md-button>
-            <ng-container *ngIf="createMode; else elseCreateMode">
-              Subir fotografías
-            </ng-container>
-            <ng-template #elseCreateMode>
-              Actualizar fotografía
-            </ng-template>
-          </button>
-        </form>
-      </div>
+      </md-card>
     </div>
-  </div>
-</div>
+  </form>
+</md-dialog-content>
 
-<app-select-from-map-modal (closed)="setCoordinates($event)"></app-select-from-map-modal>
+<md-dialog-actions>
+  <button md-button form="picture-form">
+    <ng-container *ngIf="createMode; else elseCreateMode">
+      Subir fotografías
+    </ng-container>
+    <ng-template #elseCreateMode>
+      Actualizar fotografía
+    </ng-template>
+  </button>
+</md-dialog-actions>

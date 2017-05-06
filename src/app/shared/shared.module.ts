@@ -11,6 +11,7 @@ import {EXIFService} from './services/exif.service';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
+import {MdDialogModule} from '@angular/material';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {HttpModule} from '@angular/http';
     HttpModule,
     RouterModule,
     ModalModule,
+    MdDialogModule,
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
@@ -41,6 +43,7 @@ import {HttpModule} from '@angular/http';
     RouterModule,
     ModalModule,
     VoidComponent,
+    MdDialogModule,
   ]
 })
 export class SharedModule { }

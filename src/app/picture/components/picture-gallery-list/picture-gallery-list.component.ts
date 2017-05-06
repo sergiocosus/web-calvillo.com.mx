@@ -3,6 +3,7 @@ import {Picture} from '../../picture.model';
 import {UploadPictureModalComponent} from '../upload-picture-modal/upload-picture-modal.component';
 import {NotifyService} from '../../../shared/services/notify.service';
 import {PictureService} from '../../services/picture.service';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'app-picture-gallery-list',
@@ -10,14 +11,13 @@ import {PictureService} from '../../services/picture.service';
   styleUrls: ['./picture-gallery-list.component.scss']
 })
 export class PictureGalleryListComponent implements OnInit {
-  @ViewChild(UploadPictureModalComponent) pictureModal: UploadPictureModalComponent;
-
   @Input() category_id: number;
   @Input() pictures: Picture[] = [];
   @Input() deleted_pictures: Picture[] = [];
 
   constructor(private notify: NotifyService,
-              private pictureService: PictureService) { }
+              private pictureService: PictureService,
+              private dialog: MdDialog) { }
 
   ngOnInit() {
   }
@@ -72,6 +72,18 @@ export class PictureGalleryListComponent implements OnInit {
 
   editPicture($event: Event, picture: Picture) {
     $event.stopPropagation();
-    this.pictureModal.openToEdit(picture);
+    const dialog = this.dialog.open(UploadPictureModalComponent);
+    dialog.componentInstance.initEditMode(picture);
+    dialog.componentInstance.updated.subscribe(
+      picture => this.updatePicture(picture)
+    );
+  }
+
+  openDialog() {
+    const dialog = this.dialog.open(UploadPictureModalComponent,{data:{createMode: true}});
+    dialog.componentInstance.initCreateMode(this.category_id);
+    dialog.componentInstance.created.subscribe(
+      picture => this.pushPicture(picture)
+    );
   }
 }

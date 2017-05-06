@@ -18,7 +18,6 @@ import {AddCategoryModalComponent} from '../../category/components/add-category-
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit, OnDestroy {
-  @ViewChild(AddCategoryModalComponent) categoryModal: AddCategoryModalComponent;
   category: Category;
   currRoute = '';
   category_id = null;
@@ -65,9 +64,4 @@ export class GalleryComponent implements OnInit, OnDestroy {
       error => {console.error(error);}
     )
   }
-
-  pushCategory(category) {
-    this.category.categories.push(category);
-  }
-
 }

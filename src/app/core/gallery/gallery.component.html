@@ -18,21 +18,7 @@
   </header>
   <section *ngIf="category.categories.length || loggedUser">
     <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
-    <h3>
-      <i class="fa fa-folder" aria-hidden="true"></i>
-      Secciones
-
-      <span *appIfLogged="true"
-            class="add-button"
-            (click)="categoryModal.open(category.id)">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      </span>
-    </h3>
-    <ul>
-      <li *ngFor="let subcategory of category.categories">
-        <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
-      </li>
-    </ul>
+    <app-category-gallery-list [category]="category"></app-category-gallery-list>
   </section>
   <section *ngIf="category.videos.length || loggedUser">
     <h3>
@@ -82,6 +68,3 @@
   </section>
 </ng-container>
 <router-outlet></router-outlet>
-
-<app-add-category-modal
-  (created)="pushCategory($event)"></app-add-category-modal>
