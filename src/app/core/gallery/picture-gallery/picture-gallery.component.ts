@@ -11,6 +11,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {MdDialog} from '@angular/material';
 import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -94,7 +95,8 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private resolutionService: ResolutionService,
-              private dialog: MdDialog) { }
+              private dialog: MdDialog,
+              private title: Title) { }
 
   ngOnInit() {
     this.initImgSize();
@@ -187,6 +189,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
       (picture, index) => {
         if (picture.id === this.picture_id) {
           this.picture = picture;
+          this.title.setTitle(this.category.title + " - " + this.picture.title);
           if (this.oldIndex !== null) {
             this.oldIndex = this.index;
           }

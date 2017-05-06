@@ -11,6 +11,7 @@ import {NotifyService} from '../../shared/services/notify.service';
 import {Picture} from '../../picture/picture.model';
 import {UploadPictureModalComponent} from '../../picture/components/upload-picture-modal/upload-picture-modal.component';
 import {AddCategoryModalComponent} from '../../category/components/add-category-modal/add-category-modal.component';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gallery',
@@ -27,11 +28,11 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
 
   constructor(private categoryService: CategoryService,
-              private pictureService: PictureService,
               private notify: NotifyService,
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private title: Title) { }
 
 
   ngOnInit() {
@@ -60,6 +61,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.categoryService.get(category_id).subscribe(
       category => {
         this.category = category;
+        this.title.setTitle(this.category.title);
       },
       error => {console.error(error);}
     )
