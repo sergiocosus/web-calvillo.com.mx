@@ -12,6 +12,7 @@ import {MdDialog} from '@angular/material';
 import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 import {Title} from '@angular/platform-browser';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -105,7 +106,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
         if (route['category_id'] && route['category_id'] !== this.category_id) {
           this.loadCategory(+route['category_id']);
         } else {
-          this.loadCategory(252);
+          this.loadCategory(environment.defaultCategoryId);
         }
       }
     );

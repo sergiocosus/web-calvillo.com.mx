@@ -12,6 +12,7 @@ import {Picture} from '../../picture/picture.model';
 import {UploadPictureModalComponent} from '../../picture/components/upload-picture-modal/upload-picture-modal.component';
 import {AddCategoryModalComponent} from '../../category/components/add-category-modal/add-category-modal.component';
 import {Title} from '@angular/platform-browser';
+import {SubscriptionManager} from '../../shared/classes/subscription-manager';
 
 @Component({
   selector: 'app-gallery',
@@ -24,7 +25,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   category_id = null;
   adSenseEnabled = environment.adSenseEnabled;
   loggedUser: User;
-  subscription: Subscription;
+  sub = new SubscriptionManager();
 
 
   constructor(private categoryService: CategoryService,
@@ -36,24 +37,27 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.subscription = this.authService.getLoggedUser().subscribe(
+    const sub = this.authService.getLoggedUser().subscribe(
       user => this.loggedUser = user
     );
 
-    let sub = this.activatedRoute.children[0].params.subscribe(
+    const subCategory = this.activatedRoute.children[0].params.subscribe(
       route => {
         this.currRoute = this.router.url;
         if (route['category_id']) {
           this.loadCategory(route['category_id']);
         } else {
-          this.loadCategory(252);
+          this.loadCategory(environment.defaultCategoryId);
         }
       }
     );
+
+    this.sub.push(sub);
+    this.sub.push(subCategory);
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.sub.clear();
   }
 
   loadCategory(category_id: number) {

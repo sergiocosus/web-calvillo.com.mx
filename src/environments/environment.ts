@@ -13,4 +13,5 @@ export const environment = {
   adSenseEnabled: true,
   adSenseAdClient: '',
   adSenseAdSlot: '',
+  defaultCategoryId: 0,
 };
