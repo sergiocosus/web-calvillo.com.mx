@@ -1,34 +1,29 @@
 <h4 md-dialog-title>
-  Crear category
+  Crear categoría
 </h4>
 <button type="button" class="corner" md-dialog-close>
   <span aria-hidden="true">&times;</span>
 </button>
 <md-dialog-content>
-  <form *ngIf="category" id="category-form" (submit)="submit()">
+  <form [formGroup]="form"
+        id="category-form" (submit)="submit()">
     <md-input-container>
-      <input mdInput required
-             [(ngModel)]="category.title"
-             name="title"
-             placeholder="Título"  >
+      <input mdInput formControlName="title"
+             placeholder="Título">
     </md-input-container>
     <md-input-container>
-      <input mdInput
-             [(ngModel)]="category.link"
-             name="link"
+      <input mdInput formControlName="link"
              placeholder="Titulo para enlace">
     </md-input-container>
     <md-input-container>
-      <input mdInput
-             [(ngModel)]="category.description"
-             name="description"
+      <input mdInput formControlName="description"
              placeholder="Descripción"  >
     </md-input-container>
     <input class="input-picture" image-upload
            (imageSelected)="selected($event)"
            accept="image/*" name="picture" type="file">
-    <picture *ngIf="src" [ngStyle]="{
-      'background-image' : 'url('+src+')'
+    <picture *ngIf="form.get('src')" [ngStyle]="{
+      'background-image' : 'url('+form.get('src').value+')'
     }">
     </picture>
   </form>

@@ -10,5 +10,33 @@
 <ul>
   <li *ngFor="let subcategory of category.categories">
     <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
+    <button *appIfLogged="true" md-mini-fab class="remove"
+            (click)="remove(subcategory)">
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+    </button>
+    <button *appIfLogged="true" md-mini-fab class="edit"
+            (click)="edit($event, subcategory)">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </button>
   </li>
 </ul>
+
+<ng-container *appIfLogged="true">
+  <h3>
+    Categorias eliminadas
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  </h3>
+  <ul>
+    <li *ngFor="let deletedCategory of category.deleted_categories">
+      <app-category-thumbnail [category]="deletedCategory"></app-category-thumbnail>
+      <button  md-mini-fab class="remove"
+               (click)="delete(deletedCategory)">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <button  md-mini-fab class="restore"
+               (click)="restore(deletedCategory)">
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+</ng-container>
