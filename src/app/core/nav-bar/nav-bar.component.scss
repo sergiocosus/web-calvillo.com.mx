@@ -1,7 +1,11 @@
-$navbarBackgroundColor: #4b8a4b;
+@import '~app/vars';
+
+$navbarBackgroundColor: #F62459;
 $navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
 
 nav{
+  display: flex;
+  align-items: stretch;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +14,12 @@ nav{
   background-color: $navbarBackgroundColor;
   box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
   z-index: 10;
+  font-size: 1em;
+  height: 50px;
+
+  @media (min-width: $mdScreen) {
+    font-size: 1.1em;
+  }
 
   ul{
     display:inline-flex;
@@ -18,29 +28,47 @@ nav{
     padding: 0;
     text-decoration: none;
     list-style: none;
+    align-items: stretch;
 
     >li{
       display: flex;
-      flex: 1 0 auto;
-      text-align: center;
+      flex: 0 0 auto;
+      text-align: left;
       justify-content: center;
-      align-items: center;
       font-family: Arial;
       font-weight: bolder;
-      line-height: 1.2em;
+      line-height: 1em;
+      align-items: stretch;
+
+      &.space{
+        flex: 1 0 0px;
+      }
 
       a{
         display: flex;
         flex: 1 0 0;
-        align-items: stretch;
+        align-items: center;
         justify-content: center;
         color: white;
         text-decoration: none;
-        padding: .5em .25em;
+        padding: .5em 1em;
         background-color: $navbarBackgroundColor;
+
+        span{
+          padding-left: .25em;
+        }
 
         i {
           margin-right: .25em;
+          font-size: 1.2em;
+
+          @media (max-width: 768px) {
+            font-size: 1.5em;
+
+            span {
+              display: none;
+            }
+          }
         }
 
         @media (max-width: 768px) {
@@ -59,7 +87,6 @@ nav{
         a{
           padding-left: 1em;
           padding-right: 1em;
-          background-color:  darken($navbarBackgroundColorSelected, 10%);
         }
       }
     }

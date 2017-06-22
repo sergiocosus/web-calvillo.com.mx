@@ -4,37 +4,15 @@
       <a routerLink="/" routerLinkActive="active"
          [routerLinkActiveOptions]="{ exact: true }" >
         <i class="fa fa-home"></i>
-        <span>Calvillo.com.mx</span>
       </a>
     </li>
     <li>
       <a [routerLink]="'/galeria/' + defaultCatId" routerLinkActive="active">
         <i class="fa fa-camera"></i>
-        <span>Galería Fotográfica</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/artesanias" routerLinkActive="active">
-        <i class="fa fa-paint-brush" aria-hidden="true"></i>
-        <span>Artesanías</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/cultura" routerLinkActive="active">
-        <i class="fa fa-camera"></i>
-        <span>Cultura</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/historia" routerLinkActive="active">
-        <i class="fa fa-book" aria-hidden="true"></i>
-        <span>Historia</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/mitos-leyendas" routerLinkActive="active">
-        <i class="fa fa-camera"></i>
-        <span>Mitos y leyendas</span>
+        <span>
+          Galería<br>
+          Fotográfica
+        </span>
       </a>
     </li>
     <li>
@@ -49,6 +27,7 @@
         <span>Contacto</span>
       </a>
     </li>
+    <li class="space"> </li>
     <li>
       <a *appIfLogged="false"
          (click)="openLoginDialog()">

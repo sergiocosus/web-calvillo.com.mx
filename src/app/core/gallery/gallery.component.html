@@ -22,12 +22,14 @@
   </section>
   <section *ngIf="category.videos.length || loggedUser">
     <h3>
-      <i class="fa fa-video-camera" aria-hidden="true"></i>
-      Videos
-      <span *appIfLogged="true"
-            class="add-button"
-            (click)="categoryModal.open(category.id)">
+      <span>
+        <i class="fa fa-video-camera" aria-hidden="true"></i>
+        Videos
+        <span *appIfLogged="true"
+             class="add-button"
+             (click)="categoryModal.open(category.id)">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </span>
       </span>
     </h3>
     <ul>
@@ -51,12 +53,14 @@
   </section>
   <section *ngIf="category.directories.length || loggedUser">
     <h3>
-      <i class="fa fa-book" aria-hidden="true"></i>
-      Directorio
-      <span *appIfLogged="true"
-            class="add-button"
-            (click)="categoryModal.open(category.id)">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      <span>
+         <i class="fa fa-book" aria-hidden="true"></i>
+        Directorio
+        <span *appIfLogged="true"
+              class="add-button"
+              (click)="categoryModal.open(category.id)">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </span>
       </span>
     </h3>
     <ul>

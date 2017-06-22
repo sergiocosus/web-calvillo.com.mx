@@ -15,7 +15,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getNewest(50).subscribe(
+    this.categoryService.getNewest(5).subscribe(
       categories => this.categories = categories
     );
   }

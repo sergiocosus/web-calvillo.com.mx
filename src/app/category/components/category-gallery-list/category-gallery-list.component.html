@@ -1,10 +1,12 @@
 <h3>
-  <i class="fa fa-folder" aria-hidden="true"></i>
-  Secciones
-  <span *appIfLogged="true"
-        class="add-button"
-        (click)="openCreateCategory(category.id)">
-    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  <span>
+    <i class="fa fa-folder" aria-hidden="true"></i>
+    Secciones
+    <span *appIfLogged="true"
+          class="add-button"
+          (click)="openCreateCategory(category.id)">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </span>
   </span>
 </h3>
 <ul>

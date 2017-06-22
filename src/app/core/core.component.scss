@@ -1,7 +1,9 @@
+@import '~app/vars';
+
 app-nav-bar{
 
 }
 div{
   box-sizing: border-box;
-  margin-top: 35px;
+  margin-top: $navBarTop;
 }

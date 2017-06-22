@@ -98,10 +98,13 @@ section /deep/ {
   background-color: rgba(black, .5);
 
   h3{
-    background-color: rgba(black, .5);
-    color: white;
+    background-color: rgba(#eeeeee, 1);
+    color: black;
     margin: 0;
-
+    text-align: left;
+    font-size: 1.5em;
+    @extend .title-divisor;
+    padding-left: 2em;
     .add-button{
       cursor: pointer;
     }
@@ -112,10 +115,10 @@ section /deep/ {
     padding: 1em;
     margin: 0;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 
     app-picture-thumbnail{
-      margin: .5em .25em;
+      margin: .5em 1em;
     }
 
     li{
@@ -146,7 +149,7 @@ section /deep/ {
       }
 
       a{
-        margin: .5em .25em;
+       // margin: .5em .25em;
 
         img{
           height: 10em;

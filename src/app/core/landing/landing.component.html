@@ -1,30 +1,48 @@
-<section class="first">
-  <div class="title">
-    <h1>
-      Calvillo.com.mx
-    </h1>
-    <span>
-      Capital de la guayaba, cuna del deshilado
-    </span>
-  </div>
+<div class="parallax">
+  <section class="first parallax-group">
+    <div class="parallax-layer back">
+      <div class="background"> </div>
+    </div>
+    <div class="parallax-layer fore">
+      <div class="magic">
+        <img src="/assets/calvillo-pueblo-magico.png">
+      </div>
+      <div class="title">
+        <h1>
+          Calvillo.com.mx
+        </h1>
+        <span>
+          Fotografías de Calvillo Pueblo Mágico
+        </span>
+      </div>
+      <div class="social">
+        <share-buttons url="http://calvillo.com.mx"
+                       [reddit]="false"
+                       [showCount]="true"
+        ></share-buttons>
+      </div>
+    </div>
+  </section>
+  <section class="second parallax-group">
+    <div class="parallax-layer back">
+      <div class="background2"></div>
+    </div>
+    <div class="parallax-layer fore">
+      <h1>
+        <span>Lo más nuevo</span>
+      </h1>
+      <ul *ngIf="categories">
+        <li *ngFor="let category of categories">
+          <app-category-thumbnail [category]="category"></app-category-thumbnail>
+          <div class="pictures">
+            <app-picture-thumbnail *ngFor="let picture of category.pictures"
+                                   [category_id]="category.id"
+                                   [picture]="picture"></app-picture-thumbnail>
+          </div>
 
+        </li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="button">
-    <button>
-      ¡Suscríbete!
-    </button>
-  </div>
-
-  <div class="social">
-    <share-buttons [url]="'http://calvillo.com.mx'"
-                   [showCount]="true"
-    ></share-buttons>
-  </div>
-</section>
-<section class="second">
-  <ul *ngIf="categories">
-    <li *ngFor="let category of categories">
-      <app-category-thumbnail [category]="category"></app-category-thumbnail>
-    </li>
-  </ul>
-</section>
+</div>

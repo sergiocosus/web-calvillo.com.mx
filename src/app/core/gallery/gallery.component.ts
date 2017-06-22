@@ -5,12 +5,7 @@ import {Category} from '../../category/category.model';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
-import {Subscription} from 'rxjs';
-import {PictureService} from '../../picture/services/picture.service';
 import {NotifyService} from '../../shared/services/notify.service';
-import {Picture} from '../../picture/picture.model';
-import {UploadPictureModalComponent} from '../../picture/components/upload-picture-modal/upload-picture-modal.component';
-import {AddCategoryModalComponent} from '../../category/components/add-category-modal/add-category-modal.component';
 import {Title} from '@angular/platform-browser';
 import {SubscriptionManager} from '../../shared/classes/subscription-manager';
 
