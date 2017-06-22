@@ -103,11 +103,6 @@ section{
           width: 80px;
         }
       }
-
-      /deep/ .sb-buttons {
-        justify-content: center;
-        margin: 0;
-      }
     }
   }
 }
@@ -118,6 +113,12 @@ section{
   align-items: center;
   flex-wrap: wrap;
   flex: 1 0 0;
+
+  font-size: .6em;
+
+  @media (min-width: $smScreen) {
+    font-size: 1em;
+  }
 
   .fore{
 
@@ -168,6 +169,7 @@ section{
           img {
             transform: scale(1.5,1.5);
           }
+
           &:hover{
             img {
               transform: scale(1.75, 1.75) translate(0, 5%);
