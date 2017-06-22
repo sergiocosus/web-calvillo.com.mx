@@ -1,89 +1,36 @@
-/**
- * the polyfills must be the first thing imported
- */
-import './polyfills.ts';
-import './__2.1.1.workaround.ts'; // temporary until 2.1.1 things are patched in Core
-import * as path from 'path';
+import 'reflect-metadata';
+import 'zone.js/dist/zone-node';
+import { platformServer, renderModuleFactory } from '@angular/platform-server'
+import { enableProdMode } from '@angular/core'
+import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.module.ngfactory'
 import * as express from 'express';
-import * as compression from 'compression';
-import { createEngine } from 'angular2-express-engine';
-import { enableProdMode } from '@angular/core';
-import { AppModule } from './app/app.node.module';
-import { environment } from './environments/environment';
-import { routes } from './server.routes';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-// App
+const PORT = 4000;
 
-const app  = express();
-const ROOT = path.join(path.resolve(__dirname, '..'));
-const port = process.env.PORT || 4200;
+enableProdMode();
 
-/**
- * enable prod mode for production environments
- */
-if (environment.production) {
-  enableProdMode();
-}
+const app = express();
 
-/**
- * Express View
- */
-app.engine('.html', createEngine({}));
-app.set('views', path.join(ROOT, 'client'));
+let template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
+
+app.engine('html', (_, options, callback) => {
+  const opts = { document: template, url: options.req.url };
+
+  renderModuleFactory(AppServerModuleNgFactory, opts)
+    .then(html => callback(null, html));
+});
+
 app.set('view engine', 'html');
+app.set('views', 'src')
 
-/**
- * Enable compression
- */
-app.use(compression());
+app.get('*.*', express.static(join(__dirname, '..', 'dist')));
 
-/**
- * serve static files
- */
-app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
-
-/**
- * place your api routes here
- */
-// app.use('/api', api);
-
-/**
- * bootstrap universal app
- * @param req
- * @param res
- */
-function ngApp(req: any, res: any) {
-  res.render('index', {
-    req,
-    res,
-    ngModule: AppModule,
-    preboot: false,
-    baseUrl: '/',
-    requestUrl: req.originalUrl,
-    originUrl: req.hostname
-  });
-}
-
-/**
- * use universal for specific routes
- */
-app.get('/', ngApp);
-routes.forEach(route => {
-  app.get(`/${route}`, ngApp);
-  app.get(`/${route}/*`, ngApp);
+app.get('*', (req, res) => {
+  res.render('index', { req });
 });
 
-/**
- * if you want to use universal for all routes, you can use the '*' wildcard
- */
-
-app.get('*', function (req: any, res: any) {
-  res.setHeader('Content-Type', 'application/json');
-  const pojo = {status: 404, message: 'No Content'};
-  const json = JSON.stringify(pojo, null, 2);
-  res.status(404).send(json);
-});
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`listening on http://localhost:${PORT}!`);
 });

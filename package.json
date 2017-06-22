@@ -8,7 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prestart": "ng build --env local && gulp before:ngc && ngc && gulp after:ngc && webpack",
+    "start-server": "ts-node src/server.ts"
   },
   "private": true,
   "dependencies": {
@@ -47,9 +49,14 @@
   "devDependencies": {
     "@angular/cli": "1.0.0",
     "@angular/compiler-cli": "^4.0.0",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "~6.0.60",
-    "codelyzer": "~2.0.0",
+    "@types/jasmine": "^2.5.52",
+    "@types/node": "^8.0.1",
+    "codelyzer": "^3.1.1",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^0.4.6",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
@@ -58,9 +65,12 @@
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.0",
-    "ts-node": "^2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "protractor": "^5.1.2",
+    "ts-loader": "^2.2.0",
+    "ts-node": "^3.1.0",
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4",
+    "webpack": "~2.2.0",
+    "webpack-node-externals": "^1.6.0"
   }
 }
