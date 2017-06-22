@@ -10,12 +10,6 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - #{$navBarTop});
-
-  font-size: .6em;
-
-  @media (min-width: $smScreen) {
-    font-size: 1em;
-  }
 }
 
 header{

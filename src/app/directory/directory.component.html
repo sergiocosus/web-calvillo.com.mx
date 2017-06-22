@@ -12,32 +12,32 @@
   </header>
   <div [innerHTML]="directory.description"><</div>
 
-  <table>
-    <tr *ngIf="directory.address.length">
-      <th>Dirección</th>
-      <td>{{directory.address}}</td>
-    </tr>
-    <tr *ngIf="directory.email.length">
-      <th>Email</th>
-      <td>{{directory.email}}</td>
-    </tr>
-    <tr *ngIf="directory.phone.length">
-      <th>Teléfono</th>
-      <td>{{directory.phone}}</td>
-    </tr>
-    <tr *ngIf="directory.cellphone.length">
-      <th>Celular</th>
-      <td>{{directory.cellphone}}</td>
-    </tr>
-    <tr *ngIf="directory.website_url.length">
-      <th>Sitio web</th>
-      <td>
+  <ul>
+    <li *ngIf="directory.address.length">
+      <h5>Dirección</h5>
+      <span>{{directory.address}}</span>
+    </li>
+    <li *ngIf="directory.email.length">
+      <h5>Email</h5>
+      <span>{{directory.email}}</span>
+    </li>
+    <li *ngIf="directory.phone.length">
+      <h5>Teléfono</h5>
+      <span>{{directory.phone}}</span>
+    </li>
+    <li *ngIf="directory.cellphone.length">
+      <h5>Celular</h5>
+      <span>{{directory.cellphone}}</span>
+    </li>
+    <li *ngIf="directory.website_url.length">
+      <h5>Sitio web</h5>
+      <span>
         <a [href]="directory.website_url" target="_blank">
           {{directory.website_url}}
         </a>
-      </td>
-    </tr>
-  </table>
+      </span>
+    </li>
+  </ul>
   <div class="buttons">
     <a class="map"
      *ngIf="directory.longitude && directory.latitude"

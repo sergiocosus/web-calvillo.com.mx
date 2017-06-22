@@ -19,8 +19,12 @@
   }
 
   img{
-    height: 10em;
     transition: all .5s;
+    height: $imgHeightMobile;
+
+    @media (min-width: $smScreen) {
+      height: $imgHeight;
+    }
   }
 
   div{

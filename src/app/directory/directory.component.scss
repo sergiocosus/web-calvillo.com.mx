@@ -5,11 +5,19 @@
   max-width: 700px;
   margin: .5em .25em;
 
+  flex-direction: column;
+  @media (min-width: $smScreen) {
+    flex-direction: row;
+  }
 
   &:not(.expanded) {
     > picture img {
-      height: 10em;
       transition: all .5s;
+      height: 8em;
+
+      @media (min-width: $smScreen) {
+        height: 10em;
+      }
     }
 
     header {
@@ -32,13 +40,23 @@
   }
 
   &.expanded{
+    padding: .5em;
     background-color: $thumbnail-label-background-color;
     max-width: 600px;
     flex: 1 1 0;
+    align-items: stretch;
+    overflow: hidden;
+
     picture{
-      flex: 1 0 200px;
+      flex: 1 0 0;
       align-self: center;
       padding: .5em;
+      height: 15em;
+
+      @media (min-width: $smScreen) {
+        flex: 1 0 10em;
+        height: 10em;
+      }
 
       img{
         width: 100%;
@@ -51,6 +69,8 @@
 
     .content{
       text-align: left;
+      display: flex;
+      flex-direction: column;
 
       header{
         font-weight: bolder;
@@ -58,7 +78,25 @@
         text-align: center;
       }
 
-      display: inline-block;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        justify-content: flex-start;
+
+        li{
+          display: flex;
+          flex-direction: column;
+          margin-bottom: .5em;
+          margin-right: .5em;
+
+          h5{
+            margin: 0;
+            margin-left: 1em;
+          }
+        }
+      }
+
     }
   }
 }

@@ -22,6 +22,9 @@ $subtitleFontSize: 1.5em;
 
 $arrowBackgroundColor: rgba(black, .5);
 
+$imgHeight: 10em;
+$imgHeightMobile: 6em;
+
 .thumbnail-label{
   position: absolute;
   bottom: 0;
@@ -36,6 +39,12 @@ $arrowBackgroundColor: rgba(black, .5);
   transition: all .5s;
   box-shadow: 6px 6px 5px -1px rgba(0,0,0,0.26);
   background-color: $thumbnail-label-background-color;
+
+  font-size: .9em;
+
+  @media (min-width: $smScreen) {
+    font-size: 1em;
+  }
 }
 
 .gradient-background{
