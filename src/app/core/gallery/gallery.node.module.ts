@@ -18,8 +18,8 @@ import {AuthModule} from '../../auth/auth.module.node';
     AuthModule,
   ],
   declarations: [
-    GalleryComponent,
-    PictureGalleryComponent
+  //  GalleryComponent,
+   // PictureGalleryComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

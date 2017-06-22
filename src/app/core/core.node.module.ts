@@ -16,8 +16,8 @@ import {AuthModule} from '../auth/auth.module.node';
     AuthModule,
   ],
   declarations: [
-    CoreComponent,
-    NavBarComponent,
+    //CoreComponent,
+    //NavBarComponent,
   ]
 })
 export class CoreModule { }

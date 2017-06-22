@@ -11,15 +11,15 @@ import {MaterialModule} from '@angular/material';
     MaterialModule,
   ],
   declarations: [
-    CategoryThumbnailComponent,
-    AddCategoryModalComponent,
+   // CategoryThumbnailComponent,
+    //AddCategoryModalComponent,
   ],
   providers: [
     CategoryService,
   ],
   exports: [
-    CategoryThumbnailComponent,
-    AddCategoryModalComponent,
+    //CategoryThumbnailComponent,
+    //AddCategoryModalComponent,
   ]
 })
 export class CategoryModule { }

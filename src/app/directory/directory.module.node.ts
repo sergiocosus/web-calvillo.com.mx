@@ -7,10 +7,10 @@ import {SharedModule} from '../shared/shared.module';
     SharedModule,
   ],
   declarations: [
-    DirectoryComponent,
+    //DirectoryComponent,
   ],
   exports: [
-    DirectoryComponent,
+    //DirectoryComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

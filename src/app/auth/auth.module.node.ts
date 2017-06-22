@@ -12,16 +12,16 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
     UserModule,
   ],
   declarations: [
-    LoginComponent,
-    LoginModalComponent,
-    IfLoggedDirective,
+    //LoginComponent,
+    //LoginModalComponent,
+    //IfLoggedDirective,
   ],
   providers: [
     AuthService,
   ],
   exports: [
-    LoginModalComponent,
-    IfLoggedDirective,
+    //LoginModalComponent,
+    //IfLoggedDirective,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

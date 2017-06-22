@@ -12,6 +12,6 @@ import {ShareButtonsModule} from 'ng2-sharebuttons';
     CategoryModule,
     ShareButtonsModule,
   ],
-  declarations: [LandingComponent]
+ // declarations: [LandingComponent]
 })
 export class LandingModule { }

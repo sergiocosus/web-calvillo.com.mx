@@ -25,7 +25,9 @@ import {environment} from '../environments/environment';
   /** Root App Component */
   bootstrap: [ AppComponent ],
   /** Our Components */
-  declarations: [ AppComponent ],
+  declarations: [
+    //AppComponent
+  ],
   imports: [
     /**
      * NOTE: Needs to be your first import (!)
