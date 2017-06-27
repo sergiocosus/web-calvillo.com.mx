@@ -1,5 +1,8 @@
 <h4 md-dialog-title>
   {{createMode ? 'Subir fotografías': 'Editar fotografía'}}
+  <button class="button-close" md-dialog-close>
+    <i class="fa fa-times"></i>
+  </button>
 </h4>
 
 <button class="corner" tabindex="-1" md-dialog-close>
@@ -11,7 +14,7 @@
     Obtener título de archivo
   </md-checkbox>
   <input class="input-picture"
-         image-upload (imageSelected)="selected($event)"
+         imageUpload (imageSelected)="selected($event)"
          accept="image/*" name="picture" type="file" multiple>
 </section>
 

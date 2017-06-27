@@ -56,7 +56,7 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   get formArray(): FormArray {
-    return this.formGroup.get('pictures') as FormArray;
+    return this.formGroup.get('directories') as FormArray;
   }
 
   validateLink(formGroup: FormGroup, link) {

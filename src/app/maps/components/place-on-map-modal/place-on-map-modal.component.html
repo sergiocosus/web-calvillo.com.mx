@@ -1,11 +1,13 @@
 <h4 md-dialog-title>
   {{title}}
+  <button class="button-close" md-dialog-close>
+    <i class="fa fa-times"></i>
+  </button>
 </h4>
-<button type="button" class="close pull-right" md-dialog-close aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-
-<sebm-google-map *ngIf="!hidden" [latitude]="latitude" [longitude]="longitude">
+<sebm-google-map *ngIf="!hidden"
+                 [latitude]="latitude"
+                 [longitude]="longitude"
+                 [zoom]="16">
   <sebm-google-map-marker
     [latitude]="latitude"
     [longitude]="longitude"

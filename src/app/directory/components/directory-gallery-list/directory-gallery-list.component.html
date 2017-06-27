@@ -1,0 +1,45 @@
+<h3>
+    <span>
+       <i class="fa fa-book" aria-hidden="true"></i>
+      Directorio
+      <span *appIfLogged="true"
+              class="add-button"
+              (click)="openDialog()">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </span>
+    </span>
+</h3>
+<ul>
+  <li *ngFor="let directory of directories">
+    <app-directory [category_id]="category_id" [directory]="directory">
+    </app-directory>
+    <button *appIfLogged="true" md-mini-fab class="remove"
+            (click)="removeDirectory(directory)">
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+    </button>
+    <button *appIfLogged="true" md-mini-fab class="edit"
+            (click)="editDirectory($event, directory)">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </button>
+  </li>
+</ul>
+
+<ng-container *appIfLogged="true">
+  <h3>
+    Directorio eliminado
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  </h3>
+  <ul>
+    <li *ngFor="let directory of deleted_directories">
+      <app-directory [category_id]="category_id" [directory]="directory"></app-directory>
+      <button  md-mini-fab class="remove"
+               (click)="deletePicture(directory)">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <button  md-mini-fab class="restore"
+               (click)="restorePicture(directory)">
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+</ng-container>

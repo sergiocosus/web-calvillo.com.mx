@@ -40,7 +40,7 @@ export class CategoryGalleryListComponent implements OnInit {
         this.category.categories.splice(
           this.category.categories.indexOf(category), 1
         );
-        this.category.deleted_categories.push(deletedCategory);
+        this.category.deleted_directories.push(deletedCategory);
       }
     );
   }
@@ -49,8 +49,8 @@ export class CategoryGalleryListComponent implements OnInit {
     this.categoryService.delete(category.id).subscribe(
       () => {
         this.notify.success('Fotografía borrada permanentemente');
-        this.category.deleted_categories.splice(
-          this.category.deleted_categories.indexOf(category), 1
+        this.category.deleted_directories.splice(
+          this.category.deleted_directories.indexOf(category), 1
         );
       }
     );
@@ -60,8 +60,8 @@ export class CategoryGalleryListComponent implements OnInit {
     this.categoryService.restore(category.id).subscribe(
       restoredPicture => {
         this.notify.success('Fotografía restaurada');
-        this.category.deleted_categories.splice(
-          this.category.deleted_categories.indexOf(category), 1
+        this.category.deleted_directories.splice(
+          this.category.deleted_directories.indexOf(category), 1
         );
         this.category.categories.push(restoredPicture);
       }

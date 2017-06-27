@@ -1,8 +1,14 @@
-<button type="button" class="close pull-right" md-dialog-close aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
+<h1 md-dialog-title>
+  Seleccione la ubicación
+  <button class="button-close" md-dialog-close>
+    <i class="fa fa-times"></i>
+  </button>
+</h1>
 
-<sebm-google-map *ngIf="!hidden" [latitude]="latitudeMap" [longitude]="longitudeMap">
+<sebm-google-map *ngIf="!hidden"
+                 [latitude]="latitudeMap"
+                 [longitude]="longitudeMap"
+                 [zoom]="14">
   <sebm-google-map-marker
     [latitude]="latitude"
     [longitude]="longitude"

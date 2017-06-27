@@ -1,7 +1,13 @@
 @import "src/app/vars";
 
+:host{
+  display: inline-block;
+  width: 100vw;
+  max-width: 100%;
+}
+
 sebm-google-map{
   height: 80vh;
-  width: 90vw;
+  width: 100%;
   max-width: 1024px;
 }

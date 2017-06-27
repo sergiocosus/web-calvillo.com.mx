@@ -4,6 +4,7 @@ import {Directory} from '../directory.model';
 
 @Injectable()
 export class DirectoryService {
+  basePath = 'directory/';
 
   constructor(private apiHttp: ApiHttp) { }
 
@@ -11,5 +12,22 @@ export class DirectoryService {
     return this.apiHttp.post('directory', data)
       .map(json => new Directory().parse(json.directory));
   }
+  put(data) {
+    return this.apiHttp.put(this.basePath + data.id , data)
+      .map(json => new Directory().parse(json.directory));
+  }
 
+  remove(picture_id: number) {
+    return this.apiHttp.delete(this.basePath + picture_id)
+      .map(json => new Directory().parse(json.directory));
+  }
+
+  delete(picture_id: number) {
+    return this.apiHttp.delete(this.basePath + 'force/' + picture_id);
+  }
+
+  restore(picture_id: number) {
+    return this.apiHttp.patch(this.basePath + picture_id)
+      .map(json => new Directory().parse(json.directory));
+  }
 }

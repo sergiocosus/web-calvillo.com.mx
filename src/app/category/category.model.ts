@@ -23,6 +23,7 @@ export class Category extends ImageableModel{
   deleted_pictures: Picture[];
   videos: Video[];
   directories: Directory[];
+  deleted_directories: Directory[];
 
   get routerLink() {
     return '/galeria/' + this.id;
@@ -57,6 +58,10 @@ export class Category extends ImageableModel{
 
     if (this.directories) {
       this.directories = Directory.parseArray(this.directories);
+    }
+
+    if (this.deleted_directories) {
+      this.deleted_directories = Directory.parseArray(this.deleted_directories);
     }
 
     return category;

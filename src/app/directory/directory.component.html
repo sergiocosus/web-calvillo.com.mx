@@ -13,23 +13,23 @@
   <div [innerHTML]="directory.description"><</div>
 
   <ul>
-    <li *ngIf="directory.address.length">
+    <li *ngIf="directory.address && directory.address.length">
       <h5>Dirección</h5>
       <span>{{directory.address}}</span>
     </li>
-    <li *ngIf="directory.email.length">
+    <li *ngIf="directory.email && directory.email.length">
       <h5>Email</h5>
       <span>{{directory.email}}</span>
     </li>
-    <li *ngIf="directory.phone.length">
+    <li *ngIf="directory.phone && directory.phone.length">
       <h5>Teléfono</h5>
       <span>{{directory.phone}}</span>
     </li>
-    <li *ngIf="directory.cellphone.length">
+    <li *ngIf="directory.cellphone && directory.cellphone.length">
       <h5>Celular</h5>
       <span>{{directory.cellphone}}</span>
     </li>
-    <li *ngIf="directory.website_url.length">
+    <li *ngIf="directory.website_url && directory.website_url.length">
       <h5>Sitio web</h5>
       <span>
         <a [href]="directory.website_url" target="_blank">
@@ -45,12 +45,12 @@
       <i class="fa fa-map-marker"></i>
     </a>
     <a class="facebook"
-       *ngIf="directory.facebook_url.length"
+       *ngIf="directory.facebook_url && directory.facebook_url.length"
        [href]="directory.facebook_url" target="_blank">
       <i class="fa fa-facebook"></i>
     </a>
     <a class="youtube"
-       *ngIf="directory.youtube_url.length"
+       *ngIf="directory.youtube_url && directory.youtube_url.length"
        [href]="directory.youtube_url" target="_blank">
       <i class="fa fa-youtube"></i>
     </a>

@@ -1,0 +1,14 @@
+picture{
+  height: 200px;
+  width: 100%;
+  display: inline-block;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,82 @@
+<h4 md-dialog-title>
+  Crear directorio
+  <button class="button-close" md-dialog-close>
+    <i class="fa fa-times"></i>
+  </button>
+</h4>
+<button type="button" class="corner" md-dialog-close>
+  <span aria-hidden="true">&times;</span>
+</button>
+<md-dialog-content>
+  <form *ngIf="form" [formGroup]="form"
+        id="category-form" (submit)="submit()">
+    <md-input-container>
+      <input mdInput formControlName="title"
+             placeholder="Título">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="link"
+             placeholder="Titulo para enlace">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="description"
+             placeholder="Descripción"  >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="address"
+             placeholder="Dirección"  >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="email"
+             placeholder="Correo electrónico"  >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="phone"
+             placeholder="Teléfono"  >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="cellphone"
+             placeholder="Celular"  >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="website_url"
+             placeholder="Url del sitio web">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="youtube_url"
+             placeholder="Url de youtube">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput formControlName="facebook_url"
+             placeholder="Url de facebook">
+    </md-input-container>
+    <section class="coordinates">
+      <a class="map" (click)="coordsRequested.emit(picture)">
+        <i class="fa fa-map-marker"></i>
+      </a>
+      <md-input-container>
+        <input mdInput type="number" step=".0000001" formControlName="latitude"
+               placeholder="Latitud">
+        <md-hint align="end">adsdsds</md-hint>
+
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="number"
+               formControlName="longitude"
+               placeholder="Longitud">
+      </md-input-container>
+    </section>
+    <input class="input-picture" imageUpload
+           (imageSelected)="selected($event)"
+           accept="image/*" name="picture" type="file">
+    <picture *ngIf="form.get('src')" [ngStyle]="{
+      'background-image' : 'url('+form.get('src').value+')'
+    }">
+    </picture>
+  </form>
+
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-raised-button form="category-form">Subir categoría</button>
+</md-dialog-actions>

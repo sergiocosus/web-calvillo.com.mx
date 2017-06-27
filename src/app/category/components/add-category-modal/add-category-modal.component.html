@@ -1,5 +1,8 @@
 <h4 md-dialog-title>
   Crear categoría
+  <button class="button-close" md-dialog-close>
+    <i class="fa fa-times"></i>
+  </button>
 </h4>
 <button type="button" class="corner" md-dialog-close>
   <span aria-hidden="true">&times;</span>
@@ -19,7 +22,7 @@
       <input mdInput formControlName="description"
              placeholder="Descripción"  >
     </md-input-container>
-    <input class="input-picture" image-upload
+    <input class="input-picture" imageUpload
            (imageSelected)="selected($event)"
            accept="image/*" name="picture" type="file">
     <picture *ngIf="form.get('src')" [ngStyle]="{

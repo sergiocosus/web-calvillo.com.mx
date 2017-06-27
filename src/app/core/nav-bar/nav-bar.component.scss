@@ -15,11 +15,16 @@ nav{
   box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
   z-index: 10;
   font-size: 1em;
-  height: $navBarTop;
+  height: $navBarTopMobile;
+
+  @media (min-width: $smScreen) {
+    height: $navBarTop;
+  }
 
   @media (min-width: $mdScreen) {
     font-size: 1.1em;
   }
+
 
   ul{
     display:inline-flex;
@@ -45,7 +50,7 @@ nav{
       }
 
       img{
-        width: 2em;
+        width: 1.75em;
       }
 
       a{
