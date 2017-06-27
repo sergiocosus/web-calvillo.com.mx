@@ -1,5 +1,6 @@
 <ng-container *ngIf="category">
-  <header [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
+  <header *ngIf="category.image_code"
+          [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
     <div class="gradient"></div>
 
     <h1>

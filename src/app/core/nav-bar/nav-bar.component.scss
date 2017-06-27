@@ -15,7 +15,7 @@ nav{
   box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
   z-index: 10;
   font-size: 1em;
-  height: 50px;
+  height: $navBarTop;
 
   @media (min-width: $mdScreen) {
     font-size: 1.1em;
@@ -42,6 +42,10 @@ nav{
 
       &.space{
         flex: 1 0 0px;
+      }
+
+      img{
+        width: 2em;
       }
 
       a{
