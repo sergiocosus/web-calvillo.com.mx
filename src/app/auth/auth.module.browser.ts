@@ -4,7 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import {SharedModule} from '../shared/shared.module';
 import { MaterialModule } from '@angular/material';
-import {AgmCoreModule} from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
 import {UserModule} from '../user/user.module';
 import {IfLoggedDirective} from './directives/if-logged.directive';
 

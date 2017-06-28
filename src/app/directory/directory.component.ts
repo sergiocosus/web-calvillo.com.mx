@@ -40,6 +40,12 @@ export class DirectoryComponent implements OnInit {
 
   @Input() category_id: number;
   @Input() directory: Directory;
+  @Input() showMap = true;
+  @Input() set showExpanded (value) {
+     this.expanded = value;
+  } get data() {
+    return this.expanded;
+}
 
   constructor(private dialog:MdDialog) { }
 

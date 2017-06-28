@@ -4,13 +4,13 @@
     <i class="fa fa-times"></i>
   </button>
 </h4>
-<sebm-google-map *ngIf="!hidden"
+<agm-map *ngIf="!hidden"
                  [latitude]="latitude"
                  [longitude]="longitude"
                  [zoom]="16">
-  <sebm-google-map-marker
+  <agm-marker
     [latitude]="latitude"
     [longitude]="longitude"
     [label]="title">
-  </sebm-google-map-marker>
-</sebm-google-map>
+  </agm-marker>
+</agm-map>

@@ -7,7 +7,7 @@ import { PictureGalleryComponent } from './picture-gallery/picture-gallery.compo
 import {CategoryModule} from '../../category/category.module.browser';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import {DirectoryModule} from '../../directory/directory.module.browser';
-import {AgmCoreModule} from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
 import {AdsenseModule} from 'ng2-adsense';
 import {AuthModule} from '../../auth/auth.module.browser';
 import {MdButtonModule, MdTooltipModule} from '@angular/material';

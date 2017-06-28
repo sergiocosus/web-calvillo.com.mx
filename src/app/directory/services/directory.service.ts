@@ -8,10 +8,16 @@ export class DirectoryService {
 
   constructor(private apiHttp: ApiHttp) { }
 
+  get(data?) {
+    return this.apiHttp.get(this.basePath , data)
+      .map(json => Directory.parseArray(json.directories));
+  }
+
   post(data) {
-    return this.apiHttp.post('directory', data)
+    return this.apiHttp.post(this.basePath , data)
       .map(json => new Directory().parse(json.directory));
   }
+
   put(data) {
     return this.apiHttp.put(this.basePath + data.id , data)
       .map(json => new Directory().parse(json.directory));

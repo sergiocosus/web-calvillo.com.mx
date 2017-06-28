@@ -1,0 +1,19 @@
+@import "src/app/vars";
+
+:host{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$navBarTop});
+
+  app-directory{
+    background-color: transparent;
+  }
+
+}
+
+agm-map{
+  height: 100vh;
+  width: 100%;
+}
+

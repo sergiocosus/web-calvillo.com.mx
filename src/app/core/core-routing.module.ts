@@ -19,7 +19,10 @@ export const coreRoutes: Routes = [
       {
         path: 'galeria',
         children: galleryRoutes,
-        //loadChildren: 'app/core/picture-gallery/picture-gallery.module#PictureGalleryModule',
+      },
+      {
+        path: 'mapa',
+        loadChildren: 'app/core/map/map.module#MapModule',
       }
     ]
   },

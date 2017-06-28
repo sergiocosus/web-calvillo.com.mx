@@ -40,7 +40,7 @@
   </ul>
   <div class="buttons">
     <a class="map"
-     *ngIf="directory.longitude && directory.latitude"
+     *ngIf="showMap && directory.longitude && directory.latitude"
      (click)="openMapModal()">
       <i class="fa fa-map-marker"></i>
     </a>
