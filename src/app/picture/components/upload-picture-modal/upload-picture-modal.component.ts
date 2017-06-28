@@ -56,7 +56,7 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   get formArray(): FormArray {
-    return this.formGroup.get('directories') as FormArray;
+    return this.formGroup.get('pictures') as FormArray;
   }
 
   validateLink(formGroup: FormGroup, link) {
@@ -69,7 +69,6 @@ export class UploadPictureModalComponent implements OnInit {
 
   initCreateMode(parent_category_id: number) {
     this.createMode = true;
-    this.initForm();
     this.parent_category_id = parent_category_id;
     this.currentUploadingPicture = null;
     this.uploading = false;
@@ -77,7 +76,6 @@ export class UploadPictureModalComponent implements OnInit {
 
   initEditMode(picture: Picture) {
     this.createMode = false;
-    this.initForm();
     let pictureData = new PictureRequest;
 
     pictureData.id = picture.id;
