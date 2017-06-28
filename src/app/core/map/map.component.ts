@@ -10,7 +10,7 @@ import {Directory} from '../../directory/directory.model';
 export class MapComponent implements OnInit {
   directories: Directory[];
 
-  longitudeMap =  -102.7104999;
+  longitudeMap = -102.7104999;
   latitudeMap = 21.8531537;
 
   constructor(private directoryService: DirectoryService) { }

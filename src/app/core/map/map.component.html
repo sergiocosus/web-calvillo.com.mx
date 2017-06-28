@@ -1,16 +1,13 @@
-
-<agm-map *ngIf="!hidden"
-                 [latitude]="latitudeMap"
-                 [longitude]="longitudeMap"
-                 [zoom]="14">
+<agm-map [latitude]="latitudeMap"
+         [longitude]="longitudeMap"
+         [zoom]="14">
 
   <agm-marker
     *ngFor="let directory of directories"
-
+    [label]="directory.title"
     [openInfoWindow]="true"
     [latitude]="directory.latitude"
-    [longitude]="directory.longitude"
-    >
+    [longitude]="directory.longitude" >
     <agm-info-window>
       <app-directory [directory]="directory"
                      [showMap]="map"
@@ -18,5 +15,3 @@
     </agm-info-window>
   </agm-marker>
 </agm-map>
-[iconUrl]="directory.imageUrl('xs')"
-[label]="directory.title">

@@ -15,7 +15,8 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "genDir": "./dist/ngfactory",
