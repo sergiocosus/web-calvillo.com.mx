@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prestart": "ng build --env local && gulp before:ngc && ngc && gulp after:ngc && webpack",
-    "start-server": "ts-node src/server.ts"
+    "start-server": "ts-node src/server.ts",
+    "build-prod": "ng build --env local --aot"
   },
   "private": true,
   "dependencies": {
