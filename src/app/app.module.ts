@@ -6,7 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module.browser';
 import {CoreModule} from './core/core.browser.module';
-import {ShareButtonsModule} from 'ng2-sharebuttons';
+import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {environment} from '../environments/environment';
 import {AdsenseModule} from 'ng2-adsense';
 import {SimpleNotificationsModule} from 'angular2-notifications';

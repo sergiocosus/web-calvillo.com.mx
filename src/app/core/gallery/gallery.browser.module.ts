@@ -5,7 +5,7 @@ import {GalleryRoutingModule} from './gallery-routing.module';
 import {GalleryComponent} from './gallery.component';
 import { PictureGalleryComponent } from './picture-gallery/picture-gallery.component';
 import {CategoryModule} from '../../category/category.module.browser';
-import {ShareButtonsModule} from 'ng2-sharebuttons';
+import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {DirectoryModule} from '../../directory/directory.module.browser';
 import { AgmCoreModule } from '@agm/core';
 import {AdsenseModule} from 'ng2-adsense';
