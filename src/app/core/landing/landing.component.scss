@@ -2,7 +2,7 @@
 
 section{
   position: relative;
-  height: calc(100vh - #{$navBarTop});
+  height: $contentHeight;
 }
 
 .background{
@@ -109,12 +109,14 @@ section{
   flex: 1 0 0;
 
   font-size: .85em;
+  max-height: $contentHeight;
 
   @media (min-width: $smScreen) {
     font-size: 1em;
   }
 
   .fore{
+    overflow: hidden;
 
     h1{
       @extend .title-divisor;

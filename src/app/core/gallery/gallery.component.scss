@@ -6,10 +6,9 @@
 
 :host{
   text-align: center;
-  font-family: Arial;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - #{$navBarTop});
+  min-height: $contentHeight;
 }
 
 header{

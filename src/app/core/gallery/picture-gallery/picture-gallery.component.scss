@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: calc(100vh - #{$navBarTop});
+  min-height: $contentHeight;
   background-color: rgba(black, .5);
 }
 

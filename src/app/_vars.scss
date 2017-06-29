@@ -1,5 +1,6 @@
 $navBarTop: 50px;
 $navBarTopMobile: 40px;
+$contentHeight: calc(100vh - #{$navBarTop});
 
 $smScreen: 576px;
 $mdScreen: 768px;

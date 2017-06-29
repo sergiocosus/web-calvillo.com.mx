@@ -1,4 +1,5 @@
 @import "../node_modules/font-face-mixin/_fontface.scss";
+@import "~app/vars";
 
 
 @include font-face(QuickSand,
@@ -78,7 +79,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 /* Parallax base styles
 --------------------------------------------- */
 .parallax {
-  height: 100vh;
+  height: $contentHeight;
   overflow-x: hidden;
   perspective: 300px;
   perspective-origin-x: 100%;
