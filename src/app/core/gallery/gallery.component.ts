@@ -8,6 +8,7 @@ import {User} from '../../user/user.model';
 import {NotifyService} from '../../shared/services/notify.service';
 import {Title} from '@angular/platform-browser';
 import {SubscriptionManager} from '../../shared/classes/subscription-manager';
+import {NavbarService} from '../../shared/services/navbar.service';
 
 @Component({
   selector: 'app-gallery',
@@ -28,7 +29,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private title: Title) { }
+              private title: Title,
+              private navbarService: NavbarService) { }
 
 
   ngOnInit() {
@@ -61,6 +63,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
       category => {
         this.category = category;
         this.title.setTitle(this.category.title);
+        this.navbarService.setTitle('Galería' + (this.category.title ? ' / ' + this.category.title: ''));
       },
       error => {console.error(error);}
     )

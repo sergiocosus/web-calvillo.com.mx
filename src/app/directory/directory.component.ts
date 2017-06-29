@@ -15,11 +15,13 @@ import {MdDialog} from '@angular/material';
       transition('void => active', [
         style({
           transform: 'scale(.5)',
-          opacity: 0
+          opacity: 0,
+          height: 0,
         }),
         animate('500ms ease-out', style({
           transform: 'scale(1)',
-          opacity: 1
+          opacity: 1,
+          height: '*',
         }))
       ]),
       transition('* => void', [

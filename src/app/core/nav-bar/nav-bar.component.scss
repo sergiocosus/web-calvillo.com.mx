@@ -69,8 +69,34 @@ nav{
       line-height: 1em;
       align-items: stretch;
 
-      &.space{
+      &.title{
+        display: flex;
         flex: 1 0 0px;
+        flex-direction: column;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s;
+
+        app-logo{
+          transition: all 1s;
+
+          &.small{
+            font-size: .6em;
+            margin-top: 0.5em;
+            margin-bottom: .25em;
+          }
+        }
+
+
+        .subtitle{
+          font-size: .8em;
+        }
+      }
+
+      &.space{
+        display: flex;
+        flex: 0 0 2.5em;
       }
 
       img{

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { apiHttpServiceProvider } from './api-http.service';
 import {RouterModule} from '@angular/router';
@@ -13,6 +13,7 @@ import {HttpModule} from '@angular/http';
 import {MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
 import { LogoComponent } from './components/logo/logo.component';
 import {SidebarModule} from 'ng-sidebar';
+import {NavbarService} from './services/navbar.service';
 
 
 @NgModule({
@@ -32,13 +33,6 @@ import {SidebarModule} from 'ng-sidebar';
     VoidComponent,
     LogoComponent,
   ],
-  providers: [
-    apiHttpServiceProvider,
-    ResolutionService,
-    LocalStorageService,
-    EXIFService,
-    NotifyService,
-  ],
   exports: [
     CommonModule,
     HttpModule,
@@ -53,4 +47,18 @@ import {SidebarModule} from 'ng-sidebar';
     LogoComponent,
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        NavbarService,
+        apiHttpServiceProvider,
+        ResolutionService,
+        LocalStorageService,
+        EXIFService,
+        NotifyService,
+      ],
+    };
+  }
+}

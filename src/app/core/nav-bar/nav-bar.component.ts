@@ -4,6 +4,8 @@ import {User} from '../../user/user.model';
 import {MdDialog} from '@angular/material';
 import {LoginModalComponent} from '../../auth/components/login-modal/login-modal.component';
 import {Sidebar} from 'ng-sidebar';
+import {NavbarService} from '../../shared/services/navbar.service';
+import {SubscriptionManager} from '../../shared/classes/subscription-manager';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,16 +15,22 @@ import {Sidebar} from 'ng-sidebar';
 export class NavBarComponent implements OnInit {
   @Input() sideBar: Sidebar;
 
+  title: string;
   private user: User;
-
+  private sub = new SubscriptionManager();
 
   constructor(private authService: AuthService,
-              private dialog: MdDialog) { }
+              private dialog: MdDialog,
+              private navbarService: NavbarService) { }
 
   ngOnInit() {
     this.authService.getLoggedUser().subscribe(
       user => this.user = user
     );
+
+    this.navbarService.getTitle().subscribe(
+      title => this.title = title
+    )
   }
 
   logout() {

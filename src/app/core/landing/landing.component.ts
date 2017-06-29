@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
 import {Category} from '../../category/category.model';
+import {NavbarService} from '../../shared/services/navbar.service';
 
 @Component({
   selector: 'app-landing',
@@ -10,7 +11,8 @@ import {Category} from '../../category/category.model';
 export class LandingComponent implements OnInit {
 
   categories: Category[];
-  constructor(private categoryService:CategoryService) {
+  constructor(private categoryService:CategoryService,
+              private navbarService: NavbarService) {
 
   }
 
@@ -18,5 +20,6 @@ export class LandingComponent implements OnInit {
     this.categoryService.getNewest(4).subscribe(
       categories => this.categories = categories
     );
+    this.navbarService.setTitle(null);
   }
 }

@@ -32,8 +32,12 @@
     padding: 10px;
     background-color: $arrowBackgroundColor;
     color: white;
-    font-size: 3em;
     cursor: pointer;
+    font-size: 2em;
+
+    @media (min-width: $smScreen) {
+      font-size: 3em;
+    }
 
     &:hover{
       i{
@@ -65,11 +69,17 @@
 
         picture{
           display: inline-block;
-          height: $thumbSize;
-          width: $thumbSize;
+
           background-position: center;
           background-size: cover;
           transition: all .5s;
+          height: $smallThumbSize;
+          width: $smallThumbSize;
+
+          @media (min-width: $smScreen) {
+            height: $thumbSize;
+            width: $thumbSize;
+          }
         }
       }
 

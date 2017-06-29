@@ -23,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     AppRoutingModule,
     SharedModule,
+    SharedModule.forRoot(),
     CategoryModule,
     CoreModule,
     ShareButtonsModule.forRoot(),

@@ -89,6 +89,13 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
   pictureLength: number;
   hiddenMap = true;
 
+  pictureWidth = 70;
+  arrows = 37;
+  pages: number;
+  page = 0;
+  elementsByPage;
+
+
   private sub = new SubscriptionManager;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
@@ -146,6 +153,21 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
       default:
         this.imgSize = 'xs';
     }
+
+    switch (resolutionSize) {
+      case 'xs':
+      case 'sm':
+        this.pictureWidth = 45;
+        this.arrows = 37;
+        break;
+      case 'md':
+      case 'xl':
+      case 'lg':
+      default:
+        this.pictureWidth = 70;
+        this.arrows = 37;
+    }
+
   }
 
   onSwipeLeft(event: any) {
@@ -201,12 +223,6 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
 
     this.changePicture();
   }
-
-  pictureWidth = 70;
-  arrows = 37;
-  pages: number;
-  page = 0;
-  elementsByPage;
 
 
   initPages() {

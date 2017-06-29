@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthService} from './auth/auth.service';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,13 @@ import {AuthService} from './auth/auth.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit{
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private router: Router) {
     this.authService.updateLoggedUserObservable().subscribe(() => {});
+
+    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((e: NavigationEnd) => {
+      document.body.scrollTop = 0;
+    });
   }
 
   ngOnInit(): void {

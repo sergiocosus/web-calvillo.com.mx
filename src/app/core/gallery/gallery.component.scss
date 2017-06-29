@@ -45,7 +45,11 @@ header{
 
   h1{
     margin-top: 1em;
+    font-size: 1.5em;
 
+    @media (min-width: $smScreen) {
+      font-size: 2em;
+    }
     a{
       color: white;
       text-decoration: none;
@@ -81,7 +85,12 @@ section /deep/ {
     color: black;
     margin: 0;
     text-align: left;
-    font-size: 1.5em;
+    font-size: 1.25em;
+
+    @media (min-width: $smScreen) {
+      font-size: 1.5em;
+    }
+
     @extend .title-divisor;
     .add-button{
       cursor: pointer;
@@ -90,7 +99,7 @@ section /deep/ {
 
   ul{
     display: flex;
-    padding: 1em 4%;
+    padding: 1em 2%;
     @media (min-width: $smScreen) {
       padding: 1em 10%;
     }

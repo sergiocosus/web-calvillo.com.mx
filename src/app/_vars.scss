@@ -17,6 +17,7 @@ $navbarBackgroundColor: #F62459;
 $navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
 
 $thumbSize: 60px;
+$smallThumbSize: 40px;
 $thumbMargin: 2px;
 
 $topSpace: $thumbSize + ($thumbMargin * 2);
@@ -27,7 +28,7 @@ $subtitleFontSize: 1.5em;
 $arrowBackgroundColor: rgba(black, .5);
 
 $imgHeight: 10em;
-$imgHeightMobile: 6em;
+$imgHeightMobile: 6.65em;
 
 .thumbnail-label{
   position: absolute;
@@ -44,7 +45,7 @@ $imgHeightMobile: 6em;
   box-shadow: 6px 6px 5px -1px rgba(0,0,0,0.26);
   background-color: $thumbnail-label-background-color;
 
-  font-size: .9em;
+  font-size: .8em;
 
   @media (min-width: $smScreen) {
     font-size: 1em;
