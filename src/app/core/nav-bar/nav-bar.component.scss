@@ -1,8 +1,5 @@
 @import '~app/vars';
 
-$navbarBackgroundColor: #F62459;
-$navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
-
 nav{
   display: flex;
   align-items: stretch;
@@ -26,8 +23,22 @@ nav{
   }
 
 
-  ul{
-    display:inline-flex;
+  /deep/ ul{
+    &.mobile {
+      display: inline-flex;
+      @media (min-width: $smScreen) {
+        display: none;
+      }
+    }
+
+    &.desktop {
+      display: none;
+
+      @media (min-width: $smScreen) {
+        display: inline-flex;
+      }
+    }
+
     width: 100%;
     margin: 0 ;
     padding: 0;
@@ -35,7 +46,20 @@ nav{
     list-style: none;
     align-items: stretch;
 
-    >li{
+    app-logo{
+      font-size: .9em;
+
+      @media (min-width: $smScreen) {
+        font-size: 1em;
+      }
+    }
+
+    app-nav-pages{
+      display: flex;
+      flex: 1;
+    }
+
+    li{
       display: flex;
       flex: 0 0 auto;
       text-align: left;

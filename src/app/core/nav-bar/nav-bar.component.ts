@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
 import {MdDialog} from '@angular/material';
 import {LoginModalComponent} from '../../auth/components/login-modal/login-modal.component';
-import {environment} from '../../../environments/environment';
+import {Sidebar} from 'ng-sidebar';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,13 +11,15 @@ import {environment} from '../../../environments/environment';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  @Input() sideBar: Sidebar;
+
   private user: User;
-  defaultCatId;
+
+
   constructor(private authService: AuthService,
               private dialog: MdDialog) { }
 
   ngOnInit() {
-    this.defaultCatId = environment.defaultCategoryId;
     this.authService.getLoggedUser().subscribe(
       user => this.user = user
     );
@@ -29,5 +31,14 @@ export class NavBarComponent implements OnInit {
 
   openLoginDialog() {
     this.dialog.open(LoginModalComponent);
+  }
+
+
+  toggleSideBar() {
+    if (this.sideBar.opened) {
+      this.sideBar.close();
+    } else {
+      this.sideBar.open();
+    }
   }
 }

@@ -1,0 +1,43 @@
+<li class="main">
+  <a routerLink="/" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }" >
+    <img src="/assets/guayaba-icon.svg">
+    <span>Página Principal</span>
+  </a>
+</li>
+<li>
+  <a [routerLink]="'/galeria/' + defaultCatId" routerLinkActive="active">
+    <i class="fa fa-camera"></i>
+    <span>
+          Galería<br>
+          Fotográfica
+        </span>
+  </a>
+</li>
+<li>
+  <a routerLink="/mapa" routerLinkActive="active">
+    <i class="fa fa-globe" aria-hidden="true"></i>
+    <span>Mapa</span>
+  </a>
+</li>
+<li>
+  <a routerLink="/contacto" routerLinkActive="active">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    <span>Contacto</span>
+  </a>
+</li>
+<li class="space">
+  <app-logo></app-logo>
+</li>
+<li>
+  <a *appIfLogged="false"
+     (click)="openLoginDialog()">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    <span>Login</span>
+  </a>
+  <a *appIfLogged="true"
+     (click)="logout()">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    <span>{{user.name}}</span>
+  </a>
+</li>

@@ -11,6 +11,8 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
 import {MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
+import { LogoComponent } from './components/logo/logo.component';
+import {SidebarModule} from 'ng-sidebar';
 
 
 @NgModule({
@@ -24,9 +26,11 @@ import {MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
+    SidebarModule,
   ],
   declarations: [
     VoidComponent,
+    LogoComponent,
   ],
   providers: [
     apiHttpServiceProvider,
@@ -41,10 +45,12 @@ import {MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    SidebarModule,
     VoidComponent,
     MdDialogModule,
     MdButtonModule,
     MdInputModule,
+    LogoComponent,
   ]
 })
 export class SharedModule { }

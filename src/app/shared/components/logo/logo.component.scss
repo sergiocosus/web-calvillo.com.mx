@@ -1,0 +1,27 @@
+@import '~app/vars';
+
+:host{
+  display: inline-flex;
+  align-items: center;
+}
+
+h1{
+  display: inline-flex;
+  text-align: center;
+  font-size: 2.5em;
+  color: white;
+  margin: 0;
+
+  span{
+    padding: 0;
+  }
+
+  >div{
+    font-size: 0.5em;
+    display: inline-block;
+    text-align: right;
+    line-height: .55em;
+    align-self: center;
+    margin-left: .2em;
+  }
+}

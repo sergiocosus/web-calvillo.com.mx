@@ -6,6 +6,7 @@ import {CoreRoutingModule} from './core-routing.module';
 import {LandingModule} from './landing/landing.module.browser';
 import {GalleryModule} from './gallery/gallery.browser.module';
 import {AuthModule} from '../auth/auth.module.browser';
+import { NavPagesComponent } from './nav-pages/nav-pages.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {AuthModule} from '../auth/auth.module.browser';
   declarations: [
     CoreComponent,
     NavBarComponent,
+    NavPagesComponent,
   ]
 })
 export class CoreModule { }

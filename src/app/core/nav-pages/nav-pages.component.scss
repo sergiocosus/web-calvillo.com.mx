@@ -1,0 +1,10 @@
+@import '~app/vars';
+
+app-logo{
+  display: none;
+
+  @media (min-width: $smScreen) {
+    display: inline-flex;
+  }
+}
+

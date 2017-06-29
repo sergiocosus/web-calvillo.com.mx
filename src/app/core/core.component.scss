@@ -11,3 +11,63 @@ div{
     margin-top: $navBarTop;
   }
 }
+app-nav-pages{
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  background-color: $navbarBackgroundColor;
+  z-index: 10;
+  font-size: 1em;
+  height: 100%;
+
+  /deep/ li{
+    display: flex;
+    flex: 0 0 auto;
+    text-align: left;
+    justify-content: center;
+    font-weight: bolder;
+    line-height: 1em;
+    align-items: stretch;
+
+    &.space{
+      flex: 1 0 0px;
+    }
+
+    img{
+      width: 1.75em;
+    }
+
+    a{
+      display: flex;
+      flex: 1 0 0;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      padding: .5em 1em;
+      background-color: $navbarBackgroundColor;
+
+      span{
+        padding-left: .25em;
+      }
+
+      i {
+        margin-right: .25em;
+        font-size: 1.2em;
+      }
+
+      &:hover, &.active{
+        background-color: $navbarBackgroundColorSelected;
+        box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+      }
+    }
+  }
+}
+
+
+ng-sidebar{
+  position: relative;
+
+  /deep/ aside{
+    display: flex;
+  }
+}

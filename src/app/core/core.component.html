@@ -1,4 +1,15 @@
-<app-nav-bar></app-nav-bar>
-<div>
-  <router-outlet></router-outlet>
-</div>
+<app-nav-bar [sideBar]="sideBar"></app-nav-bar>
+<ng-sidebar-container id="body-content" >
+  <ng-sidebar #sideBar mode="over" [opened]="false"
+              [showBackdrop]="true"
+              [closeOnClickOutside]="true"
+              [keyClose]="true"
+              [closeOnClickBackdrop]="true"
+  >
+    <app-nav-pages (click)="sideBar.close()"></app-nav-pages>
+  </ng-sidebar>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</ng-sidebar-container>
+
