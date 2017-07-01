@@ -14,6 +14,8 @@ import {MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
 import { LogoComponent } from './components/logo/logo.component';
 import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
+import {HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
+import {MyHammerConfig} from './my-hammer-config';
 
 
 @NgModule({
@@ -58,6 +60,10 @@ export class SharedModule {
         LocalStorageService,
         EXIFService,
         NotifyService,
+        {
+          provide: HAMMER_GESTURE_CONFIG,
+          useClass: MyHammerConfig ,
+        },
       ],
     };
   }

@@ -35,7 +35,7 @@
   <header *ngIf="category">
     <h1>
       <a routerLink="../">
-        <i class="fa fa-caret-up" aria-hidden="true"></i>
+        <i class="fa fa-undo" aria-hidden="true"></i>
       </a>
       {{category.title}}
     </h1>
@@ -61,7 +61,9 @@
 
 </section>
 
-<div *ngIf="picture" class="description">
+<div *ngIf="picture" class="description"
+     (swipeleft)="onSwipeLeft($event.type)"
+     (swiperight)="onSwipeRight($event.type)">
   <header>
     <h1>
       {{picture.title}}

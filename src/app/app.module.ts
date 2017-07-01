@@ -34,6 +34,7 @@ import { AgmCoreModule } from '@agm/core';
       adClient: environment.adSenseAdClient,
       adSlot: environment.adSenseAdSlot,
     }),
+
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
 
