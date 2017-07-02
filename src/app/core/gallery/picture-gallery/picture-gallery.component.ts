@@ -87,7 +87,6 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
   index: number;
   oldIndex: number = null;
   pictureLength: number;
-  hiddenMap = true;
 
   pictureWidth = 70;
   arrows = 37;
@@ -201,6 +200,9 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
           }
         }
         this.initPages();
+      },
+      error => {
+        this.router.navigateByUrl('galeria');
       }
     )
   }
@@ -209,9 +211,11 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
     if (!this.category) {
       return;
     }
+    let found = false;
     this.category.pictures.forEach(
       (picture, index) => {
         if (picture.link === this.picture_link) {
+          found = true;
           this.picture = picture;
           this.title.setTitle(this.category.title + " - " + this.picture.title);
           if (this.oldIndex !== null) {
@@ -222,7 +226,11 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.changePicture();
+    if (!found) {
+      this.router.navigateByUrl(this.category.routerLink);
+    } else {
+      this.changePicture();
+    }
   }
 
 

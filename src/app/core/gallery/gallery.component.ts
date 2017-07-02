@@ -66,8 +66,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
         this.navbarService.setTitle('Galería' + (this.category.title ? ' / ' + this.category.title: ''));
       },
       error => {
-        console.error(error);
         this.notify.serviceError(error);
+        this.router.navigateByUrl('../');
       }
     )
   }
