@@ -14,4 +14,5 @@ export const environment = {
   adSenseAdClient: '',
   adSenseAdSlot: '',
   defaultCategoryId: 0,
+  googleAnalyticsTrakingId: '',
 };

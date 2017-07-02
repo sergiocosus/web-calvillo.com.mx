@@ -16,6 +16,7 @@ import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
 import {HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
 import {MyHammerConfig} from './my-hammer-config';
+import {GoogleAnalyticsService} from './services/google-analytics.service';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ export class SharedModule {
         LocalStorageService,
         EXIFService,
         NotifyService,
+        GoogleAnalyticsService,
         {
           provide: HAMMER_GESTURE_CONFIG,
           useClass: MyHammerConfig ,
