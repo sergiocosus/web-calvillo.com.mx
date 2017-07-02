@@ -26,7 +26,7 @@ export class Category extends ImageableModel{
   deleted_directories: Directory[];
 
   get routerLink() {
-    return '/galeria/' + this.id;
+    return '/galeria/' + this.link;
   }
 
   parse(obj): any {

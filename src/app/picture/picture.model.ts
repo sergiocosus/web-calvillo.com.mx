@@ -1,4 +1,5 @@
 import {ImageableModel} from '../shared/classes/imageable.model';
+import {Category} from '../category/category.model';
 
 export class Picture extends ImageableModel{
   id: number;
@@ -15,6 +16,10 @@ export class Picture extends ImageableModel{
 
   static parseArray(objs:any[]):Picture[] {
     return objs.map(obj => {return new Picture().parse(obj)})
+  }
+
+  getRouterLink(category: Category) {
+    return category.routerLink +  '/foto/' + this.link;
   }
 }
 

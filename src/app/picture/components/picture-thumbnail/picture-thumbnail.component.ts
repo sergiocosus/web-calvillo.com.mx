@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Picture} from '../../picture.model';
+import {Category} from '../../../category/category.model';
 
 @Component({
   selector: 'app-picture-thumbnail',
@@ -8,7 +9,7 @@ import {Picture} from '../../picture.model';
 })
 export class PictureThumbnailComponent implements OnInit {
   @Input() picture: Picture;
-  @Input() category_id: Picture;
+  @Input() category: Category;
   @Input() size = 'sm';
 
   constructor() { }

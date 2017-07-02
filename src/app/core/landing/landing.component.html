@@ -34,7 +34,7 @@
           <app-category-thumbnail [category]="category"></app-category-thumbnail>
           <div class="pictures">
             <app-picture-thumbnail *ngFor="let picture of category.pictures"
-                                   [category_id]="category.id"
+                                   [category]="category"
                                    [picture]="picture"></app-picture-thumbnail>
           </div>
 

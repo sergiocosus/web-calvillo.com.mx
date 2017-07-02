@@ -12,17 +12,17 @@ export const galleryRoutes: Routes = [
     component: GalleryComponent,
     children: [
       {
-        path: ':category_id',
+        path: ':category_link',
         component: VoidComponent,
       }
     ]
   },
   {
-    path: ':category_id/foto',
+    path: ':category_link/foto',
     component: PictureGalleryComponent,
     children: [
       {
-        path: ':picture_id',
+        path: ':picture_link',
         component: VoidComponent,
       }
     ]

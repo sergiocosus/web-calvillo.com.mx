@@ -14,6 +14,11 @@ export class CategoryService {
       .map(json => new Category().parse(json.category));
   }
 
+  getByLink(link: string) {
+    return this.apiHttp.get(this.basePath + 'link/' + link)
+      .map(json => new Category().parse(json.category));
+  }
+
   getNewest(elements?: number) {
     return this.apiHttp.get(this.basePath + 'newest', {elements: elements})
       .map(json => Category.parseArray(json.categories));

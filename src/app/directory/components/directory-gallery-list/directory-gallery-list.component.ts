@@ -4,6 +4,7 @@ import {NotifyService} from '../../../shared/services/notify.service';
 import {DirectoryService} from '../../services/directory.service';
 import {MdDialog} from '@angular/material';
 import {DirectoryDialogComponent} from '../directory-dialog/directory-dialog.component';
+import {Category} from '../../../category/category.model';
 
 @Component({
   selector: 'app-directory-gallery-list',
@@ -11,7 +12,7 @@ import {DirectoryDialogComponent} from '../directory-dialog/directory-dialog.com
   styleUrls: ['./directory-gallery-list.component.scss']
 })
 export class DirectoryGalleryListComponent implements OnInit {
-  @Input() category_id: number;
+  @Input() category: Category;
   @Input() directories: Directory[];
   @Input() deleted_directories: Directory[];
 
@@ -81,7 +82,7 @@ export class DirectoryGalleryListComponent implements OnInit {
 
   openDialog() {
     const dialog = this.dialog.open(DirectoryDialogComponent,{data:{createMode: true}});
-    dialog.componentInstance.initCreateMode(this.category_id);
+    dialog.componentInstance.initCreateMode(this.category.id);
     dialog.componentInstance.created.subscribe(
       picture => this.pushPicture(picture)
     );

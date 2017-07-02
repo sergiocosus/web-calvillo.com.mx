@@ -78,7 +78,6 @@ export class CategoryGalleryListComponent implements OnInit {
   }
 
   updateCategory(category) {
-    console.log(category);
     const categories = this.category.categories;
     for (let i = 0; categories.length; i++) {
       if (categories[i].id === category.id) {

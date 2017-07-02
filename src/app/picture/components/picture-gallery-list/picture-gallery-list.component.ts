@@ -4,6 +4,7 @@ import {UploadPictureModalComponent} from '../upload-picture-modal/upload-pictur
 import {NotifyService} from '../../../shared/services/notify.service';
 import {PictureService} from '../../services/picture.service';
 import {MdDialog} from '@angular/material';
+import {Category} from '../../../category/category.model';
 
 @Component({
   selector: 'app-picture-gallery-list',
@@ -11,7 +12,7 @@ import {MdDialog} from '@angular/material';
   styleUrls: ['./picture-gallery-list.component.scss']
 })
 export class PictureGalleryListComponent implements OnInit {
-  @Input() category_id: number;
+  @Input() category: Category;
   @Input() pictures: Picture[] = [];
   @Input() deleted_pictures: Picture[] = [];
 
@@ -81,7 +82,7 @@ export class PictureGalleryListComponent implements OnInit {
 
   openDialog() {
     const dialog = this.dialog.open(UploadPictureModalComponent,{data:{createMode: true}});
-    dialog.componentInstance.initCreateMode(this.category_id);
+    dialog.componentInstance.initCreateMode(this.category.id);
     dialog.componentInstance.created.subscribe(
       picture => this.pushPicture(picture)
     );

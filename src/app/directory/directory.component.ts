@@ -5,6 +5,7 @@ import {
 import {Directory} from './directory.model';
 import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {MdDialog} from '@angular/material';
+import {Category} from '../category/category.model';
 
 @Component({
   selector: 'app-directory',
@@ -40,7 +41,7 @@ export class DirectoryComponent implements OnInit {
     this.show();
   }
 
-  @Input() category_id: number;
+  @Input() category: Category;
   @Input() directory: Directory;
   @Input() showMap = true;
   @Input() set showExpanded (value) {

@@ -77,8 +77,8 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
 
   imgSize = null;
 
-  category_id = null;
-  picture_id = null;
+  category_link = null;
+  picture_link = null;
 
   category: Category;
   pictureTail: {picture: Picture, state: string}[] = [];
@@ -110,8 +110,8 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
     this.initImgSize();
     const subCategory = this.activatedRoute.params.subscribe(
       route => {
-        if (route['category_id'] && route['category_id'] !== this.category_id) {
-          this.loadCategory(+route['category_id']);
+        if (route['category_link'] && route['category_link'] !== this.category_link) {
+          this.loadCategory(route['category_link']);
         } else {
           this.loadCategory(environment.defaultCategoryId);
         }
@@ -120,8 +120,8 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
 
     const subPicture = this.activatedRoute.children[0].params.subscribe(
       route => {
-        if (route['picture_id']) {
-          this.picture_id = +route['picture_id'];
+        if (route['picture_link']) {
+          this.picture_link = route['picture_link'];
           this.loadPicture();
         }
       }
@@ -186,16 +186,17 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadCategory(category_id: number) {
-    this.category_id = category_id;
-    this.categoryService.get(category_id).subscribe(
+  loadCategory(category_link: string) {
+    this.category_link = category_link;
+    this.categoryService.getByLink(category_link).subscribe(
       category => {
         this.category = category;
-        if (this.picture_id) {
+
+        if (this.picture_link) {
           this.loadPicture();
         } else {
           if (this.category.pictures.length) {
-            this.picture_id = this.category.pictures[0].id;
+            this.picture_link = this.category.pictures[0].link;
             this.loadPicture();
           }
         }
@@ -210,7 +211,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
     }
     this.category.pictures.forEach(
       (picture, index) => {
-        if (picture.id === this.picture_id) {
+        if (picture.link === this.picture_link) {
           this.picture = picture;
           this.title.setTitle(this.category.title + " - " + this.picture.title);
           if (this.oldIndex !== null) {
@@ -270,7 +271,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
   }
 
   changeRoutePicture(index:number) {
-    this.router.navigate(['galeria', this.category_id, 'foto', this.category.pictures[index].id]);
+    this.router.navigateByUrl(this.category.pictures[index].getRouterLink(this.category));
   }
 
   changePicture() {

@@ -18,7 +18,7 @@ import {NavbarService} from '../../shared/services/navbar.service';
 export class GalleryComponent implements OnInit, OnDestroy {
   category: Category;
   currRoute = '';
-  category_id = null;
+  category_link = null;
   adSenseEnabled = environment.adSenseEnabled;
   loggedUser: User;
   sub = new SubscriptionManager();
@@ -41,8 +41,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
     const subCategory = this.activatedRoute.children[0].params.subscribe(
       route => {
         this.currRoute = this.router.url;
-        if (route['category_id']) {
-          this.loadCategory(route['category_id']);
+        if (route['category_link']) {
+          this.loadCategory(route['category_link']);
         } else {
           this.loadCategory(environment.defaultCategoryId);
         }
@@ -57,15 +57,18 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.sub.clear();
   }
 
-  loadCategory(category_id: number) {
-    this.category_id = category_id;
-    this.categoryService.get(category_id).subscribe(
+  loadCategory(category_link: string) {
+    this.category_link = category_link;
+    this.categoryService.getByLink(category_link).subscribe(
       category => {
         this.category = category;
         this.title.setTitle(this.category.title);
         this.navbarService.setTitle('Galería' + (this.category.title ? ' / ' + this.category.title: ''));
       },
-      error => {console.error(error);}
+      error => {
+        console.error(error);
+        this.notify.serviceError(error);
+      }
     )
   }
 }

@@ -48,14 +48,14 @@
   </section>
   <section *ngIf="category.pictures.length || loggedUser">
     <app-picture-gallery-list
-      [category_id]="category_id"
+      [category]="category"
       [pictures]="category.pictures"
       [deleted_pictures]="category.deleted_pictures"
     ></app-picture-gallery-list>
   </section>
   <section *ngIf="category.directories.length || loggedUser">
     <app-directory-gallery-list
-      [category_id]="category_id"
+      [category]="category"
       [directories]="category.directories"
       [deleted_directories]="category.deleted_directories">
     </app-directory-gallery-list>

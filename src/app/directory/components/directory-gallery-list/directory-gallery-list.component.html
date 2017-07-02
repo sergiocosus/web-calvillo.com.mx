@@ -11,7 +11,7 @@
 </h3>
 <ul>
   <li *ngFor="let directory of directories">
-    <app-directory [category_id]="category_id" [directory]="directory">
+    <app-directory [category]="category" [directory]="directory">
     </app-directory>
     <button *appIfLogged="true" md-mini-fab class="remove"
             (click)="removeDirectory(directory)">
@@ -31,7 +31,7 @@
   </h3>
   <ul>
     <li *ngFor="let directory of deleted_directories">
-      <app-directory [category_id]="category_id" [directory]="directory"></app-directory>
+      <app-directory [category]="category" [directory]="directory"></app-directory>
       <button  md-mini-fab class="remove"
                (click)="deletePicture(directory)">
         <i class="fa fa-times" aria-hidden="true"></i>
