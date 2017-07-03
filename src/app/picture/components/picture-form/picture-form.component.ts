@@ -16,7 +16,7 @@ export class PictureFormComponent implements OnInit {
   @Input() picture: FormGroup;
 
   @Output() coordsRequested = new EventEmitter();
-  private categories: Category[];
+  categories: Category[];
   subs = new SubscriptionManager();
 
   constructor(private categoryService: CategoryService) { }
