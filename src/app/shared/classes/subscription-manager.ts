@@ -10,7 +10,7 @@ export class SubscriptionManager {
    * Add a subscription
    * @param subscription
    */
-  push(subscription:Subscription){
+  set add(subscription:Subscription){
     this.subscriptions.push(subscription);
   }
 
@@ -18,6 +18,7 @@ export class SubscriptionManager {
    * Unsubscribe all registered subscriptions
    */
   clear(){
+    console.log('clear', this.subscriptions);
     this.subscriptions.forEach(
       subscription => {
         subscription.unsubscribe();

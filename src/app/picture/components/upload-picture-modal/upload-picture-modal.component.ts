@@ -9,12 +9,17 @@ import {SelectFromMapModalComponent} from '../../../maps/components/select-from-
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {Category} from '../../../category/category.model';
+import {CategoryService} from '../../../category/services/category.service';
+import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
+import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
 
 @Component({
   selector: 'app-upload-picture-modal',
   templateUrl: './upload-picture-modal.component.html',
   styleUrls: ['./upload-picture-modal.component.scss']
 })
+@AutoUnsubscribe()
 export class UploadPictureModalComponent implements OnInit {
   @ViewChild(SelectFromMapModalComponent) mapModal: SelectFromMapModalComponent;
 
@@ -23,23 +28,24 @@ export class UploadPictureModalComponent implements OnInit {
 
   takeTitleFromFiles = false;
   currentUploadingPicture = null;
-  parent_category_id: number = null;
+  parent_category: Category;
   uploading = false;
 
   createMode = true;
-
   formGroup: FormGroup;
   pictureOnModal: FormGroup = null;
+
+  subs = new SubscriptionManager;
 
   constructor(private pictureService: PictureService,
               private exifService: EXIFService,
               private notify: NotifyService,
               private fb: FormBuilder,
               private uploadPictureDialog: MdDialogRef<UploadPictureModalComponent>,
-              private dialog: MdDialog
+              private dialog: MdDialog,
+              private categoryService: CategoryService
   ) {
     this.createForm();
-
   }
 
   createForm() {
@@ -49,10 +55,7 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
 
-  initForm() {
-    this.formGroup.reset();
   }
 
   get formArray(): FormArray {
@@ -67,9 +70,9 @@ export class UploadPictureModalComponent implements OnInit {
     );
   }
 
-  initCreateMode(parent_category_id: number) {
+  initCreateMode(parentCategory: Category) {
     this.createMode = true;
-    this.parent_category_id = parent_category_id;
+    this.parent_category = parentCategory;
     this.currentUploadingPicture = null;
     this.uploading = false;
   }
@@ -86,6 +89,7 @@ export class UploadPictureModalComponent implements OnInit {
     pictureData.taken_at = picture.taken_at;
     pictureData.latitude = picture.latitude;
     pictureData.longitude = picture.longitude;
+    pictureData.categories = picture.categories;
 
     this.formArray.push(this.createPictureFormGroup(pictureData));
   }
@@ -100,7 +104,7 @@ export class UploadPictureModalComponent implements OnInit {
         .replace(/[^a-z0-9]/gi, '-').toLowerCase();
     }
 
-    pictureData.category_id = this.parent_category_id;
+    pictureData.categories = [this.parent_category];
     pictureData.description = '';
     pictureData.src = imageResult.dataURL;
     pictureData.image = pictureData.src ? pictureData.src.split(',')[1] : null;
@@ -129,11 +133,21 @@ export class UploadPictureModalComponent implements OnInit {
         CustomValidators.max(180),
       ]],
       taken_at: pictureData.taken_at,
-      category_id: pictureData.category_id,
       src: pictureData.src,
       image: pictureData.image,
-      linkUsed: false
+      linkUsed: false,
+      categories: [],
     });
+
+    this.subs.add = this.categoryService.getAllCached().subscribe(
+      categories => {
+        picture.get('categories').setValue(categories.filter(
+          category => pictureData.categories.find(
+            categoryPicture => categoryPicture.id === category.id
+          )
+        ));
+      }
+    );
 
     let link = picture.get('link');
 
@@ -161,8 +175,7 @@ export class UploadPictureModalComponent implements OnInit {
 
   selectPictureToUpload() {
     if (this.formArray.controls.length) {
-      let formToProcess = this.formArray.controls[
-        this.currentUploadingPicture] as FormGroup;
+      let formToProcess = this.formArray.controls[this.currentUploadingPicture] as FormGroup;
       if (this.createMode) {
         this.uploadPicture(formToProcess);
       } else {
@@ -178,6 +191,9 @@ export class UploadPictureModalComponent implements OnInit {
     this.uploading = true;
     const pictureData = formGroup.value;
     pictureData.src = null;
+    pictureData.categories = pictureData.categories.map(
+      category => category.id
+    );
 
     this.pictureService.post(pictureData).subscribe(
       picture => {
@@ -197,6 +213,9 @@ export class UploadPictureModalComponent implements OnInit {
   putPicture(formGroup: FormGroup) {
     this.uploading = true;
     const pictureData = formGroup.value;
+    pictureData.categories = pictureData.categories.map(
+      category => category.id
+    );
 
     this.pictureService.put(pictureData).subscribe(
       picture => {

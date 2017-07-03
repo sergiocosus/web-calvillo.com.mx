@@ -9,19 +9,21 @@ import {NotifyService} from '../../shared/services/notify.service';
 import {Title} from '@angular/platform-browser';
 import {SubscriptionManager} from '../../shared/classes/subscription-manager';
 import {NavbarService} from '../../shared/services/navbar.service';
+import {AutoUnsubscribe} from '../../shared/classes/auto-unsubscribe';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements OnInit, OnDestroy {
+@AutoUnsubscribe()
+export class GalleryComponent implements OnInit {
   category: Category;
   currRoute = '';
   category_link = null;
   adSenseEnabled = environment.adSenseEnabled;
   loggedUser: User;
-  sub = new SubscriptionManager();
+  subs = new SubscriptionManager();
 
 
   constructor(private categoryService: CategoryService,
@@ -34,11 +36,11 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    const sub = this.authService.getLoggedUser().subscribe(
+    this.subs.add = this.authService.getLoggedUser().subscribe(
       user => this.loggedUser = user
     );
 
-    const subCategory = this.activatedRoute.children[0].params.subscribe(
+    this.subs.add = this.activatedRoute.children[0].params.subscribe(
       route => {
         this.currRoute = this.router.url;
         if (route['category_link']) {
@@ -48,13 +50,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
         }
       }
     );
-
-    this.sub.push(sub);
-    this.sub.push(subCategory);
-  }
-
-  ngOnDestroy(): void {
-    this.sub.clear();
   }
 
   loadCategory(category_link: string) {

@@ -10,7 +10,7 @@ import {EXIFService} from './services/exif.service';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
-import {MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
+import {MdButtonModule, MdDialogModule, MdInputModule, MdSelectModule} from '@angular/material';
 import { LogoComponent } from './components/logo/logo.component';
 import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
@@ -28,6 +28,7 @@ import {AdsenseModule} from 'ng2-adsense';
     RouterModule,
     MdDialogModule,
     MdButtonModule,
+    MdSelectModule,
     MdInputModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,6 +52,7 @@ import {AdsenseModule} from 'ng2-adsense';
     MdDialogModule,
     MdButtonModule,
     MdInputModule,
+    MdSelectModule,
     LogoComponent,
   ]
 })

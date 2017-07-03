@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 import {CategoryService} from './services/category.service';
 import { CategoryThumbnailComponent } from './components/category-thumbnail/category-thumbnail.component';
@@ -19,9 +19,6 @@ import {AuthModule} from '../auth/auth.module.browser';
     AddCategoryModalComponent,
     CategoryGalleryListComponent,
   ],
-  providers: [
-    CategoryService,
-  ],
   entryComponents: [
     AddCategoryModalComponent,
   ],
@@ -31,4 +28,13 @@ import {AuthModule} from '../auth/auth.module.browser';
     CategoryGalleryListComponent,
   ]
 })
-export class CategoryModule { }
+export class CategoryModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        CategoryService,
+      ],
+    };
+  }
+}

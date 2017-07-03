@@ -26,7 +26,7 @@ import {FacebookModule} from 'ngx-facebook';
     SharedModule,
     SharedModule.forRoot(),
     FacebookModule.forRoot(),
-    CategoryModule,
+    CategoryModule.forRoot(),
     CoreModule,
     ShareButtonsModule.forRoot(),
     AgmCoreModule.forRoot({

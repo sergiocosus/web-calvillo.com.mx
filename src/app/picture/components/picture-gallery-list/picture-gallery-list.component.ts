@@ -82,7 +82,7 @@ export class PictureGalleryListComponent implements OnInit {
 
   openDialog() {
     const dialog = this.dialog.open(UploadPictureModalComponent,{data:{createMode: true}});
-    dialog.componentInstance.initCreateMode(this.category.id);
+    dialog.componentInstance.initCreateMode(this.category);
     dialog.componentInstance.created.subscribe(
       picture => this.pushPicture(picture)
     );

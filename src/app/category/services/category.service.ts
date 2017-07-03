@@ -2,16 +2,39 @@ import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Category} from '../category.model';
 import {Observable} from 'rxjs';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class CategoryService {
   basePath = 'category/';
+
+  private categoriesSubject: ReplaySubject<Category[]> = new ReplaySubject(1);
+  private categoriesRequest: Observable<Category[]>;
 
   constructor(private apiHttp: ApiHttp) { }
 
   get(category_id: number) {
     return this.apiHttp.get(this.basePath + category_id)
       .map(json => new Category().parse(json.category));
+  }
+
+  getAll() {
+    return this.apiHttp.get(this.basePath)
+      .map(json => Category.parseArray(json.categories));
+  }
+
+  getAllCached(params?, refresh = false) {
+      if (refresh || !this.categoriesRequest) {
+      this.categoriesRequest = this.getAll();
+
+      this.categoriesRequest.subscribe(
+        result => this.categoriesSubject.next(result),
+        err => this.categoriesSubject.error(err)
+      );
+    }
+    console.log(this.categoriesSubject, this.categoriesRequest);
+
+    return this.categoriesSubject.asObservable();
   }
 
   getByLink(link: string) {

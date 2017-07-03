@@ -14,6 +14,8 @@ export class Picture extends ImageableModel{
   updated_at: string;
   deleted_at: string;
 
+  categories: Category[];
+
   static parseArray(objs:any[]):Picture[] {
     return objs.map(obj => {return new Picture().parse(obj)})
   }
