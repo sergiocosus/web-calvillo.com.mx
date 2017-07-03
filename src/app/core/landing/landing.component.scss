@@ -109,10 +109,14 @@ section{
   flex: 1 0 0;
 
   font-size: .85em;
-  max-height: $contentHeight;
+
+  max-height: calc(143vh - 50px);
+  height: calc(143vh  - 50px);
 
   @media (min-width: $smScreen) {
     font-size: 1em;
+    max-height: calc(110vh - 50px);
+    height: calc(110vh  - 50px);
   }
 
   .fore{

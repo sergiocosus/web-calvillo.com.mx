@@ -13,7 +13,7 @@
 }
 
 agm-map{
-  height: $contentHeight;
+  height: calc(100vh - #{$navBarTop} - 50px);
   width: 100%;
 }
 

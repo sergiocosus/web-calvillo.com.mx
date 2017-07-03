@@ -75,7 +75,7 @@
     </h1>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
-  <br>
+  <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
   <div class="content" [innerHTML]="picture.description">
   </div>
 </div>

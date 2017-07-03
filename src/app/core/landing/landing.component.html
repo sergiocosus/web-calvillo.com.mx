@@ -29,6 +29,7 @@
       <h1>
         <span>Lo más nuevo</span>
       </h1>
+      <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
       <ul *ngIf="categories">
         <li *ngFor="let category of categories">
           <app-category-thumbnail [category]="category"></app-category-thumbnail>
@@ -37,7 +38,6 @@
                                    [category]="category"
                                    [picture]="picture"></app-picture-thumbnail>
           </div>
-
         </li>
       </ul>
     </div>

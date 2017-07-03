@@ -17,6 +17,8 @@ import {NavbarService} from './services/navbar.service';
 import {HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
 import {MyHammerConfig} from './my-hammer-config';
 import {GoogleAnalyticsService} from './services/google-analytics.service';
+import {ScriptService} from './services/script.service';
+import {AdsenseModule} from 'ng2-adsense';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import {GoogleAnalyticsService} from './services/google-analytics.service';
     ReactiveFormsModule,
     SimpleNotificationsModule,
     SidebarModule,
+    AdsenseModule,
   ],
   declarations: [
     VoidComponent,
@@ -43,6 +46,7 @@ import {GoogleAnalyticsService} from './services/google-analytics.service';
     ReactiveFormsModule,
     RouterModule,
     SidebarModule,
+    AdsenseModule,
     VoidComponent,
     MdDialogModule,
     MdButtonModule,
@@ -61,6 +65,7 @@ export class SharedModule {
         LocalStorageService,
         EXIFService,
         NotifyService,
+        ScriptService,
         GoogleAnalyticsService,
         {
           provide: HAMMER_GESTURE_CONFIG,

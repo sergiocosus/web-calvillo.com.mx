@@ -74,6 +74,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
         break;
     }
   }
+  adSenseEnabled = environment.adSenseEnabled;
 
   imgSize = null;
 

@@ -3613,6 +3613,10 @@ ng2-validation@^4.2.0:
   dependencies:
     libphonenumber-js "^0.4.5"
 
+ngx-facebook@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-facebook/-/ngx-facebook-2.4.0.tgz#454141ce41118c1956d9db896c956f3891f8bbd7"
+
 ngx-sharebuttons@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ngx-sharebuttons/-/ngx-sharebuttons-3.0.0.tgz#942a7610387523ffc9b78bc3b46868ea035ce0a8"

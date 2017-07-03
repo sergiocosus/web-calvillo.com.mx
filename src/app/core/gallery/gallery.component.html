@@ -18,8 +18,8 @@
     ></share-buttons>
     <!-- TODO put related gallery -->
   </header>
+  <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
   <section *ngIf="category.categories.length || loggedUser">
-    <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
     <app-category-gallery-list [category]="category"></app-category-gallery-list>
   </section>
   <section *ngIf="category.videos.length || loggedUser">

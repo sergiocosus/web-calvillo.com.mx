@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DirectoryService} from '../../directory/services/directory.service';
 import {Directory} from '../../directory/directory.model';
 import {NavbarService} from '../../shared/services/navbar.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-map',
@@ -13,6 +14,8 @@ export class MapComponent implements OnInit {
 
   longitudeMap = -102.7104999;
   latitudeMap = 21.8531537;
+
+  adSenseEnabled = environment.adSenseEnabled;
 
   constructor(private directoryService: DirectoryService,
               private navbarService: NavbarService) { }

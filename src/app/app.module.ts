@@ -13,6 +13,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import {FacebookModule} from 'ngx-facebook';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AgmCoreModule } from '@agm/core';
     AppRoutingModule,
     SharedModule,
     SharedModule.forRoot(),
+    FacebookModule.forRoot(),
     CategoryModule,
     CoreModule,
     ShareButtonsModule.forRoot(),

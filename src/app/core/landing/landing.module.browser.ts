@@ -5,6 +5,7 @@ import {LandingRoutingModule} from './landing-routing.module';
 import {CategoryModule} from '../../category/category.module.browser';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {PictureModule} from '../../picture/picture.module';
+import {AdsenseModule} from 'ng2-adsense';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import {PictureModule} from '../../picture/picture.module';
     CategoryModule,
     ShareButtonsModule,
     PictureModule,
+    AdsenseModule,
   ],
   declarations: [LandingComponent]
 })

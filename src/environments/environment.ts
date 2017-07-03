@@ -15,4 +15,5 @@ export const environment = {
   adSenseAdSlot: '',
   defaultCategoryId: '',
   googleAnalyticsTrakingId: '',
+  facebookAppId: ''
 };
