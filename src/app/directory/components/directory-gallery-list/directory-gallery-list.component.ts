@@ -39,7 +39,7 @@ export class DirectoryGalleryListComponent implements OnInit {
   removeDirectory(directory) {
     this.directoryService.remove(directory.id).subscribe(
       deletedPicture => {
-        this.notify.success('Fotografía borrada');
+        this.notify.success('Directorio borrado');
         this.directories.splice(
           this.directories.indexOf(directory), 1
         );
@@ -48,10 +48,13 @@ export class DirectoryGalleryListComponent implements OnInit {
     );
   }
 
-  deletePicture(picture) {
+  deleteDirectory(picture) {
+    if(!confirm('¿Está seguro de borrarlo?')) {
+      return;
+    }
     this.directoryService.delete(picture.id).subscribe(
       () => {
-        this.notify.success('Fotografía borrada permanentemente');
+        this.notify.success('Directorio borrado permanentemente');
         this.deleted_directories.splice(
           this.deleted_directories.indexOf(picture), 1
         );
@@ -59,7 +62,7 @@ export class DirectoryGalleryListComponent implements OnInit {
     );
   }
 
-  restorePicture(picture) {
+  restoreDirectory(picture) {
     this.directoryService.restore(picture.id).subscribe(
       restoredPicture => {
         this.notify.success('Directorio restaurado');

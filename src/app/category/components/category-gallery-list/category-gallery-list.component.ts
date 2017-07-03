@@ -40,17 +40,20 @@ export class CategoryGalleryListComponent implements OnInit {
         this.category.categories.splice(
           this.category.categories.indexOf(category), 1
         );
-        this.category.deleted_directories.push(deletedCategory);
+        this.category.deleted_categories.push(deletedCategory);
       }
     );
   }
 
   delete(category) {
+    if(!confirm('¿Está seguro de borrarlo?')) {
+      return;
+    }
     this.categoryService.delete(category.id).subscribe(
       () => {
-        this.notify.success('Fotografía borrada permanentemente');
-        this.category.deleted_directories.splice(
-          this.category.deleted_directories.indexOf(category), 1
+        this.notify.success('Categoría borrada permanentemente');
+        this.category.deleted_categories.splice(
+          this.category.deleted_categories.indexOf(category), 1
         );
       }
     );

@@ -49,6 +49,9 @@ export class PictureGalleryListComponent implements OnInit {
   }
 
   deletePicture(picture) {
+    if(!confirm('¿Está seguro de borrarlo?')) {
+      return;
+    }
     this.pictureService.delete(picture.id).subscribe(
       () => {
         this.notify.success('Fotografía borrada permanentemente');

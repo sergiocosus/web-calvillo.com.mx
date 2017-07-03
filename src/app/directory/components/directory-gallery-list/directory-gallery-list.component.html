@@ -33,11 +33,11 @@
     <li *ngFor="let directory of deleted_directories">
       <app-directory [category]="category" [directory]="directory"></app-directory>
       <button  md-mini-fab class="remove"
-               (click)="deletePicture(directory)">
+               (click)="deleteDirectory(directory)">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
       <button  md-mini-fab class="restore"
-               (click)="restorePicture(directory)">
+               (click)="restoreDirectory(directory)">
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
     </li>
