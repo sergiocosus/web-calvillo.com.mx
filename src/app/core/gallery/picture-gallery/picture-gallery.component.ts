@@ -13,6 +13,7 @@ import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-mo
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 import {Title} from '@angular/platform-browser';
 import {environment} from '../../../../environments/environment';
+import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -56,7 +57,8 @@ import {environment} from '../../../../environments/environment';
     ])
   ]
 })
-export class PictureGalleryComponent implements OnInit, OnDestroy {
+@AutoUnsubscribe()
+export class PictureGalleryComponent implements OnInit {
   @ViewChild('list') list: ElementRef;
 
   @HostListener('window:resize') resize() {
@@ -108,7 +110,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initImgSize();
-    const subCategory = this.activatedRoute.params.subscribe(
+    this.sub.add = this.activatedRoute.params.subscribe(
       route => {
         if (route['category_link'] && route['category_link'] !== this.category_link) {
           this.loadCategory(route['category_link']);
@@ -118,7 +120,7 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
       }
     );
 
-    const subPicture = this.activatedRoute.children[0].params.subscribe(
+    this.sub.add = this.activatedRoute.children[0].params.subscribe(
       route => {
         if (route['picture_link']) {
           this.picture_link = route['picture_link'];
@@ -126,13 +128,6 @@ export class PictureGalleryComponent implements OnInit, OnDestroy {
         }
       }
     );
-
-    this.sub.push(subCategory);
-    this.sub.push(subPicture);
-  }
-
-  ngOnDestroy(): void {
-    this.sub.clear();
   }
 
   initImgSize() {
