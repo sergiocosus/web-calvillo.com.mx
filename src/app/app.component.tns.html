@@ -1,0 +1,11 @@
+<ng-container *ngIf="category">
+  <ListView  #listView [items]="category.categories" (itemTap)="onItemTap($event)">
+    <template let-item="item" let-i="index" let-odd="odd" let-even="even">
+      <StackLayout [class.odd]="odd" [class.even]="even">
+        <Label [text]='"index: " + i'></Label>
+        <Label [text]='"[" + item.id +"] " + item.title'></Label>
+        <Image [src]="item.imageUrl('md')" ></Image>
+      </StackLayout>
+    </template>
+  </ListView>
+</ng-container>
