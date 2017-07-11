@@ -182,3 +182,34 @@ section{
     }
   }
 }
+
+.cta{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  a{
+    margin: .25em;
+
+    background-color: $navbarBackgroundColor;
+    color: white;
+    border: white solid thin;
+    font-weight: bolder;
+    line-height: 2em;
+
+    font-size: 1.25em;
+
+    @media (min-width: $smScreen) {
+      font-size: 2em;
+    }
+
+    span{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i{
+        margin-right: .5em;
+      }
+    }
+  }
+}

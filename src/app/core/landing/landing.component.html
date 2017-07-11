@@ -13,10 +13,28 @@
           Fotografías de Calvillo Pueblo Mágico
         </span>
       </div>
+      <div class="cta" >
+        <a [routerLink]="'/galeria/' + defaultCatId" md-button>
+          <span>
+            <i class="fa fa-camera"></i>
+            Galería
+          </span>
+        </a>
+        <a routerLink="/mapa" md-button>
+          <span>
+            <i class="fa fa-globe" aria-hidden="true"></i>
+            Mapa
+          </span>
+        </a>
+      </div>
+
       <div class="social">
         <share-buttons url="http://calvillo.com.mx"
                        [reddit]="false"
-                       [showCount]="true"
+                       [linkedIn]="false"
+                       [stumbleUpOn]="false"
+                       [tumblr]="false"
+                       [whatsApp]="false"
         ></share-buttons>
       </div>
     </div>

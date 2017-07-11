@@ -12,9 +12,11 @@ import {environment} from '../../../environments/environment';
 export class LandingComponent implements OnInit {
   adSenseEnabled = environment.adSenseEnabled;
   categories: Category[];
+  public defaultCatId: string;
+
   constructor(private categoryService:CategoryService,
               private navbarService: NavbarService) {
-
+    this.defaultCatId = environment.defaultCategoryId;
   }
 
   ngOnInit(): void {
