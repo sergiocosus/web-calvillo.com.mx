@@ -13,8 +13,8 @@ export class PictureService {
       .map(json => new Picture().parse(json.picture));
   }
 
-  facebookPost(category_id, picture_id, message) {
-    return this.apiHttp.post(`${this.basePath}${picture_id}/facebook/${category_id} `, {message: message})
+  facebookPost(category_id, picture_id, data) {
+    return this.apiHttp.post(`${this.basePath}${picture_id}/facebook/${category_id} `, data)
   }
 
   put(data) {

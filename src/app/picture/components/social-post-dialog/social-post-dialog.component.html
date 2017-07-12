@@ -11,6 +11,17 @@
     <md-input-container>
       <input mdInput placeholder="Mensaje" [(ngModel)]="message" name="message">
     </md-input-container>
+    <md-checkbox [(ngModel)]="delay" name="delay">
+      Posponer publicación
+    </md-checkbox>
+    <md-input-container *ngIf="delay" >
+      <input [value]="scheduled_publish_time | date: 'short'"
+             name="scheduled_publish_time"
+             mode="popup" mdInput readonly
+             [dateTimePicker]="scheduled_publish_time"
+             (dateTimePickerChange)="scheduled_publish_time = $event"
+             placeholder="Hora de publicación"/>
+    </md-input-container>
     <button md-raised-button color="primary">
       Postear!
     </button>

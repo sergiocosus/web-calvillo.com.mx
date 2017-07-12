@@ -14,6 +14,8 @@ import {NotifyService} from '../../../shared/services/notify.service';
 export class SocialPostDialogComponent implements OnInit {
   message = '';
   linkToFacebookPublication = null;
+  delay = false;
+  scheduled_publish_time;
   private picture: Picture;
   private category: Category;
   public exist_token: any;
@@ -37,9 +39,19 @@ export class SocialPostDialogComponent implements OnInit {
   }
 
   submit() {
-    this.pictureService.facebookPost(this.category.id, this.picture.id, this.message).subscribe(
+    const data: any = {
+      message: this.message,
+    };
+
+    if (this.delay) {
+      data.scheduled_publish_time = this.scheduled_publish_time;
+    }
+
+
+    this.pictureService.facebookPost(this.category.id, this.picture.id, data).subscribe(
       response => {
         this.message = null;
+        this.delay = false;
         this.linkToFacebookPublication = 'https://www.facebook.com/calvillo.com.mx/posts/' + response.facebook_post_id;
         this.notify.success('Post publicado con éxito');
       }
