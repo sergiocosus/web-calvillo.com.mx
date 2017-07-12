@@ -1,0 +1,22 @@
+<h4 md-dialog-title>
+  Post on facebook
+</h4>
+
+<md-dialog-content>
+  <div *ngIf="!exist_token">
+    Para poder postear en facebook vaya <a (click)="close()" routerLink="/cuenta">Cuenta</a>
+    para ligar su cuenta
+  </div>
+  <form *ngIf="exist_token" (submit)="submit()">
+    <md-input-container>
+      <input mdInput placeholder="Mensaje" [(ngModel)]="message" name="message">
+    </md-input-container>
+    <button md-raised-button color="primary">
+      Postear!
+    </button>
+  </form>
+
+  <a *ngIf="linkToFacebookPublication" [href]="linkToFacebookPublication" target="_blank">
+    Link a la publicación en facebook
+  </a>
+</md-dialog-content>

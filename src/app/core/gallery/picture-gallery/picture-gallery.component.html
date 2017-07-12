@@ -72,6 +72,9 @@
          (click)="openMapModal()">
         <i class="fa fa-map-marker"></i>
       </a>
+      <button (click)="postOnFacebook()" md-raised-button color="primary">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
+      </button>
     </h1>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>

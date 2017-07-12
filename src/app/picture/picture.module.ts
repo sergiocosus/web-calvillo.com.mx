@@ -15,6 +15,7 @@ import { PictureFormComponent } from './components/picture-form/picture-form.com
 import { PictureGalleryListComponent } from './components/picture-gallery-list/picture-gallery-list.component';
 import {AuthModule} from '../auth/auth.module.browser';
 import {DateTimePickerModule} from 'ng-pick-datetime';
+import { SocialPostDialogComponent } from './components/social-post-dialog/social-post-dialog.component';
 
 @NgModule({
   imports: [
@@ -34,18 +35,21 @@ import {DateTimePickerModule} from 'ng-pick-datetime';
     UploadPictureModalComponent,
     PictureFormComponent,
     PictureGalleryListComponent,
+    SocialPostDialogComponent,
   ],
   providers: [
     PictureService,
   ],
   entryComponents: [
     UploadPictureModalComponent,
+    SocialPostDialogComponent,
   ],
   exports: [
     PictureThumbnailComponent,
     UploadPictureModalComponent,
     PictureFormComponent,
     PictureGalleryListComponent,
+    SocialPostDialogComponent,
   ]
 })
 export class PictureModule { }
