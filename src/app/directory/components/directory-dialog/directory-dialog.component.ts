@@ -1,9 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MdDialogRef} from '@angular/material';
+import {MdDialog, MdDialogRef} from '@angular/material';
 import {DirectoryService} from '../../services/directory.service';
 import {ImageResult} from 'ng2-imageupload';
 import {Directory} from '../../directory.model';
+import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
 
 @Component({
   selector: 'app-directory-dialog',
@@ -19,7 +20,8 @@ export class DirectoryDialogComponent implements OnInit {
   form: FormGroup;
 
   constructor(private directoryService: DirectoryService,
-              private dialog: MdDialogRef<DirectoryDialogComponent>,
+              private dialogRef: MdDialogRef<DirectoryDialogComponent>,
+              private dialog: MdDialog,
               private fb: FormBuilder) {
 
   }
@@ -65,7 +67,7 @@ export class DirectoryDialogComponent implements OnInit {
     this.directoryService.post(categoryData).subscribe(
       category => {
         this.created.emit(category);
-        this.dialog.close();
+        this.dialogRef.close();
       }
     );
   }
@@ -74,7 +76,7 @@ export class DirectoryDialogComponent implements OnInit {
     this.directoryService.put(categoryData).subscribe(
       category => {
         this.updated.emit(category);
-        this.dialog.close();
+        this.dialogRef.close();
       }
     );
   }
@@ -83,6 +85,23 @@ export class DirectoryDialogComponent implements OnInit {
     console.log(imageResult);
     this.form.get('src').setValue(imageResult.dataURL);
     this.form.get('image').setValue(imageResult.dataURL.split(',')[1]);
+  }
+
+
+  openMapModal() {
+    const dialog = this.dialog.open(SelectFromMapModalComponent);
+    dialog.componentInstance.setCoords(
+      +this.form.get('longitude').value,
+      +this.form.get('latitude').value,
+    );
+    dialog.componentInstance.closed.subscribe(
+      coordinates => {
+        this.form.patchValue({
+          longitude: coordinates.longitude,
+          latitude: coordinates.latitude
+        });
+      }
+    );
   }
 
   submit() {
