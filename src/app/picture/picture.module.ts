@@ -5,7 +5,7 @@ import { UploadPictureModalComponent } from './components/upload-picture-modal/u
 import {
   MdButtonModule,
   MdCardModule, MdCheckboxModule, MdDialog, MdDialogModule,
-  MdInputModule
+  MdInputModule, MdProgressSpinnerModule
 } from '@angular/material';
 import {PictureService} from './services/picture.service';
 import {ImageUploadModule} from 'ng2-imageupload';

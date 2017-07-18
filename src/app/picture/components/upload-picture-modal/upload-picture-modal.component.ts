@@ -204,7 +204,6 @@ export class UploadPictureModalComponent implements OnInit {
         console.log('Uploaded: ' + picture.title);
         this.remove(formGroup);
         this.selectPictureToUpload();
-        this.uploading = false;
       },
       error => {
         this.notify.serviceError(error);

@@ -32,7 +32,6 @@ export class CategoryService {
         err => this.categoriesSubject.error(err)
       );
     }
-    console.log(this.categoriesSubject, this.categoriesRequest);
 
     return this.categoriesSubject.asObservable();
   }

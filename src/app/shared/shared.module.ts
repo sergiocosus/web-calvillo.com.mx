@@ -10,7 +10,10 @@ import {EXIFService} from './services/exif.service';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
-import {MdButtonModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdSelectModule} from '@angular/material';
+import {
+  MdButtonModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdProgressSpinnerModule,
+  MdSelectModule
+} from '@angular/material';
 import { LogoComponent } from './components/logo/logo.component';
 import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
@@ -30,6 +33,7 @@ import {AdsenseModule} from 'ng2-adsense';
     MdButtonModule,
     MdSelectModule,
     MdInputModule,
+    MdProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
@@ -54,6 +58,7 @@ import {AdsenseModule} from 'ng2-adsense';
     MdInputModule,
     MdSelectModule,
     MdCheckboxModule,
+    MdProgressSpinnerModule,
     LogoComponent,
   ]
 })

@@ -1,8 +1,4 @@
 <ng-container [formGroup]="picture">
-  <section class="lock" [class.uploading]="uploading">
-    <md-spinner></md-spinner>
-  </section>
-
   <section class="picture-container">
     <picture *ngIf="picture.get('src').value"
              [ngStyle]="{
@@ -10,7 +6,7 @@
                   }"></picture>
   </section>
 
-  <section class="picture-form">
+  <section [hidden]="uploading" class="picture-form">
     <md-input-container>
       <input mdInput required formControlName="title"
              placeholder="Título"/>
@@ -53,6 +49,7 @@
              placeholder="Fecha en la que fue tomada"/>
     </md-input-container>
 
+
     <md-select formControlName="categories" placeholder="Categorias"
     [multiple]="true">
       <md-option *ngFor="let category of categories" [value]="category">
@@ -60,5 +57,8 @@
         / {{category.title}}
       </md-option>
     </md-select>
+  </section>
+  <section class="lock" [class.uploading]="uploading">
+    <md-spinner></md-spinner>
   </section>
 </ng-container>

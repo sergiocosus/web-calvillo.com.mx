@@ -1,10 +1,11 @@
-import {Component, OnInit, Input, HostBinding} from '@angular/core';
+import {Component, OnInit, Input, HostBinding, ChangeDetectionStrategy} from '@angular/core';
 import {Category} from '../../category.model';
 
 @Component({
   selector: 'app-category-thumbnail',
   templateUrl: './category-thumbnail.component.html',
-  styleUrls: ['./category-thumbnail.component.scss']
+  styleUrls: ['./category-thumbnail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryThumbnailComponent implements OnInit {
   @Input() category: Category;
