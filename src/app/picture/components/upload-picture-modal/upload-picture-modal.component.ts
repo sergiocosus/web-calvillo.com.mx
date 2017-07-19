@@ -1,4 +1,7 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {ImageResult} from 'ng2-imageupload';
 import {PictureService} from '../../services/picture.service';
 import {EXIFService} from '../../../shared/services/exif.service';
@@ -17,12 +20,10 @@ import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
 @Component({
   selector: 'app-upload-picture-modal',
   templateUrl: './upload-picture-modal.component.html',
-  styleUrls: ['./upload-picture-modal.component.scss']
+  styleUrls: ['./upload-picture-modal.component.scss'],
 })
 @AutoUnsubscribe()
 export class UploadPictureModalComponent implements OnInit {
-  @ViewChild(SelectFromMapModalComponent) mapModal: SelectFromMapModalComponent;
-
   @Output() created = new EventEmitter;
   @Output() updated = new EventEmitter;
 
@@ -45,6 +46,8 @@ export class UploadPictureModalComponent implements OnInit {
               private dialog: MdDialog,
               private categoryService: CategoryService
   ) {
+    this.uploadPictureDialog.disableClose = true;
+
     this.createForm();
   }
 
@@ -201,7 +204,6 @@ export class UploadPictureModalComponent implements OnInit {
         console.log('Uploaded: ' + picture.title);
         this.remove(formGroup);
         this.selectPictureToUpload();
-        this.uploading = false;
       },
       error => {
         this.notify.serviceError(error);

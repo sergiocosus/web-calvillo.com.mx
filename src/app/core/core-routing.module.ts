@@ -17,6 +17,10 @@ export const coreRoutes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'cuenta',
+        loadChildren: 'app/core/account/account.module#AccountModule',
+      },
+      {
         path: 'galeria',
         children: galleryRoutes,
       },

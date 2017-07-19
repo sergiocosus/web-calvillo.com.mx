@@ -1,6 +1,6 @@
 import {
   Component, OnInit, Input, HostBinding, HostListener, ViewChild, transition, style,
-  trigger, animate
+  trigger, animate, ChangeDetectionStrategy
 } from '@angular/core';
 import {Directory} from './directory.model';
 import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
@@ -33,7 +33,8 @@ import {Category} from '../category/category.model';
         }))
       ])
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DirectoryComponent implements OnInit {
   @HostBinding('class.expanded') expanded = false;

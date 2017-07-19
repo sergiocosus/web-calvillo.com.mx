@@ -15,4 +15,11 @@ export class UserService {
       .map(json => new User().parse(json.user));
   }
 
+  postFacebookLogin(accessToken: string) {
+    return this.apiHttp.post('user/me/facebook-login', {access_token: accessToken});
+  }
+
+  getStatus() {
+    return this.apiHttp.get('user/me/facebook-status');
+  }
 }

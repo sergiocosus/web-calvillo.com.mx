@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
@@ -8,7 +8,8 @@ import {SubscriptionManager} from '../../../shared/classes/subscription-manager'
 @Component({
   selector: 'app-picture-form',
   templateUrl: './picture-form.component.html',
-  styleUrls: ['./picture-form.component.scss']
+  styleUrls: ['./picture-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @AutoUnsubscribe()
 export class PictureFormComponent implements OnInit {

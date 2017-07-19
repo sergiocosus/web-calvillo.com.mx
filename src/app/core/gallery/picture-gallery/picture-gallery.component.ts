@@ -14,6 +14,7 @@ import {SubscriptionManager} from '../../../shared/classes/subscription-manager'
 import {Title} from '@angular/platform-browser';
 import {environment} from '../../../../environments/environment';
 import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
+import {SocialPostDialogComponent} from '../../../picture/components/social-post-dialog/social-post-dialog.component';
 
 @Component({
   selector: 'app-picture-gallery',
@@ -332,5 +333,11 @@ export class PictureGalleryComponent implements OnInit {
       this.picture.latitude,
       this.picture.title
     );
+  }
+
+  postOnFacebook() {
+    const dialog = this.dialog.open(SocialPostDialogComponent);
+    dialog.componentInstance.init(this.category, this.picture);
+
   }
 }

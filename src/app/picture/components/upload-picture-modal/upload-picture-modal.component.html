@@ -10,10 +10,16 @@
 </button>
 
 <section class="header-form" *ngIf="createMode">
+  <label for="file-input" md-tooltip="Agregar fotos">
+    <a md-mini-fab color="primary"  >
+      <i class="fa fa-picture-o" aria-hidden="true"></i>
+    </a>
+  </label>
   <md-checkbox [(ngModel)]="takeTitleFromFiles" >
     Obtener título de archivo
   </md-checkbox>
-  <input class="input-picture"
+
+  <input id="file-input"
          imageUpload (imageSelected)="selected($event)"
          accept="image/*" name="picture" type="file" multiple>
 </section>
@@ -23,6 +29,7 @@
     <div formArrayName="pictures">
       <md-card *ngFor="let picture of formArray.controls; let i=index"
                [formGroupName]="i">
+
         <app-picture-form [picture]="picture"
                           [uploading]="i === currentUploadingPicture && uploading"
                           (coordsRequested)="openMapModal($event)"
@@ -39,7 +46,7 @@
 </md-dialog-content>
 
 <md-dialog-actions>
-  <button md-button form="picture-form">
+  <button md-raised-button color="primary" form="picture-form">
     <ng-container *ngIf="createMode; else elseCreateMode">
       Subir fotografías
     </ng-container>

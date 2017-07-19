@@ -1,0 +1,59 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the default theme (same as the example above).
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-light-blue, A200, A100, A400);
+$candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent);
+
+// Include the default theme styles.
+@include angular-material-theme($candy-app-theme);
+
+
+.cdk-overlay-pane .mat-dialog-container{
+  padding: .5em 0 0;
+  max-width: 95vw;
+  .mat-dialog-title{
+    padding: .5em;
+    margin: 0;
+  }
+
+  @media (min-width: $smScreen) {
+    padding: 1.5em;
+    max-width: 80vw;
+    .mat-dialog-title{
+      padding: 0em;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+
+.corner[md-dialog-close]{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
+  background-color: transparent;
+}
+
+[md-dialog-title]{
+  position: relative;
+}
+
+[md-dialog-close].button-close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  padding: .25em;
+  background: none;
+  border: 0;
+  font-size: 1em;
+  color: gray;
+}

@@ -16,6 +16,8 @@ $youtube-color: #db4437;
 $navbarBackgroundColor: #F62459;
 $navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
 
+$titleColor: #3f1f01;
+
 $thumbSize: 60px;
 $smallThumbSize: 40px;
 $thumbMargin: 2px;
@@ -53,14 +55,9 @@ $imgHeightMobile: 6em;
 }
 
 .gradient-background{
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-  background: #1e5799; /* Old browsers */
-  background: -moz-linear-gradient(top,  #1e5799 0%, #7db9e8 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  #1e5799 0%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  #1e5799 0%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
-  background: #2574A9;
-
+  background-color: #ad6424;
+  background-image: url("/assets/images/45-degree-fabric-dark.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 $colorForGradient: #1b3264;
@@ -80,20 +77,12 @@ $stopForGradient: .9;
 
 
 .title-divisor {
-  background-color: $thumbnail-label-background-color;
+  position: relative;
+
+  background-color: rgba($thumbnail-label-background-color, .9);
   padding-left: 10%;
   padding-top: .25em;
   padding-bottom: .25em;
-
-  span {
-    position: relative;
-    &:after {
-      position: absolute;
-      bottom: -2px;
-      right: -5%;
-      width: 300%;
-      content: '';
-      border-bottom: black 2px solid;
-    }
-  }
+  color: $titleColor;
+  box-shadow: 6px 6px 5px -1px rgba($titleColor, .26);
 }

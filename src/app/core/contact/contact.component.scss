@@ -29,19 +29,22 @@
 
       .text{
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         background-color: rgba(white, .75);
         padding: 1em;
-        a{
-          font-size: 3em;
-          padding: .25em;
-          .fa-facebook-official{
-            color: #3b5998;
-            margin-top: -.5em;
+        >div{
+          margin-bottom: 1em;
+          a{
+            font-size: 3em;
+            padding: .25em;
+            .fa-facebook-official{
+              color: #3b5998;
+              margin-top: -.5em;
+            }
           }
         }
-
       }
     }
 
@@ -53,3 +56,6 @@
   }
 }
 
+.cta{
+  font-size: .4em;
+}

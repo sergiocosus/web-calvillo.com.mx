@@ -27,8 +27,4 @@ export class NavPagesComponent implements OnInit {
   openLoginDialog() {
     this.dialog.open(LoginModalComponent);
   }
-
-  logout() {
-    this.authService.logout();
-  }
 }

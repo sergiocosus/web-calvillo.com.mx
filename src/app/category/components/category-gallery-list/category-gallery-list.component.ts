@@ -36,7 +36,7 @@ export class CategoryGalleryListComponent implements OnInit {
   remove(category) {
     this.categoryService.remove(category.id).subscribe(
       deletedCategory => {
-        this.notify.success('Categoría borrada');
+        this.notify.success('Álbum borrado');
         this.category.categories.splice(
           this.category.categories.indexOf(category), 1
         );
@@ -51,7 +51,7 @@ export class CategoryGalleryListComponent implements OnInit {
     }
     this.categoryService.delete(category.id).subscribe(
       () => {
-        this.notify.success('Categoría borrada permanentemente');
+        this.notify.success('Álbum borrado permanentemente');
         this.category.deleted_categories.splice(
           this.category.deleted_categories.indexOf(category), 1
         );

@@ -9,7 +9,7 @@ import {Category} from '../../../category/category.model';
 @Component({
   selector: 'app-picture-gallery-list',
   templateUrl: './picture-gallery-list.component.html',
-  styleUrls: ['./picture-gallery-list.component.scss']
+  styleUrls: ['./picture-gallery-list.component.scss'],
 })
 export class PictureGalleryListComponent implements OnInit {
   @Input() category: Category;
