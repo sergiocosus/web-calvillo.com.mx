@@ -23,6 +23,15 @@ export class Picture extends ImageableModel{
   getRouterLink(category: Category) {
     return category.routerLink +  '/foto/' + this.link;
   }
+
+  parse(obj): any {
+    super.parse(obj);
+    if (this.categories) {
+      this.categories = Category.parseArray(this.categories);
+    }
+
+    return this;
+  }
 }
 
 export class PictureRequest extends Picture{

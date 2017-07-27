@@ -9,9 +9,9 @@
   <a [routerLink]="'/galeria/' + defaultCatId" routerLinkActive="active">
     <i class="fa fa-camera"></i>
     <span>
-          Galería<br>
-          Fotográfica
-        </span>
+      Galería<br>
+      Fotográfica
+    </span>
   </a>
 </li>
 <li>
@@ -27,7 +27,12 @@
   </a>
 </li>
 <li class="title">
-  <app-logo></app-logo>
+  <app-logo [class.hidden]="!hiddenSearch"></app-logo>
+</li>
+<li>
+  <app-search (hidden)="hiddenSearch = true"
+              (shown)="hiddenSearch = false"
+              class="hide-on-small"></app-search>
 </li>
 <li>
   <a *appIfLogged="false"

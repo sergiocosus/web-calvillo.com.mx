@@ -13,6 +13,7 @@ import {User} from '../../user/user.model';
 export class NavPagesComponent implements OnInit {
   user: User;
   defaultCatId;
+  hiddenSearch: boolean;
 
   constructor(private authService: AuthService,
               private dialog: MdDialog) { }

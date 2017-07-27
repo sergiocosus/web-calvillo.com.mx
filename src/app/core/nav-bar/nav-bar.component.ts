@@ -21,6 +21,8 @@ export class NavBarComponent implements OnInit {
   private user: User;
   private subs = new SubscriptionManager();
 
+  hiddenSearch: boolean;
+
   constructor(private authService: AuthService,
               private dialog: MdDialog,
               private navbarService: NavbarService) { }

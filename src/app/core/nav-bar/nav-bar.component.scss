@@ -76,10 +76,19 @@ nav{
         color: white;
         justify-content: center;
         align-items: center;
-        transition: all 1s;
+
+        font-size: 1em;
+        transition: all .25s;
+
+
+        &.hidden {
+          visibility: hidden;
+          font-size: 0em;
+          flex: 0 0 0px;
+        }
 
         app-logo{
-          transition: all 1s;
+          transition: all .25s;
 
           &.small{
             font-size: .6em;
@@ -94,9 +103,12 @@ nav{
         }
       }
 
-      &.space{
+      &.search{
         display: flex;
-        flex: 0 0 2.5em;
+        flex: 0 0 auto;
+        &.expanded{
+          flex: 1;
+        }
       }
 
       img{
