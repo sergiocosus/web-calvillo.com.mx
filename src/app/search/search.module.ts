@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import {ModuleWithProviders} from '../../../nativescript/node_modules/@angular/core/src/metadata/ng_module';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {SearchService} from './services/search.service';
 import { SearchComponent } from './components/search/search.component';
 import {SharedModule} from '../shared/shared.module';
