@@ -50,17 +50,7 @@ md-option{
     font-size: .85em;
     text-decoration: none;
 
-    picture{
-      flex: 0 0 auto;
-      width: 3em;
-      min-height: 3em;
-      align-self: stretch;
-      background-size: cover;
-      background-position: center;
-      margin-right: .2em;
-      display: flex;
-      align-items: flex-end;
-
+    app-image{
       i{
         font-size: 1em;
         margin: .1em;

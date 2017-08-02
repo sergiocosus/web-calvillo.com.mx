@@ -11,9 +11,9 @@
                   [value]="directory"
                   (onSelectionChange)="selectedModel(category, directory)">
         <a [routerLink]="directory.getRouterLink(category)">
-          <picture  [ngStyle]="{ 'background-image' : 'url('+directory.imageUrl('xs')+')' } ">
+          <app-image [model]="directory">
             <i _ngcontent-c16="" aria-hidden="true" class="fa fa-book"></i>
-          </picture>
+          </app-image>
           <span>
             <span class="category-title">{{category.title }}</span>
             <span>{{ directory.title }}</span>

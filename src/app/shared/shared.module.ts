@@ -22,6 +22,7 @@ import {MyHammerConfig} from './my-hammer-config';
 import {GoogleAnalyticsService} from './services/google-analytics.service';
 import {ScriptService} from './services/script.service';
 import {AdsenseModule} from 'ng2-adsense';
+import { ImageComponent } from './components/image/image.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {AdsenseModule} from 'ng2-adsense';
   declarations: [
     VoidComponent,
     LogoComponent,
+    ImageComponent,
   ],
   exports: [
     CommonModule,
@@ -53,6 +55,7 @@ import {AdsenseModule} from 'ng2-adsense';
     SidebarModule,
     AdsenseModule,
     VoidComponent,
+    ImageComponent,
     MdDialogModule,
     MdButtonModule,
     MdInputModule,
