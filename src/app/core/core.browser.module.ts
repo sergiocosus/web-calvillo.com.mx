@@ -7,6 +7,7 @@ import {LandingModule} from './landing/landing.module.browser';
 import {GalleryModule} from './gallery/gallery.browser.module';
 import {AuthModule} from '../auth/auth.module.browser';
 import { NavPagesComponent } from './nav-pages/nav-pages.component';
+import {SearchModule} from '../search/search.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { NavPagesComponent } from './nav-pages/nav-pages.component';
     LandingModule,
     GalleryModule,
     AuthModule,
+    SearchModule,
   ],
   declarations: [
     CoreComponent,

@@ -1,0 +1,55 @@
+<md-input-container [class.hidden]="hide">
+  <input mdInput color="accent" [(ngModel)]="query" #input
+         placeholder="Escriba sus búsqueda" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete" [displayWith]="displayWith">
+  <ng-container *ngIf="search | async; let search;" >
+
+    <ng-container *ngFor="let directory of search.directories">
+      <md-option  *ngFor="let category of directory.categories"
+                  [value]="directory"
+                  (onSelectionChange)="selectedModel(category, directory)">
+        <a [routerLink]="directory.getRouterLink(category)">
+          <app-image [model]="directory">
+            <i _ngcontent-c16="" aria-hidden="true" class="fa fa-book"></i>
+          </app-image>
+          <span>
+            <span class="category-title">{{category.title }}</span>
+            <span>{{ directory.title }}</span>
+          </span>
+        </a>
+      </md-option>
+    </ng-container>
+
+    <md-option *ngFor="let category of search.categories"
+               [value]="category" (onSelectionChange)="selectedCategory(category)">
+      <a [routerLink]="category.routerLink">
+        <picture  [ngStyle]="{ 'background-image' : 'url('+category.imageUrl('xs')+')' } ">
+          <i _ngcontent-c14="" aria-hidden="true" class="fa fa-folder"></i>
+        </picture>
+        <span>
+          {{ category.title }}
+        </span>
+      </a>
+    </md-option>
+
+    <ng-container *ngFor="let picture of search.pictures">
+      <md-option  *ngFor="let category of picture.categories"
+                  [value]="picture" (onSelectionChange)="selectedModel(category, picture)">
+        <a [routerLink]="picture.getRouterLink(category)">
+          <picture  [ngStyle]="{ 'background-image' : 'url('+picture.imageUrl('xs')+')' } ">
+            <i _ngcontent-c15="" aria-hidden="true" class="fa fa-camera"></i>
+          </picture>
+          <span>
+            <span class="category-title">{{category.title }}</span>
+            <span>{{ picture.title }}</span>
+          </span>
+        </a>
+      </md-option>
+    </ng-container>
+
+  </ng-container>
+</md-autocomplete>
+<div class="void" *ngIf="hide"></div>
+<i (click)="toggleHidden()" class="fa fa-search" aria-hidden="true"></i>

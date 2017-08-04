@@ -51,15 +51,20 @@
       flex: 1 0 0;
       align-self: center;
       padding: .5em;
-      height: 15em;
-
+      height: 10em;
+      align-items: center;
+      align-self: stretch;
       @media (min-width: $smScreen) {
         flex: 1 0 10em;
-        height: 10em;
       }
 
       img{
-        width: 100%;
+        height: 100%;
+        width: auto;
+        @media (min-width: $smScreen) {
+          height: auto;
+          width: 100%;
+        }
       }
     }
 

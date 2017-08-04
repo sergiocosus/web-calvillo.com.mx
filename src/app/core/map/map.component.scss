@@ -11,6 +11,31 @@
   }
 
 }
+.directory-bar{
+  display: flex;
+  overflow-x: auto;
+  button {
+    display: flex;
+    min-width: inherit;
+    padding: .2em;
+    /deep/ .mat-button-wrapper{
+      display: flex;
+    }
+
+    span{
+      display: none;
+    }
+    @media (min-width: $smScreen) {
+      span{
+        display: inherit;
+      }
+    }
+  }
+}
+
+button.mat-menu-item{
+  display: flex;
+}
 
 agm-map{
   height: calc(100vh - #{$navBarTop} - 50px);

@@ -4,6 +4,7 @@ import {CategoryService} from '../../services/category.service';
 import {ImageResult} from 'ng2-imageupload';
 import {MdDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 
 @Component({
   selector: 'app-add-category-modal',
@@ -18,10 +19,18 @@ export class AddCategoryModalComponent implements OnInit {
   src: string = null;
   form: FormGroup;
 
+  subs = new SubscriptionManager();
+  categories: Category[];
+
   constructor(private categoryService: CategoryService,
               private dialog: MdDialogRef<AddCategoryModalComponent>,
               private fb: FormBuilder) {
+  }
 
+  ngOnInit() {
+    this.subs.add = this.categoryService.getAllCached().subscribe(
+        categories => this.categories = categories
+    );
   }
 
   createForm(category: Category) {
@@ -32,11 +41,16 @@ export class AddCategoryModalComponent implements OnInit {
       description: [category.description, []],
       image: [],
       src: [category.image_url],
-      category_id: category.category_id
-    })
-  }
+      category: category
+    });
 
-  ngOnInit() {
+    this.subs.add = this.categoryService.getAllCached().subscribe(
+        categories => {
+          this.form.get('category').setValue(categories.find(
+              categoryOfList => categoryOfList.id === category.category_id
+          ));
+        }
+    );
   }
 
   init(parent_category_id: number) {
@@ -79,6 +93,8 @@ export class AddCategoryModalComponent implements OnInit {
   submit() {
     const categoryData = this.form.value;
     categoryData.src = undefined;
+    categoryData.category_id = categoryData.category.id;
+    categoryData.category = undefined;
     if (this.createMode) {
       this.createCategory(categoryData);
     } else {

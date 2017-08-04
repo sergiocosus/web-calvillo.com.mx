@@ -5,12 +5,17 @@ import {DirectoryService} from '../../services/directory.service';
 import {ImageResult} from 'ng2-imageupload';
 import {Directory} from '../../directory.model';
 import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
+import {CategoryService} from '../../../category/services/category.service';
+import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
+import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
+import {Category} from '../../../category/category.model';
 
 @Component({
   selector: 'app-directory-dialog',
   templateUrl: './directory-dialog.component.html',
   styleUrls: ['./directory-dialog.component.scss']
 })
+@AutoUnsubscribe()
 export class DirectoryDialogComponent implements OnInit {
   @Output() created = new EventEmitter;
   @Output() updated = new EventEmitter;
@@ -19,7 +24,11 @@ export class DirectoryDialogComponent implements OnInit {
   src: string = null;
   form: FormGroup;
 
+  subs = new SubscriptionManager();
+  categories: Category[];
+
   constructor(private directoryService: DirectoryService,
+              private categoryService: CategoryService,
               private dialogRef: MdDialogRef<DirectoryDialogComponent>,
               private dialog: MdDialog,
               private fb: FormBuilder) {
@@ -43,25 +52,45 @@ export class DirectoryDialogComponent implements OnInit {
       longitude: [directory.longitude, []],
       image: [],
       src: [directory.image_url],
-      category_id: parent_category_id
+      categories: [],
     });
+
+
   }
 
   ngOnInit() {
+    this.subs.add = this.categoryService.getAllCached().subscribe(
+        categories => this.categories = categories
+    );
   }
 
   initCreateMode(parent_category_id: number) {
     const directory = new Directory();
     this.createMode = true;
     this.createForm(directory, parent_category_id);
+    this.subs.add = this.categoryService.getAllCached().subscribe(
+        categories => {
+          this.form.get('categories').setValue(categories.filter(
+              category => category.id == parent_category_id
+          ));
+        }
+    );
   }
 
   initEditMode(directory: Directory) {
     this.createMode = false;
     this.createForm(directory);
+    console.log(directory.categories);
+    this.subs.add = this.categoryService.getAllCached().subscribe(
+        categories => {
+          this.form.get('categories').setValue(categories.filter(
+              category => directory.categories.find(
+                  categoryPicture => categoryPicture.id === category.id
+              )
+          ));
+        }
+    );
   }
-
-
 
   private createCategory(categoryData) {
     this.directoryService.post(categoryData).subscribe(
@@ -107,6 +136,9 @@ export class DirectoryDialogComponent implements OnInit {
   submit() {
     const categoryData = this.form.value;
     categoryData.src = undefined;
+    categoryData.categories = categoryData.categories.map(
+        category => category.id
+    );
     if (this.createMode) {
       this.createCategory(categoryData);
     } else {

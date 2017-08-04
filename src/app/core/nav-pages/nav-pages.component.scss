@@ -8,3 +8,20 @@ app-logo{
   }
 }
 
+.hide-on-small {
+  display: none;
+
+  @media (min-width: $smScreen) {
+    display: inherit;
+  }
+}
+
+app-logo{
+  font-size: 1em;
+  transition: all .5s;
+
+  &.hidden{
+    visibility: hidden;
+    font-size: 0em;
+  }
+}

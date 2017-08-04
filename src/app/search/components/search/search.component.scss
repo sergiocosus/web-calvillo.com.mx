@@ -1,0 +1,86 @@
+
+:host{
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  margin-right: .25em;
+  margin-left: .25em;
+}
+
+md-input-container{
+  flex: 1 0 0;
+  background-color: white;
+  font-size: .75em;
+  border-radius: .25em;
+
+  visibility: visible;
+  transition: all .25s;
+  max-width: 600px;
+
+  padding-left: .5em;
+
+  &.hidden{
+    visibility: hidden;
+    max-width: 0;
+  }
+
+  /deep/ .mat-input-wrapper{
+    margin-bottom: -1.5em;
+    min-width: 15em;
+  }
+}
+
+i{
+  flex: 0 0 auto;
+}
+.void{
+  flex: 1 0 0;
+}
+
+md-option{
+  min-height: 48px;
+  height: auto;
+  margin-bottom: 1px;
+  padding: 0 .5em;
+
+  a{
+    display: flex;
+    align-items: center;
+    font-size: .85em;
+    text-decoration: none;
+
+    app-image{
+      i{
+        font-size: 1em;
+        margin: .1em;
+        text-shadow: 1px 1px 5px #666;
+      }
+    }
+    >span{
+      flex: 1 0 0;
+      white-space: initial;
+      line-height: 1em;
+      color: black;
+      display: flex;
+      flex-direction: column;
+
+      .category-title{
+        font-weight: bolder;
+        font-size: .8em;
+      }
+    }
+  }
+}
+
+img{
+  height: 2em;
+}
+
+.fa{
+  color: white;
+  cursor: pointer;
+  font-size: 1.75em;
+  margin: .2em;
+  margin-left: .5em;
+}

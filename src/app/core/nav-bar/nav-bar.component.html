@@ -5,13 +5,16 @@
         <i class="fa fa-bars" aria-hidden="true"></i>
       </a>
     </li>
-    <li class="title">
+    <li class="title" [class.hidden]="!hiddenSearch" >
       <app-logo [class.small]="title && title.length"></app-logo>
       <span class="subtitle">
         {{title}}
       </span>
     </li>
-    <li class="space">
+    <li class="search" [class.expanded]="!hiddenSearch">
+      <app-search (hidden)="hiddenSearch = true"
+                  (shown)="hiddenSearch = false"
+                  class="hide-on-small"></app-search>
     </li>
   </ul>
   <ul class="desktop">

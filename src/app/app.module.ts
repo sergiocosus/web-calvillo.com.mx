@@ -14,6 +14,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import {FacebookModule} from 'ngx-facebook';
+import {SearchModule} from './search/search.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {FacebookModule} from 'ngx-facebook';
     AppRoutingModule,
     SharedModule,
     SharedModule.forRoot(),
+    SearchModule.forRoot(),
     FacebookModule.forRoot(),
     CategoryModule.forRoot(),
     CoreModule,

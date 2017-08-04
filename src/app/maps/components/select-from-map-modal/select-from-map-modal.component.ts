@@ -7,6 +7,8 @@ import {MdDialogRef} from '@angular/material';
   styleUrls: ['./select-from-map-modal.component.scss']
 })
 export class SelectFromMapModalComponent implements OnInit {
+  static lastLongitude = -102.7104999;
+  static lastLatitude= 21.8531537;
   longitude = 0;
   latitude = 0;
   latitudeMap = 0;
@@ -26,15 +28,17 @@ export class SelectFromMapModalComponent implements OnInit {
         this.closed.emit({
           latitude: this.latitude,
           longitude: this.longitude,
-        })
+        });
+        SelectFromMapModalComponent.lastLongitude = this.longitude;
+        SelectFromMapModalComponent.lastLatitude = this.latitude;
       }
     )
   }
 
   setCoords(lon, lat) {
     if (!lon) {
-      this.longitudeMap = this.longitude = -102.7104999;
-      this.latitudeMap = this.latitude = 21.8531537;
+      this.longitudeMap = this.longitude = SelectFromMapModalComponent.lastLongitude;
+      this.latitudeMap = this.latitude = SelectFromMapModalComponent.lastLatitude;
     } else {
       this.longitudeMap = this.longitude = lon;
       this.latitudeMap = this.latitude = lat;

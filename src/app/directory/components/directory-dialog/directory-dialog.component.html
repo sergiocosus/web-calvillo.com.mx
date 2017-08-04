@@ -66,6 +66,15 @@
                placeholder="Longitud">
       </md-input-container>
     </section>
+
+    <md-select formControlName="categories" placeholder="Álbumes"
+               [multiple]="true">
+      <md-option *ngFor="let category of categories" [value]="category">
+        {{category.category ? category.category.title : ''}}
+        / {{category.title}}
+      </md-option>
+    </md-select>
+
     <input class="input-picture" imageUpload
            (imageSelected)="selected($event)"
            accept="image/*" name="picture" type="file">

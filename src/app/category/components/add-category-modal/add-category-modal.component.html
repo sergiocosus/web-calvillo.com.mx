@@ -22,6 +22,14 @@
       <input mdInput formControlName="description"
              placeholder="Descripción"  >
     </md-input-container>
+
+    <md-select formControlName="category" placeholder="Albumes">
+      <md-option *ngFor="let category of categories" [value]="category">
+        {{category.category ? category.category.title : ''}}
+        / {{category.title}}
+      </md-option>
+    </md-select>
+
     <input class="input-picture" imageUpload
            (imageSelected)="selected($event)"
            accept="image/*" name="picture" type="file">
