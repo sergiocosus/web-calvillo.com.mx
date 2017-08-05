@@ -1,3 +1,4 @@
+
 node_modules
 yarn.lock
 platforms
@@ -10,6 +11,7 @@ app/**/*
 
 src/app
 src/assets
-src/environments
 src/node_modules
 src/platforms
+
+times.html

@@ -31,13 +31,13 @@ gulp.task('resources.App_Resources', () => {
 
 gulp.task('resources.Assets', () => {
     return gulp.src([`${SRC}**/*`, `!${SRC}app/`, `!${SRC}test/`, '!**/*.spec.*', '!**/*.js', '!**/*.ts', '!**/*.scss', '!**/*.html'], {follow: true})
-        // .pipe(debug({title: 'resources.Assets'}))
+    // .pipe(debug({title: 'resources.Assets'}))
         .pipe(gulp.dest(DEST));
 });
 
 gulp.task('project.Typescript', () => {
     return gulp.src([`${SRC}**/*.ts`, '!**/*.tns.*', '!**/*.spec.*'], {follow: true})
-        // .pipe(debug({title: 'project.Typescript'}))
+    // .pipe(debug({title: 'project.Typescript'}))
         .pipe(gulp.dest(DEST));
 });
 
@@ -144,26 +144,26 @@ gulp.task(
 gulp.task('tns.Livesync', () => {
     return gulp.watch([`${SRC}**/*.tns.html`, `${SRC}/**/*.tns.scss`, `${SRC}/**/*.component.ts`])
         .on('change', (file) => {
-            var outputDest = file.replace(SRC, DEST);
-            outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
-            gulp.src([file])
-                .pipe(rename(removeTns))
-                .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
-                .pipe(debug({title: 'tns.Livesync'}))
-                .pipe(gulp.dest(outputDest, {overwrite: true}));
-        });
+        var outputDest = file.replace(SRC, DEST);
+outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
+gulp.src([file])
+    .pipe(rename(removeTns))
+    .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
+    .pipe(debug({title: 'tns.Livesync'}))
+    .pipe(gulp.dest(outputDest, {overwrite: true}));
+});
 });
 
 gulp.task('tns.Livesync.Phone', () => {
     return gulp.watch([`${SRC}**/*.tns.phone.html`, `${SRC}/**/*.tns.phone.scss`, `${SRC}/**/*.component.ts`])
         .on('change', (file) => {
-            var outputDest = file.replace(SRC, DEST);
-            outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
-            gulp.src([file])
-                .pipe(rename(removeTns))
-                .pipe(rename(removePhone))
-                .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
-                .pipe(debug({title: 'tns.Livesync.Phone'}))
-                .pipe(gulp.dest(outputDest, {overwrite: true}));
-        });
+        var outputDest = file.replace(SRC, DEST);
+outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
+gulp.src([file])
+    .pipe(rename(removeTns))
+    .pipe(rename(removePhone))
+    .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
+    .pipe(debug({title: 'tns.Livesync.Phone'}))
+    .pipe(gulp.dest(outputDest, {overwrite: true}));
+});
 });

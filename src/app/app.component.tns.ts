@@ -14,6 +14,8 @@ import {
   AndroidActivityBackPressedEventData,
   AndroidApplication
 } from 'tns-core-modules/application/application';
+import {RadSideDrawerComponent} from 'nativescript-telerik-ui/sidedrawer/angular';
+import {RadSideDrawer} from 'nativescript-telerik-ui/sidedrawer';
 
 
 @Component({
@@ -23,10 +25,14 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  @ViewChild(ListViewComponent) listView: ListViewComponent
+  @ViewChild(ListViewComponent) listView: ListViewComponent;
+  @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+  private drawer: RadSideDrawer;
+
   public tvtext = "kjkjkjkj";
   oneway = 'calvillo.com.mx';
   category: Category;
+  private _mainContentText: string;
 
   constructor(
     private categoryService: CategoryService,
@@ -58,6 +64,7 @@ export class AppComponent implements OnInit{
     if (isAndroid) {
       this.subscribeBackButton();
     }
+    this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
 
   }
 
@@ -84,4 +91,28 @@ export class AppComponent implements OnInit{
     this.loadCategory(this.category.categories[args.index].link);
   }
 
+
+
+
+  ngAfterViewInit() {
+    this.drawer = this.drawerComponent.sideDrawer;
+  }
+
+
+  get mainContentText() {
+    return this._mainContentText;
+  }
+
+  set mainContentText(value: string) {
+    this._mainContentText = value;
+  }
+
+  public openDrawer() {
+    this.drawer.showDrawer();
+  }
+
+  public onCloseDrawerTap() {
+    this.drawer.closeDrawer();
+  }
 }
+

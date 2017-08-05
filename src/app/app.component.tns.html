@@ -1,11 +1,33 @@
-<ng-container *ngIf="category">
-  <ListView  #listView [items]="category.categories" (itemTap)="onItemTap($event)">
-    <template let-item="item" let-i="index" let-odd="odd" let-even="even">
-      <StackLayout [class.odd]="odd" [class.even]="even">
-        <Label [text]='"index: " + i'></Label>
-        <Label [text]='"[" + item.id +"] " + item.title'></Label>
-        <Image [src]="item.imageUrl('md')" ></Image>
-      </StackLayout>
-    </template>
-  </ListView>
-</ng-container>
+<ActionBar title="Calvillo.com.mx"  android.icon="res://icon" android.iconVisibility="always">
+  <NavigationButton icon="res://ic_menu" (tap)="openDrawer()" ></NavigationButton>
+  <Button [text]="getTitle() + ' Calvillo.com.mx'" (tap)="openDrawer()" class="drawerContentButton"></Button>
+</ActionBar>
+
+<RadSideDrawer tkExampleTitle tkToggleNavButton>
+  <StackLayout tkDrawerContent class="sideStackLayout">
+    <StackLayout class="sideTitleStackLayout">
+      <Label text="Navigation Menu"></Label>
+    </StackLayout>
+    <StackLayout class="sideStackLayout">
+      <Label text="Principal" class="sideLabel sideLightGrayLabel"></Label>
+      <Label text="Galería" class="sideLabel"></Label>
+      <Label text="Mapa" class="sideLabel"></Label>
+    </StackLayout>
+    <Label text="Close Drawer" color="lightgray" padding="10" style="horizontal-align: center" (tap)="onCloseDrawerTap()"></Label>
+  </StackLayout>
+
+  <StackLayout tkMainContent>
+    <ng-container *ngIf="category">
+      <ListView  #listView [items]="category.categories" (itemTap)="onItemTap($event)">
+        <template let-item="item" let-i="index" let-odd="odd" let-even="even">
+          <StackLayout [class.odd]="odd" [class.even]="even">
+            <Label [text]='"index: " + i'></Label>
+            <Label [text]='"Nicess!" + i'></Label>
+            <Label [text]='"[" + item.id +"] " + item.title'></Label>
+            <Image [src]="item.imageUrl('md')"  ></Image>
+          </StackLayout>
+        </template>
+      </ListView>
+    </ng-container>
+  </StackLayout>
+</RadSideDrawer>
