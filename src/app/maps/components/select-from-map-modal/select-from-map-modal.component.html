@@ -8,7 +8,9 @@
 <agm-map *ngIf="!hidden"
                  [latitude]="latitudeMap"
                  [longitude]="longitudeMap"
-                 [zoom]="14">
+                 [zoom]="14"
+                 [mapTypeControl]="true"
+>
   <agm-marker
     [latitude]="latitude"
     [longitude]="longitude"
