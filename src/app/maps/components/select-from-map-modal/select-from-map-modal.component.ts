@@ -49,4 +49,8 @@ export class SelectFromMapModalComponent implements OnInit {
     this.longitude = $event.coords.lng;
     this.latitude = $event.coords.lat;
   }
+
+  close() {
+    this.dialog.close();
+  }
 }

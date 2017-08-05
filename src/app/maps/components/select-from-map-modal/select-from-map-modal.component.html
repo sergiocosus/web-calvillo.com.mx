@@ -10,6 +10,7 @@
                  [longitude]="longitudeMap"
                  [zoom]="14"
                  [mapTypeControl]="true"
+         (keyup.enter)="close()"
 >
   <agm-marker
     [latitude]="latitude"
