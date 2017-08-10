@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+if (typeof localStorage === undefined || localStorage === null) {
+  let localStorage = null;
+}
+
 @Injectable()
 export class LocalStorageService {
   constructor() {

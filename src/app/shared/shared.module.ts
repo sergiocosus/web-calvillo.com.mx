@@ -23,6 +23,7 @@ import {GoogleAnalyticsService} from './services/google-analytics.service';
 import {ScriptService} from './services/script.service';
 import {AdsenseModule} from 'ng2-adsense';
 import { ImageComponent } from './components/image/image.component';
+import {PlatformService} from './services/platform.service';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ export class SharedModule {
         NotifyService,
         ScriptService,
         GoogleAnalyticsService,
+        PlatformService,
         {
           provide: HAMMER_GESTURE_CONFIG,
           useClass: MyHammerConfig ,

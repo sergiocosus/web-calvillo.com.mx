@@ -1,24 +1,18 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import { AppComponent } from './index';
+import {NgModule} from '@angular/core';
 import {ServerModule} from '@angular/platform-server';
+
 import {AppModule} from './app.module';
+import {AppComponent} from './app.component';
 
-/**
- * Top-level NgModule "container"
- */
 @NgModule({
-  /** Root App Component */
-  bootstrap: [ AppComponent ],
-  /** Our Components */
-  declarations: [
-    //AppComponent
-  ],
   imports: [
+    // The AppServerModule should import your AppModule followed
+    // by the ServerModule from @angular/platform-server.
+    AppModule,
     ServerModule,
-    AppModule
   ],
- // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  // Since the bootstrapped component is not inherited from your
+  // imported AppModule, it needs to be repeated here.
+  bootstrap: [AppComponent],
 })
-export class AppServerModule {
-
-}
+export class AppServerModule {}

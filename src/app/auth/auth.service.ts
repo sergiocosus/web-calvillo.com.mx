@@ -8,6 +8,7 @@ import {ApiHttp} from '../shared/api-http.service';
 import {UserService} from '../user/user.service';
 import {environment} from '../../environments/environment';
 import {Http, URLSearchParams, Headers} from '@angular/http';
+import {PlatformService} from '../shared/services/platform.service';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,8 @@ export class AuthService {
               private router: Router,
               private userService: UserService,
               //private noty: NotifyService,
-              private localStorage: LocalStorageService) {
+              private localStorage: LocalStorageService,
+              private platformService: PlatformService) {
     this.loggedAccountReplaySubject = new ReplaySubject<User>(1);
   }
 
@@ -80,6 +82,10 @@ export class AuthService {
         this.loggedUser = null;
         this.loggedAccountReplaySubject.next(this.loggedUser);
       } else {
+        if (this.platformService.isPlatformServer()) {
+          return;
+        }
+
         this.userService.getMe().subscribe(
           user => {
             this.loggedUser = user;
