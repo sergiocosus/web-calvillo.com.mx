@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Category} from '../category.model';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()

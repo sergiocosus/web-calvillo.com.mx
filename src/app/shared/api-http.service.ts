@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Http, RequestOptionsArgs, Response, Headers} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 
 import {environment} from "../../environments/environment";
 import {LocalStorageService} from './services/local-storage.service';
-import {NotificationsService} from 'angular2-notifications';
 
 
 @Injectable()
