@@ -11,7 +11,7 @@ sudo npm install -g pm2
 
 Start process
 ```
-pm2 start node ./dist-server/server-webpack.js
+pm2 start  ./dist-server/server-webpack.js
 ```
 
 Keep running even if restart

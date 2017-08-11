@@ -346,7 +346,12 @@ export class PictureGalleryComponent implements OnInit {
   updateMetaTags() {
     this.meta.updateTag({
       property: 'og:image',
-      content: this.picture.image_url
+      content: this.picture.imageUrl('xlg')
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: this.picture.title
     });
 
     this.meta.updateTag({

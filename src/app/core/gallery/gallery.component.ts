@@ -72,7 +72,12 @@ export class GalleryComponent implements OnInit {
   updateMetaTags() {
       this.meta.updateTag({
           property: 'og:image',
-          content: this.category.image_url
+          content: this.category.imageUrl('xlg')
+      });
+
+      this.meta.updateTag({
+          property: 'og:title',
+          content: this.category.title
       });
 
       this.meta.updateTag({
