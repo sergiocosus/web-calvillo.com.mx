@@ -1,30 +1,42 @@
 import { Injectable } from '@angular/core';
-
-if (typeof localStorage === undefined || localStorage === null) {
-  let localStorage = null;
-}
+import {PlatformService} from './platform.service';
 
 @Injectable()
 export class LocalStorageService {
-  constructor() {
+  constructor(private platformService: PlatformService) {
+    if(this.platformService.isPlatformServer()){
+      return;
+    }
     if (!localStorage) {
       console.warn('LOCAL_STORAGE_NOT_SUPPORTED');
     }
   }
 
   get(key: string) {
+    if(this.platformService.isPlatformServer()){
+      return;
+    }
+
     if (localStorage) {
       return localStorage.getItem(key);
     }
   }
 
   set(key, value) {
+    if(this.platformService.isPlatformServer()){
+      return;
+    }
+
     if (localStorage) {
       return localStorage.setItem(key, value);
     }
   }
 
   remove(key) {
+    if(this.platformService.isPlatformServer()){
+      return;
+    }
+
     if (localStorage) {
       return localStorage.removeItem(key);
     }
