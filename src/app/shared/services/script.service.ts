@@ -9,8 +9,6 @@ export class ScriptService {
   private facebookSdkLoaded = false;
 
   constructor(private platformService: PlatformService) {
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-    console.log(this.platformService.isPlatformServer());
     if (this.platformService.isPlatformServer()) {
       return;
     }

@@ -19,6 +19,10 @@ export class AppComponent implements OnInit{
               private scriptService: ScriptService,
               private platformService: PlatformService,
               private meta: Meta) {
+    if (this.platformService.isPlatformServer()) {
+      console.log(this.router.url);
+    }
+
     this.authService.updateLoggedUserObservable().subscribe(() => {});
 
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe((e: NavigationEnd) => {
