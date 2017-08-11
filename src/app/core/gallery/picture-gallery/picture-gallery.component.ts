@@ -11,7 +11,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {MdDialog} from '@angular/material';
 import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import {environment} from '../../../../environments/environment';
 import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
 import {SocialPostDialogComponent} from '../../../picture/components/social-post-dialog/social-post-dialog.component';
@@ -107,7 +107,8 @@ export class PictureGalleryComponent implements OnInit {
               private router: Router,
               private resolutionService: ResolutionService,
               private dialog: MdDialog,
-              private title: Title) { }
+              private title: Title,
+              private meta: Meta) { }
 
   ngOnInit() {
     this.initImgSize();
@@ -215,6 +216,7 @@ export class PictureGalleryComponent implements OnInit {
           found = true;
           this.picture = picture;
           this.title.setTitle(this.category.title + " - " + this.picture.title);
+          this.updateMetaTags();
           if (this.oldIndex !== null) {
             this.oldIndex = this.index;
           }
@@ -339,5 +341,22 @@ export class PictureGalleryComponent implements OnInit {
     const dialog = this.dialog.open(SocialPostDialogComponent);
     dialog.componentInstance.init(this.category, this.picture);
 
+  }
+
+  updateMetaTags() {
+    this.meta.updateTag({
+      property: 'og:image',
+      content: this.picture.image_url
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: this.picture.description.replace(/<(?:.|\n)*?>/gm, ''),
+    });
+
+    this.meta.updateTag({
+      name: 'description',
+      content: this.picture.description.replace(/<(?:.|\n)*?>/gm, ''),
+    });
   }
 }
