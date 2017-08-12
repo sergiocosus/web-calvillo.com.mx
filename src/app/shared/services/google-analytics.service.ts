@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
-
-if (typeof ga === "undefined" || localStorage === null) {
-  let ga = null;
-}
+import {PlatformService} from './platform.service';
 
 @Injectable()
 export class GoogleAnalyticsService {
   production = environment.production;
   trackingId = environment.googleAnalyticsTrakingId;
-  constructor() {
-    if (!ga) {
+  constructor(private platformService: PlatformService) {
+    if (this.platformService.isPlatformServer()) {
       return;
     }
+
     if (this.production) {
       ga('create', this.trackingId, 'auto');
     } else {
@@ -22,7 +20,7 @@ export class GoogleAnalyticsService {
 
 
   pageView(url: string) {
-    if (!ga) {
+    if (this.platformService.isPlatformServer()) {
       return;
     }
 
@@ -36,7 +34,7 @@ export class GoogleAnalyticsService {
                    eventAction: string,
                    eventLabel: string = null,
                    eventValue: number = null) {
-    if (!ga) {
+    if (this.platformService.isPlatformServer()) {
       return;
     }
 
