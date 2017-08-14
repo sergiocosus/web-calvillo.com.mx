@@ -13,7 +13,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {MapsModule} from '../maps/maps.module';
 import { PictureFormComponent } from './components/picture-form/picture-form.component';
 import { PictureGalleryListComponent } from './components/picture-gallery-list/picture-gallery-list.component';
-import {AuthModule} from '../auth/auth.module.browser';
+import {AuthModule} from '../auth/auth.module';
 import {DateTimePickerModule} from 'ng-pick-datetime';
 import { SocialPostDialogComponent } from './components/social-post-dialog/social-post-dialog.component';
 

@@ -6,7 +6,7 @@ import { AddCategoryModalComponent } from './components/add-category-modal/add-c
 import {MaterialModule, MdButtonModule} from '@angular/material';
 import {ImageUploadModule} from 'ng2-imageupload';
 import { CategoryGalleryListComponent } from './components/category-gallery-list/category-gallery-list.component';
-import {AuthModule} from '../auth/auth.module.browser';
+import {AuthModule} from '../auth/auth.module';
 
 @NgModule({
   imports: [

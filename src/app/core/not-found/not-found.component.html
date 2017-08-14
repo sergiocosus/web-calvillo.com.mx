@@ -1,0 +1,48 @@
+<h3>
+  <span class="big-font">
+    <i class="fa fa-frown-o" aria-hidden="true"></i>
+    No encontramos lo que buscabas,
+  </span>
+  <br>
+  pero tal vez te podría interesar:
+</h3>
+
+<div class="results">
+  <ul *ngIf="search | async; let search;" >
+    <li *ngIf="!search.directories.length
+                && !search.pictures.length &&
+                !search.categories.length"
+        class="cta">
+      <a [routerLink]="'/galeria/' + defaultCategoryId" md-button>
+          <span>
+            <i class="fa fa-camera"></i>
+            Galería
+          </span>
+      </a>
+      <a routerLink="/mapa" md-button>
+          <span>
+            <i class="fa fa-globe" aria-hidden="true"></i>
+            Mapa
+          </span>
+      </a>
+    </li>
+
+    <li *ngFor="let directory of search.directories">
+      <a *ngFor="let category of directory.categories"
+          [routerLink]="directory.getRouterLink(category)">
+        <app-directory [category]="directory.category" [directory]="directory">
+        </app-directory>
+      </a>
+    </li>
+
+    <li *ngFor="let subcategory of search.categories">
+      <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
+    </li>
+
+    <ng-container *ngFor="let picture of search.pictures">
+      <li  *ngFor="let category of picture.categories">
+        <app-picture-thumbnail [category]="category" [picture]="picture"></app-picture-thumbnail>
+      </li>
+    </ng-container>
+  </ul>
+</div>

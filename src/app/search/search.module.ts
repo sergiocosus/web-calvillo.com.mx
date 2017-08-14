@@ -3,7 +3,7 @@ import {SearchService} from './services/search.service';
 import { SearchComponent } from './components/search/search.component';
 import {SharedModule} from '../shared/shared.module';
 import {MdAutocompleteModule} from '@angular/material';
-import {CategoryModule} from '../category/category.module.browser';
+import {CategoryModule} from '../category/category.module';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import {CategoryModule} from '../category/category.module.browser';
   ],
   declarations: [SearchComponent],
   exports:[
-      SearchComponent,
+    SearchComponent,
   ]
 })
 export class SearchModule {
