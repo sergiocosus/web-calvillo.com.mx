@@ -1,8 +1,8 @@
 import {
-  Component, OnInit, ElementRef, HostBinding, ViewChild, HostListener, trigger, state,
-  transition, style, animate, PLATFORM_ID, Inject, OnDestroy
+  Component, OnInit, ElementRef, ViewChild, HostListener, trigger, state,
+  transition, style, animate, PLATFORM_ID, Inject
 } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
@@ -15,6 +15,8 @@ import {Meta, Title} from '@angular/platform-browser';
 import {environment} from '../../../../environments/environment';
 import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
 import {SocialPostDialogComponent} from '../../../picture/components/social-post-dialog/social-post-dialog.component';
+
+declare var window: any;
 
 @Component({
   selector: 'app-picture-gallery',
@@ -98,6 +100,7 @@ export class PictureGalleryComponent implements OnInit {
   page = 0;
   elementsByPage;
 
+  currentRoute: string;
 
   private sub = new SubscriptionManager;
 
@@ -108,7 +111,11 @@ export class PictureGalleryComponent implements OnInit {
               private resolutionService: ResolutionService,
               private dialog: MdDialog,
               private title: Title,
-              private meta: Meta) { }
+              private meta: Meta) {
+    this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
+      this.currentRoute = e.url;
+    });
+  }
 
   ngOnInit() {
     this.initImgSize();

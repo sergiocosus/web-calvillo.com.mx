@@ -76,6 +76,10 @@
         <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
       </button>
     </h1>
+    <share-buttons [url]="currentRoute"
+                   [reddit]="false"
+                   [showCount]="true"
+    ></share-buttons>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
   <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
