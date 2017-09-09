@@ -1,107 +1,50 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
+import { Http } from '@angular/http';
+// nativescript
+import { NSModuleFactoryLoader } from 'nativescript-angular/router';
+import { NativeScriptHttpModule } from 'nativescript-angular/http';
+import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
+// vendor dependencies
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// app
+import { Config } from './common/index';
+import { AppComponent } from './app.component';
+import { SHARED_MODULES } from './app.common';
 import {CategoryService} from './category/services/category.service';
-import {Category} from './category/category.model';
-import {
-    ListViewComponent,
-    SetupItemViewArgs
-} from 'nativescript-angular/directives/list-view-comp';
 
+Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
 
-import * as application from "application";
-import { isAndroid } from "platform";
-import {
-    AndroidActivityBackPressedEventData,
-    AndroidApplication
-} from 'tns-core-modules/application/application';
-import {RadSideDrawerComponent} from 'nativescript-telerik-ui/sidedrawer/angular';
-import {RadSideDrawer} from 'nativescript-telerik-ui/sidedrawer';
-
-
-@Component({
-    moduleId: module.id,
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-})
-export class AppComponent implements OnInit{
-    @ViewChild(ListViewComponent) listView: ListViewComponent;
-    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
-
-    public tvtext = "kjkjkjkj";
-    oneway = 'calvillo.com.mx';
-    category: Category;
-    private _mainContentText: string;
-
-    constructor(
-        private categoryService: CategoryService,
-        private changeDetectorRef: ChangeDetectorRef,
-        private router: Router,
-    ) {
-    }
-
-
-    ngOnInit(): void {
-        this.loadCategory('principal');
-
-        if (isAndroid) {
-            this.subscribeBackButton();
-        }
-    }
-
-
-    getTitle() {
-        if (this.category) {
-            return this.category.title;
-        } else {
-            return '';
-        }
-    }
-
-    subscribeBackButton() {
-        application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-            if (this.category && this.category.category) {
-                console.log(this.category.category.link);
-                this.loadCategory(this.category.category.link);
-                data.cancel = true;
-            }
-        });
-    }
-
-    loadCategory(link: string) {
-        this.categoryService.getByLink(link).subscribe(
-            category => {
-                this.category = category;
-                this.listView.nativeElement.refresh();
-                this.changeDetectorRef.detectChanges();
-            }
-        )
-    }
-
-    public onItemTap(args: SetupItemViewArgs) {
-        this.loadCategory(this.category.categories[args.index].link);
-    }
-
-    ngAfterViewInit() {
-        this.drawer = this.drawerComponent.sideDrawer;
-    }
-
-
-    get mainContentText() {
-        return this._mainContentText;
-    }
-
-    set mainContentText(value: string) {
-        this._mainContentText = value;
-    }
-
-    public openDrawer() {
-        this.drawer.showDrawer();
-    }
-
-    public onCloseDrawerTap() {
-        this.drawer.closeDrawer();
-    }
+export function createTranslateLoader(http: Http) {
+    return new TranslateHttpLoader(<any>http, '/assets/i18n/', '.json');
 }
 
+@NgModule({
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        NativeScriptModule,
+        NativeScriptHttpModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [Http]
+            }
+        }),
+        ...SHARED_MODULES
+    ],
+    declarations: [
+        AppComponent,
+    ],
+    providers: [
+        // Allows your {N} application to use lazy-loading
+        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
+        CategoryService,
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
+})
+export class AppModule { }

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {CategoryService} from './category/services/category.service';
 import {Category} from './category/category.model';
@@ -21,42 +21,26 @@ import {RadSideDrawer} from 'nativescript-telerik-ui/sidedrawer';
 @Component({
   moduleId: module.id,
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  templateUrl: './  app.component.html',
+  styleUrls : ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
   @ViewChild(ListViewComponent) listView: ListViewComponent;
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: RadSideDrawer;
 
-  public tvtext = "kjkjkjkj";
+  public tvtext = "kj      k jkj kj";
   oneway = 'calvillo.com.mx';
   category: Category;
   private _mainContentText: string;
 
   constructor(
     private categoryService: CategoryService,
-              private router: Router,
-     //         private googleAnalytics: GoogleAnalyticsService,
-      //        private scriptService: ScriptService
-    ) {
-    //this.authService.updateLoggedUserObservable().subscribe(() => {});
-/*
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((e: NavigationEnd) => {
-      document.body.scrollTop = 0;
-    });
-*/
-    this.emitPageViews();
+    private changeDetectorRef: ChangeDetectorRef,
+    private router: Router,
+  ) {
   }
 
-  emitPageViews() {
-    /*this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.googleAnalytics.pageView(event.urlAfterRedirects);
-      }
-    });
-    */
-  }
 
   ngOnInit(): void {
     this.loadCategory('principal');
@@ -64,8 +48,15 @@ export class AppComponent implements OnInit{
     if (isAndroid) {
       this.subscribeBackButton();
     }
-    this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
+  }
 
+
+  getTitle() {
+    if (this.category) {
+      return this.category.title;
+    } else {
+      return '';
+    }
   }
 
   subscribeBackButton() {
@@ -83,6 +74,7 @@ export class AppComponent implements OnInit{
       category => {
         this.category = category;
         this.listView.nativeElement.refresh();
+        this.changeDetectorRef.detectChanges();
       }
     )
   }
@@ -90,9 +82,6 @@ export class AppComponent implements OnInit{
   public onItemTap(args: SetupItemViewArgs) {
     this.loadCategory(this.category.categories[args.index].link);
   }
-
-
-
 
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
