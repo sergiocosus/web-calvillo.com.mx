@@ -1,6 +1,7 @@
 <div class="parallax">
   <section class="first parallax-group">
     <div class="parallax-layer back">
+      <div class="gradient"></div>
       <div class="background"> </div>
     </div>
     <div class="parallax-layer fore">
@@ -9,24 +10,19 @@
       </div>
       <div class="title">
         <app-logo></app-logo>
-        <span>
-          Fotografías de Calvillo Pueblo Mágico
+        <span class="greeting">
+          BUENAS NOCHES
         </span>
-      </div>
-      <div class="cta" >
-        <a [routerLink]="'/galeria/' + defaultCatId" md-button>
-          <span>
-            <i class="fa fa-camera"></i>
-            Galería
+        <md-input-container>
+          <span md-prefix>
+            <i class="fa fa-search" aria-hidden="true"></i>
           </span>
-        </a>
-        <a routerLink="/mapa" md-button>
-          <span>
-            <i class="fa fa-globe" aria-hidden="true"></i>
-            Mapa
-          </span>
-        </a>
+          <input mdInput placeholder="¿Qué buscas? :)" />
+        </md-input-container>
       </div>
+      </div>
+      <div>
+
 
       <div class="social">
         <share-buttons url="http://calvillo.com.mx"
@@ -45,21 +41,34 @@
     </div>
     <div class="parallax-layer fore">
       <h1>
-        <span>Lo más nuevo</span>
+        <span>Maravillas en fotografías</span>
       </h1>
+      <div class="options">
+        <span>
+          Galeria
+        </span>
+        <span>
+          Populares
+        </span>
+      </div>
       <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
       <ul *ngIf="categories">
-        <li *ngFor="let category of categories">
-          <app-category-thumbnail [category]="category"></app-category-thumbnail>
-          <div class="pictures">
-            <app-picture-thumbnail *ngFor="let picture of category.pictures"
-                                   size="xs"
-                                   [category]="category"
-                                   [picture]="picture"></app-picture-thumbnail>
-          </div>
+        <li *ngFor="let category of categories" [routerLink]="category.routerLink">
+          <picture [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
+          </picture>
+          <span>{{category.title}}</span>
         </li>
       </ul>
+      <div class="bottom">
+
+      </div>
     </div>
   </section>
-
+  <section class="third parallax-group">
+    <div class="parallax-layer back">
+      <div class="background3"></div>
+    </div>
+    <div class="parallax-layer fore">
+    </div>
+  </section>
 </div>

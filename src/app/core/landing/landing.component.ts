@@ -20,7 +20,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getNewest(4).subscribe(
+    this.categoryService.getNewest(6).subscribe(
       categories => this.categories = categories
     );
     this.navbarService.setTitle(null);
