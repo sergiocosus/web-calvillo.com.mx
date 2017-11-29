@@ -3,7 +3,6 @@ import {AuthService} from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import {SharedModule} from '../shared/shared.module';
-import { MaterialModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 import {UserModule} from '../user/user.module';
 import {IfLoggedDirective} from './directives/if-logged.directive';
@@ -11,7 +10,6 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
 @NgModule({
   imports: [
     SharedModule,
-    MaterialModule,
     AgmCoreModule,
     UserModule,
   ],

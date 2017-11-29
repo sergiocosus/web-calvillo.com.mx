@@ -7,58 +7,59 @@
   </section>
 
   <section [hidden]="uploading" class="picture-form">
-    <md-input-container>
-      <input mdInput required formControlName="title"
+    <mat-input-container>
+      <input matInput required formControlName="title"
              placeholder="Título"/>
-    </md-input-container>
+    </mat-input-container>
 
-    <md-input-container>
-      <input mdInput formControlName="link"
+    <mat-input-container>
+      <input matInput formControlName="link"
              placeholder="Titulo para enlace"/>
-      <md-hint *ngIf="picture.get('linkUsed').value" class="error">
+      <mat-hint *ngIf="picture.get('linkUsed').value" class="error">
         El link esta siendo utilizado, cambielo por otro
-      </md-hint>
-    </md-input-container>
+      </mat-hint>
+    </mat-input-container>
 
-    <md-input-container>
-      <input mdInput formControlName="description"
+    <mat-input-container>
+      <input matInput formControlName="description"
              placeholder="Descripción"/>
-    </md-input-container>
+    </mat-input-container>
 
     <section class="coordinates">
       <a class="map" (click)="coordsRequested.emit(picture)">
         <i class="fa fa-map-marker"></i>
       </a>
-      <md-input-container>
-        <input mdInput type="number" step=".0000001" formControlName="latitude"
+      <mat-input-container>
+        <input matInput type="number" step=".0000001" formControlName="latitude"
                placeholder="Latitud">
-        <md-hint align="end">adsdsds</md-hint>
+        <mat-hint align="end">adsdsds</mat-hint>
 
-      </md-input-container>
-      <md-input-container>
-        <input mdInput type="number"
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput type="number"
                formControlName="longitude"
                placeholder="Longitud">
-      </md-input-container>
+      </mat-input-container>
     </section>
-    <md-input-container>
+    <mat-input-container>
+      <!--TODO change this!
       <input [value]="picture.get('taken_at').value | date: 'short'"
-             mode="popup" mdInput readonly
+             mode="popup" matInput readonly
              [dateTimePicker]="picture.get('taken_at').value"
              (dateTimePickerChange)="picture.patchValue({taken_at: $event})"
              placeholder="Fecha en la que fue tomada"/>
-    </md-input-container>
+       -->
+    </mat-input-container>
 
-
-    <md-select formControlName="categories" placeholder="Categorias"
+    <mat-select formControlName="categories" placeholder="Categorias"
     [multiple]="true">
-      <md-option *ngFor="let category of categories" [value]="category">
+      <mat-option *ngFor="let category of categories" [value]="category">
         {{category.category ? category.category.title : ''}}
         / {{category.title}}
-      </md-option>
-    </md-select>
+      </mat-option>
+    </mat-select>
   </section>
   <section class="lock" [class.uploading]="uploading">
-    <md-spinner></md-spinner>
+    <mat-spinner></mat-spinner>
   </section>
 </ng-container>

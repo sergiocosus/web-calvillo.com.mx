@@ -12,9 +12,12 @@
 
     <div class="content" [innerHTML]="category.description"></div>
 
-    <share-buttons [url]="'http://calvillo.com.mx' + currRoute"
-                   [reddit]="false"
+    <share-buttons theme="circles"
+                   [include]="['facebook','twitter','pinterest','google']"
+                   [show]="5"
                    [showCount]="true"
+                   [size]="2"
+                   [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>
     <!-- TODO put related gallery -->
   </header>

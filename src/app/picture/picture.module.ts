@@ -3,9 +3,9 @@ import { PictureThumbnailComponent } from './components/picture-thumbnail/pictur
 import { SharedModule } from '../shared/shared.module';
 import { UploadPictureModalComponent } from './components/upload-picture-modal/upload-picture-modal.component';
 import {
-  MdButtonModule,
-  MdCardModule, MdCheckboxModule, MdDialog, MdDialogModule,
-  MdInputModule, MdProgressSpinnerModule
+  MatButtonModule,
+  MatCardModule, MatCheckboxModule, MatDialog, MatDialogModule,
+  MatInputModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {PictureService} from './services/picture.service';
 import {ImageUploadModule} from 'ng2-imageupload';
@@ -14,18 +14,16 @@ import {MapsModule} from '../maps/maps.module';
 import { PictureFormComponent } from './components/picture-form/picture-form.component';
 import { PictureGalleryListComponent } from './components/picture-gallery-list/picture-gallery-list.component';
 import {AuthModule} from '../auth/auth.module';
-import {DateTimePickerModule} from 'ng-pick-datetime';
 import { SocialPostDialogComponent } from './components/social-post-dialog/social-post-dialog.component';
 
 @NgModule({
   imports: [
     SharedModule,
-    MdCardModule,
-    MdInputModule,
-    MdButtonModule,
-    MdCheckboxModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
     ImageUploadModule,
-    DateTimePickerModule,
     SimpleNotificationsModule,
     MapsModule,
     AuthModule,

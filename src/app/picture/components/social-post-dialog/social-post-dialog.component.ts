@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PictureService} from '../../services/picture.service';
 import {Picture} from '../../picture.model';
 import {Category} from '../../../category/category.model';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 import {UserService} from '../../../user/user.service';
 import {NotifyService} from '../../../shared/services/notify.service';
 
@@ -19,7 +19,7 @@ export class SocialPostDialogComponent implements OnInit {
   private picture: Picture;
   private category: Category;
   public exist_token: any;
-  constructor(private dialogRef: MdDialogRef<SocialPostDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<SocialPostDialogComponent>,
               private pictureService: PictureService,
               private userService: UserService,
               private notify: NotifyService) { }

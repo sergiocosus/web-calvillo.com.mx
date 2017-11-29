@@ -14,13 +14,13 @@
         </span>
       </div>
       <div class="cta" >
-        <a [routerLink]="'/galeria/' + defaultCatId" md-button>
+        <a [routerLink]="'/galeria/' + defaultCatId" mat-button>
           <span>
             <i class="fa fa-camera"></i>
             Galería
           </span>
         </a>
-        <a routerLink="/mapa" md-button>
+        <a routerLink="/mapa" mat-button>
           <span>
             <i class="fa fa-globe" aria-hidden="true"></i>
             Mapa
@@ -29,12 +29,12 @@
       </div>
 
       <div class="social">
-        <share-buttons url="http://calvillo.com.mx"
-                       [reddit]="false"
-                       [linkedIn]="false"
-                       [stumbleUpOn]="false"
-                       [tumblr]="false"
-                       [whatsApp]="false"
+        <share-buttons theme="circles"
+                       [include]="['facebook','twitter','pinterest','google']"
+                       [show]="5"
+                       [showCount]="true"
+                       [size]="2"
+                       url="http://calvillo.com.mx"
         ></share-buttons>
       </div>
     </div>

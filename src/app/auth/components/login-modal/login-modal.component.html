@@ -1,25 +1,25 @@
-<h4 md-dialog-title>
+<h4 mat-dialog-title>
   Iniciar Sesión
 </h4>
-<button class="corner" tabindex="-1" md-dialog-close >
+<button class="corner" tabindex="-1" mat-dialog-close >
   <span aria-hidden="true">&times;</span>
 </button>
-<md-dialog-content>
+<mat-dialog-content>
   <form id="login-modal-form" (submit)="login()">
-    <md-input-container>
-      <input mdInput
+    <mat-input-container>
+      <input matInput
              [(ngModel)]="email"
              name="email"
              placeholder="Email"  >
-    </md-input-container>
-    <md-input-container>
-      <input mdInput
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput
              [(ngModel)]="password"
              name="password"
              placeholder="Contraseña" type="password" >
-    </md-input-container>
+    </mat-input-container>
   </form>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button form="login-modal-form">Entrar</button>
-</md-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button form="login-modal-form">Entrar</button>
+</mat-dialog-actions>

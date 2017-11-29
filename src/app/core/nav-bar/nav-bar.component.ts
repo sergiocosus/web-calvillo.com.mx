@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {LoginModalComponent} from '../../auth/components/login-modal/login-modal.component';
 import {Sidebar} from 'ng-sidebar';
 import {NavbarService} from '../../shared/services/navbar.service';
@@ -24,7 +24,7 @@ export class NavBarComponent implements OnInit {
   hiddenSearch: boolean;
 
   constructor(private authService: AuthService,
-              private dialog: MdDialog,
+              private dialog: MatDialog,
               private navbarService: NavbarService) { }
 
   ngOnInit() {
