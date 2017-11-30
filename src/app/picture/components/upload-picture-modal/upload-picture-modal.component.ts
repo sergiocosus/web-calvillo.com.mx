@@ -179,6 +179,7 @@ export class UploadPictureModalComponent implements OnInit {
   selectPictureToUpload() {
     if (this.formArray.controls.length) {
       let formToProcess = this.formArray.controls[this.currentUploadingPicture] as FormGroup;
+      console.log(formToProcess);
       if (this.createMode) {
         this.uploadPicture(formToProcess);
       } else {
@@ -213,7 +214,8 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   putPicture(formGroup: FormGroup) {
-    this.uploading = true;
+      console.log(formGroup);
+      this.uploading = true;
     const pictureData = formGroup.value;
     pictureData.categories = pictureData.categories.map(
       category => category.id

@@ -41,23 +41,18 @@
                placeholder="Longitud">
       </mat-input-container>
     </section>
-    <mat-input-container>
-      <!--TODO change this!
-      <input [value]="picture.get('taken_at').value | date: 'short'"
-             mode="popup" matInput readonly
-             [dateTimePicker]="picture.get('taken_at').value"
-             (dateTimePickerChange)="picture.patchValue({taken_at: $event})"
-             placeholder="Fecha en la que fue tomada"/>
-       -->
-    </mat-input-container>
 
-    <mat-select formControlName="categories" placeholder="Categorias"
-    [multiple]="true">
-      <mat-option *ngFor="let category of categories" [value]="category">
-        {{category.category ? category.category.title : ''}}
-        / {{category.title}}
-      </mat-option>
-    </mat-select>
+    <owl-date-time formControlName="taken_at"></owl-date-time>
+
+    <mat-form-field>
+      <mat-select formControlName="categories" placeholder="Categorias"
+                  [multiple]="true">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category.category ? category.category.title : ''}}
+          / {{category.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </section>
   <section class="lock" [class.uploading]="uploading">
     <mat-spinner></mat-spinner>

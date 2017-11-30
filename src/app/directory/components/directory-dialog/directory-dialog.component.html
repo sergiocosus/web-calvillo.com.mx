@@ -66,14 +66,15 @@
                placeholder="Longitud">
       </mat-input-container>
     </section>
-
-    <mat-select formControlName="categories" placeholder="Álbumes"
-               [multiple]="true">
-      <mat-option *ngFor="let category of categories" [value]="category">
-        {{category.category ? category.category.title : ''}}
-        / {{category.title}}
-      </mat-option>
-    </mat-select>
+    <mat-form-field>
+      <mat-select formControlName="categories" placeholder="Álbumes"
+                  [multiple]="true">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category.category ? category.category.title : ''}}
+          / {{category.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <input class="input-picture" imageUpload
            (imageSelected)="selected($event)"

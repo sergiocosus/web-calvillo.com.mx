@@ -14,7 +14,7 @@ import {
   MatButtonModule, MatCheckboxModule, MatDialogModule, MatInputModule, MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
-//import {DateTimePickerModule} from 'ng-pick-datetime';
+import {DateTimePickerModule} from 'ng-pick-datetime';
 import { LogoComponent } from './components/logo/logo.component';
 import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
@@ -65,7 +65,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatSelectModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-  //  DateTimePickerModule,
+    DateTimePickerModule,
     LogoComponent,
   ]
 })
