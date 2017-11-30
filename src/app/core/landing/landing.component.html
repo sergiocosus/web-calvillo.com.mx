@@ -5,27 +5,25 @@
       <div class="background"> </div>
     </div>
     <div class="parallax-layer fore">
-      <div class="magic">
-        <img src="/assets/calvillo-pueblo-magico.png">
-      </div>
+
       <div class="title">
         <app-logo></app-logo>
         <span class="greeting">
           BUENAS NOCHES
         </span>
-        <md-input-container>
-          <span md-prefix>
+        <mat-form-field>
+          <span mat-prefix>
             <i class="fa fa-search" aria-hidden="true"></i>
           </span>
-          <input mdInput placeholder="¿Qué buscas? :)" />
-        </md-input-container>
+          <input matInput placeholder="¿Qué buscas? :)" />
+        </mat-form-field>
       </div>
+      <div class="magic">
+        <img src="/assets/calvillo-pueblo-magico.png">
       </div>
-      <div>
-
 
       <div class="social">
-        <share-buttons theme="circles"
+        <share-buttons theme="landing"
                        [include]="['facebook','twitter','pinterest','google']"
                        [show]="5"
                        [showCount]="true"
@@ -34,6 +32,8 @@
         ></share-buttons>
       </div>
     </div>
+
+
   </section>
   <section class="second parallax-group">
     <div class="parallax-layer back">

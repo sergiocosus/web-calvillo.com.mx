@@ -6,18 +6,18 @@
 </button>
 <mat-dialog-content>
   <form id="login-modal-form" (submit)="login()">
-    <mat-input-container>
+    <mat-form-field>
       <input matInput
              [(ngModel)]="email"
              name="email"
              placeholder="Email"  >
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput
              [(ngModel)]="password"
              name="password"
              placeholder="Contraseña" type="password" >
-    </mat-input-container>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

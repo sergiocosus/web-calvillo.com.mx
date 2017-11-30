@@ -22,3 +22,31 @@ $sb-buttons: (
 @import '~ngx-sharebuttons/styles/share-buttons';
 @import '~ngx-sharebuttons/styles/themes/circles/circles-theme';
 
+.sb-landing{
+  @extend .sb-circles;
+
+
+    &.sb-group {
+    }
+    .sb-wrapper.sb-show-template{
+      margin-right: .5em;
+      .sb-icon {
+        background-color: transparent;
+        background: transparent;
+        border: solid #EEE 2px;
+        width: 1.7em;
+        height: 1.7em;
+        min-width: 1.7em;
+      }
+      .sb-text,
+      .sb-template {
+
+      }
+      .sb-text,
+      .sb-icon{
+
+      }
+
+    }
+  }
+

@@ -8,9 +8,9 @@
     para ligar su cuenta
   </div>
   <form *ngIf="exist_token" (submit)="submit()">
-    <mat-input-container>
+    <mat-form-field>
       <input matInput placeholder="Mensaje" [(ngModel)]="message" name="message">
-    </mat-input-container>
+    </mat-form-field>
     <mat-checkbox [(ngModel)]="delay" name="delay">
       Posponer publicación
     </mat-checkbox>

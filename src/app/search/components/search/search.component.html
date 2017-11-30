@@ -1,7 +1,7 @@
-<mat-input-container [class.hidden]="hide">
+<mat-form-field [class.hidden]="hide">
   <input matInput color="accent" [(ngModel)]="query" #input
          placeholder="Escriba sus búsqueda" [matAutocomplete]="auto" [formControl]="stateCtrl">
-</mat-input-container>
+</mat-form-field>
 
 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
   <ng-container *ngIf="search | async; let search;" >

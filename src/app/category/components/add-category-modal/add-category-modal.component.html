@@ -10,18 +10,18 @@
 <mat-dialog-content>
   <form [formGroup]="form"
         id="category-form" (submit)="submit()">
-    <mat-input-container>
+    <mat-form-field>
       <input matInput formControlName="title"
              placeholder="Título">
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="link"
              placeholder="Titulo para enlace">
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="description"
              placeholder="Descripción"  >
-    </mat-input-container>
+    </mat-form-field>
 
     <mat-form-field>
       <mat-select formControlName="category" placeholder="Albumes">

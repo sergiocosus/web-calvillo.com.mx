@@ -10,61 +10,61 @@
 <mat-dialog-content>
   <form *ngIf="form" [formGroup]="form"
         id="category-form" (submit)="submit()">
-    <mat-input-container>
+    <mat-form-field>
       <input matInput formControlName="title"
              placeholder="Título">
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="link"
              placeholder="Titulo para enlace">
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="description"
              placeholder="Descripción"  >
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="address"
              placeholder="Dirección"  >
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="email"
              placeholder="Correo electrónico"  >
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="phone"
              placeholder="Teléfono"  >
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="cellphone"
              placeholder="Celular"  >
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="website_url"
              placeholder="Url del sitio web">
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="youtube_url"
              placeholder="Url de youtube">
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="facebook_url"
              placeholder="Url de facebook">
-    </mat-input-container>
+    </mat-form-field>
     <section class="coordinates">
       <a class="map" (click)="openMapModal(picture)">
         <i class="fa fa-map-marker"></i>
       </a>
-      <mat-input-container>
+      <mat-form-field>
         <input matInput type="number" step=".0000001" formControlName="latitude"
                placeholder="Latitud">
         <mat-hint align="end">adsdsds</mat-hint>
 
-      </mat-input-container>
-      <mat-input-container>
+      </mat-form-field>
+      <mat-form-field>
         <input matInput type="number"
                formControlName="longitude"
                placeholder="Longitud">
-      </mat-input-container>
+      </mat-form-field>
     </section>
     <mat-form-field>
       <mat-select formControlName="categories" placeholder="Álbumes"
