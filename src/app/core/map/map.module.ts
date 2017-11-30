@@ -5,13 +5,13 @@ import { MapComponent } from './map.component';
 import {SharedModule} from '../../shared/shared.module';
 import {MapsModule} from '../../maps/maps.module';
 import {DirectoryModule} from '../../directory/directory.module';
-import {MdMenuModule} from '@angular/material';
+import {MatMenuModule} from '@angular/material';
 
 @NgModule({
   imports: [
     SharedModule,
     MapRoutingModule,
-    MdMenuModule,
+    MatMenuModule,
     MapsModule,
     DirectoryModule,
   ],

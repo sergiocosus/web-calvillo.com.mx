@@ -11,7 +11,7 @@ import {NotifyService} from '../../../shared/services/notify.service';
 import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {Category} from '../../../category/category.model';
 import {CategoryService} from '../../../category/services/category.service';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
@@ -42,8 +42,8 @@ export class UploadPictureModalComponent implements OnInit {
               private exifService: EXIFService,
               private notify: NotifyService,
               private fb: FormBuilder,
-              private uploadPictureDialog: MdDialogRef<UploadPictureModalComponent>,
-              private dialog: MdDialog,
+              private uploadPictureDialog: MatDialogRef<UploadPictureModalComponent>,
+              private dialog: MatDialog,
               private categoryService: CategoryService
   ) {
     this.uploadPictureDialog.disableClose = true;
@@ -179,6 +179,7 @@ export class UploadPictureModalComponent implements OnInit {
   selectPictureToUpload() {
     if (this.formArray.controls.length) {
       let formToProcess = this.formArray.controls[this.currentUploadingPicture] as FormGroup;
+      console.log(formToProcess);
       if (this.createMode) {
         this.uploadPicture(formToProcess);
       } else {
@@ -213,7 +214,8 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   putPicture(formGroup: FormGroup) {
-    this.uploading = true;
+      console.log(formGroup);
+      this.uploading = true;
     const pictureData = formGroup.value;
     pictureData.categories = pictureData.categories.map(
       category => category.id

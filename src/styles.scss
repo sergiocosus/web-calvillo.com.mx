@@ -1,4 +1,5 @@
 @import "../node_modules/font-face-mixin/_fontface.scss";
+@import "../node_modules/ng-pick-datetime/assets/style/picker.min.css";
 @import "~app/vars";
 
 
@@ -37,6 +38,7 @@ simple-notifications{
 }
 
 @import "material";
+@import "shareButtons";
 
 
 /* Parallax base styles

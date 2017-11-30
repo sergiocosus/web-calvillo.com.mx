@@ -1,34 +1,36 @@
-<h4 md-dialog-title>
+<h4 mat-dialog-title>
   Crear álbum
-  <button class="button-close" md-dialog-close>
+  <button class="button-close" mat-dialog-close>
     <i class="fa fa-times"></i>
   </button>
 </h4>
-<button type="button" class="corner" md-dialog-close>
+<button type="button" class="corner" mat-dialog-close>
   <span aria-hidden="true">&times;</span>
 </button>
-<md-dialog-content>
+<mat-dialog-content>
   <form [formGroup]="form"
         id="category-form" (submit)="submit()">
-    <md-input-container>
-      <input mdInput formControlName="title"
+    <mat-input-container>
+      <input matInput formControlName="title"
              placeholder="Título">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput formControlName="link"
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput formControlName="link"
              placeholder="Titulo para enlace">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput formControlName="description"
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput formControlName="description"
              placeholder="Descripción"  >
-    </md-input-container>
+    </mat-input-container>
 
-    <md-select formControlName="category" placeholder="Albumes">
-      <md-option *ngFor="let category of categories" [value]="category">
-        {{category.category ? category.category.title : ''}}
-        / {{category.title}}
-      </md-option>
-    </md-select>
+    <mat-form-field>
+      <mat-select formControlName="category" placeholder="Albumes">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category.category ? category.category.title : ''}}
+          / {{category.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <input class="input-picture" imageUpload
            (imageSelected)="selected($event)"
@@ -39,8 +41,8 @@
     </picture>
   </form>
 
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
-  <button md-raised-button form="category-form">Subir álbum</button>
-</md-dialog-actions>
+<mat-dialog-actions>
+  <button mat-raised-button form="category-form">Subir álbum</button>
+</mat-dialog-actions>

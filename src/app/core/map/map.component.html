@@ -1,17 +1,17 @@
 <div class="directory-bar">
   <ng-container *ngFor="let category of categories | async">
-    <button md-button [mdMenuTriggerFor]="menu">
+    <button mat-button [matMenuTriggerFor]="menu">
       <app-image [model]="category"></app-image>
       <span>{{category.title}}</span>
     </button>
-    <md-menu #menu="mdMenu">
-      <button md-menu-item
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item
               *ngFor="let directory of category.directories"
               (click)="selectDirectory(directory)">
         <app-image [model]="directory"></app-image>
         <span>{{directory.title}}</span>
       </button>
-    </md-menu>
+    </mat-menu>
   </ng-container>
 </div>
 

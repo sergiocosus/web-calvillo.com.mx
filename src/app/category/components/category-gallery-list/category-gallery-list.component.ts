@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AddCategoryModalComponent} from '../add-category-modal/add-category-modal.component';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {CategoryService} from '../../services/category.service';
 import {NotifyService} from '../../../shared/services/notify.service';
 import {Category} from '../../category.model';
@@ -13,7 +13,7 @@ import {Category} from '../../category.model';
 export class CategoryGalleryListComponent implements OnInit {
   @Input() category;
 
-  constructor(private dialog: MdDialog,
+  constructor(private dialog: MatDialog,
               private categoryService: CategoryService,
               private notify: NotifyService) { }
 

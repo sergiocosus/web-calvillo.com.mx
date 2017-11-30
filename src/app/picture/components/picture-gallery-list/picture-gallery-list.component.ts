@@ -3,7 +3,7 @@ import {Picture} from '../../picture.model';
 import {UploadPictureModalComponent} from '../upload-picture-modal/upload-picture-modal.component';
 import {NotifyService} from '../../../shared/services/notify.service';
 import {PictureService} from '../../services/picture.service';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {Category} from '../../../category/category.model';
 
 @Component({
@@ -18,7 +18,7 @@ export class PictureGalleryListComponent implements OnInit {
 
   constructor(private notify: NotifyService,
               private pictureService: PictureService,
-              private dialog: MdDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit() {
   }

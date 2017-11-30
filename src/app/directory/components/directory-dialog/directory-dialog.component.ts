@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {DirectoryService} from '../../services/directory.service';
 import {ImageResult} from 'ng2-imageupload';
 import {Directory} from '../../directory.model';
@@ -29,8 +29,8 @@ export class DirectoryDialogComponent implements OnInit {
 
   constructor(private directoryService: DirectoryService,
               private categoryService: CategoryService,
-              private dialogRef: MdDialogRef<DirectoryDialogComponent>,
-              private dialog: MdDialog,
+              private dialogRef: MatDialogRef<DirectoryDialogComponent>,
+              private dialog: MatDialog,
               private fb: FormBuilder) {
 
   }

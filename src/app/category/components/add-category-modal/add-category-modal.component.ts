@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core'
 import {Category} from '../../category.model';
 import {CategoryService} from '../../services/category.service';
 import {ImageResult} from 'ng2-imageupload';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 
@@ -23,7 +23,7 @@ export class AddCategoryModalComponent implements OnInit {
   categories: Category[];
 
   constructor(private categoryService: CategoryService,
-              private dialog: MdDialogRef<AddCategoryModalComponent>,
+              private dialog: MatDialogRef<AddCategoryModalComponent>,
               private fb: FormBuilder) {
   }
 

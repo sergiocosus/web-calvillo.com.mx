@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../auth.service';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-login-modal',
@@ -12,7 +12,7 @@ export class LoginModalComponent implements OnInit {
   password: string;
 
   constructor(private authService: AuthService,
-              private dialog: MdDialogRef<LoginModalComponent>) { }
+              private dialog: MatDialogRef<LoginModalComponent>) { }
 
   ngOnInit() {
   }

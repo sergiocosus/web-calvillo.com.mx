@@ -30,6 +30,8 @@ export class Picture extends ImageableModel{
       this.categories = Category.parseArray(this.categories);
     }
 
+    this.parseDates(['taken_at']);
+
     return this;
   }
 }

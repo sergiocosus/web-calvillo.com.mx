@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {LoginModalComponent} from '../../auth/components/login-modal/login-modal.component';
 import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
@@ -16,7 +16,7 @@ export class NavPagesComponent implements OnInit {
   hiddenSearch: boolean;
 
   constructor(private authService: AuthService,
-              private dialog: MdDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.defaultCatId = environment.defaultCategoryId;

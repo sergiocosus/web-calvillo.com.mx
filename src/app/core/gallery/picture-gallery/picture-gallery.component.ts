@@ -8,7 +8,7 @@ import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
 import {ResolutionService} from '../../../shared/services/resolution.service';
 import {isPlatformBrowser} from '@angular/common';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 import {Meta, Title} from '@angular/platform-browser';
@@ -109,7 +109,7 @@ export class PictureGalleryComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private resolutionService: ResolutionService,
-              private dialog: MdDialog,
+              private dialog: MatDialog,
               private title: Title,
               private meta: Meta) {
     this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
