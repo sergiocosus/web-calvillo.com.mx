@@ -113,8 +113,7 @@ export class PictureGalleryComponent implements OnInit {
               private title: Title,
               private meta: Meta) {
     this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
-      this.currentRoute = 'http://calvillo.com.mx' + e.url;
-      console.log(this.currentRoute);
+      this.currentRoute = e.url;
     });
   }
 
@@ -185,10 +184,14 @@ export class PictureGalleryComponent implements OnInit {
 
 
   preloadImage(src) {
-    if (isPlatformBrowser(this.platformId)) {
+    if (this.isBrowser()) {
       let image = new Image();
       image.src = src;
     }
+  }
+
+  isBrowser() {
+    return isPlatformBrowser(this.platformId);
   }
 
   loadCategory(category_link: string) {

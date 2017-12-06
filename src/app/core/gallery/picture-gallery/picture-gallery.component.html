@@ -77,12 +77,13 @@
       </button>
     </h1>
 
-    <share-buttons theme="circles"
+    <share-buttons *ngIf="currentRoute && isBrowser()"
+                   theme="circles"
                    [include]="['facebook','twitter','pinterest','google']"
                    [show]="5"
                    [showCount]="true"
                    [size]="2"
-                   [url]="currentRoute"
+                   [url]="'http://calvillo.com.mx' + currentRoute"
     ></share-buttons>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
