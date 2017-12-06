@@ -12,7 +12,8 @@
 
     <div class="content" [innerHTML]="category.description"></div>
 
-    <share-buttons theme="circles"
+    <share-buttons *ngIf="currRoute"
+                   theme="circles"
                    [include]="['facebook','twitter','pinterest','google']"
                    [show]="5"
                    [showCount]="true"

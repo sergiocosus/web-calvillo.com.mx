@@ -113,7 +113,8 @@ export class PictureGalleryComponent implements OnInit {
               private title: Title,
               private meta: Meta) {
     this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
-      this.currentRoute = e.url;
+      this.currentRoute = 'http://calvillo.com.mx' + e.url;
+      console.log(this.currentRoute);
     });
   }
 
