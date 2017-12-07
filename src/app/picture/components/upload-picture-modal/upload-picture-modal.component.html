@@ -32,6 +32,10 @@
                      [formGroupName]="i">
         <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
           <mat-expansion-panel-header>
+            <i *ngIf="picture.invalid"
+               class="fa fa-exclamation-triangle error"
+               aria-hidden="true"></i>
+
             <mat-panel-title>
               {{picture.controls.title.value}}
             </mat-panel-title>
@@ -43,9 +47,10 @@
                          *ngIf="i === currentUploadingPicture && uploading"></mat-spinner>
           </mat-expansion-panel-header>
 
-          <app-picture-form [picture]="picture"
+          <app-picture-form *ngIf="step === i || lastStep === i" [picture]="picture"
                             [uploading]="i === currentUploadingPicture && uploading"
                             (coordsRequested)="openMapModal($event)"
+                            [categories]="categories"
           >
           </app-picture-form>
 

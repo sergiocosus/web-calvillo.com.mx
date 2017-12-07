@@ -15,9 +15,13 @@
     <mat-input-container>
       <input matInput formControlName="link"
              placeholder="Titulo para enlace"/>
-      <mat-hint *ngIf="picture.get('linkUsed').value" class="error">
+      <mat-error *ngIf="picture.get('link').hasError('linkUsed')">
         El link esta siendo utilizado, cambielo por otro
-      </mat-hint>
+      </mat-error>
+      <mat-error *ngIf="picture.get('link').hasError('slug')">
+        El formato del link es inválido. Ejemplo mi-foto-1
+      </mat-error>
+
     </mat-input-container>
 
     <mat-input-container>
@@ -44,10 +48,13 @@
 
     <owl-date-time formControlName="taken_at"></owl-date-time>
 
-    <mat-form-field>
+    <button type="button" *ngIf="!showCategories" (click)="showCategories = true">
+      Editar categorias
+    </button>
+    <mat-form-field *ngIf="showCategories">
       <mat-select formControlName="categories" placeholder="Categorias"
                   [multiple]="true">
-        <mat-option *ngFor="let category of categories" [value]="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
           {{category.category ? category.category.title : ''}}
           / {{category.title}}
         </mat-option>

@@ -1,4 +1,7 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output,
+  ViewChild
+} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
@@ -14,16 +17,13 @@ import {SubscriptionManager} from '../../../shared/classes/subscription-manager'
 export class PictureFormComponent implements OnInit {
   @Input() uploading: boolean;
   @Input() picture: FormGroup;
+  @Input() categories: Category[];
+  showCategories = false;
 
   @Output() coordsRequested = new EventEmitter();
-  categories: Category[];
-  subs = new SubscriptionManager();
 
-  constructor(private categoryService: CategoryService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.subs.add = this.categoryService.getAllCached().subscribe(
-      categories => this.categories = categories
-    );
   }
 }
