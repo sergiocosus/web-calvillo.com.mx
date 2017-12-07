@@ -351,10 +351,16 @@ export class PictureGalleryComponent implements OnInit {
   postOnFacebook() {
     const dialog = this.dialog.open(SocialPostDialogComponent);
     dialog.componentInstance.init(this.category, this.picture);
-
   }
 
   updateMetaTags() {
+    let title = this.picture.title + ' / ' + this.category.title;
+    if (this.category.category) {
+      title += ' / ' + this.category.category.title;
+    }
+
+    let description = this.picture.description.replace(/<(?:.|\n)*?>/gm, '');
+
     this.meta.updateTag({
       property: 'og:image',
       content: this.picture.imageUrl('xlg')
@@ -362,17 +368,17 @@ export class PictureGalleryComponent implements OnInit {
 
     this.meta.updateTag({
       property: 'og:title',
-      content: this.picture.title
+      content: title
     });
 
     this.meta.updateTag({
       property: 'og:description',
-      content: this.picture.description.replace(/<(?:.|\n)*?>/gm, ''),
+      content: description
     });
 
     this.meta.updateTag({
       name: 'description',
-      content: this.picture.description.replace(/<(?:.|\n)*?>/gm, ''),
+      content: description,
     });
   }
 }

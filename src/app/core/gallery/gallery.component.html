@@ -20,6 +20,10 @@
                    [size]="2"
                    [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>
+
+    <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button color="primary">
+      <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
+    </button>
     <!-- TODO put related gallery -->
   </header>
   <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>

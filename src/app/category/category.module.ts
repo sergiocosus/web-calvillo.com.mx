@@ -8,6 +8,7 @@ import {ImageUploadModule} from 'ng2-imageupload';
 import { CategoryGalleryListComponent } from './components/category-gallery-list/category-gallery-list.component';
 import {AuthModule} from '../auth/auth.module';
 import {CategoryFormService} from './services/category-form.service';
+import {SocialPostCategoryDialogComponent} from './social-post-category-dialog/social-post-category-dialog.component';
 
 @NgModule({
   imports: [
@@ -19,14 +20,17 @@ import {CategoryFormService} from './services/category-form.service';
     CategoryThumbnailComponent,
     AddCategoryModalComponent,
     CategoryGalleryListComponent,
+    SocialPostCategoryDialogComponent,
   ],
   entryComponents: [
     AddCategoryModalComponent,
+    SocialPostCategoryDialogComponent,
   ],
   exports: [
     CategoryThumbnailComponent,
     AddCategoryModalComponent,
     CategoryGalleryListComponent,
+    SocialPostCategoryDialogComponent,
   ]
 })
 export class CategoryModule {

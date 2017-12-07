@@ -1,0 +1,23 @@
+<h4 mat-dialog-title>
+  Post on facebook
+</h4>
+
+<mat-dialog-content>
+  <div *ngIf="!exist_token">
+    Para poder postear en facebook vaya <a (click)="close()" routerLink="/cuenta">Cuenta</a>
+    para ligar su cuenta
+  </div>
+  <form *ngIf="exist_token" (submit)="submit()">
+    <mat-input-container>
+      <input matInput placeholder="Horas entre publicación" [(ngModel)]="hours_interval" name="message">
+    </mat-input-container>
+
+    <button mat-raised-button color="primary">
+      Postear!
+    </button>
+  </form>
+
+  <a *ngFor="let link of linkToFacebookPublications; let index = index " [href]="link" target="_blank">
+    Link a la publicación en facebook {{index}}
+  </a>
+</mat-dialog-content>

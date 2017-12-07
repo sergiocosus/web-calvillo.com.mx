@@ -75,4 +75,8 @@ export class CategoryService {
     return this.apiHttp.post(this.basePath, data)
       .map(json => new Category().parse(json.category));
   }
+
+  facebookPost(category_id, data) {
+    return this.apiHttp.post(`${this.basePath}${category_id}/facebook`, data)
+  }
 }
