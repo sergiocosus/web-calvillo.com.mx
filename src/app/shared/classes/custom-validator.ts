@@ -7,7 +7,7 @@ export class CustomValidator {
     return re.test(control.value) ? null : {slug: true};
   }
 
-  static rfc(control: AbstractControl | FormGroup) {
+  static rfc(control: AbstractControl) {
     const rfcPattern = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
     return Validators.pattern(rfcPattern)(control);
   }
@@ -25,7 +25,7 @@ export class CustomValidator {
 
   static validateFormArray(formArray: FormArray) {
     formArray.controls.forEach(
-      form => this.validateAllFields(form)
+      form => this.validateAllFields(form as FormGroup)
     );
   }
 }

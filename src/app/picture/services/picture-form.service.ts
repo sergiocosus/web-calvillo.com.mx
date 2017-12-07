@@ -8,8 +8,6 @@ import {CustomValidator} from '../../shared/classes/custom-validator';
 
 @Injectable()
 export class PictureFormService {
-
-
   constructor(private fb: FormBuilder,
               private pictureService: PictureService) { }
 
@@ -25,7 +23,7 @@ export class PictureFormService {
         ],
         editMode ? null : PictureValidator.slugExists(this.pictureService)
       ],
-      description: picture ?  picture.description : null,
+      description: [picture ?  picture.description : null],
       latitude: [picture ? picture.latitude : null, [
         CustomValidators.min(-90),
         CustomValidators.max(90),
@@ -37,7 +35,6 @@ export class PictureFormService {
       taken_at: picture ? picture.taken_at : null,
       src: picture ? picture.imageUrl('sm') : null,
       image: null,
-      linkUsed: false,
       categories: [picture ? picture.categories.map(category => category.id): [], []],
     });
 

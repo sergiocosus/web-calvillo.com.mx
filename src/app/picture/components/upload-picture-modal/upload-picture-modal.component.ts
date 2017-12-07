@@ -100,6 +100,7 @@ export class UploadPictureModalComponent implements OnInit {
 
     let src = imageResult.dataURL;
     let image = src ? src.split(',')[1] : null;
+
     picture.patchValue({
       categories : [this.parent_category.id],
       description: '',
@@ -107,7 +108,6 @@ export class UploadPictureModalComponent implements OnInit {
       image: image,
       taken_at: this.exifService.getDateTimeFromPicture(image)
     });
-
     this.formArray.push(picture);
     CustomValidator.validateAllFields(picture);
   }
