@@ -9,7 +9,6 @@ import {SubscriptionManager} from '../../../shared/classes/subscription-manager'
   selector: 'app-picture-form',
   templateUrl: './picture-form.component.html',
   styleUrls: ['./picture-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @AutoUnsubscribe()
 export class PictureFormComponent implements OnInit {

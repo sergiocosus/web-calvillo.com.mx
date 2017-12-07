@@ -14,14 +14,17 @@ mat-card{
   padding: .5em;
 }
 
-.remove {
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: .25em;
-}
-
 #file-input
 {
   display: none;
+}
+
+mat-expansion-panel{
+  img{
+    height: 2em;
+    margin-right: .5em;
+  }
+  mat-spinner{
+    margin-right: .5em;
+  }
 }

@@ -27,7 +27,7 @@ export class UploadPictureModalComponent implements OnInit {
   @Output() created = new EventEmitter;
   @Output() updated = new EventEmitter;
 
-  takeTitleFromFiles = false;
+  takeTitleFromFiles = true;
   currentUploadingPicture = null;
   parent_category: Category;
   uploading = false;
@@ -37,6 +37,7 @@ export class UploadPictureModalComponent implements OnInit {
   pictureOnModal: FormGroup = null;
 
   subs = new SubscriptionManager;
+  step = 0;
 
   constructor(private pictureService: PictureService,
               private exifService: EXIFService,
@@ -173,6 +174,7 @@ export class UploadPictureModalComponent implements OnInit {
 
   submit() {
     this.currentUploadingPicture = 0;
+    this.step = -1;
     this.selectPictureToUpload();
   }
 
@@ -252,5 +254,17 @@ export class UploadPictureModalComponent implements OnInit {
       longitude: coordinates.longitude,
       latitude: coordinates.latitude
     });
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }

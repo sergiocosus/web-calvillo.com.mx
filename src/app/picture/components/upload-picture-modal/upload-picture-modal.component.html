@@ -27,20 +27,43 @@
 <mat-dialog-content>
   <form *ngIf="formGroup" id="picture-form" [formGroup]="formGroup" (ngSubmit)="submit()">
     <div formArrayName="pictures">
-      <mat-card *ngFor="let picture of formArray.controls; let i=index"
-               [formGroupName]="i">
+      <mat-accordion *ngFor="let picture of formArray.controls;
+                             let i=index; let first = first; let last = last"
+                     [formGroupName]="i">
+        <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{picture.controls.title.value}}
+            </mat-panel-title>
+            <mat-panel-description>
 
-        <app-picture-form [picture]="picture"
-                          [uploading]="i === currentUploadingPicture && uploading"
-                          (coordsRequested)="openMapModal($event)"
-                          >
-        </app-picture-form>
-        <button *ngIf="createMode"
-                type="button" mat-mini-fab class="remove"
-                (click)="remove(picture)">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
-      </mat-card>
+            </mat-panel-description>
+            <img [src]="picture.get('src').value">
+            <mat-spinner diameter="30"
+                         *ngIf="i === currentUploadingPicture && uploading"></mat-spinner>
+          </mat-expansion-panel-header>
+
+          <app-picture-form [picture]="picture"
+                            [uploading]="i === currentUploadingPicture && uploading"
+                            (coordsRequested)="openMapModal($event)"
+          >
+          </app-picture-form>
+
+          <mat-action-row>
+            <button *ngIf="createMode"
+                    type="button" mat-button color="warn" class="remove"
+                    (click)="remove(picture)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+
+            <button *ngIf="!first" type="button"
+                    mat-button color="primary" (click)="prevStep()">Atrás</button>
+            <button *ngIf="!last" type="button"
+                    mat-button color="primary" (click)="nextStep()">Siguiente</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </div>
   </form>
 </mat-dialog-content>
