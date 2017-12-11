@@ -5,6 +5,9 @@ import {ImageResult} from 'ng2-imageupload';
 import {MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
+import {CategoryFormService} from '../../services/category-form.service';
+import {CustomValidator} from '../../../shared/classes/custom-validator';
+import {NotifyService} from '../../../shared/services/notify.service';
 
 @Component({
   selector: 'app-add-category-modal',
@@ -24,7 +27,9 @@ export class AddCategoryModalComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private dialog: MatDialogRef<AddCategoryModalComponent>,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private categoryFormService: CategoryFormService,
+              private notify: NotifyService) {
   }
 
   ngOnInit() {
@@ -33,39 +38,17 @@ export class AddCategoryModalComponent implements OnInit {
     );
   }
 
-  createForm(category: Category) {
-    this.form = this.fb.group({
-      id: [category.id, []],
-      title: [category.title, [Validators.required]],
-      link: [category.link, [Validators.required]],
-      description: [category.description, []],
-      image: [],
-      src: [category.image_url],
-      category: category
-    });
-
-    this.subs.add = this.categoryService.getAllCached().subscribe(
-        categories => {
-          this.form.get('category').setValue(categories.find(
-              categoryOfList => categoryOfList.id === category.category_id
-          ));
-        }
-    );
-  }
-
   init(parent_category_id: number) {
     const category = new Category;
     category.category_id = parent_category_id;
     this.createMode = true;
-    this.createForm(category);
+    this.form = this.categoryFormService.createForm(category);
   }
 
   initEditMode(category: Category) {
     this.createMode = false;
-    this.createForm(category);
+    this.form = this.categoryFormService.createForm(category, true);
   }
-
-
 
   private createCategory(categoryData) {
     this.categoryService.post(categoryData).subscribe(
@@ -91,9 +74,15 @@ export class AddCategoryModalComponent implements OnInit {
   }
 
   submit() {
+    CustomValidator.validateAllFields(this.form);
+    if (this.form.invalid) {
+      this.notify.error('Hay errores en el formulario');
+      return;
+    }
+
     const categoryData = this.form.value;
     categoryData.src = undefined;
-    categoryData.category_id = categoryData.category.id;
+    categoryData.category_id = categoryData.category_id;
     categoryData.category = undefined;
     if (this.createMode) {
       this.createCategory(categoryData);

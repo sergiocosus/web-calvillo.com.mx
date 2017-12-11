@@ -10,6 +10,9 @@ import {Meta, Title} from '@angular/platform-browser';
 import {SubscriptionManager} from '../../shared/classes/subscription-manager';
 import {NavbarService} from '../../shared/services/navbar.service';
 import {AutoUnsubscribe} from '../../shared/classes/auto-unsubscribe';
+import {SocialPostDialogComponent} from '../../picture/components/social-post-dialog/social-post-dialog.component';
+import {MatDialog} from '@angular/material';
+import {SocialPostCategoryDialogComponent} from '../../category/social-post-category-dialog/social-post-category-dialog.component';
 
 @Component({
   selector: 'app-gallery',
@@ -33,7 +36,8 @@ export class GalleryComponent implements OnInit {
               private router: Router,
               private title: Title,
               private meta: Meta,
-              private navbarService: NavbarService) { }
+              private navbarService: NavbarService,
+              private dialog: MatDialog) { }
 
 
   ngOnInit() {
@@ -91,4 +95,7 @@ export class GalleryComponent implements OnInit {
       });
   }
 
+  postOnFacebook() {
+    this.dialog.open(SocialPostCategoryDialogComponent, {data: {category: this.category}});
+  }
 }

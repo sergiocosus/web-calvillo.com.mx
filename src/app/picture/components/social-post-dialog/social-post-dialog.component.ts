@@ -54,8 +54,9 @@ export class SocialPostDialogComponent implements OnInit {
         this.delay = false;
         this.linkToFacebookPublication = 'https://www.facebook.com/calvillo.com.mx/posts/' + response.facebook_post_id;
         this.notify.success('Post publicado con éxito');
-      }
-    )
+      },
+      error => this.notify.serviceError(error)
+    );
   }
 
   close() {

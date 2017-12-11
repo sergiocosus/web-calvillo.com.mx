@@ -12,13 +12,18 @@
 
     <div class="content" [innerHTML]="category.description"></div>
 
-    <share-buttons theme="circles"
+    <share-buttons *ngIf="currRoute"
+                   theme="circles"
                    [include]="['facebook','twitter','pinterest','google']"
                    [show]="5"
                    [showCount]="true"
                    [size]="2"
                    [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>
+
+    <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button color="primary">
+      <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
+    </button>
     <!-- TODO put related gallery -->
   </header>
   <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>

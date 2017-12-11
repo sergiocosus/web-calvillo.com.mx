@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders, NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
@@ -18,9 +18,6 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
     LoginModalComponent,
     IfLoggedDirective,
   ],
-  providers: [
-    AuthService,
-  ],
   entryComponents: [
     LoginModalComponent,
   ],
@@ -29,4 +26,13 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
     IfLoggedDirective,
   ],
 })
-export class AuthModule { }
+export class AuthModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthModule,
+      providers: [
+        AuthService
+      ]
+    };
+  }
+}

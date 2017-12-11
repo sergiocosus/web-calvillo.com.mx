@@ -19,13 +19,25 @@
              placeholder="Titulo para enlace">
     </mat-form-field>
     <mat-form-field>
+      <mat-error *ngIf="form.get('link').hasError('linkUsed')">
+        El link esta siendo utilizado, cambielo por otro
+      </mat-error>
+      <mat-error *ngIf="form.get('link').hasError('slug')">
+        El formato del link es inválido. Ejemplo mi-foto-1
+      </mat-error>
+    </mat-input-container>
+    <mat-input-container>
       <input matInput formControlName="description"
              placeholder="Descripción"  >
     </mat-form-field>
+      <mat-error *ngIf="form.get('description').hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-input-container>
 
     <mat-form-field>
-      <mat-select formControlName="category" placeholder="Albumes">
-        <mat-option *ngFor="let category of categories" [value]="category">
+      <mat-select formControlName="category_id" placeholder="Albumes">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
           {{category.category ? category.category.title : ''}}
           / {{category.title}}
         </mat-option>
@@ -39,6 +51,10 @@
       'background-image' : 'url('+form.get('src').value+')'
     }">
     </picture>
+
+    <mat-error *ngIf="form.get('src').hasError('required')">
+      Es indispensable una imagen
+    </mat-error>
   </form>
 
 </mat-dialog-content>

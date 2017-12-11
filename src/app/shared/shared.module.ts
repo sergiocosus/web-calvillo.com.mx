@@ -11,7 +11,8 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
 import {
-  MatButtonModule, MatCheckboxModule, MatDialogModule, MatInputModule, MatProgressSpinnerModule,
+  MatButtonModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
+  MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
 import {DateTimePickerModule} from 'ng-pick-datetime';
@@ -65,6 +66,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatSelectModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatIconModule,
     DateTimePickerModule,
     LogoComponent,
   ]

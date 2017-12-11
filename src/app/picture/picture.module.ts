@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import { PictureThumbnailComponent } from './components/picture-thumbnail/picture-thumbnail.component';
 import { SharedModule } from '../shared/shared.module';
 import { UploadPictureModalComponent } from './components/upload-picture-modal/upload-picture-modal.component';
@@ -15,6 +15,8 @@ import { PictureFormComponent } from './components/picture-form/picture-form.com
 import { PictureGalleryListComponent } from './components/picture-gallery-list/picture-gallery-list.component';
 import {AuthModule} from '../auth/auth.module';
 import { SocialPostDialogComponent } from './components/social-post-dialog/social-post-dialog.component';
+import {CategoryService} from '../category/services/category.service';
+import {PictureFormService} from './services/picture-form.service';
 
 @NgModule({
   imports: [
@@ -35,9 +37,6 @@ import { SocialPostDialogComponent } from './components/social-post-dialog/socia
     PictureGalleryListComponent,
     SocialPostDialogComponent,
   ],
-  providers: [
-    PictureService,
-  ],
   entryComponents: [
     UploadPictureModalComponent,
     SocialPostDialogComponent,
@@ -50,4 +49,14 @@ import { SocialPostDialogComponent } from './components/social-post-dialog/socia
     SocialPostDialogComponent,
   ]
 })
-export class PictureModule { }
+export class PictureModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: PictureModule,
+      providers: [
+        PictureService,
+        PictureFormService,
+      ],
+    };
+  }
+}
