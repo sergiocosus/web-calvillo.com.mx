@@ -54,6 +54,13 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  displayWith(model) {
+    if (model) {
+      return model.title;
+    }
+    return '';
+  }
+
   selectedCategory(category: Category) {
     this.router.navigateByUrl(category.routerLink);
     setTimeout(() => {
