@@ -25,15 +25,14 @@
       <mat-error *ngIf="form.get('link').hasError('slug')">
         El formato del link es inválido. Ejemplo mi-foto-1
       </mat-error>
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="description"
              placeholder="Descripción"  >
-    </mat-form-field>
       <mat-error *ngIf="form.get('description').hasError('required')">
         Este campo es obligatorio
       </mat-error>
-    </mat-input-container>
+    </mat-form-field>
 
     <mat-form-field>
       <mat-select formControlName="category_id" placeholder="Albumes">

@@ -17,14 +17,11 @@
              placeholder="Titulo para enlace"/>
       <mat-error *ngIf="picture.get('link').hasError('linkUsed')">
         El link esta siendo utilizado, cambielo por otro
-      </mat-hint>
-    </mat-form-field>
       </mat-error>
       <mat-error *ngIf="picture.get('link').hasError('slug')">
         El formato del link es inválido. Ejemplo mi-foto-1
       </mat-error>
-
-    </mat-input-container>
+    </mat-form-field>
 
     <mat-form-field>
       <input matInput formControlName="description"
@@ -38,7 +35,7 @@
       <mat-form-field>
         <input matInput type="number" step=".0000001" formControlName="latitude"
                placeholder="Latitud">
-        <mat-hint align="end">adsdsds</mat-hint>
+        <mat-error align="end">adsdsds</mat-error>
 
       </mat-form-field>
       <mat-form-field>

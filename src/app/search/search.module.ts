@@ -11,9 +11,11 @@ import {CategoryModule} from '../category/category.module';
     MatAutocompleteModule,
     CategoryModule,
   ],
-  declarations: [SearchComponent],
+  declarations: [
+    SearchComponent
+  ],
   exports:[
-    SearchComponent,
+    SearchComponent
   ]
 })
 export class SearchModule {

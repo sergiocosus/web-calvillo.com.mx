@@ -5,44 +5,35 @@
       <div class="background"> </div>
     </div>
     <div class="parallax-layer fore">
-
-      <div class="title">
-        <app-logo></app-logo>
-        <span class="greeting">
-          BUENAS NOCHES
-        </span>
-        <mat-form-field>
-          <span mat-prefix>
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
-          <input matInput placeholder="¿Qué buscas? :)" />
-        </mat-form-field>
-      </div>
-      <div class="magic">
-        <img src="/assets/calvillo-pueblo-magico.png">
-      </div>
-
       <div class="social">
         <share-buttons theme="landing"
                        [include]="['facebook','twitter','pinterest','google']"
                        [show]="5"
-                       [showCount]="true"
+                       [showCount]="false"
                        [size]="2"
                        url="http://calvillo.com.mx"
         ></share-buttons>
+      </div>
+      <div class="title">
+        <app-logo></app-logo>
+        <span class="greeting">
+          {{greeting}}
+        </span>
+        <app-search [showUnderline]="false" [alwaysShow]="true"></app-search>
+      </div>
+      <div class="magic">
+        <img src="/assets/calvillo-pueblo-magico-blanco.png">
       </div>
     </div>
 
 
   </section>
-  <section class="second parallax-group">
-    <div class="parallax-layer back">
-      <div class="background2"></div>
-    </div>
-    <div class="parallax-layer fore">
+  <section class="second">
+    <div class="base">
       <h1>
-        <span>Maravillas en fotografías</span>
+        <span>Últimas fotografías</span>
       </h1>
+      <!--
       <div class="options">
         <span>
           Galeria
@@ -51,6 +42,7 @@
           Populares
         </span>
       </div>
+      -->
       <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
       <ul *ngIf="categories">
         <li *ngFor="let category of categories" [routerLink]="category.routerLink">
@@ -64,11 +56,17 @@
       </div>
     </div>
   </section>
-  <section class="third parallax-group">
-    <div class="parallax-layer back">
+  <section class="third">
+    <div class="back">
       <div class="background3"></div>
     </div>
-    <div class="parallax-layer fore">
+    <div class="base">
+      <a routerLink="/galeria/principal">
+        Galería
+      </a>
+      <a routerLink="/mapa">
+        Directorio
+      </a>
     </div>
   </section>
 </div>

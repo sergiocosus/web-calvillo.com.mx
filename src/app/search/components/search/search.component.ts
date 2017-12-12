@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {SearchService} from '../../services/search.service';
 import {FormControl} from '@angular/forms';
 import {Picture} from '../../../picture/picture.model';
@@ -22,6 +22,9 @@ export class SearchComponent implements OnInit {
 
   @Output() hidden = new EventEmitter();
   @Output() shown = new EventEmitter();
+  @Input() showUnderline = true;
+  @Input() alwaysShow = false;
+  @Input() placeholder = "¿Qué deseas buscar?";
 
   hide = true;
 
@@ -44,14 +47,11 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.hideInput();
-  }
-
-  displayWith(model) {
-    if (model) {
-      return model.title;
+    if (this.alwaysShow) {
+      this.hide = false;
+    } else {
+      this.hideInput();
     }
-    return '';
   }
 
   selectedCategory(category: Category) {
@@ -88,6 +88,9 @@ export class SearchComponent implements OnInit {
   }
 
   hideInput() {
+    if (this.alwaysShow) {
+      return ;
+    }
     this.hide = true;
     this.hidden.emit()
   }

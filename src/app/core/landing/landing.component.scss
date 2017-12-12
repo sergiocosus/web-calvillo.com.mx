@@ -10,8 +10,8 @@ section{
   height: 100%;
   position: absolute;
 
-  $gradientStart: rgba($primaryColor, .04);
-  $gradientEnd: rgba($primaryColor, .10);
+  $gradientStart: rgba(darken($primaryColor, 35%), .10);
+  $gradientEnd: rgba(darken($primaryColor, 35%), .50);
 
   background: -moz-linear-gradient(top, $gradientStart 0%, $gradientEnd 100%);
   background: -webkit-linear-gradient(top, $gradientStart 0%, $gradientEnd 100%);
@@ -41,6 +41,7 @@ section{
 .first{
   display: flex;
   position: relative;
+  height: 80vh;
 
   .magic{
     position:absolute;
@@ -50,6 +51,12 @@ section{
       width: 5em;
       margin: 1em;
       margin-top: 2em;
+    }
+
+    @media (min-width: $mdScreen) {
+      img{
+        width: 10em;
+      }
     }
   }
 
@@ -61,101 +68,100 @@ section{
     @media (min-width: $mdScreen) {
       flex-direction: row;
     }
+
+    .social{
+      right: 0em;
+      top: 0em;
+      margin: 1em;
+
+      display: flex;
+      flex: 0 0 auto;
+      padding: .5em;
+      align-items: flex-start;
+      z-index: 10;
+      margin-top: 3em;
+      justify-content: center;
+
+      @media (min-width: $mdScreen) {
+        position: absolute;
+      }
+    }
+
     .title {
       display: flex;
       flex-direction: column;
       flex: 10 0 auto;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       text-shadow: .2em .2em .8em black;
       font-weight: bold;
       text-align: center;
 
       app-logo{
-        font-size: 1em;
+        font-size: 1.5em;
+
         @media (min-width: $mdScreen) {
-          font-size: 2em;
+          font-size: 2.5em;
+          margin-top: 2em;
+          margin-bottom: 1em;
         }
-
-
       }
 
       .greeting{
+        font-family: QuickSand;
         font-weight: lighter;
-        font-size: 3em;
-      }
-
-      mat-form-field{
-        background-color: white;
-        text-shadow: 0px 0px;
-        width: 100%;
-        max-width: 600px;
-      }
-
-      span{
-        font-family: Arial;
+        font-size: 2em;
+        padding: .5em;
         color: white;
-        padding: 1em;
-
-        text-align: center;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        -ms-word-break: break-all;
-        word-break: break-all;
-        word-break: break-word;
-        -ms-hyphens: auto;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        hyphens: auto;
-
         @media (min-width: $mdScreen) {
-          padding: 0;
+          font-size: 3em;
+          margin-bottom: 2em;
         }
       }
-    }
-
-  }
-}
 
 
-.social{
-  position: absolute;
-  right: 0em;
-  top: 0em;
-  margin: 1em;
-
-  display: flex;
-  flex: 0 0 auto;
-  padding: .5em;
-  align-items: flex-start;
-  z-index: 10;
-/*
-  share-buttons{
-    width: auto;
-    @media (min-width: $mdScreen) {
-      width: 80px;
-    }
-
-    /deep/ share-button{
-      button{
-        font-size: 1.5em;
-        border-radius: 50%;
-        background-color: transparent;
-        display: flex;
-        align-items: center;
+      /deep/ app-search{
+        width: 100%;
         justify-content: center;
-        width: 1.8em;
-        height: 1.8em;
-        padding: 0px;
+        flex: 0 0 auto;
 
-        .sb-template{
-          margin: 0;
+        mat-form-field{
+          padding: .5em;
+          height: 2.5em;
+          margin-bottom: -2em;
+          background-color: white;
+          text-shadow: 0px 0px;
+          width: 90%;
+          max-width: 600px;
+          flex: 0 0 auto;
+
+          /deep/ .mat-input-infix{
+            border: none;
+          }
+
+          @media (min-width: $mdScreen) {
+            width: 100%;
+          }
+
+          /deep/ .mat-input-prefix{
+            .fa {
+              color: $primaryColor;
+            }
+            margin-right: .5em;
+            margin-left: .5em;
+          }
         }
+
       }
+
+
     }
+
   }
-  */
 }
+
+
+
 
 
 .second{
@@ -164,20 +170,19 @@ section{
   align-items: center;
   flex-wrap: wrap;
   flex: 1 0 0;
-
+  max-width: 100%;
   font-size: .85em;
 
-  max-height: calc(143vh - 50px);
-  height: calc(143vh  - 50px);
+  max-height: none;
+  height: auto;
 
   @media (min-width: $smScreen) {
     font-size: 1em;
-    max-height: calc(110vh - 50px);
-    height: calc(110vh  - 50px);
   }
 
-  .fore{
+  .base{
     overflow: hidden;
+    max-width: 100%;
     h1{
       color: $primaryColor;
       text-align: center;
@@ -197,10 +202,14 @@ section{
     ul{
       display: flex;
       justify-content: center;
-      margin: 3em;
+      margin: 2em;
       flex-wrap: wrap;
-      padding-right: 10%;
-      padding-left: 10%;
+      padding: 0px;
+
+      @media (min-width: $smScreen) {
+        margin: 2em;
+      }
+
       li{
         display: flex;
         flex-direction: column;
@@ -210,9 +219,10 @@ section{
         margin: 1em;
         background-color: rgba(white, .5);
         font-size: 2em;
-        width: 11em;
-        height: 11em;
+        width: 12em;
+        height: 11.5em;
         transition: all 0.25s;
+        cursor: pointer;
 
         > picture{
           background-size: cover;
@@ -226,8 +236,7 @@ section{
           color: white;
           min-height: 1.5em;
           text-align: center;
-          padding-right: 1em;
-          padding-left: 1em;
+          padding: .3em .5em;
           font-weight: bolder;
           transition: all 0.25s;
         }
@@ -245,5 +254,21 @@ section{
 }
 
 .third{
+  height: auto;
   background-color: $primaryColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  padding: 1em;
+  text-align: center;
+  a{
+    color: white;
+    margin: 1em;
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 }

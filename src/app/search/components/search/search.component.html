@@ -1,6 +1,11 @@
-<mat-form-field [class.hidden]="hide">
+<mat-form-field [class.hidden]="hide"
+                floatPlaceholder="never"
+                [class.app-input-no-underline]="true">
+  <span matPrefix *ngIf="alwaysShow">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </span>
   <input matInput color="accent" [(ngModel)]="query" #input
-         placeholder="Escriba sus búsqueda" [matAutocomplete]="auto" [formControl]="stateCtrl">
+         [placeholder]="placeholder" [matAutocomplete]="auto" [formControl]="stateCtrl">
 </mat-form-field>
 
 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
@@ -52,4 +57,4 @@
   </ng-container>
 </mat-autocomplete>
 <div class="void" *ngIf="hide"></div>
-<i (click)="toggleHidden()" class="fa fa-search" aria-hidden="true"></i>
+<i *ngIf="!alwaysShow" (click)="toggleHidden()" class="fa fa-search" aria-hidden="true"></i>

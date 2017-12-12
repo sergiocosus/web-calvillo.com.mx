@@ -13,10 +13,20 @@ export class LandingComponent implements OnInit {
   adSenseEnabled = environment.adSenseEnabled;
   categories: Category[];
   public defaultCatId: string;
+  greeting: string;
 
   constructor(private categoryService:CategoryService,
               private navbarService: NavbarService) {
     this.defaultCatId = environment.defaultCategoryId;
+
+    const hours = new Date().getHours();
+    if (hours >= 8 && hours <= 11) {
+      this.greeting = 'BUENOS DÍAS';
+    } else if (hours >= 12 && hours <= 17) {
+      this.greeting = 'BUENAS TARDES';
+    } else {
+      this.greeting = 'BUENAS NOCHES';
+    }
   }
 
   ngOnInit(): void {

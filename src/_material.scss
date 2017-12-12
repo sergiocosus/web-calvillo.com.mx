@@ -57,3 +57,7 @@ $candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent);
   font-size: 1em;
   color: gray;
 }
+
+.mat-form-field.app-input-no-underline .mat-input-underline {
+  display: none;
+}
