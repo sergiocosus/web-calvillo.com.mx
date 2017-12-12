@@ -43,8 +43,11 @@
         </span>
       </div>
       -->
-      <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
       <ul *ngIf="categories">
+        <li>
+          <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
+        </li>
+
         <li *ngFor="let category of categories" [routerLink]="category.routerLink">
           <picture [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
           </picture>
