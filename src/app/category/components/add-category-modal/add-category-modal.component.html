@@ -17,8 +17,6 @@
     <mat-form-field>
       <input matInput formControlName="link"
              placeholder="Titulo para enlace">
-    </mat-form-field>
-    <mat-form-field>
       <mat-error *ngIf="form.get('link').hasError('linkUsed')">
         El link esta siendo utilizado, cambielo por otro
       </mat-error>
