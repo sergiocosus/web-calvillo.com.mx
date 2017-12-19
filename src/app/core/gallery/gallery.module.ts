@@ -10,12 +10,12 @@ import {DirectoryModule} from '../../directory/directory.module';
 import { AgmCoreModule } from '@agm/core';
 import {AdsenseModule} from 'ng2-adsense';
 import {AuthModule} from '../../auth/auth.module';
-import {MdButtonModule, MdTooltipModule} from '@angular/material';
+import {MatButtonModule, MatTooltipModule} from '@angular/material';
 
 @NgModule({
   imports: [
-    MdTooltipModule,
-    MdButtonModule,
+    MatTooltipModule,
+    MatButtonModule,
     SharedModule,
     GalleryRoutingModule,
     PictureModule,

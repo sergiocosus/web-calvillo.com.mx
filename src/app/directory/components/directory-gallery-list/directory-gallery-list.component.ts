@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Directory} from '../../directory.model';
 import {NotifyService} from '../../../shared/services/notify.service';
 import {DirectoryService} from '../../services/directory.service';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {DirectoryDialogComponent} from '../directory-dialog/directory-dialog.component';
 import {Category} from '../../../category/category.model';
 
@@ -18,7 +18,7 @@ export class DirectoryGalleryListComponent implements OnInit {
 
   constructor(private notify: NotifyService,
               private directoryService: DirectoryService,
-              private dialog: MdDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit() {
   }

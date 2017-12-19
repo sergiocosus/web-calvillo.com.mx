@@ -1,13 +1,18 @@
-<md-input-container [class.hidden]="hide">
-  <input mdInput color="accent" [(ngModel)]="query" #input
-         placeholder="Escriba sus búsqueda" [mdAutocomplete]="auto" [formControl]="stateCtrl">
-</md-input-container>
+<mat-form-field [class.hidden]="hide"
+                floatPlaceholder="never"
+                [class.app-input-no-underline]="true">
+  <span matPrefix *ngIf="alwaysShow">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </span>
+  <input matInput color="accent" [(ngModel)]="query" #input
+         [placeholder]="placeholder" [matAutocomplete]="auto" [formControl]="stateCtrl">
+</mat-form-field>
 
-<md-autocomplete #auto="mdAutocomplete" [displayWith]="displayWith">
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
   <ng-container *ngIf="search | async; let search;" >
 
     <ng-container *ngFor="let directory of search.directories">
-      <md-option  *ngFor="let category of directory.categories"
+      <mat-option  *ngFor="let category of directory.categories"
                   [value]="directory"
                   (onSelectionChange)="selectedModel(category, directory)">
         <a [routerLink]="directory.getRouterLink(category)">
@@ -19,10 +24,10 @@
             <span>{{ directory.title }}</span>
           </span>
         </a>
-      </md-option>
+      </mat-option>
     </ng-container>
 
-    <md-option *ngFor="let category of search.categories"
+    <mat-option *ngFor="let category of search.categories"
                [value]="category" (onSelectionChange)="selectedCategory(category)">
       <a [routerLink]="category.routerLink">
         <picture  [ngStyle]="{ 'background-image' : 'url('+category.imageUrl('xs')+')' } ">
@@ -32,10 +37,10 @@
           {{ category.title }}
         </span>
       </a>
-    </md-option>
+    </mat-option>
 
     <ng-container *ngFor="let picture of search.pictures">
-      <md-option  *ngFor="let category of picture.categories"
+      <mat-option  *ngFor="let category of picture.categories"
                   [value]="picture" (onSelectionChange)="selectedModel(category, picture)">
         <a [routerLink]="picture.getRouterLink(category)">
           <picture  [ngStyle]="{ 'background-image' : 'url('+picture.imageUrl('xs')+')' } ">
@@ -46,10 +51,10 @@
             <span>{{ picture.title }}</span>
           </span>
         </a>
-      </md-option>
+      </mat-option>
     </ng-container>
 
   </ng-container>
-</md-autocomplete>
+</mat-autocomplete>
 <div class="void" *ngIf="hide"></div>
-<i (click)="toggleHidden()" class="fa fa-search" aria-hidden="true"></i>
+<i *ngIf="!alwaysShow" (click)="toggleHidden()" class="fa fa-search" aria-hidden="true"></i>

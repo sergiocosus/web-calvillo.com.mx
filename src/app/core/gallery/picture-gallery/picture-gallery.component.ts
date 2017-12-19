@@ -8,7 +8,7 @@ import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
 import {ResolutionService} from '../../../shared/services/resolution.service';
 import {isPlatformBrowser} from '@angular/common';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
 import {Meta, Title} from '@angular/platform-browser';
@@ -109,7 +109,7 @@ export class PictureGalleryComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private resolutionService: ResolutionService,
-              private dialog: MdDialog,
+              private dialog: MatDialog,
               private title: Title,
               private meta: Meta) {
     this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
@@ -184,10 +184,14 @@ export class PictureGalleryComponent implements OnInit {
 
 
   preloadImage(src) {
-    if (isPlatformBrowser(this.platformId)) {
+    if (this.isBrowser()) {
       let image = new Image();
       image.src = src;
     }
+  }
+
+  isBrowser() {
+    return isPlatformBrowser(this.platformId);
   }
 
   loadCategory(category_link: string) {
@@ -347,10 +351,16 @@ export class PictureGalleryComponent implements OnInit {
   postOnFacebook() {
     const dialog = this.dialog.open(SocialPostDialogComponent);
     dialog.componentInstance.init(this.category, this.picture);
-
   }
 
   updateMetaTags() {
+    let title = this.picture.title + ' / ' + this.category.title;
+    if (this.category.category) {
+      title += ' / ' + this.category.category.title;
+    }
+
+    let description = this.picture.description.replace(/<(?:.|\n)*?>/gm, '');
+
     this.meta.updateTag({
       property: 'og:image',
       content: this.picture.imageUrl('xlg')
@@ -358,17 +368,17 @@ export class PictureGalleryComponent implements OnInit {
 
     this.meta.updateTag({
       property: 'og:title',
-      content: this.picture.title
+      content: title
     });
 
     this.meta.updateTag({
       property: 'og:description',
-      content: this.picture.description.replace(/<(?:.|\n)*?>/gm, ''),
+      content: description
     });
 
     this.meta.updateTag({
       name: 'description',
-      content: this.picture.description.replace(/<(?:.|\n)*?>/gm, ''),
+      content: description,
     });
   }
 }

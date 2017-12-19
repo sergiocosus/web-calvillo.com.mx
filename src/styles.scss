@@ -1,17 +1,10 @@
-@import "../node_modules/font-face-mixin/_fontface.scss";
-@import "~app/vars";
+@import "../node_modules/ng-pick-datetime/assets/style/picker.min.css";
+@import "app/vars";
 
 
-@include font-face(QuickSand,
-  "~connect-fonts-quicksand/fonts/latin/quicksand-regular",
-  normal, normal, eot woff ttf svg);
-
-@include font-face(QuickSand,
-  "~connect-fonts-quicksand/fonts/latin/quicksand-bold",
-  bold, normal, eot woff ttf svg);
 
 *{
-  font-family: QuickSand;
+  font-family: QuickSand ;
 }
 
 
@@ -37,6 +30,7 @@ simple-notifications{
 }
 
 @import "material";
+@import "shareButtons";
 
 
 /* Parallax base styles

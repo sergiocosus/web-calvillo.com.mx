@@ -1,6 +1,6 @@
 Compile app for server 
 ```
-ENV=local npm run build-server
+ENV=local npm run build:ssr
 ```
 
 

@@ -1,9 +1,8 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders, NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import {SharedModule} from '../shared/shared.module';
-import { MaterialModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 import {UserModule} from '../user/user.module';
 import {IfLoggedDirective} from './directives/if-logged.directive';
@@ -11,7 +10,6 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
 @NgModule({
   imports: [
     SharedModule,
-    MaterialModule,
     AgmCoreModule,
     UserModule,
   ],
@@ -19,9 +17,6 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
     LoginComponent,
     LoginModalComponent,
     IfLoggedDirective,
-  ],
-  providers: [
-    AuthService,
   ],
   entryComponents: [
     LoginModalComponent,
@@ -31,4 +26,13 @@ import {IfLoggedDirective} from './directives/if-logged.directive';
     IfLoggedDirective,
   ],
 })
-export class AuthModule { }
+export class AuthModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthModule,
+      providers: [
+        AuthService
+      ]
+    };
+  }
+}

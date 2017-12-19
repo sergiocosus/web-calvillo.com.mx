@@ -6,6 +6,7 @@ import {CategoryModule} from '../../category/category.module';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {PictureModule} from '../../picture/picture.module';
 import {AdsenseModule} from 'ng2-adsense';
+import {SearchModule} from '../../search/search.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {AdsenseModule} from 'ng2-adsense';
     ShareButtonsModule,
     PictureModule,
     AdsenseModule,
+    SearchModule,
   ],
   declarations: [LandingComponent]
 })

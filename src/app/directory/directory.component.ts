@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {Directory} from './directory.model';
 import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {Category} from '../category/category.model';
 
 @Component({
@@ -51,7 +51,7 @@ export class DirectoryComponent implements OnInit {
     return this.expanded;
 }
 
-  constructor(private dialog:MdDialog) { }
+  constructor(private dialog:MatDialog) { }
 
   ngOnInit() {
   }

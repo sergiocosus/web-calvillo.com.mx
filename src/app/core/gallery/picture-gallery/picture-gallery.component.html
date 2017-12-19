@@ -10,7 +10,7 @@
   <ul *ngIf="category && category.pictures.length">
     <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
       <li *ngIf="indexInPage(i)"
-          [mdTooltip]="pictureList.title">
+          [matTooltip]="pictureList.title">
         <a [routerLink]="pictureList.getRouterLink(category)"
            [routerLinkActive]="['active']">
           <picture
@@ -72,13 +72,18 @@
          (click)="openMapModal()">
         <i class="fa fa-map-marker"></i>
       </a>
-      <button *appIfLogged="true" (click)="postOnFacebook()" md-raised-button color="primary">
+      <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button color="primary">
         <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
       </button>
     </h1>
-    <share-buttons [url]="currentRoute"
-                   [reddit]="false"
+
+    <share-buttons *ngIf="currentRoute && isBrowser()"
+                   theme="circles"
+                   [include]="['facebook','twitter','pinterest','google']"
+                   [show]="5"
                    [showCount]="true"
+                   [size]="2"
+                   [url]="'http://calvillo.com.mx' + currentRoute"
     ></share-buttons>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>

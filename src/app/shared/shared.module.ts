@@ -11,9 +11,11 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
 import {
-  MdButtonModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdProgressSpinnerModule,
-  MdSelectModule
+  MatButtonModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
+  MatProgressSpinnerModule,
+  MatSelectModule
 } from '@angular/material';
+import {DateTimePickerModule} from 'ng-pick-datetime';
 import { LogoComponent } from './components/logo/logo.component';
 import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
@@ -24,18 +26,19 @@ import {ScriptService} from './services/script.service';
 import {AdsenseModule} from 'ng2-adsense';
 import { ImageComponent } from './components/image/image.component';
 import {PlatformService} from './services/platform.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
-    MdDialogModule,
-    MdButtonModule,
-    MdSelectModule,
-    MdInputModule,
-    MdProgressSpinnerModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
@@ -57,12 +60,15 @@ import {PlatformService} from './services/platform.service';
     AdsenseModule,
     VoidComponent,
     ImageComponent,
-    MdDialogModule,
-    MdButtonModule,
-    MdInputModule,
-    MdSelectModule,
-    MdCheckboxModule,
-    MdProgressSpinnerModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatIconModule,
+    DateTimePickerModule,
     LogoComponent,
   ]
 })

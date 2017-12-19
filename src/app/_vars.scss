@@ -13,7 +13,9 @@ $thumbnail-label-background-color: rgba(#EEE, 1);
 $fb-color: #4267b2;
 $youtube-color: #db4437;
 
-$navbarBackgroundColor: #F62459;
+$primaryColor: #D31841;
+
+$navbarBackgroundColor: $primaryColor;
 $navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
 
 $titleColor: #3f1f01;

@@ -1,34 +1,45 @@
-<h4 md-dialog-title>
+<h4 mat-dialog-title>
   Crear álbum
-  <button class="button-close" md-dialog-close>
+  <button class="button-close" mat-dialog-close>
     <i class="fa fa-times"></i>
   </button>
 </h4>
-<button type="button" class="corner" md-dialog-close>
+<button type="button" class="corner" mat-dialog-close>
   <span aria-hidden="true">&times;</span>
 </button>
-<md-dialog-content>
+<mat-dialog-content>
   <form [formGroup]="form"
         id="category-form" (submit)="submit()">
-    <md-input-container>
-      <input mdInput formControlName="title"
+    <mat-form-field>
+      <input matInput formControlName="title"
              placeholder="Título">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput formControlName="link"
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="link"
              placeholder="Titulo para enlace">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput formControlName="description"
+      <mat-error *ngIf="form.get('link').hasError('linkUsed')">
+        El link esta siendo utilizado, cambielo por otro
+      </mat-error>
+      <mat-error *ngIf="form.get('link').hasError('slug')">
+        El formato del link es inválido. Ejemplo mi-foto-1
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="description"
              placeholder="Descripción"  >
-    </md-input-container>
+      <mat-error *ngIf="form.get('description').hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
 
-    <md-select formControlName="category" placeholder="Albumes">
-      <md-option *ngFor="let category of categories" [value]="category">
-        {{category.category ? category.category.title : ''}}
-        / {{category.title}}
-      </md-option>
-    </md-select>
+    <mat-form-field>
+      <mat-select formControlName="category_id" placeholder="Albumes">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{category.category ? category.category.title : ''}}
+          / {{category.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <input class="input-picture" imageUpload
            (imageSelected)="selected($event)"
@@ -37,10 +48,14 @@
       'background-image' : 'url('+form.get('src').value+')'
     }">
     </picture>
+
+    <mat-error *ngIf="form.get('src').hasError('required')">
+      Es indispensable una imagen
+    </mat-error>
   </form>
 
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
-  <button md-raised-button form="category-form">Subir álbum</button>
-</md-dialog-actions>
+<mat-dialog-actions>
+  <button mat-raised-button form="category-form">Subir álbum</button>
+</mat-dialog-actions>
