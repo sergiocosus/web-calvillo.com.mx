@@ -14,24 +14,28 @@
     </mat-menu>
   </ng-container>
 </div>
+<div class="agm">
+  <agm-map [latitude]="latitudeMap"
+           [longitude]="longitudeMap"
+           [zoom]="zoomMap">
+    <agm-marker-cluster
+            maxZoom="17"
+            imagePath="https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m">
+      <agm-marker
+              *ngFor="let directory of directories"
+              [label]="directory.title"
+              [openInfoWindow]="true"
+              [latitude]="directory.latitude"
+              [longitude]="directory.longitude" >
+        <agm-info-window>
+          <app-directory [directory]="directory"
+                         [showExpanded]="true"></app-directory>
+        </agm-info-window>
+      </agm-marker>
+    </agm-marker-cluster>
+  </agm-map>
+</div>
 
-<agm-map [latitude]="latitudeMap"
-         [longitude]="longitudeMap"
-         [zoom]="zoomMap">
-  <agm-marker-cluster
-          maxZoom="17"
-          imagePath="https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m">
-    <agm-marker
-      *ngFor="let directory of directories"
-      [label]="directory.title"
-      [openInfoWindow]="true"
-      [latitude]="directory.latitude"
-      [longitude]="directory.longitude" >
-      <agm-info-window>
-        <app-directory [directory]="directory"
-                       [showExpanded]="true"></app-directory>
-      </agm-info-window>
-    </agm-marker>
-  </agm-marker-cluster>
-</agm-map>
-<ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
+<div class="ad">
+  <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
+</div>

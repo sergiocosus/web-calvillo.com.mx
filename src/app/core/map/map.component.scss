@@ -13,6 +13,7 @@
 }
 .directory-bar{
   display: flex;
+  flex: 0 0 auto;
   overflow-x: auto;
   button {
     display: flex;
@@ -37,8 +38,27 @@ button.mat-menu-item{
   display: flex;
 }
 
-agm-map{
-  height: calc(100vh - #{$navBarTop} - 50px);
-  width: 100%;
+.agm{
+  flex: 1 0 0;
+
+  agm-map{
+    //height: 100%;
+   //height: calc(100vh - #{$navBarTop} - 50px);
+    width: 100%;
+    height: calc(100vh - #{$navBarTop} - 100px);
+
+    @media (min-width: $smScreen) {
+      height: calc(100vh - #{$navBarTop} - 150px);
+    }
+  }
+
 }
 
+.ad{
+  flex: 0 0 50px;
+  height: 50px;
+
+  @media (min-width: $smScreen) {
+    height: 100px;
+  }
+}
