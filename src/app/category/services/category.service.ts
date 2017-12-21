@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Category} from '../category.model';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()
@@ -74,5 +74,9 @@ export class CategoryService {
   post(data) {
     return this.apiHttp.post(this.basePath, data)
       .map(json => new Category().parse(json.category));
+  }
+
+  facebookPost(category_id, data) {
+    return this.apiHttp.post(`${this.basePath}${category_id}/facebook`, data)
   }
 }

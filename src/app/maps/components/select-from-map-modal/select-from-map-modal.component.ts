@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-select-from-map-modal',
@@ -18,7 +18,7 @@ export class SelectFromMapModalComponent implements OnInit {
 
   hidden = true;
 
-  constructor(private dialog: MdDialogRef<SelectFromMapModalComponent>) {
+  constructor(private dialog: MatDialogRef<SelectFromMapModalComponent>) {
   }
 
   ngOnInit() {
@@ -48,5 +48,9 @@ export class SelectFromMapModalComponent implements OnInit {
   dragged($event) {
     this.longitude = $event.coords.lng;
     this.latitude = $event.coords.lat;
+  }
+
+  close() {
+    this.dialog.close();
   }
 }

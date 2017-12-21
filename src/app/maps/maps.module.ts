@@ -7,7 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 @NgModule({
   imports: [
     SharedModule,
-    AgmCoreModule
+    AgmCoreModule,
   ],
   declarations: [
     SelectFromMapModalComponent,

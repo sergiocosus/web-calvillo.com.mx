@@ -1,52 +1,80 @@
-<h4 md-dialog-title>
+<h4 mat-dialog-title>
   {{createMode ? 'Subir fotografías': 'Editar fotografía'}}
-  <button class="button-close" md-dialog-close>
+  <button class="button-close" mat-dialog-close>
     <i class="fa fa-times"></i>
   </button>
 </h4>
 
-<button class="corner" tabindex="-1" md-dialog-close>
+<button class="corner" tabindex="-1" mat-dialog-close>
   <span aria-hidden="true">&times;</span>
 </button>
 
 <section class="header-form" *ngIf="createMode">
-  <label for="file-input" md-tooltip="Agregar fotos">
-    <a md-mini-fab color="primary"  >
+  <label for="file-input" mat-tooltip="Agregar fotos">
+    <a mat-mini-fab color="primary"  >
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </a>
   </label>
-  <md-checkbox [(ngModel)]="takeTitleFromFiles" >
+  <mat-checkbox [(ngModel)]="takeTitleFromFiles" >
     Obtener título de archivo
-  </md-checkbox>
+  </mat-checkbox>
 
   <input id="file-input"
          imageUpload (imageSelected)="selected($event)"
          accept="image/*" name="picture" type="file" multiple>
 </section>
 
-<md-dialog-content>
+<mat-dialog-content>
   <form *ngIf="formGroup" id="picture-form" [formGroup]="formGroup" (ngSubmit)="submit()">
     <div formArrayName="pictures">
-      <md-card *ngFor="let picture of formArray.controls; let i=index"
-               [formGroupName]="i">
+      <mat-accordion *ngFor="let picture of formArray.controls;
+                             let i=index; let first = first; let last = last"
+                     [formGroupName]="i">
+        <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <i *ngIf="picture.invalid"
+               class="fa fa-exclamation-triangle error"
+               aria-hidden="true"></i>
 
-        <app-picture-form [picture]="picture"
-                          [uploading]="i === currentUploadingPicture && uploading"
-                          (coordsRequested)="openMapModal($event)"
-                          >
-        </app-picture-form>
-        <button *ngIf="createMode"
-                type="button" md-mini-fab class="remove"
-                (click)="remove(picture)">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
-      </md-card>
+            <mat-panel-title>
+              {{picture.controls.title.value}}
+            </mat-panel-title>
+            <mat-panel-description>
+
+            </mat-panel-description>
+            <img [src]="picture.get('src').value">
+            <mat-spinner diameter="30"
+                         *ngIf="i === currentUploadingPicture && uploading"></mat-spinner>
+          </mat-expansion-panel-header>
+
+          <app-picture-form *ngIf="step === i || lastStep === i" [picture]="picture"
+                            [uploading]="i === currentUploadingPicture && uploading"
+                            (coordsRequested)="openMapModal($event)"
+                            [categories]="categories"
+          >
+          </app-picture-form>
+
+          <mat-action-row>
+            <button *ngIf="createMode"
+                    type="button" mat-button color="warn" class="remove"
+                    (click)="remove(picture)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+
+            <button *ngIf="!first" type="button"
+                    mat-button color="primary" (click)="prevStep()">Atrás</button>
+            <button *ngIf="!last" type="button"
+                    mat-button color="primary" (click)="nextStep()">Siguiente</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </div>
   </form>
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
-  <button md-raised-button color="primary" form="picture-form">
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" form="picture-form">
     <ng-container *ngIf="createMode; else elseCreateMode">
       Subir fotografías
     </ng-container>
@@ -54,4 +82,4 @@
       Actualizar fotografía
     </ng-template>
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>

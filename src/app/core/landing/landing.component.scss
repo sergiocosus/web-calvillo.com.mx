@@ -5,10 +5,25 @@ section{
   height: $contentHeight;
 }
 
+.gradient{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  $gradientStart: rgba(darken($primaryColor, 35%), .10);
+  $gradientEnd: rgba(darken($primaryColor, 35%), .50);
+
+  background: -moz-linear-gradient(top, $gradientStart 0%, $gradientEnd 100%);
+  background: -webkit-linear-gradient(top, $gradientStart 0%, $gradientEnd 100%);
+  background: linear-gradient(to bottom, $gradientStart 0%, $gradientEnd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ce2003e', endColorstr='#24e2003e',GradientType=0 );
+}
+
+
 .background{
   width: 100%;
   height: 100%;
-  background: url("/assets/background3.jpg");
+  background: url("/assets/landing-page-background-night.jpg");
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -18,7 +33,7 @@ section{
 .background2{
   width: 100%;
   height: 100%;
-  background: url("/assets/background2.jpg");
+  background-color: white;
   background-size: cover;
   background-position: center;
 }
@@ -26,15 +41,22 @@ section{
 .first{
   display: flex;
   position: relative;
+  height: 80vh;
 
   .magic{
     position:absolute;
-    left: 0;
-    top: 0;
+    right: 0;
+    bottom: 0;
     img{
       width: 5em;
       margin: 1em;
       margin-top: 2em;
+    }
+
+    @media (min-width: $mdScreen) {
+      img{
+        width: 10em;
+      }
     }
   }
 
@@ -46,60 +68,101 @@ section{
     @media (min-width: $mdScreen) {
       flex-direction: row;
     }
+
+    .social{
+      right: 0em;
+      top: 0em;
+      margin: 1em;
+
+      display: flex;
+      flex: 0 0 auto;
+      padding: .5em;
+      align-items: flex-start;
+      z-index: 10;
+      margin-top: 3em;
+      justify-content: center;
+
+      @media (min-width: $mdScreen) {
+        position: absolute;
+      }
+    }
+
     .title {
       display: flex;
       flex-direction: column;
       flex: 10 0 auto;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
       text-shadow: .2em .2em .8em black;
       font-weight: bold;
       text-align: center;
 
       app-logo{
-        font-size: 1em;
+        font-size: 1.5em;
+
         @media (min-width: $mdScreen) {
-          font-size: 2em;
+          font-size: 2.5em;
+          margin-top: 2em;
+          margin-bottom: 1em;
         }
       }
 
-      span{
-        font-family: Arial;
+      .greeting{
+        font-family: QuickSand;
+        font-weight: lighter;
+        font-size: 2em;
+        padding: .5em;
         color: white;
-        padding: 1em;
-
-        text-align: center;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        -ms-word-break: break-all;
-        word-break: break-all;
-        word-break: break-word;
-        -ms-hyphens: auto;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        hyphens: auto;
-
         @media (min-width: $mdScreen) {
-          padding: 0;
+          font-size: 3em;
+          margin-bottom: 2em;
         }
       }
-    }
 
-    .social{
-      display: flex;
-      flex: 0 0 auto;
-      padding: .5em;
-      align-items: center;
 
-      share-buttons{
-        width: auto;
-        @media (min-width: $mdScreen) {
-          width: 80px;
+      /deep/ app-search{
+        width: 100%;
+        justify-content: center;
+        flex: 0 0 auto;
+
+        mat-form-field{
+          padding: .5em;
+          height: 2.5em;
+          margin-bottom: -2em;
+          background-color: white;
+          text-shadow: 0px 0px;
+          width: 90%;
+          max-width: 600px;
+          flex: 0 0 auto;
+
+          /deep/ .mat-input-infix{
+            border: none;
+          }
+
+          @media (min-width: $mdScreen) {
+            width: 100%;
+          }
+
+          /deep/ .mat-input-prefix{
+            .fa {
+              color: $primaryColor;
+            }
+            margin-right: .5em;
+            margin-left: .5em;
+          }
         }
+
       }
+
+
     }
+
   }
 }
+
+
+
+
 
 .second{
   display: flex;
@@ -107,78 +170,105 @@ section{
   align-items: center;
   flex-wrap: wrap;
   flex: 1 0 0;
-
+  max-width: 100%;
   font-size: .85em;
 
-  max-height: calc(143vh - 50px);
-  height: calc(143vh  - 50px);
+  max-height: none;
+  height: auto;
 
   @media (min-width: $smScreen) {
     font-size: 1em;
-    max-height: calc(110vh - 50px);
-    height: calc(110vh  - 50px);
   }
 
-  .fore{
+  .base{
     overflow: hidden;
-
+    max-width: 100%;
     h1{
-      @extend .title-divisor;
+      color: $primaryColor;
+      text-align: center;
+      font-size: 3em;
     }
+
+    .options{
+      text-align: center;
+      font-size: 2em;
+      span{
+        margin-left: 2em;
+        margin-right: 2em;
+      }
+    }
+
 
     ul{
       display: flex;
-      justify-content: flex-start;
-      flex-direction: column;
-      margin: 0;
-      padding: 1em 0;
+      justify-content: center;
+      margin: 2em;
       flex-wrap: wrap;
+      padding: 0px;
+
+      @media (min-width: $smScreen) {
+        margin: 2em;
+      }
 
       li{
         display: flex;
+        flex-direction: column;
         position: relative;
         overflow: hidden;
-        flex: 1 0 auto;
-        margin: .5em 0;
+        flex: 0 0 auto;
+        margin: 1em;
         background-color: rgba(white, .5);
-        padding: .5em 10%;
+        font-size: 2em;
+        width: 12em;
+        height: 11.5em;
+        transition: all 0.25s;
+        cursor: pointer;
 
-        > .pictures{
+        > picture{
+          background-size: cover;
+          background-position: center center;
           flex: 1 0 0;
-          display: flex;
-          flex-wrap: wrap;
-          font-size: .5em;
-          align-items: center;
-          max-height: 20em;
-          /deep/ app-picture-thumbnail {
-            margin-left: .25em;
-            > a > div{
-              display: none;
-            }
-          }
         }
 
-        /deep/ app-category-thumbnail {
-          flex: 0 0 15em;
+        > span {
+          flex: 0 0 auto;
+          background-color: #4E4E4E;
+          color: white;
+          min-height: 1.5em;
+          text-align: center;
+          padding: .3em .5em;
+          font-weight: bolder;
+          transition: all 0.25s;
+        }
 
-          a{
-            flex: 1 0 auto;
-            text-align: left;
+        &:hover{
+          box-shadow: 0em 0em .5em $primaryColor;
+
+          > span{
+            background-color: $primaryColor;
           }
-
-          img {
-            height: $imgHeight;
-            transform: scale(1.5,1.5);
-          }
-
-          &:hover{
-            img {
-              transform: scale(1.75, 1.75) translate(0, 5%);
-            }
-          }
-
         }
       }
+    }
+  }
+}
+
+.third{
+  height: auto;
+  background-color: $primaryColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  padding: 1em;
+  text-align: center;
+  a{
+    color: white;
+    margin: 1em;
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
     }
   }
 }

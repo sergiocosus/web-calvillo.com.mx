@@ -1,6 +1,6 @@
-<h1 md-dialog-title>
+<h1 mat-dialog-title>
   Seleccione la ubicación
-  <button class="button-close" md-dialog-close>
+  <button class="button-close" mat-dialog-close>
     <i class="fa fa-times"></i>
   </button>
 </h1>
@@ -8,7 +8,10 @@
 <agm-map *ngIf="!hidden"
                  [latitude]="latitudeMap"
                  [longitude]="longitudeMap"
-                 [zoom]="14">
+                 [zoom]="14"
+                 [mapTypeControl]="true"
+         (keyup.enter)="close()"
+>
   <agm-marker
     [latitude]="latitude"
     [longitude]="longitude"

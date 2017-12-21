@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
-import {CategoryModule} from './category/category.module.browser';
-import {CoreModule} from './core/core.browser.module';
+import {CategoryModule} from './category/category.module';
+import {CoreModule} from './core/core.module';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {environment} from '../environments/environment';
 import {AdsenseModule} from 'ng2-adsense';
@@ -15,7 +15,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import {FacebookModule} from 'ngx-facebook';
 import {SearchModule} from './search/search.module';
-
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/throw';
+import {AuthModule} from './auth/auth.module';
+import {PictureModule} from './picture/picture.module';
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -29,6 +35,8 @@ import {SearchModule} from './search/search.module';
     SearchModule.forRoot(),
     FacebookModule.forRoot(),
     CategoryModule.forRoot(),
+    AuthModule.forRoot(),
+    PictureModule.forRoot(),
     CoreModule,
     ShareButtonsModule.forRoot(),
     AgmCoreModule.forRoot({

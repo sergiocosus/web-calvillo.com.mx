@@ -1,0 +1,43 @@
+@import "src/app/vars";
+
+:host{
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
+
+h3{
+  text-align: center;
+  .big-font{
+    font-size: 1.5em;
+  }
+}
+
+
+
+.results{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  ul{
+    display: flex;
+    padding: 1em 2%;
+    @media (min-width: $smScreen) {
+      padding: 1em 10%;
+    }
+
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+    li {
+      display: flex;
+      list-style: none;
+      position: relative;
+      overflow: hidden;
+    }
+  }
+}
+

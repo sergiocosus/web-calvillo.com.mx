@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {CoreComponent} from './core.component';
 import {landingRoutes} from './landing/landing-routing.module';
 import {galleryRoutes} from './gallery/gallery-routing.module';
+import {routes as notFoundRoutes} from './not-found/not-found-routing.module';
 
 
 
@@ -31,10 +32,15 @@ export const coreRoutes: Routes = [
       {
         path: 'contacto',
         loadChildren: 'app/core/contact/contact.module#ContactModule',
+      },
+      {
+        path: 'no-encontrado',
+        children: notFoundRoutes,
+        //loadChildren: 'app/core/contact/contact.module#ContactModule',
       }
     ]
   },
-  { path: '**', redirectTo: '/' },
+  { path: '**', redirectTo: '/no-encontrado' },
 ];
 
 @NgModule({

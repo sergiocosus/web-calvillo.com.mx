@@ -1,12 +1,18 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
+import {PlatformService} from './platform.service';
+
 
 
 @Injectable()
 export class ScriptService {
   private facebookSdkLoaded = false;
 
-  constructor() {
+  constructor(private platformService: PlatformService) {
+    if (this.platformService.isPlatformServer()) {
+      return;
+    }
+
     this.loadFacebook();
   }
 

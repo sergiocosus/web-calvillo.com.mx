@@ -3,11 +3,15 @@ import { CoreComponent } from './core.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {SharedModule} from '../shared/shared.module';
 import {CoreRoutingModule} from './core-routing.module';
-import {LandingModule} from './landing/landing.module.browser';
-import {GalleryModule} from './gallery/gallery.browser.module';
-import {AuthModule} from '../auth/auth.module.browser';
+import {LandingModule} from './landing/landing.module';
+import {GalleryModule} from './gallery/gallery.module';
+import {AuthModule} from '../auth/auth.module';
 import { NavPagesComponent } from './nav-pages/nav-pages.component';
 import {SearchModule} from '../search/search.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import {PictureModule} from '../picture/picture.module';
+import {DirectoryModule} from '../directory/directory.module';
+import {CategoryModule} from '../category/category.module';
 
 @NgModule({
   imports: [
@@ -17,11 +21,15 @@ import {SearchModule} from '../search/search.module';
     GalleryModule,
     AuthModule,
     SearchModule,
+    PictureModule,
+    DirectoryModule,
+    CategoryModule,
   ],
   declarations: [
     CoreComponent,
     NavBarComponent,
     NavPagesComponent,
+    NotFoundComponent,
   ]
 })
 export class CoreModule { }

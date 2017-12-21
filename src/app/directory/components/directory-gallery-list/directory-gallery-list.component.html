@@ -13,11 +13,11 @@
   <li *ngFor="let directory of directories">
     <app-directory [category]="category" [directory]="directory">
     </app-directory>
-    <button *appIfLogged="true" md-mini-fab class="remove"
+    <button *appIfLogged="true" mat-mini-fab class="remove"
             (click)="removeDirectory(directory)">
       <i class="fa fa-trash-o" aria-hidden="true"></i>
     </button>
-    <button *appIfLogged="true" md-mini-fab class="edit"
+    <button *appIfLogged="true" mat-mini-fab class="edit"
             (click)="editDirectory($event, directory)">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
@@ -32,11 +32,11 @@
   <ul>
     <li *ngFor="let directory of deleted_directories">
       <app-directory [category]="category" [directory]="directory"></app-directory>
-      <button  md-mini-fab class="remove"
+      <button  mat-mini-fab class="remove"
                (click)="deleteDirectory(directory)">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
-      <button  md-mini-fab class="restore"
+      <button  mat-mini-fab class="restore"
                (click)="restoreDirectory(directory)">
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>

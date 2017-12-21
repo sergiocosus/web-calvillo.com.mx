@@ -1,20 +1,22 @@
 import {
-  Component, OnInit, ElementRef, HostBinding, ViewChild, HostListener, trigger, state,
-  transition, style, animate, PLATFORM_ID, Inject, OnDestroy
+  Component, OnInit, ElementRef, ViewChild, HostListener, trigger, state,
+  transition, style, animate, PLATFORM_ID, Inject
 } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {CategoryService} from '../../../category/services/category.service';
 import {Category} from '../../../category/category.model';
 import {Picture} from '../../../picture/picture.model';
 import {ResolutionService} from '../../../shared/services/resolution.service';
 import {isPlatformBrowser} from '@angular/common';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import {environment} from '../../../../environments/environment';
 import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
 import {SocialPostDialogComponent} from '../../../picture/components/social-post-dialog/social-post-dialog.component';
+
+declare var window: any;
 
 @Component({
   selector: 'app-picture-gallery',
@@ -98,6 +100,7 @@ export class PictureGalleryComponent implements OnInit {
   page = 0;
   elementsByPage;
 
+  currentRoute: string;
 
   private sub = new SubscriptionManager;
 
@@ -106,8 +109,13 @@ export class PictureGalleryComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private resolutionService: ResolutionService,
-              private dialog: MdDialog,
-              private title: Title) { }
+              private dialog: MatDialog,
+              private title: Title,
+              private meta: Meta) {
+    this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
+      this.currentRoute = e.url;
+    });
+  }
 
   ngOnInit() {
     this.initImgSize();
@@ -176,10 +184,14 @@ export class PictureGalleryComponent implements OnInit {
 
 
   preloadImage(src) {
-    if (isPlatformBrowser(this.platformId)) {
+    if (this.isBrowser()) {
       let image = new Image();
       image.src = src;
     }
+  }
+
+  isBrowser() {
+    return isPlatformBrowser(this.platformId);
   }
 
   loadCategory(category_link: string) {
@@ -215,6 +227,7 @@ export class PictureGalleryComponent implements OnInit {
           found = true;
           this.picture = picture;
           this.title.setTitle(this.category.title + " - " + this.picture.title);
+          this.updateMetaTags();
           if (this.oldIndex !== null) {
             this.oldIndex = this.index;
           }
@@ -338,6 +351,34 @@ export class PictureGalleryComponent implements OnInit {
   postOnFacebook() {
     const dialog = this.dialog.open(SocialPostDialogComponent);
     dialog.componentInstance.init(this.category, this.picture);
+  }
 
+  updateMetaTags() {
+    let title = this.picture.title + ' / ' + this.category.title;
+    if (this.category.category) {
+      title += ' / ' + this.category.category.title;
+    }
+
+    let description = this.picture.description.replace(/<(?:.|\n)*?>/gm, '');
+
+    this.meta.updateTag({
+      property: 'og:image',
+      content: this.picture.imageUrl('xlg')
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: title
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: description
+    });
+
+    this.meta.updateTag({
+      name: 'description',
+      content: description,
+    });
   }
 }
