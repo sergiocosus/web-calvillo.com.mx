@@ -5,7 +5,7 @@ import { MapComponent } from './map.component';
 import {SharedModule} from '../../shared/shared.module';
 import {MapsModule} from '../../maps/maps.module';
 import {DirectoryModule} from '../../directory/directory.module';
-import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
+//import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {MatMenuModule} from '@angular/material';
 
 @NgModule({
@@ -15,7 +15,7 @@ import {MatMenuModule} from '@angular/material';
     MatMenuModule,
     MapsModule,
     DirectoryModule,
-    AgmJsMarkerClustererModule,
+  //  AgmJsMarkerClustererModule,
   ],
   declarations: [MapComponent]
 })
