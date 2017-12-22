@@ -8,28 +8,26 @@
       "version": "3.1.0"
     },
     "tns-android": {
-      "version": "3.1.1"
+      "version": "3.4.0"
     }
   },
   "dependencies": {
-    "@angular/animations": "~4.1.0",
-    "@angular/common": "~4.1.0",
-    "@angular/compiler": "~4.1.0",
-    "@angular/core": "~4.1.0",
-    "@angular/forms": "~4.1.0",
-    "@angular/http": "~4.1.0",
-    "@angular/platform-browser": "~4.1.0",
-    "@angular/platform-browser-dynamic": "~4.1.0",
-    "@angular/router": "~4.1.0",
-    "@ngx-translate/core": "^6.0.1",
-    "@ngx-translate/http-loader": "0.0.3",
-    "nativescript-angular": "^3.1.0",
-    "nativescript-telerik-ui": "^3.1.0",
-    "nativescript-theme-core": "~1.0.2",
+    "@angular/animations": "~5.0.0",
+    "@angular/common": "~5.0.0",
+    "@angular/compiler": "~5.0.0",
+    "@angular/core": "~5.0.0",
+    "@angular/forms": "~5.0.0",
+    "@angular/http": "~5.0.0",
+    "@angular/platform-browser": "~5.0.0",
+    "@angular/platform-browser-dynamic": "~5.0.0",
+    "@angular/router": "~5.0.0",
+    "allow-publish": "^1.0.4",
+    "nativescript-angular": "~5.0.0",
+    "nativescript-telerik-ui": "^3.1.4",
+    "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.8",
-    "rxjs": "~5.3.0",
-    "tns-core-modules": "^3.1.0",
-    "typescript": "~2.2.0",
+    "rxjs": "~5.5.2",
+    "tns-core-modules": "~3.4.0",
     "zone.js": "~0.8.2"
   },
   "devDependencies": {
@@ -51,14 +49,14 @@
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-android-snapshot": "^0.*.*",
     "nativescript-dev-sass": "^1.1.1",
-    "nativescript-dev-typescript": "~0.4.5",
+    "nativescript-dev-typescript": "~0.6.0",
     "nativescript-dev-webpack": "^0.7.3",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
-    "typescript": "~2.2.0",
+    "typescript": "~2.4.2",
     "webpack": "~2.6.0",
-    "webpack-sources": "~0.2.3",
-    "webpack-bundle-analyzer": "^2.8.2"
+    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-sources": "~0.2.3"
   },
   "scripts": {
     "prepPhone": "gulp build.Phone",

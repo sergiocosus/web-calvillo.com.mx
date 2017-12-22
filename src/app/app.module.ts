@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, PLATFORM_ID} from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
@@ -15,13 +15,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import {FacebookModule} from 'ngx-facebook';
 import {SearchModule} from './search/search.module';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/observable/throw';
 import {AuthModule} from './auth/auth.module';
 import {PictureModule} from './picture/picture.module';
+
+
+
+
+
 
 @NgModule({
   bootstrap: [ AppComponent ],

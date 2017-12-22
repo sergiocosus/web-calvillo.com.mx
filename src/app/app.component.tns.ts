@@ -21,7 +21,7 @@ import {RadSideDrawer} from 'nativescript-telerik-ui/sidedrawer';
 @Component({
   moduleId: module.id,
   selector: 'app-root',
-  templateUrl: './  app.component.html',
+  templateUrl: './app.component.html',
   styleUrls : ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
@@ -70,8 +70,11 @@ export class AppComponent implements OnInit{
   }
 
   loadCategory(link: string) {
-    this.categoryService.getByLink(link).subscribe(
+      console.log(link);
+
+      this.categoryService.getByLink(link).subscribe(
       category => {
+        console.log(category);
         this.category = category;
         this.listView.nativeElement.refresh();
         this.changeDetectorRef.detectChanges();
