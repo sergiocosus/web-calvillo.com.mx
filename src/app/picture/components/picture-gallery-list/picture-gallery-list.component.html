@@ -10,6 +10,9 @@
   </span>
 </h3>
 <ul>
+  <li>
+    <app-ad-thumb></app-ad-thumb>
+  </li>
   <li *ngFor="let picture of pictures"
       (click)="loadPicture(picture.link)">
     <app-picture-thumbnail [category]="category" [picture]="picture"></app-picture-thumbnail>

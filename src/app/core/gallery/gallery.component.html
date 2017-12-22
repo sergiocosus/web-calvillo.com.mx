@@ -28,7 +28,6 @@
     </button>
     <!-- TODO put related gallery -->
   </header>
-  <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
   <section *ngIf="category.categories.length || loggedUser">
     <app-category-gallery-list [category]="category"></app-category-gallery-list>
   </section>

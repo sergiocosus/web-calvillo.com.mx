@@ -99,6 +99,30 @@ section /deep/ {
   display: flex;
   flex-direction: column;
 
+  app-picture-gallery-list {
+    li {
+      font-size: .4em;
+
+      @media (min-width: $smScreen) {
+        font-size: .5em;
+      }
+    }
+
+  }
+
+  app-category-gallery-list{
+    li{
+      font-size: .6em;
+    }
+  }
+
+  app-directory-gallery-list{
+    app-ad-thumb{
+      font-size: .6em;
+    }
+  }
+
+
   h3 {
     margin: 0;
     text-align: left;
@@ -134,8 +158,6 @@ section /deep/ {
       overflow: hidden;
       align-items: center;
 
-
-
       app-picture-thumbnail, app-category-thumbnail{
         margin: .5em .25em;
 
@@ -146,17 +168,8 @@ section /deep/ {
         }
       }
 
-      app-category-thumbnail{
-        font-size: .6em;
-      }
 
-      app-picture-thumbnail{
-        font-size: .4em;
 
-        @media (min-width: $smScreen) {
-          font-size: .5em;
-        }
-      }
 
       button.remove{
         position: absolute;

@@ -1,0 +1,10 @@
+@import "src/app/vars";
+
+:host{
+  @extend .thumb-style;
+}
+
+ng2-adsense{
+  width: 100%;
+  height: 100%;
+}

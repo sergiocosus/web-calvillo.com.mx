@@ -27,6 +27,7 @@ import {AdsenseModule} from 'ng2-adsense';
 import { ImageComponent } from './components/image/image.component';
 import {PlatformService} from './services/platform.service';
 import {HttpClientModule} from '@angular/common/http';
+import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {HttpClientModule} from '@angular/common/http';
     VoidComponent,
     LogoComponent,
     ImageComponent,
+    AdThumbComponent,
   ],
   exports: [
     CommonModule,
@@ -70,6 +72,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatIconModule,
     DateTimePickerModule,
     LogoComponent,
+    AdThumbComponent,
   ]
 })
 export class SharedModule {
