@@ -3,12 +3,14 @@
           [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
     <div class="gradient"></div>
 
-    <h1>
+    <div class="title">
       <a [routerLink]="category.category ? category.category.routerLink: '../'">
-        <i class="fa fa-undo" aria-hidden="true"></i>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
       </a>
-      {{category.title}}
-    </h1>
+      <h1>
+        {{category.title}}
+      </h1>
+    </div>
 
     <div class="content" [innerHTML]="category.description"></div>
 

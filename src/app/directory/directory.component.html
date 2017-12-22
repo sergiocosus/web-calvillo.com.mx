@@ -1,15 +1,14 @@
-<picture>
-  <img src="{{directory.imageUrl('sm')}}"/>
-</picture>
 <header>
-  <span>{{directory.title}}</span>
+  <picture>
+    <img [src]="directory.imageUrl('sm')"/>
+  </picture>
+  <div>
+    <h4>{{directory.title}}</h4>
+  </div>
 </header>
 <div class="content"
      *ngIf="expanded"
      [@directory]="'active'">
-  <header>
-    <span>{{directory.title}}</span>
-  </header>
   <div [innerHTML]="directory.description"><</div>
 
   <ul>
@@ -19,7 +18,7 @@
     </li>
     <li *ngIf="directory.email && directory.email.length">
       <h5>Email</h5>
-      <span>{{directory.email}}</span>
+      <a [href]="'mailto:' + directory.email">{{directory.email}}</a>
     </li>
     <li *ngIf="directory.phone && directory.phone.length">
       <h5>Teléfono</h5>

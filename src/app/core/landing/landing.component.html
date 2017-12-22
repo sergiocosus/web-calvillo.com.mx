@@ -44,14 +44,23 @@
       </div>
       -->
       <ul *ngIf="categories">
-        <li>
-          <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
+        <li class="ad">
+
+          <ng2-adsense
+                  class="adsbygoogle"
+                  adFormat="fluid"
+                  layoutKey="-8h+1u-dq+eb+ga"
+                  adSlot="3379203003"
+                  *ngIf="adSenseEnabled"></ng2-adsense>
+
+
+
         </li>
 
-        <li *ngFor="let category of categories" [routerLink]="category.routerLink">
-          <picture [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
-          </picture>
-          <span>{{category.title}}</span>
+
+
+        <li *ngFor="let category of categories">
+          <app-category-thumbnail [category]="category"></app-category-thumbnail>
         </li>
       </ul>
       <div class="bottom">

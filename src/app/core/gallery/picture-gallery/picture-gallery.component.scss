@@ -1,22 +1,24 @@
 @import 'src/app/vars';
 
-:host-context(body){
-  @extend .gradient-background;
-}
-
 :host{
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: $contentHeight;
-  background-color: rgba(black, .5);
+  background-color: darkgrey;
+}
+
+.top{
+  position: relative;
+  padding-bottom: 1em;
+  z-index: 5;
+  @extend .dark-transparent-gradient-down;
 }
 
 .list{
   position: relative;
   display: flex;
   flex: 0 0 auto;
-  background-color: rgba(black, .5);
   z-index: 5;
   opacity: .75;
   transition: all .5s;
@@ -92,6 +94,38 @@
       }
 
     }
+  }
+}
+
+header.category{
+  display: flex;
+  font-size: $titleFontSize;
+  z-index: 5;
+
+  @media (min-width: $mdScreen) {
+    font-size: $titleFontSize + .5em;
+  }
+
+  a{
+    color: white;
+    text-decoration: none;
+    i{
+      background-color: $arrowBackgroundColor;
+      padding: .25em;
+    }
+    &:visited{
+      color: white;
+    }
+  }
+
+  h1{
+    flex: 1 0 0px;
+    margin: .25em 0;
+    text-align: center;
+    color: white;
+    line-height: .8em;
+    font-size: 1em;
+    padding-right: 1em;
   }
 }
 
@@ -171,38 +205,6 @@
   .next{
     right: 0;
     text-align: right;
-  }
-
-
-  header{
-    position: relative;
-    z-index: 5;
-    margin-top: $topSpace;
-
-    h1{
-      margin: .25em 0;
-      text-align: center;
-      color: white;
-      line-height: .8em;
-      font-size: $titleFontSize;
-      text-shadow: 3px 3px 6px black;
-
-      @media (min-width: $mdScreen) {
-        font-size: $titleFontSize + .5em;
-      }
-    }
-
-    a{
-      color: white;
-      text-decoration: none;
-      i{
-        background-color: $arrowBackgroundColor;
-        padding: .25em;
-      }
-      &:visited{
-        color: white;
-      }
-    }
   }
 }
 

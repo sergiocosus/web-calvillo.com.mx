@@ -15,7 +15,6 @@ import { PictureFormComponent } from './components/picture-form/picture-form.com
 import { PictureGalleryListComponent } from './components/picture-gallery-list/picture-gallery-list.component';
 import {AuthModule} from '../auth/auth.module';
 import { SocialPostDialogComponent } from './components/social-post-dialog/social-post-dialog.component';
-import {CategoryService} from '../category/services/category.service';
 import {PictureFormService} from './services/picture-form.service';
 
 @NgModule({

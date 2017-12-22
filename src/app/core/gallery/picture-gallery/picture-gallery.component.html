@@ -1,45 +1,49 @@
-<section class="list" #list
-         (swipeleft)="nextPage()"
-         (swiperight)="prevPage()">
-  <div class="prev"
-       *ngIf="!isFirstPage"
-       (click)="prevPage()">
-    <i class="fa fa-caret-left" aria-hidden="true"></i>
-  </div>
+<div class="top">
+  <section class="list" #list
+           (swipeleft)="nextPage()"
+           (swiperight)="prevPage()">
+    <div class="prev"
+         *ngIf="!isFirstPage"
+         (click)="prevPage()">
+      <i class="fa fa-caret-left" aria-hidden="true"></i>
+    </div>
 
-  <ul *ngIf="category && category.pictures.length">
-    <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
-      <li *ngIf="indexInPage(i)"
-          [matTooltip]="pictureList.title">
-        <a [routerLink]="pictureList.getRouterLink(category)"
-           [routerLinkActive]="['active']">
-          <picture
-            [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
-          </picture>
-        </a>
-      </li>
-    </ng-container>
-  </ul>
+    <ul *ngIf="category && category.pictures.length">
+      <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
+        <li *ngIf="indexInPage(i)"
+            [matTooltip]="pictureList.title">
+          <a [routerLink]="pictureList.getRouterLink(category)"
+             [routerLinkActive]="['active']">
+            <picture
+                    [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
+            </picture>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
 
-  <div class="next"
-       *ngIf="!isLastPage"
-       (click)="nextPage()">
-    <i class="fa fa-caret-right" aria-hidden="true"></i>
-  </div>
-</section>
+    <div class="next"
+         *ngIf="!isLastPage"
+         (click)="nextPage()">
+      <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </div>
+  </section>
+
+  <header *ngIf="category" class="category">
+    <a routerLink="../">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </a>
+    <h1>
+      {{category.title}}
+    </h1>
+  </header>
+</div>
 
 <section *ngIf="picture" class="picture"
          (swipeleft)="onSwipeLeft($event.type)"
          (swiperight)="onSwipeRight($event.type)"
 >
-  <header *ngIf="category">
-    <h1>
-      <a routerLink="../">
-        <i class="fa fa-undo" aria-hidden="true"></i>
-      </a>
-      {{category.title}}
-    </h1>
-  </header>
+
   <div class="prev"
        *ngIf="!isFirstPicture"
        (click)="prevPicture()">

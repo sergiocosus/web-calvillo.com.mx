@@ -1,11 +1,5 @@
 <a [routerLink]="category.routerLink">
-  <img src="{{category.imageUrl(size)}}"/>
-  <div *ngIf="showText">
-    <span>{{category.title}}</span>
-  </div>
+  <picture [ngStyle]="{'background-image':  'url(' + category.imageUrl(size) + ')'}">
+  </picture>
+  <span>{{category.title}}</span>
 </a>
-<!--
-<div [innerHTML]="category.description">
-  {{category.description}}
-</div>
--->
