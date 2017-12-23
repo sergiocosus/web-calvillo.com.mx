@@ -10,9 +10,6 @@
   </span>
 </h3>
 <ul>
-  <li>
-    <app-ad-thumb></app-ad-thumb>
-  </li>
   <li *ngFor="let picture of pictures"
       (click)="loadPicture(picture.link)">
     <app-picture-thumbnail [category]="category" [picture]="picture"></app-picture-thumbnail>
@@ -24,6 +21,10 @@
             (click)="editPicture($event, picture)">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
+  </li>
+
+  <li>
+    <app-ad-thumb></app-ad-thumb>
   </li>
 </ul>
 

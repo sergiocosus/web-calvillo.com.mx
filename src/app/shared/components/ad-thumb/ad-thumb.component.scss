@@ -2,7 +2,9 @@
 
 :host{
   @extend .thumb-style;
-  min-width: 260px;
+  min-width: 325px;
+  min-height: 150px;
+  background-color: transparent;
   height: auto;
 }
 
