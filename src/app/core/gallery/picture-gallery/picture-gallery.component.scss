@@ -211,7 +211,7 @@ header.category{
 
 .description {
   position: relative;
-  margin-top: calc(100vh - 10em - #{$topSpace});
+  margin-top: calc(100vh - 15em - #{$topSpace});
   width: 100%;
   color: white;
   padding: 1em 1em;
@@ -243,7 +243,6 @@ header.category{
       font-size: $subtitleFontSize;
       margin-top: 0em;
       margin-bottom: 1em;
-      text-shadow: 3px 3px 6px black;
     }
 
     time{
@@ -303,5 +302,6 @@ agm-map{
 }
 
 share-buttons{
-  font-size: .8em;
+  justify-content: flex-end;
+  width: 100%;
 }

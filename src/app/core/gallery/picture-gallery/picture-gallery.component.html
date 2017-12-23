@@ -36,6 +36,7 @@
     <h1>
       {{category.title}}
     </h1>
+
   </header>
 </div>
 
@@ -68,6 +69,13 @@
 <div *ngIf="picture" class="description"
      (swipeleft)="onSwipeLeft($event.type)"
      (swiperight)="onSwipeRight($event.type)">
+  <share-buttons *ngIf="currentRoute && isBrowser()"
+                 theme="landing"
+                 [include]="['facebook','twitter','pinterest','google']"
+                 [show]="5"
+                 [size]="-4"
+                 [url]="'http://calvillo.com.mx' + currentRoute"
+  ></share-buttons>
   <header>
     <h1>
       {{picture.title}}
@@ -80,15 +88,6 @@
         <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
       </button>
     </h1>
-
-    <share-buttons *ngIf="currentRoute && isBrowser()"
-                   theme="circles"
-                   [include]="['facebook','twitter','pinterest','google']"
-                   [show]="5"
-                   [showCount]="true"
-                   [size]="2"
-                   [url]="'http://calvillo.com.mx' + currentRoute"
-    ></share-buttons>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
   <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
