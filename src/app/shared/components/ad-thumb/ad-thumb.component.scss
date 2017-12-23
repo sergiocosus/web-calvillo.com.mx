@@ -2,6 +2,8 @@
 
 :host{
   @extend .thumb-style;
+  min-width: 260px;
+  height: auto;
 }
 
 ng2-adsense{
