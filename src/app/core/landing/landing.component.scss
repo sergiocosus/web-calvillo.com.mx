@@ -226,6 +226,7 @@ section{
   font-size: 2em;
   padding: 1em;
   text-align: center;
+  flex-wrap: wrap;
   a{
     color: white;
     margin: 1em;
@@ -234,5 +235,10 @@ section{
     &:hover{
       text-decoration: underline;
     }
+  }
+  .ssl-logo{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
   }
 }
