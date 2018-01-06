@@ -5,8 +5,6 @@ import { AppComponent } from './index';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {CategoryModule} from './category/category.module';
-import {CoreModule} from './core/core.module';
-import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {environment} from '../environments/environment';
 import {AdsenseModule} from 'ng2-adsense';
 import {SimpleNotificationsModule} from 'angular2-notifications';
@@ -20,8 +18,20 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/of';
 import {AuthModule} from './auth/auth.module';
 import {PictureModule} from './picture/picture.module';
+import {CoreModule} from "./core/core.module";
+import {ShareButtonsOptions} from "@ngx-share/core";
+import {ShareButtonsModule} from "@ngx-share/buttons";
+
+
+const options: ShareButtonsOptions = {
+    include: ['facebook', 'twitter', 'google', 'pinterest'],
+    theme: 'landing',
+    gaTracking: true,
+};
+
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -37,18 +47,18 @@ import {PictureModule} from './picture/picture.module';
     CategoryModule.forRoot(),
     AuthModule.forRoot(),
     PictureModule.forRoot(),
-    CoreModule,
-    ShareButtonsModule.forRoot(),
+    ShareButtonsModule.forRoot({options: options}),
     AgmCoreModule.forRoot({
         apiKey: environment.googleMapsApiKey
     }),
-    AdsenseModule.forRoot({
+      AdsenseModule.forRoot({
       adClient: environment.adSenseAdClient,
       adSlot: environment.adSenseAdSlot,
     }),
-
     BrowserAnimationsModule,
+
     SimpleNotificationsModule.forRoot(),
+    CoreModule,
 
     // RouterModule.forRoot(appRoutes)
   ]

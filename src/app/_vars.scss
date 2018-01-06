@@ -26,7 +26,7 @@ $thumbMargin: 2px;
 $topSpace: $thumbSize + ($thumbMargin * 2);
 
 $titleFontSize: 1.5em;
-$subtitleFontSize: 1.3em;
+$subtitleFontSize: 1em;
 
 $arrowBackgroundColor: rgba(black, .5);
 
@@ -64,22 +64,22 @@ $imgHeightMobile: 6em;
 $colorForGradient: darken($primaryColor, 35%);
 $finalColorForGradient: darken($primaryColor, 40%);
 
-$stopForGradient: .9;
+$stopForGradient: .75;
 .dark-transparent-gradient{
   background: rgba(0,0,0,0);
-  background: -moz-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.55) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($colorForGradient,0)), color-stop(3em, rgba($colorForGradient,0.65)), color-stop(100%, rgba($finalColorForGradient,$stopForGradient)));
-  background: -webkit-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: -o-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: -ms-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: linear-gradient(to bottom, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: -moz-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($colorForGradient,0)), color-stop(3em, rgba($colorForGradient,0.4)), color-stop(100%, rgba($finalColorForGradient,$stopForGradient)));
+  background: -webkit-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: -o-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: -ms-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: linear-gradient(to bottom, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 }
 
 
 .dark-transparent-gradient-down{
   background: rgba(0,0,0,0);
-  background: linear-gradient(to bottom,  rgba($finalColorForGradient,$stopForGradient) 0%, rgba($colorForGradient, .5) 70%,   rgba($colorForGradient,0)  100%);
+  background: linear-gradient(to bottom,  rgba($finalColorForGradient,$stopForGradient) 0%, rgba($colorForGradient, .5) 50%,   rgba($colorForGradient,0)  100%);
 }
 
 

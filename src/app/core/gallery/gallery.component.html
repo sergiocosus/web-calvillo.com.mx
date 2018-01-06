@@ -4,9 +4,9 @@
     <div class="gradient"></div>
 
     <div class="title">
-      <a [routerLink]="category.category ? category.category.routerLink: '../'">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-      </a>
+      <app-back-button [routerLink]="category.category ? category.category.routerLink: '../'">
+      </app-back-button>
+
       <h1>
         {{category.title}}
       </h1>
@@ -15,10 +15,6 @@
     <div class="content" [innerHTML]="category.description"></div>
 
     <share-buttons *ngIf="currRoute"
-                   theme="circles"
-                   [include]="['facebook','twitter','pinterest','google']"
-                   [show]="5"
-                   [showCount]="true"
                    [size]="2"
                    [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>

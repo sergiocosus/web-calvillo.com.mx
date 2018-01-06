@@ -3,7 +3,6 @@ import { LandingComponent } from './landing.component';
 import {SharedModule} from '../../shared/shared.module';
 import {LandingRoutingModule} from './landing-routing.module';
 import {CategoryModule} from '../../category/category.module';
-import {ShareButtonsModule} from 'ngx-sharebuttons';
 import {PictureModule} from '../../picture/picture.module';
 import {AdsenseModule} from 'ng2-adsense';
 import {SearchModule} from '../../search/search.module';
@@ -13,7 +12,6 @@ import {SearchModule} from '../../search/search.module';
     SharedModule,
     LandingRoutingModule,
     CategoryModule,
-    ShareButtonsModule,
     PictureModule,
     AdsenseModule,
     SearchModule,

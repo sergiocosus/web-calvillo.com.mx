@@ -28,6 +28,9 @@ import { ImageComponent } from './components/image/image.component';
 import {PlatformService} from './services/platform.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
+import {ShareButtonModule} from "@ngx-share/button";
+import {ShareButtonsModule} from "@ngx-share/buttons";
 
 
 @NgModule({
@@ -45,12 +48,14 @@ import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
     SimpleNotificationsModule,
     SidebarModule,
     AdsenseModule,
+    ShareButtonsModule,
   ],
   declarations: [
     VoidComponent,
     LogoComponent,
     ImageComponent,
     AdThumbComponent,
+    BackButtonComponent,
   ],
   exports: [
     CommonModule,
@@ -71,8 +76,10 @@ import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
     MatExpansionModule,
     MatIconModule,
     DateTimePickerModule,
+    ShareButtonsModule,
     LogoComponent,
     AdThumbComponent,
+    BackButtonComponent,
   ]
 })
 export class SharedModule {

@@ -1,52 +1,41 @@
 @import "~app/vars";
-@import '~ngx-sharebuttons/styles/variables';
+@import "~@ngx-share/button/styles/variables";
 
-$sb-buttons: (
-        facebook: #488aff,
-        twitter: #32db64,
-        google: #f53d3d,
-        stumble: #f4f4f4,
-        linkedin: $sb-linkedin,
-        pinterest: $sb-pinterest,
-        reddit: $sb-reddit,
-        tumblr: $sb-tumblr,
-        whatsapp: $sb-whatsapp,
-        telegram: $sb-telegram,
-        email: $sb-email,
-        vk: $sb-vk,
-        more: $sb-more,
-        copy: $sb-copy,
-        print: $sb-print
-);
 
-@import '~ngx-sharebuttons/styles/share-buttons';
-@import '~ngx-sharebuttons/styles/themes/circles/circles-theme';
+@import '~@ngx-share/button/styles/share-buttons';
+@import "~@ngx-share/button/styles/themes/circles/circles-dark-theme";
+
 
 .sb-landing{
-  @extend .sb-circles;
+  @extend .sb-circles-dark;
 
-
-    &.sb-group {
+  &.sb-group {
+    /** ... share buttons container */
+  }
+  .sb-wrapper { /** ... share button wrapper */
+    .sb-inner { /** ... inner wrapper */
+      .sb-content { /** ... content wrapper */
+        margin-right: .5em;
+        .sb-icon {
+          background-color: transparent;
+          background: transparent;
+          border: solid #EEE 2px;
+          width: 1.7em;
+          height: 1.7em;
+          min-width: 1.7em;
+        }
+        .sb-text { /** ... text wrapper */ }
+      }
+      .sb-count { /** ... count wrapper */ }
     }
-    .sb-wrapper.sb-show-template{
-      margin-right: .5em;
-      .sb-icon {
-        background-color: transparent;
-        background: transparent;
-        border: solid #EEE 2px;
-        width: 1.7em;
-        height: 1.7em;
-        min-width: 1.7em;
-      }
-      .sb-text,
-      .sb-template {
 
-      }
-      .sb-text,
-      .sb-icon{
-
-      }
-
+    // For conditional styles
+    &.sb-show-icon.sb-show-text.sb-show-count {
+      /** ... Apply when icon, text and count are shown */
+      .sb-icon { /** ... icon wrapper */ }
+      .sb-text { /** ... text wrapper */ }
     }
   }
 
+
+}

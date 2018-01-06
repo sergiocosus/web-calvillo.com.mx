@@ -99,6 +99,7 @@ export class PictureGalleryComponent implements OnInit {
   pages: number;
   page = 0;
   elementsByPage;
+  finished = false;
 
   currentRoute: string;
 
@@ -274,13 +275,14 @@ export class PictureGalleryComponent implements OnInit {
 
   nextPicture() {
     if (this.index + 1 >= this.pictureLength) {
-      this.changeRoutePicture(this.pictureLength - 1);
+      this.changeRoutePicture(this.pictureLength - 1, true);
     } else {
       this.changeRoutePicture(this.index + 1);
     }
   }
 
   prevPicture() {
+    this.finished = false;
     if (this.index <= 0) {
       this.changeRoutePicture(0);
     } else {
@@ -288,7 +290,8 @@ export class PictureGalleryComponent implements OnInit {
     }
   }
 
-  changeRoutePicture(index:number) {
+  changeRoutePicture(index:number, toFinish = false) {
+    this.finished = toFinish;
     this.router.navigateByUrl(this.category.pictures[index].getRouterLink(this.category));
   }
 
@@ -336,7 +339,8 @@ export class PictureGalleryComponent implements OnInit {
   }
 
   get isLastPicture() {
-    return this.index === this.pictureLength - 1;
+    //return this.index === this.pictureLength;
+    return this.finished;
   }
 
   openMapModal() {
