@@ -14,7 +14,7 @@
 
     <div class="content" [innerHTML]="category.description"></div>
 
-    <share-buttons *ngIf="currRoute"
+    <share-buttons *ngIf="currRoute && isBrowser()"
                    [size]="2"
                    [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>

@@ -6,7 +6,7 @@
     </div>
     <div class="parallax-layer fore">
       <div class="social">
-        <share-buttons
+        <share-buttons *ngIf="isBrowser()"
                        [showCount]="false"
                        [size]="2"
                        url="http://calvillo.com.mx"

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
 import {Category} from '../../category/category.model';
 import {NavbarService} from '../../shared/services/navbar.service';
 import {environment} from '../../../environments/environment';
 import {Meta} from "@angular/platform-browser";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-landing',
@@ -16,7 +17,8 @@ export class LandingComponent implements OnInit {
   public defaultCatId: string;
   greeting: string;
 
-  constructor(private categoryService:CategoryService,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              private categoryService:CategoryService,
               private navbarService: NavbarService,
               private meta: Meta) {
     this.defaultCatId = environment.defaultCategoryId;
@@ -66,5 +68,9 @@ export class LandingComponent implements OnInit {
         name: 'description',
         content: description
     });
-}
+  }
+
+  isBrowser() {
+      return isPlatformBrowser(this.platformId);
+  }
 }

@@ -292,6 +292,11 @@ export class PictureGalleryComponent implements OnInit {
 
   changeRoutePicture(index:number, toFinish = false) {
     this.finished = toFinish;
+
+    if (this.finished && window.FB) {
+        setTimeout(() => window.FB.XFBML.parse(), 1);
+    }
+
     this.router.navigateByUrl(this.category.pictures[index].getRouterLink(this.category));
   }
 

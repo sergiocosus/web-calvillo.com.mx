@@ -10,6 +10,7 @@ import { AgmCoreModule } from '@agm/core';
 import {AdsenseModule} from 'ng2-adsense';
 import {AuthModule} from '../../auth/auth.module';
 import {MatButtonModule, MatTooltipModule} from '@angular/material';
+import {FacebookModule} from "ngx-facebook";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {MatButtonModule, MatTooltipModule} from '@angular/material';
     AgmCoreModule,
     AdsenseModule,
     AuthModule,
+    FacebookModule,
   ],
   declarations: [
     GalleryComponent,

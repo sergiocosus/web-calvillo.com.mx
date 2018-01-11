@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, SecurityContext, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID, SecurityContext, ViewChild} from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../category/category.model';
@@ -13,6 +13,7 @@ import {AutoUnsubscribe} from '../../shared/classes/auto-unsubscribe';
 import {SocialPostDialogComponent} from '../../picture/components/social-post-dialog/social-post-dialog.component';
 import {MatDialog} from '@angular/material';
 import {SocialPostCategoryDialogComponent} from '../../category/social-post-category-dialog/social-post-category-dialog.component';
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-gallery',
@@ -29,7 +30,8 @@ export class GalleryComponent implements OnInit {
   subs = new SubscriptionManager();
 
 
-  constructor(private categoryService: CategoryService,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              private categoryService: CategoryService,
               private notify: NotifyService,
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
@@ -97,5 +99,9 @@ export class GalleryComponent implements OnInit {
 
   postOnFacebook() {
     this.dialog.open(SocialPostCategoryDialogComponent, {data: {category: this.category}});
+  }
+
+  isBrowser() {
+    return isPlatformBrowser(this.platformId);
   }
 }
