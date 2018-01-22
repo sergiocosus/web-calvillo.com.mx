@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   @Output() shown = new EventEmitter();
   @Input() showUnderline = true;
   @Input() alwaysShow = false;
-  @Input() placeholder = "¿Qué deseas buscar?";
+  @Input() placeholder = "¿Qué deseas buscar? Restaurant, Hoteles... ";
 
   hide = true;
 
@@ -70,7 +70,6 @@ export class SearchComponent implements OnInit {
   }
 
   selectedModel(category: Category, model:  Picture | Directory) {
-    console.log(category);
     this.router.navigateByUrl(model.getRouterLink(category));
     setTimeout(() => {
       this.query = '';
