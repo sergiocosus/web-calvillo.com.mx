@@ -94,6 +94,43 @@
   }
 }
 
+
+:host(.simple){
+  background-color: transparent;
+  color: black;
+  margin: 0px;
+  padding: 0px;
+  width: auto;
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+
+    >picture{
+      order: 1;
+      flex: 0 0 auto;
+      img{
+        height: 8em;
+      }
+    }
+    >div {
+      flex: 0 0 auto;
+      > h4 {
+        color: black;
+        order: -1;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+
+  &:hover{
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
 .buttons{
   display: flex;
   justify-content: flex-end;

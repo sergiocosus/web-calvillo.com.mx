@@ -1,11 +1,11 @@
 import {
-  Component, OnInit, Input, HostBinding, HostListener, ViewChild, transition, style,
-  trigger, animate, ChangeDetectionStrategy
+  Component, OnInit, Input, HostBinding, HostListener, ChangeDetectionStrategy
 } from '@angular/core';
 import {Directory} from './directory.model';
 import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
 import {MatDialog} from '@angular/material';
 import {Category} from '../category/category.model';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-directory',

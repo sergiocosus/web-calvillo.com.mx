@@ -30,6 +30,8 @@
               [longitude]="directory.longitude" >
         <agm-info-window>
           <app-directory [directory]="directory"
+                         class="simple"
+                         [showMap]="false"
                          [showExpanded]="true"></app-directory>
         </agm-info-window>
       </agm-marker>
