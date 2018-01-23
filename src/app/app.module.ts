@@ -21,9 +21,9 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 import {AuthModule} from './auth/auth.module';
 import {PictureModule} from './picture/picture.module';
-import {CoreModule} from "./core/core.module";
-import {ShareButtonsOptions} from "@ngx-share/core";
-import {ShareButtonsModule} from "@ngx-share/buttons";
+import {CoreModule} from './core/core.module';
+import {ShareButtonsOptions} from '@ngx-share/core';
+import {ShareButtonsModule} from '@ngx-share/buttons';
 
 
 const options: ShareButtonsOptions = {

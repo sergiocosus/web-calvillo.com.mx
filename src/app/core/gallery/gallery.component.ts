@@ -14,6 +14,7 @@ import {SocialPostDialogComponent} from '../../picture/components/social-post-di
 import {MatDialog} from '@angular/material';
 import {SocialPostCategoryDialogComponent} from '../../category/social-post-category-dialog/social-post-category-dialog.component';
 import {isPlatformBrowser} from "@angular/common";
+import {AppMetaService} from "../../shared/services/app-meta.service";
 
 @Component({
   selector: 'app-gallery',
@@ -36,8 +37,7 @@ export class GalleryComponent implements OnInit {
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private title: Title,
-              private meta: Meta,
+              private meta: AppMetaService,
               private navbarService: NavbarService,
               private dialog: MatDialog) { }
 
@@ -47,7 +47,7 @@ export class GalleryComponent implements OnInit {
       user => this.loggedUser = user
     );
 
-    this.subs.add = this.activatedRoute.children[0].params.subscribe(
+    this.subs.add = this.activatedRoute.params.subscribe(
       route => {
         this.currRoute = this.router.url;
         if (route['category_link']) {
@@ -64,7 +64,6 @@ export class GalleryComponent implements OnInit {
     this.categoryService.getByLink(category_link).subscribe(
       category => {
         this.category = category;
-        this.title.setTitle(this.category.title);
         this.navbarService.setTitle('Galería' + (this.category.title ? ' / ' + this.category.title: ''));
         this.updateMetaTags()
       },
@@ -76,25 +75,10 @@ export class GalleryComponent implements OnInit {
   }
 
   updateMetaTags() {
-      this.meta.updateTag({
-          property: 'og:image',
-          content: this.category.imageUrl('xlg')
-      });
-
-      this.meta.updateTag({
-          property: 'og:title',
-          content: this.category.title
-      });
-
-      this.meta.updateTag({
-          property: 'og:description',
-          content: this.category.description.replace(/<(?:.|\n)*?>/gm, ''),
-      });
-
-      this.meta.updateTag({
-          name: 'description',
-          content: this.category.description.replace(/<(?:.|\n)*?>/gm, ''),
-      });
+    this.meta.update(this.category.title,
+                     this.category.description.replace(/<(?:.|\n)*?>/gm, ''),
+                     this.category.imageUrl('xlg')
+    );
   }
 
   postOnFacebook() {

@@ -11,7 +11,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
 import {
-  MatButtonModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
   MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
@@ -31,6 +31,9 @@ import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import {ShareButtonModule} from "@ngx-share/button";
 import {ShareButtonsModule} from "@ngx-share/buttons";
+import {AgmCoreModule} from "@agm/core";
+import {NgxPageScrollModule} from "ngx-page-scroll";
+import {AppMetaService} from "./services/app-meta.service";
 
 
 @NgModule({
@@ -75,6 +78,9 @@ import {ShareButtonsModule} from "@ngx-share/buttons";
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatIconModule,
+    MatCardModule,
+    AgmCoreModule,
+    NgxPageScrollModule,
     DateTimePickerModule,
     ShareButtonsModule,
     LogoComponent,
@@ -96,6 +102,7 @@ export class SharedModule {
         ScriptService,
         GoogleAnalyticsService,
         PlatformService,
+        AppMetaService,
         {
           provide: HAMMER_GESTURE_CONFIG,
           useClass: MyHammerConfig ,

@@ -20,7 +20,11 @@ export class Directory extends ImageableModel{
   updated_at: string;
   deleted_at: string;
   categories: Category[];
+  related_directories: Directory[];
 
+  static parseArray(objs:any[]): Directory[] {
+    return objs.map(obj => {return new Directory().parse(obj)})
+  }
 
   parse(obj): any {
     super.parse(obj);
@@ -29,15 +33,16 @@ export class Directory extends ImageableModel{
       this.categories = Category.parseArray(this.categories);
     }
 
+    if (this.related_directories) {
+      this.related_directories = Directory.parseArray(this.related_directories);
+    }
+
     return this;
   }
 
-  static parseArray(objs:any[]):Directory[] {
-    return objs.map(obj => {return new Directory().parse(obj)})
-  }
 
-  getRouterLink(category: Category) {
-    return category.routerLink ;
+  getRouterLink(category: Category = null) {
+    return '/directorio/' + this.link;
   }
 
 }

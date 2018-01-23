@@ -8,24 +8,16 @@ import {VoidComponent} from '../../shared/components/void/void.component';
 
 export const galleryRoutes: Routes = [
   {
-    path: '',
+    path: ':category_link',
     component: GalleryComponent,
-    children: [
-      {
-        path: ':category_link',
-        component: VoidComponent,
-      }
-    ]
   },
   {
     path: ':category_link/foto',
     component: PictureGalleryComponent,
-    children: [
-      {
-        path: ':picture_link',
-        component: VoidComponent,
-      }
-    ]
+  },
+  {
+    path: ':category_link/foto/:picture_link',
+    component: PictureGalleryComponent,
   },
   { path: '**', redirectTo: '/' },
 ];

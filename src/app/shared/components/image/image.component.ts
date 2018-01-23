@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ImageableModel} from '../../classes/imageable.model';
+import {ImageSize} from '../../classes/image-size';
 
 @Component({
   selector: 'app-image',
@@ -8,7 +9,7 @@ import {ImageableModel} from '../../classes/imageable.model';
 })
 export class ImageComponent implements OnInit {
   @Input() model: ImageableModel;
-  @Input() size = 'xs';
+  @Input() size: ImageSize = 'xs';
   constructor() { }
 
   ngOnInit() {

@@ -4,6 +4,7 @@ import {CoreComponent} from './core.component';
 import {landingRoutes} from './landing/landing-routing.module';
 import {galleryRoutes} from './gallery/gallery-routing.module';
 import {routes as notFoundRoutes} from './not-found/not-found-routing.module';
+import {directoryRoutes} from "./directory/directory-routing.module";
 
 
 
@@ -32,6 +33,11 @@ export const coreRoutes: Routes = [
       {
         path: 'contacto',
         loadChildren: 'app/core/contact/contact.module#ContactModule',
+      },
+      {
+        path: 'directorio',
+        children: directoryRoutes,
+        //loadChildren: 'app/core/directory/directory-route.module#DirectoryRouteModule',
       },
       {
         path: 'no-encontrado',

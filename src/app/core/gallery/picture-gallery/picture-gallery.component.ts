@@ -122,17 +122,19 @@ export class PictureGalleryComponent implements OnInit {
     this.initImgSize();
     this.sub.add = this.activatedRoute.params.subscribe(
       route => {
+        console.log(route);
         if (route['category_link'] && route['category_link'] !== this.category_link) {
           this.loadCategory(route['category_link']);
         } else {
-          this.loadCategory(environment.defaultCategoryId);
+          //this.loadCategory(environment.defaultCategoryId);
         }
       }
     );
 
-    this.sub.add = this.activatedRoute.children[0].params.subscribe(
+    this.sub.add = this.activatedRoute.params.subscribe(
       route => {
         if (route['picture_link']) {
+          console.log(route);
           this.picture_link = route['picture_link'];
           this.loadPicture();
         }

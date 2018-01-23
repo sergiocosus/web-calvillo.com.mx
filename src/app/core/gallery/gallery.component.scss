@@ -107,7 +107,6 @@ section /deep/ {
         font-size: .5em;
       }
     }
-
   }
 
   app-category-gallery-list{
@@ -190,29 +189,6 @@ section /deep/ {
         top: 0;
         left: 0;
         margin: .5em;
-      }
-
-      a{
-       // margin: .5em .25em;
-
-        img{
-          height: 10em;
-          transition: all .5s;
-        }
-
-        div{
-          @extend .thumbnail-label;
-        }
-
-        &:hover{
-          >img{
-            transform: scale(1.75, 1.75) translate(0, 5%);
-          }
-          >div{
-            opacity: 0;
-          }
-        }
-
       }
 
     }
