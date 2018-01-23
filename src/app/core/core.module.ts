@@ -12,7 +12,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {PictureModule} from '../picture/picture.module';
 import {DirectoryModule} from '../directory/directory.module';
 import {CategoryModule} from '../category/category.module';
-import {DirectoryRouteComponent} from './directory/directory-route.component';
 
 @NgModule({
   imports: [
@@ -31,7 +30,6 @@ import {DirectoryRouteComponent} from './directory/directory-route.component';
     NavBarComponent,
     NavPagesComponent,
     NotFoundComponent,
-    DirectoryRouteComponent,
   ]
 })
 export class CoreModule { }
