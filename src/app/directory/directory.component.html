@@ -1,58 +1,13 @@
-<picture>
-  <img src="{{directory.imageUrl('sm')}}"/>
-</picture>
 <header>
-  <span>{{directory.title}}</span>
+  <app-image [model]="directory" size="sm"></app-image>
+  <div>
+    <h4>{{directory.title}}</h4>
+  </div>
 </header>
 <div class="content"
      *ngIf="expanded"
      [@directory]="'active'">
-  <header>
-    <span>{{directory.title}}</span>
-  </header>
-  <div [innerHTML]="directory.description"><</div>
-
-  <ul>
-    <li *ngIf="directory.address && directory.address.length">
-      <h5>Dirección</h5>
-      <span>{{directory.address}}</span>
-    </li>
-    <li *ngIf="directory.email && directory.email.length">
-      <h5>Email</h5>
-      <span>{{directory.email}}</span>
-    </li>
-    <li *ngIf="directory.phone && directory.phone.length">
-      <h5>Teléfono</h5>
-      <span>{{directory.phone}}</span>
-    </li>
-    <li *ngIf="directory.cellphone && directory.cellphone.length">
-      <h5>Celular</h5>
-      <span>{{directory.cellphone}}</span>
-    </li>
-    <li *ngIf="directory.website_url && directory.website_url.length">
-      <h5>Sitio web</h5>
-      <span>
-        <a [href]="directory.website_url" target="_blank">
-          {{directory.website_url}}
-        </a>
-      </span>
-    </li>
-  </ul>
-  <div class="buttons">
-    <a class="map"
-     *ngIf="showMap && directory.longitude && directory.latitude"
-     (click)="openMapModal()">
-      <i class="fa fa-map-marker"></i>
-    </a>
-    <a class="facebook"
-       *ngIf="directory.facebook_url && directory.facebook_url.length"
-       [href]="directory.facebook_url" target="_blank">
-      <i class="fa fa-facebook"></i>
-    </a>
-    <a class="youtube"
-       *ngIf="directory.youtube_url && directory.youtube_url.length"
-       [href]="directory.youtube_url" target="_blank">
-      <i class="fa fa-youtube"></i>
-    </a>
-  </div>
+  <app-directory-detail [showMap]="showMap" [directory]="directory"></app-directory-detail>
 </div>
+
+<router-outlet></router-outlet>

@@ -10,6 +10,7 @@
   </span>
 </h3>
 <ul>
+
   <li *ngFor="let subcategory of category.categories">
     <app-category-thumbnail [category]="subcategory"></app-category-thumbnail>
     <button *appIfLogged="true" mat-mini-fab class="remove"
@@ -20,6 +21,9 @@
             (click)="edit($event, subcategory)">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
+  </li>
+  <li>
+    <app-ad-thumb></app-ad-thumb>
   </li>
 </ul>
 

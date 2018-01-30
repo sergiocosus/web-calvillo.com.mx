@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Directory} from '../directory.model';
+import {Category} from "../../category/category.model";
 
 @Injectable()
 export class DirectoryService {
@@ -12,6 +13,12 @@ export class DirectoryService {
     return this.apiHttp.get(this.basePath , data)
       .map(json => Directory.parseArray(json.directories));
   }
+
+  getByLink(link: string) {
+    return this.apiHttp.get(this.basePath + 'link/' + link)
+        .map(json => new Directory().parse(json.directory));
+  }
+
 
   post(data) {
     return this.apiHttp.post(this.basePath , data)

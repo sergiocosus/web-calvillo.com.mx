@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {CategoryService} from '../../category/services/category.service';
 import {Category} from '../../category/category.model';
 import {NavbarService} from '../../shared/services/navbar.service';
 import {environment} from '../../../environments/environment';
+import {Meta} from "@angular/platform-browser";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-landing',
@@ -15,8 +17,10 @@ export class LandingComponent implements OnInit {
   public defaultCatId: string;
   greeting: string;
 
-  constructor(private categoryService:CategoryService,
-              private navbarService: NavbarService) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              private categoryService:CategoryService,
+              private navbarService: NavbarService,
+              private meta: Meta) {
     this.defaultCatId = environment.defaultCategoryId;
 
     const hours = new Date().getHours();
@@ -34,5 +38,39 @@ export class LandingComponent implements OnInit {
       categories => this.categories = categories
     );
     this.navbarService.setTitle(null);
+    this.updateMetaTags();
+
+  }
+
+  updateMetaTags() {
+    this.meta.updateTag({
+        property: 'og:image',
+        content: 'https://calvillo.com.mx/assets/landing-page-background-night.jpg'
+    });
+
+    this.meta.updateTag({
+        property: 'og:title',
+        content: 'Calvillo, Pueblo Mágico'
+    });
+
+
+    const description = 'Calvillo.com.mx te sumergirá en la magia del pueblo mágico ' +
+        'por medio de sus galerías fotográficas, además podrás conocer lugares de interés ' +
+        'por medio de nuestro directorio. ' +
+        '¡Disfruta de la Capital Mundial de la Guayaba!';
+
+    this.meta.updateTag({
+        property: 'og:description',
+        content: description
+    });
+
+    this.meta.updateTag({
+        name: 'description',
+        content: description
+    });
+  }
+
+  isBrowser() {
+      return isPlatformBrowser(this.platformId);
   }
 }

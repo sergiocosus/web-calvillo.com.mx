@@ -2,74 +2,53 @@
 
 :host {
   display: flex;
-  max-width: 700px;
+  max-width: 25em;
   margin: .5em .25em;
   flex-direction: column;
+  width: 100vw;
+  background-color: $thumbnail-label-background-color;
+  color: white;
 
-  @media (min-width: $smScreen) {
+  @extend .nice-hover-shadow;
+
+  header{
+    display: flex;
     flex-direction: row;
-  }
 
-  &:not(.expanded) {
-    > picture img {
-      transition: all .5s;
-      height: 8em;
-
-      @media (min-width: $smScreen) {
-        height: 10em;
+    /deep/ app-image {
+      background-color: white;
+      picture{
+        width: 5em;
+        height: 5em;
+        background-size: contain;
+        background-repeat: no-repeat;
       }
     }
 
-    header {
-      @extend .thumbnail-label;
-    }
 
-    &:hover {
-      > picture img {
-        transform: scale(1.75, 1.75) translate(0, 5%);
+    > div{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 0;
+      h4{
+        padding: .5em;
+        margin: 0;
+        flex: 1 0 auto;
+
+        @extend .thumb-text-style;
       }
-      > div {
-        opacity: 0;
-      }
     }
-
-    .content{
-      display: none;
-    }
-
   }
 
   &.expanded{
     padding: .5em;
-    background-color: $thumbnail-label-background-color;
-    max-width: 600px;
     flex: 1 1 0;
-    align-items: stretch;
     overflow: hidden;
+    color: white;
 
-    picture{
-      flex: 1 0 0;
-      align-self: center;
-      padding: .5em;
-      height: 10em;
-      align-items: center;
-      align-self: stretch;
-      @media (min-width: $smScreen) {
-        flex: 1 0 10em;
-      }
-
-      img{
-        height: 100%;
-        width: auto;
-        @media (min-width: $smScreen) {
-          height: auto;
-          width: 100%;
-        }
-      }
-    }
-
-    >header{
-      display: none;
+    &:hover{
+      background-color: $thumbnail-label-background-color;
     }
 
     .content{
@@ -78,78 +57,43 @@
       flex-direction: column;
       font-size: 1em;
 
-      header{
-        font-weight: bolder;
-        font-size: 1.25em;
-        text-align: center;
-        line-height: 1em;
-      }
-
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        justify-content: flex-start;
-
-        li{
-          display: flex;
-          flex-direction: column;
-          margin-bottom: .5em;
-          margin-right: .5em;
-
-          h5{
-            margin: 0;
-            margin-left: 1em;
-            font-size: 1em;
-          }
-
-          span{
-            font-size: 1em;
-          }
-        }
-      }
-
     }
   }
 }
 
-.buttons{
-  display: flex;
 
-}
+:host(.simple){
+  background-color: transparent;
+  color: black;
+  margin: 0px;
+  padding: 0px;
+  width: auto;
 
-.social {
-  display: inline-block;
-  color: white;
-  border-radius: .2em;
-  padding: .2em;
-  width: 1.25em;
-  text-align: center;
-  cursor: pointer;
-  margin: 0.2em;
-  font-size: 1.5em;
+  header {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
 
-  @media (min-width: $smScreen) {
-    font-size: 2em;
+    >picture{
+      order: 1;
+      flex: 0 0 auto;
+      img{
+        height: 8em;
+      }
+    }
+    >div {
+      flex: 0 0 auto;
+      > h4 {
+        color: black;
+        order: -1;
+        font-size: 1.5em;
+      }
+    }
   }
-}
 
-.facebook{
-  @extend .social;
-  background-color: $fb-color;
-}
 
-.youtube{
-  @extend .social;
-
-  background-color: $youtube-color;
-}
-
-.map{
-  @extend .social;
-
-  background-color: dimgray;
-  i {
-    color: white;
+  &:hover{
+    background-color: transparent;
+    box-shadow: none;
   }
 }

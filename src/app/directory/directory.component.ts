@@ -1,11 +1,9 @@
 import {
-  Component, OnInit, Input, HostBinding, HostListener, ViewChild, transition, style,
-  trigger, animate, ChangeDetectionStrategy
+  Component, OnInit, Input, HostBinding, HostListener, ChangeDetectionStrategy
 } from '@angular/core';
 import {Directory} from './directory.model';
-import {PlaceOnMapModalComponent} from '../maps/components/place-on-map-modal/place-on-map-modal.component';
-import {MatDialog} from '@angular/material';
 import {Category} from '../category/category.model';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-directory',
@@ -38,9 +36,9 @@ import {Category} from '../category/category.model';
 })
 export class DirectoryComponent implements OnInit {
   @HostBinding('class.expanded') expanded = false;
-  @HostListener('click') clicked () {
+  /*@HostListener('click') clicked () {
     this.show();
-  }
+  }*/
 
   @Input() category: Category;
   @Input() directory: Directory;
@@ -51,7 +49,7 @@ export class DirectoryComponent implements OnInit {
     return this.expanded;
 }
 
-  constructor(private dialog:MatDialog) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -60,12 +58,4 @@ export class DirectoryComponent implements OnInit {
     this.expanded = true;
   }
 
-  openMapModal() {
-    const dialog = this.dialog.open(PlaceOnMapModalComponent);
-    dialog.componentInstance.setData(
-      this.directory.longitude,
-      this.directory.latitude,
-      this.directory.title
-    );
-  }
 }

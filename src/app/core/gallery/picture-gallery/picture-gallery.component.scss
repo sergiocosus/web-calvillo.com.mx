@@ -1,25 +1,49 @@
 @import 'src/app/vars';
 
-:host-context(body){
-  @extend .gradient-background;
-}
-
 :host{
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: $contentHeight;
-  background-color: rgba(black, .5);
+  background-color: darkgrey;
+}
+
+.top{
+  position: relative;
+  z-index: 5;
+  @extend .dark-transparent-gradient-down;
+
+  header.category{
+    display: flex;
+    font-size: $titleFontSize;
+    z-index: 5;
+    align-items: center;
+
+    @media (min-width: $mdScreen) {
+      font-size: $titleFontSize + .5em;
+    }
+
+    h1{
+      flex: 1 0 0px;
+      text-align: center;
+      margin: 0;
+      color: white;
+      line-height: .8em;
+      font-weight: normal;
+      font-size: 1em;
+      padding-right: 1em;
+    }
+  }
 }
 
 .list{
   position: relative;
   display: flex;
   flex: 0 0 auto;
-  background-color: rgba(black, .5);
   z-index: 5;
   opacity: .75;
   transition: all .5s;
+  align-items: center;
 
   &:hover{
     opacity: 1;
@@ -29,8 +53,8 @@
     display: flex;
     align-items: center;
     flex: 0 0 auto;
-    padding: 10px;
-    background-color: $arrowBackgroundColor;
+    padding: 8px;
+    margin: 2px;
     color: white;
     cursor: pointer;
     font-size: 2em;
@@ -43,7 +67,6 @@
       i{
         transition: all .5s;
         transform: scale(1.5, 1.5);
-        color: gray;
       }
     }
   }
@@ -94,6 +117,7 @@
     }
   }
 }
+
 
 .picture {
   position: fixed;
@@ -147,9 +171,9 @@
     }
 
     i{
-      background-color: $arrowBackgroundColor;
       padding: 10px;
       border-radius: 5px;
+      text-shadow: 2px 3px rgba(0,0,0,.1)
     }
 
     @media (min-width: $smScreen) {
@@ -157,7 +181,6 @@
         i{
           transition: all .5s;
           transform: scale(1.5, 1.5);
-          color: gray;
         }
       }
     }
@@ -172,44 +195,72 @@
     right: 0;
     text-align: right;
   }
+}
 
 
-  header{
-    position: relative;
-    z-index: 5;
-    margin-top: $topSpace;
+.finished{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 20;
+  background-color: rgba(black, .75);
+  color: white;
+  padding: .35em;
+  padding-top: 1em;
+  padding-bottom: 4em;
+  min-height: 100%;
+  height: 100%;
+  text-align: center;
+  overflow-y: auto;
 
-    h1{
-      margin: .25em 0;
-      text-align: center;
-      color: white;
-      line-height: .8em;
-      font-size: $titleFontSize;
-      text-shadow: 3px 3px 6px black;
+
+  >div, >span, >ng2-adsense, >a{
+    flex: 0 0 auto;
+  }
+
+  share-buttons{
+    margin: 1em;
+  }
+
+  .related-categories{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    app-category-thumbnail{
+      font-size: .35em;
+
 
       @media (min-width: $mdScreen) {
-        font-size: $titleFontSize + .5em;
+        font-size: .9em;
+
       }
     }
+  }
 
-    a{
-      color: white;
-      text-decoration: none;
-      i{
-        background-color: $arrowBackgroundColor;
-        padding: .25em;
-      }
-      &:visited{
-        color: white;
-      }
+  .back-to-gallery{
+    padding: .25em;
+    margin-top: 1em;
+    text-decoration: underline;
+    cursor: pointer;
+    min-height: 4em;
+  }
+
+
+  .facebook-page{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    span{
+      max-width: 20em;
     }
   }
 }
 
-
 .description {
   position: relative;
-  margin-top: calc(100vh - 10em - #{$topSpace});
+  margin-top: calc(100vh - 13em - #{$topSpace});
   width: 100%;
   color: white;
   padding: 1em 1em;
@@ -237,11 +288,10 @@
     text-align: center;
     width: 100%;
 
-    h1{
+    h2{
       font-size: $subtitleFontSize;
       margin-top: 0em;
       margin-bottom: 1em;
-      text-shadow: 3px 3px 6px black;
     }
 
     time{
@@ -268,7 +318,7 @@
 
     header{
       h1{
-        font-size: $subtitleFontSize + .5em;
+        font-size: $subtitleFontSize + 1em;
       }
     }
 
@@ -301,5 +351,6 @@ agm-map{
 }
 
 share-buttons{
-  font-size: .8em;
+  justify-content: flex-end;
+  width: 100%;
 }

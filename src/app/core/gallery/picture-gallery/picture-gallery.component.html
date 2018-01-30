@@ -1,49 +1,52 @@
-<section class="list" #list
-         (swipeleft)="nextPage()"
-         (swiperight)="prevPage()">
-  <div class="prev"
-       *ngIf="!isFirstPage"
-       (click)="prevPage()">
-    <i class="fa fa-caret-left" aria-hidden="true"></i>
-  </div>
+<div class="top">
+  <header *ngIf="category" class="category">
+    <app-back-button routerLink="../">
+    </app-back-button>
+    <h1>
+      {{category.title}}
+    </h1>
+  </header>
 
-  <ul *ngIf="category && category.pictures.length">
-    <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
-      <li *ngIf="indexInPage(i)"
-          [matTooltip]="pictureList.title">
-        <a [routerLink]="pictureList.getRouterLink(category)"
-           [routerLinkActive]="['active']">
-          <picture
-            [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
-          </picture>
-        </a>
-      </li>
-    </ng-container>
-  </ul>
+  <section class="list" #list
+           (swipeleft)="nextPage()"
+           (swiperight)="prevPage()">
+    <div class="prev"
+         *ngIf="!isFirstPage"
+         (click)="prevPage()">
+      <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+    </div>
 
-  <div class="next"
-       *ngIf="!isLastPage"
-       (click)="nextPage()">
-    <i class="fa fa-caret-right" aria-hidden="true"></i>
-  </div>
-</section>
+    <ul *ngIf="category && category.pictures.length">
+      <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
+        <li *ngIf="indexInPage(i)"
+            [matTooltip]="pictureList.title">
+          <a [routerLink]="pictureList.getRouterLink(category)"
+             [routerLinkActive]="['active']">
+            <picture
+                    [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
+            </picture>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+
+    <div class="next"
+         *ngIf="!isLastPage"
+         (click)="nextPage()">
+      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+    </div>
+  </section>
+</div>
 
 <section *ngIf="picture" class="picture"
          (swipeleft)="onSwipeLeft($event.type)"
          (swiperight)="onSwipeRight($event.type)"
 >
-  <header *ngIf="category">
-    <h1>
-      <a routerLink="../">
-        <i class="fa fa-undo" aria-hidden="true"></i>
-      </a>
-      {{category.title}}
-    </h1>
-  </header>
+
   <div class="prev"
        *ngIf="!isFirstPicture"
        (click)="prevPicture()">
-    <i class="fa fa-caret-left" aria-hidden="true"></i>
+    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
   </div>
 
   <ng-container *ngFor="let selectedPicture of pictureTail">
@@ -56,16 +59,59 @@
   <div class="next"
        *ngIf="!isLastPicture"
        (click)="nextPicture()">
-    <i class="fa fa-caret-right" aria-hidden="true"></i>
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
   </div>
 
 </section>
 
+
+<div *ngIf="finished" class="finished" [@picture]="'active'">
+  <span>
+    Has terminado de ver <b>{{category.title}}</b>
+    <br>
+    Si te ha gustado, ¡Comparte!
+  </span>
+
+  <share-buttons *ngIf="currentRoute && isBrowser()"
+                 theme="circles-dark"
+                 [size]="-4"
+                 [url]="'http://calvillo.com.mx' + category.routerLink"
+  ></share-buttons>
+
+  <div>
+    También podría gustarte
+    <div class="related-categories">
+      <app-category-thumbnail
+              *ngFor="let category of category.related_categories"
+              [category]="category"
+      ></app-category-thumbnail>
+    </div>
+  </div>
+
+
+  <ng2-adsense></ng2-adsense>
+
+
+  <div class="facebook-page">
+    <span>
+          Da like a nuestro facebook para recibir notificaciones de nuevo contenido :)
+    </span>
+    <fb-page href="https://www.facebook.com/calvillo.com.mx/"></fb-page>
+  </div>
+
+  <a (click)="finished = false" class="back-to-gallery">
+    <i class="fa fa-undo" aria-hidden="true"></i>
+    Volver a la <br>
+    galería
+  </a>
+</div>
+
 <div *ngIf="picture" class="description"
      (swipeleft)="onSwipeLeft($event.type)"
      (swiperight)="onSwipeRight($event.type)">
+
   <header>
-    <h1>
+    <h2>
       {{picture.title}}
       <a class="map"
          *ngIf="picture.longitude && picture.latitude"
@@ -75,19 +121,24 @@
       <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button color="primary">
         <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
       </button>
-    </h1>
-
-    <share-buttons *ngIf="currentRoute && isBrowser()"
-                   theme="circles"
-                   [include]="['facebook','twitter','pinterest','google']"
-                   [show]="5"
-                   [showCount]="true"
-                   [size]="2"
-                   [url]="'http://calvillo.com.mx' + currentRoute"
-    ></share-buttons>
+    </h2>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
-  <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
+  <div class="actions">
+
+    Comparte
+    <share-buttons *ngIf="currentRoute && isBrowser()"
+                   [size]="-4"
+                   [url]="'http://calvillo.com.mx' + currentRoute"
+    ></share-buttons>
+  </div>
+
+
+
+  <ng2-adsense *ngIf="adSenseEnabled && isBrowser()"
+        class="adsbygoogle"
+        adSlot="9176120862"
+        adFormat="link"></ng2-adsense>
   <div class="content" [innerHTML]="picture.description">
   </div>
 </div>

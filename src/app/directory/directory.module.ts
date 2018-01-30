@@ -7,6 +7,7 @@ import {DirectoryGalleryListComponent} from './components/directory-gallery-list
 import {AuthModule} from '../auth/auth.module';
 import {ImageUploadModule} from 'ng2-imageupload';
 import {DirectoryService} from './services/directory.service';
+import {DirectoryDetailComponent} from './components/directory-detail/directory-detail.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {DirectoryService} from './services/directory.service';
     DirectoryComponent,
     DirectoryDialogComponent,
     DirectoryGalleryListComponent,
+    DirectoryDetailComponent,
   ],
   providers: [
     DirectoryService,
@@ -29,7 +31,8 @@ import {DirectoryService} from './services/directory.service';
   exports: [
     DirectoryComponent,
     DirectoryDialogComponent,
-    DirectoryGalleryListComponent
+    DirectoryGalleryListComponent,
+    DirectoryDetailComponent,
   ]
 })
 export class DirectoryModule { }

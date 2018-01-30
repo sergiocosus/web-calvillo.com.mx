@@ -211,43 +211,7 @@ section{
       }
 
       li{
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        overflow: hidden;
-        flex: 0 0 auto;
-        margin: 1em;
-        background-color: rgba(white, .5);
-        font-size: 2em;
-        width: 12em;
-        height: 11.5em;
-        transition: all 0.25s;
-        cursor: pointer;
-
-        > picture{
-          background-size: cover;
-          background-position: center center;
-          flex: 1 0 0;
-        }
-
-        > span {
-          flex: 0 0 auto;
-          background-color: #4E4E4E;
-          color: white;
-          min-height: 1.5em;
-          text-align: center;
-          padding: .3em .5em;
-          font-weight: bolder;
-          transition: all 0.25s;
-        }
-
-        &:hover{
-          box-shadow: 0em 0em .5em $primaryColor;
-
-          > span{
-            background-color: $primaryColor;
-          }
-        }
+        list-style: none;
       }
     }
   }
@@ -262,6 +226,7 @@ section{
   font-size: 2em;
   padding: 1em;
   text-align: center;
+  flex-wrap: wrap;
   a{
     color: white;
     margin: 1em;
@@ -270,5 +235,10 @@ section{
     &:hover{
       text-decoration: underline;
     }
+  }
+  .ssl-logo{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
   }
 }

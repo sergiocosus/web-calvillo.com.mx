@@ -11,7 +11,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotifyService} from './services/notify.service';
 import {HttpModule} from '@angular/http';
 import {
-  MatButtonModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
   MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
@@ -27,6 +27,13 @@ import {AdsenseModule} from 'ng2-adsense';
 import { ImageComponent } from './components/image/image.component';
 import {PlatformService} from './services/platform.service';
 import {HttpClientModule} from '@angular/common/http';
+import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
+import {ShareButtonModule} from "@ngx-share/button";
+import {ShareButtonsModule} from "@ngx-share/buttons";
+import {AgmCoreModule} from "@agm/core";
+import {NgxPageScrollModule} from "ngx-page-scroll";
+import {AppMetaService} from "./services/app-meta.service";
 
 
 @NgModule({
@@ -44,11 +51,14 @@ import {HttpClientModule} from '@angular/common/http';
     SimpleNotificationsModule,
     SidebarModule,
     AdsenseModule,
+    ShareButtonsModule,
   ],
   declarations: [
     VoidComponent,
     LogoComponent,
     ImageComponent,
+    AdThumbComponent,
+    BackButtonComponent,
   ],
   exports: [
     CommonModule,
@@ -68,8 +78,14 @@ import {HttpClientModule} from '@angular/common/http';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatIconModule,
+    MatCardModule,
+    AgmCoreModule,
+    NgxPageScrollModule,
     DateTimePickerModule,
+    ShareButtonsModule,
     LogoComponent,
+    AdThumbComponent,
+    BackButtonComponent,
   ]
 })
 export class SharedModule {
@@ -86,6 +102,7 @@ export class SharedModule {
         ScriptService,
         GoogleAnalyticsService,
         PlatformService,
+        AppMetaService,
         {
           provide: HAMMER_GESTURE_CONFIG,
           useClass: MyHammerConfig ,

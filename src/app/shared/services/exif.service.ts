@@ -12,7 +12,7 @@ export class EXIFService {
       let exif = this.readEXIFFromBase64(base64);
       console.log(exif);
       if (exif.DateTime) {
-        let dateTime = moment(exif.DateTime, 'YYYY:MM:DD hh:mm:ss');
+        let dateTime = moment(exif.DateTimeOriginal, 'YYYY:MM:DD hh:mm:ss');
         return dateTime as any;
       }
     } catch (e) {

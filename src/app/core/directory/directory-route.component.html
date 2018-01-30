@@ -1,0 +1,33 @@
+<header>
+  <h2>{{directory?.title}}</h2>
+</header>
+
+<mat-card *ngIf="directory" class="content">
+  <app-image size="xlg" [model]="directory"></app-image>
+
+  <app-directory-detail [directory]="directory"></app-directory-detail>
+
+  <agm-map *ngIf="directory.longitude && directory.latitude"
+           [latitude]="directory.latitude"
+           [longitude]="directory.longitude"
+           [zoom]="16"
+           [mapTypeControl]="true"
+  >
+    <agm-marker
+      [latitude]="directory.latitude"
+      [longitude]="directory.longitude"
+      [label]="directory.title">
+    </agm-marker>
+  </agm-map>
+</mat-card>
+
+
+<mat-card *ngIf="directory" class="related">
+  <h3 mat-card-title>También te podría interesar</h3>
+  <a *ngFor="let relatedDirectory of directory.related_directories"
+     [routerLink]="relatedDirectory.getRouterLink()">
+    <app-directory
+                   [directory]="relatedDirectory"></app-directory>
+  </a>
+
+</mat-card>

@@ -17,7 +17,7 @@
                   (onSelectionChange)="selectedModel(category, directory)">
         <a [routerLink]="directory.getRouterLink(category)">
           <app-image [model]="directory">
-            <i _ngcontent-c16="" aria-hidden="true" class="fa fa-book"></i>
+            <i aria-hidden="true" class="fa fa-book"></i>
           </app-image>
           <span>
             <span class="category-title">{{category.title }}</span>
@@ -30,9 +30,9 @@
     <mat-option *ngFor="let category of search.categories"
                [value]="category" (onSelectionChange)="selectedCategory(category)">
       <a [routerLink]="category.routerLink">
-        <picture  [ngStyle]="{ 'background-image' : 'url('+category.imageUrl('xs')+')' } ">
-          <i _ngcontent-c14="" aria-hidden="true" class="fa fa-folder"></i>
-        </picture>
+        <app-image [model]="category">
+          <i aria-hidden="true" class="fa fa-folder"></i>
+        </app-image>
         <span>
           {{ category.title }}
         </span>
@@ -43,9 +43,9 @@
       <mat-option  *ngFor="let category of picture.categories"
                   [value]="picture" (onSelectionChange)="selectedModel(category, picture)">
         <a [routerLink]="picture.getRouterLink(category)">
-          <picture  [ngStyle]="{ 'background-image' : 'url('+picture.imageUrl('xs')+')' } ">
-            <i _ngcontent-c15="" aria-hidden="true" class="fa fa-camera"></i>
-          </picture>
+          <app-image [model]="picture">
+            <i aria-hidden="true" class="fa fa-camera"></i>
+          </app-image>
           <span>
             <span class="category-title">{{category.title }}</span>
             <span>{{ picture.title }}</span>

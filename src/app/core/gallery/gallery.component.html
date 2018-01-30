@@ -3,20 +3,18 @@
           [ngStyle]="{'background-image':  'url(' + category.imageUrl('xlg') + ')'}">
     <div class="gradient"></div>
 
-    <h1>
-      <a [routerLink]="category.category ? category.category.routerLink: '../'">
-        <i class="fa fa-undo" aria-hidden="true"></i>
-      </a>
-      {{category.title}}
-    </h1>
+    <div class="title">
+      <app-back-button [routerLink]="category.category ? category.category.routerLink: '../'">
+      </app-back-button>
+
+      <h1>
+        {{category.title}}
+      </h1>
+    </div>
 
     <div class="content" [innerHTML]="category.description"></div>
 
-    <share-buttons *ngIf="currRoute"
-                   theme="circles"
-                   [include]="['facebook','twitter','pinterest','google']"
-                   [show]="5"
-                   [showCount]="true"
+    <share-buttons *ngIf="currRoute && isBrowser()"
                    [size]="2"
                    [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>
@@ -26,7 +24,6 @@
     </button>
     <!-- TODO put related gallery -->
   </header>
-  <ng2-adsense *ngIf="adSenseEnabled"></ng2-adsense>
   <section *ngIf="category.categories.length || loggedUser">
     <app-category-gallery-list [category]="category"></app-category-gallery-list>
   </section>

@@ -7,8 +7,7 @@ $mdScreen: 768px;
 $lgScreen: 992px;
 $xlgScreen: 1200px;
 
-$thumbnail-label-background-color: rgba(#EEE, 1);
-
+$thumbnail-label-background-color: #4E4E4E;
 
 $fb-color: #4267b2;
 $youtube-color: #db4437;
@@ -18,7 +17,7 @@ $primaryColor: #D31841;
 $navbarBackgroundColor: $primaryColor;
 $navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
 
-$titleColor: #3f1f01;
+$titleColor: white;
 
 $thumbSize: 60px;
 $smallThumbSize: 40px;
@@ -27,7 +26,7 @@ $thumbMargin: 2px;
 $topSpace: $thumbSize + ($thumbMargin * 2);
 
 $titleFontSize: 1.5em;
-$subtitleFontSize: 1.5em;
+$subtitleFontSize: 1em;
 
 $arrowBackgroundColor: rgba(black, .5);
 
@@ -57,34 +56,87 @@ $imgHeightMobile: 6em;
 }
 
 .gradient-background{
-  background-color: #ad6424;
-  background-image: url("/assets/images/45-degree-fabric-dark.png");
+  background-color: white;
+ // background-image: url("/assets/images/45-degree-fabric-dark.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
-$colorForGradient: #1b3264;
-$finalColorForGradient: #0d1424;
+$colorForGradient: darken($primaryColor, 35%);
+$finalColorForGradient: darken($primaryColor, 40%);
 
-$stopForGradient: .9;
+$stopForGradient: .75;
 .dark-transparent-gradient{
   background: rgba(0,0,0,0);
-  background: -moz-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.55) 5em, rgba($finalColorForGradient, $stopForGradient) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($colorForGradient,0)), color-stop(5em, rgba($colorForGradient,0.65)), color-stop(100%, rgba($finalColorForGradient,$stopForGradient)));
-  background: -webkit-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 5em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: -o-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 5em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: -ms-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 5em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: linear-gradient(to bottom, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.65) 5em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: -moz-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($colorForGradient,0)), color-stop(3em, rgba($colorForGradient,0.4)), color-stop(100%, rgba($finalColorForGradient,$stopForGradient)));
+  background: -webkit-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: -o-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: -ms-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
+  background: linear-gradient(to bottom, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 }
+
+
+.dark-transparent-gradient-down{
+  background: rgba(0,0,0,0);
+  background: linear-gradient(to bottom,  rgba($finalColorForGradient,$stopForGradient) 0%, rgba($colorForGradient, .5) 50%,   rgba($colorForGradient,0)  100%);
+}
+
 
 
 .title-divisor {
   position: relative;
 
-  background-color: rgba($thumbnail-label-background-color, .9);
+  background-color: $thumbnail-label-background-color;
   padding-left: 10%;
   padding-top: .25em;
   padding-bottom: .25em;
   color: $titleColor;
   box-shadow: 6px 6px 5px -1px rgba($titleColor, .26);
+}
+
+
+.thumb-style{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  margin: 1em;
+  background-color: $thumbnail-label-background-color;
+  font-size: 2em;
+  width: 12em;
+  height: 11.5em;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+
+  > picture{
+    background-size: cover;
+    background-position: center center;
+    flex: 1 0 0;
+  }
+
+  > span {
+    @extend .thumb-text-style;
+  }
+
+  @extend .nice-hover-shadow;
+}
+
+.thumb-text-style {
+  flex: 0 0 auto;
+  color: white;
+  min-height: 1.5em;
+  text-align: center;
+  padding: .3em .5em;
+  font-weight: bolder;
+  transition: all 0.25s;
+}
+
+.nice-hover-shadow{
+  &:hover{
+    box-shadow: 0em 0em .5em $primaryColor;
+    background-color: $primaryColor;
+  }
 }

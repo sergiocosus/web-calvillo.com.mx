@@ -99,6 +99,7 @@ export class PictureGalleryComponent implements OnInit {
   pages: number;
   page = 0;
   elementsByPage;
+  finished = false;
 
   currentRoute: string;
 
@@ -121,17 +122,19 @@ export class PictureGalleryComponent implements OnInit {
     this.initImgSize();
     this.sub.add = this.activatedRoute.params.subscribe(
       route => {
+        console.log(route);
         if (route['category_link'] && route['category_link'] !== this.category_link) {
           this.loadCategory(route['category_link']);
         } else {
-          this.loadCategory(environment.defaultCategoryId);
+          //this.loadCategory(environment.defaultCategoryId);
         }
       }
     );
 
-    this.sub.add = this.activatedRoute.children[0].params.subscribe(
+    this.sub.add = this.activatedRoute.params.subscribe(
       route => {
         if (route['picture_link']) {
+          console.log(route);
           this.picture_link = route['picture_link'];
           this.loadPicture();
         }
@@ -274,13 +277,14 @@ export class PictureGalleryComponent implements OnInit {
 
   nextPicture() {
     if (this.index + 1 >= this.pictureLength) {
-      this.changeRoutePicture(this.pictureLength - 1);
+      this.changeRoutePicture(this.pictureLength - 1, true);
     } else {
       this.changeRoutePicture(this.index + 1);
     }
   }
 
   prevPicture() {
+    this.finished = false;
     if (this.index <= 0) {
       this.changeRoutePicture(0);
     } else {
@@ -288,7 +292,13 @@ export class PictureGalleryComponent implements OnInit {
     }
   }
 
-  changeRoutePicture(index:number) {
+  changeRoutePicture(index:number, toFinish = false) {
+    this.finished = toFinish;
+
+    if (this.finished && window.FB) {
+        setTimeout(() => window.FB.XFBML.parse(), 1);
+    }
+
     this.router.navigateByUrl(this.category.pictures[index].getRouterLink(this.category));
   }
 
@@ -336,7 +346,8 @@ export class PictureGalleryComponent implements OnInit {
   }
 
   get isLastPicture() {
-    return this.index === this.pictureLength - 1;
+    //return this.index === this.pictureLength;
+    return this.finished;
   }
 
   openMapModal() {
