@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {PictureModule} from '../picture/picture.module';
 import {DirectoryModule} from '../directory/directory.module';
 import {CategoryModule} from '../category/category.module';
+import {DirectoryRouteModule} from './directory/directory-route.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {CategoryModule} from '../category/category.module';
     SearchModule,
     PictureModule,
     DirectoryModule,
+    DirectoryRouteModule,
     CategoryModule,
   ],
   declarations: [

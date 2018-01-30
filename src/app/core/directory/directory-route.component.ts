@@ -1,11 +1,9 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AutoUnsubscribe} from "../../shared/classes/auto-unsubscribe";
 import {SubscriptionManager} from "../../shared/classes/subscription-manager";
 import {Directory} from "../../directory/directory.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DirectoryService} from "../../directory/services/directory.service";
-import {PageScrollInstance, PageScrollService} from "ngx-page-scroll";
-import {DOCUMENT} from "@angular/common";
 import {AppMetaService} from "../../shared/services/app-meta.service";
 
 @Component({
