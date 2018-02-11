@@ -13,11 +13,10 @@ import {HttpModule} from '@angular/http';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
   MatProgressSpinnerModule,
-  MatSelectModule
+  MatSelectModule, MatSidenavModule
 } from '@angular/material';
 import {DateTimePickerModule} from 'ng-pick-datetime';
 import { LogoComponent } from './components/logo/logo.component';
-import {SidebarModule} from 'ng-sidebar';
 import {NavbarService} from './services/navbar.service';
 import {HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
 import {MyHammerConfig} from './my-hammer-config';
@@ -29,7 +28,6 @@ import {PlatformService} from './services/platform.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AdThumbComponent } from './components/ad-thumb/ad-thumb.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
-import {ShareButtonModule} from "@ngx-share/button";
 import {ShareButtonsModule} from "@ngx-share/buttons";
 import {AgmCoreModule} from "@agm/core";
 import {NgxPageScrollModule} from "ngx-page-scroll";
@@ -46,10 +44,10 @@ import {AppMetaService} from "./services/app-meta.service";
     MatSelectModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
-    SidebarModule,
     AdsenseModule,
     ShareButtonsModule,
   ],
@@ -66,10 +64,10 @@ import {AppMetaService} from "./services/app-meta.service";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    SidebarModule,
     AdsenseModule,
     VoidComponent,
     ImageComponent,
+    MatSidenavModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,

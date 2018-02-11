@@ -1,15 +1,12 @@
 <app-nav-bar [sideBar]="sideBar"></app-nav-bar>
-<ng-sidebar-container id="body-content" >
-  <ng-sidebar #sideBar mode="over" [opened]="false"
-              [showBackdrop]="true"
-              [closeOnClickOutside]="true"
-              [keyClose]="true"
-              [closeOnClickBackdrop]="true"
-  >
+<mat-sidenav-container>
+  <mat-sidenav #sideBar mode="over" [opened]="false">
     <app-nav-pages (click)="sideBar.close()"></app-nav-pages>
-  </ng-sidebar>
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-</ng-sidebar-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
 
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSidenav} from '@angular/material';
 import {LoginModalComponent} from '../../auth/components/login-modal/login-modal.component';
-import {Sidebar} from 'ng-sidebar';
 import {NavbarService} from '../../shared/services/navbar.service';
 import {SubscriptionManager} from '../../shared/classes/subscription-manager';
 import {AutoUnsubscribe} from '../../shared/classes/auto-unsubscribe';
@@ -15,7 +14,7 @@ import {AutoUnsubscribe} from '../../shared/classes/auto-unsubscribe';
 })
 @AutoUnsubscribe()
 export class NavBarComponent implements OnInit {
-  @Input() sideBar: Sidebar;
+  @Input() sideBar: MatSidenav;
 
   title: string;
   private user: User;

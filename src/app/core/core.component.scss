@@ -64,10 +64,7 @@ app-nav-pages{
 }
 
 
-ng-sidebar{
-  position: relative;
-
-  /deep/ aside{
-    display: flex;
-  }
+mat-sidenav-container{
+  min-height: 100vh;
+  padding-top: 3em;
 }
