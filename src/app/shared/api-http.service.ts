@@ -75,7 +75,12 @@ export class ApiHttp {
       options.headers = new Headers();
     }
     let headers = options.headers;
-    headers.append('Authorization', 'Bearer ' + this.localStorage.get('access_token'));
+
+    const access_token = this.localStorage.get('access_token');
+
+    if ( access_token ) {
+      headers.append('Authorization', 'Bearer ' + access_token);
+    }
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     return options;
