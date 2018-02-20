@@ -46,6 +46,7 @@
     "font-face-mixin": "^1.1.0",
     "hammerjs": "^2.0.8",
     "js-marker-clusterer": "^1.0.0",
+    "js-marker-clusterer-universal": "^1.0.0",
     "moment": "^2.19.2",
     "ng-pick-datetime": "^5.0.0-beta.14",
     "ng2-adsense": "^4.0.12",

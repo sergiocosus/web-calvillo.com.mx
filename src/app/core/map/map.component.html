@@ -18,10 +18,9 @@
   <agm-map [latitude]="latitudeMap"
            [longitude]="longitudeMap"
            [zoom]="zoomMap">
-    <!--<agm-marker-cluster
+    <agm-marker-cluster
             maxZoom="17"
             imagePath="https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m">
-            -->
       <agm-marker
               *ngFor="let directory of directories"
               [label]="directory.title"
@@ -35,7 +34,7 @@
                          [showExpanded]="true"></app-directory>
         </agm-info-window>
       </agm-marker>
-    <!--</agm-marker-cluster>-->
+    </agm-marker-cluster>
   </agm-map>
 </div>
 

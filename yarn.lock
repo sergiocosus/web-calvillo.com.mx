@@ -3810,6 +3810,10 @@ js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
 
+js-marker-clusterer-universal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/js-marker-clusterer-universal/-/js-marker-clusterer-universal-1.0.0.tgz#10f8827e835559ee8d262b5663e6eadcea1cda68"
+
 js-marker-clusterer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/js-marker-clusterer/-/js-marker-clusterer-1.0.0.tgz#c94be85ae8896819e51c131f891dd2b55558dd17"
