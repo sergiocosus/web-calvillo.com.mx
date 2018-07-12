@@ -1,20 +1,26 @@
 import {
-  Component, OnInit, ElementRef, ViewChild, HostListener, trigger, state,
-  transition, style, animate, PLATFORM_ID, Inject
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild
 } from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {CategoryService} from '../../../category/services/category.service';
-import {Category} from '../../../category/category.model';
-import {Picture} from '../../../picture/picture.model';
-import {ResolutionService} from '../../../shared/services/resolution.service';
-import {isPlatformBrowser} from '@angular/common';
-import {MatDialog} from '@angular/material';
-import {PlaceOnMapModalComponent} from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
-import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
-import {Meta, Title} from '@angular/platform-browser';
-import {environment} from '../../../../environments/environment';
-import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
-import {SocialPostDialogComponent} from '../../../picture/components/social-post-dialog/social-post-dialog.component';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { CategoryService } from '../../../category/services/category.service';
+import { Category } from '../../../category/category.model';
+import { Picture } from '../../../picture/picture.model';
+import { ResolutionService } from '../../../shared/services/resolution.service';
+import { isPlatformBrowser } from '@angular/common';
+import { MatDialog } from '@angular/material';
+import { PlaceOnMapModalComponent } from '../../../maps/components/place-on-map-modal/place-on-map-modal.component';
+import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
+import { Meta, Title } from '@angular/platform-browser';
+import { environment } from '../../../../environments/environment';
+import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
+import { SocialPostDialogComponent } from '../../../picture/components/social-post-dialog/social-post-dialog.component';
+import { animate, style, transition, trigger } from "@angular/animations";
 
 declare var window: any;
 
@@ -79,6 +85,7 @@ export class PictureGalleryComponent implements OnInit {
         break;
     }
   }
+
   adSenseEnabled = environment.adSenseEnabled;
 
   imgSize = null;
@@ -87,7 +94,7 @@ export class PictureGalleryComponent implements OnInit {
   picture_link = null;
 
   category: Category;
-  pictureTail: {picture: Picture, state: string}[] = [];
+  pictureTail: { picture: Picture, state: string }[] = [];
   picture: Picture;
 
   index: number;
@@ -292,11 +299,11 @@ export class PictureGalleryComponent implements OnInit {
     }
   }
 
-  changeRoutePicture(index:number, toFinish = false) {
+  changeRoutePicture(index: number, toFinish = false) {
     this.finished = toFinish;
 
     if (this.finished && window.FB) {
-        setTimeout(() => window.FB.XFBML.parse(), 1);
+      setTimeout(() => window.FB.XFBML.parse(), 1);
     }
 
     this.router.navigateByUrl(this.category.pictures[index].getRouterLink(this.category));

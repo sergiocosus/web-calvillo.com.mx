@@ -15,7 +15,10 @@ import {
   MatProgressSpinnerModule,
   MatSelectModule, MatSidenavModule
 } from '@angular/material';
-import {DateTimePickerModule} from 'ng-pick-datetime';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule
+} from 'ng-pick-datetime';
 import { LogoComponent } from './components/logo/logo.component';
 import {NavbarService} from './services/navbar.service';
 import {HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
@@ -79,7 +82,8 @@ import {AppMetaService} from "./services/app-meta.service";
     MatCardModule,
     AgmCoreModule,
     NgxPageScrollModule,
-    DateTimePickerModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     ShareButtonsModule,
     LogoComponent,
     AdThumbComponent,

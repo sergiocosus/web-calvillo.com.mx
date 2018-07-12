@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../shared/api-http.service';
 import {User} from './user.model';
@@ -10,8 +12,8 @@ export class UserService {
   }
 
   getMe() {
-    return this.apiHttp.get('user/me')
-      .map(json => new User().parse(json.user));
+    return this.apiHttp.get('user/me').pipe(
+      map(json => new User().parse(json.user)));
   }
 
   postFacebookLogin(accessToken: string) {

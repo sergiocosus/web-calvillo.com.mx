@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Picture} from '../../picture/picture.model';
@@ -10,12 +12,12 @@ export class SearchService {
   constructor(private apiHttp: ApiHttp) { }
 
   get(query) {
-    return this.apiHttp.get(this.basePath, {query: query})
-        .map(json => {
+    return this.apiHttp.get(this.basePath, {query: query}).pipe(
+        map(json => {
             json.pictures = Picture.parseArray(json.pictures);
             json.directories = Directory.parseArray(json.directories);
             json.categories = Category.parseArray(json.categories);
             return json;
-        });
+        }));
   }
 }

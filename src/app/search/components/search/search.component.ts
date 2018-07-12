@@ -1,3 +1,5 @@
+
+import {debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {SearchService} from '../../services/search.service';
 import {FormControl} from '@angular/forms';
@@ -35,8 +37,8 @@ export class SearchComponent implements OnInit {
   constructor(private elementRef: ElementRef,
               private searchService: SearchService,
               private router: Router) {
-    this.stateCtrl.valueChanges
-        .debounceTime(200)
+    this.stateCtrl.valueChanges.pipe(
+        debounceTime(200))
         .subscribe(name => {
           if (name && name != '') {
             this.search =  this.searchService.get(name);

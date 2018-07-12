@@ -1,6 +1,9 @@
+
+import {throwError as observableThrowError, Observable} from 'rxjs';
+
+import {catchError, map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {Http, RequestOptionsArgs, Response, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
 
 import {environment} from "../../environments/environment";
 import {LocalStorageService} from './services/local-storage.service';
@@ -23,21 +26,21 @@ export class ApiHttp {
     }else {
       options = {body:''};
     }
-    return this.http.get(this.apiUrl + url + this.serializeGetParams(data), this.appendHeaders(options))
-      .map(this.mapJson)
-      .catch(this.handleError);
+    return this.http.get(this.apiUrl + url + this.serializeGetParams(data), this.appendHeaders(options)).pipe(
+      map(this.mapJson),
+      catchError(this.handleError),);
   }
 
   post(url:string, body?:any, options?:RequestOptionsArgs):Observable<any> {
-    return this.http.post(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options))
-      .map(this.mapJson)
-      .catch(this.handleError);
+    return this.http.post(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
+      map(this.mapJson),
+      catchError(this.handleError),);
   }
 
   put(url:string, body:any, options?:RequestOptionsArgs):Observable<any> {
-    return this.http.put(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options))
-      .map(this.mapJson)
-      .catch(this.handleError);
+    return this.http.put(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
+      map(this.mapJson),
+      catchError(this.handleError),);
   }
 
   delete(url:string, options?:RequestOptionsArgs):Observable<any> {
@@ -45,21 +48,21 @@ export class ApiHttp {
       options = { body: "" };
     }
 
-    return this.http.delete(this.apiUrl + url, this.appendHeaders(options))
-      .map(this.mapJson)
-      .catch(this.handleError);
+    return this.http.delete(this.apiUrl + url, this.appendHeaders(options)).pipe(
+      map(this.mapJson),
+      catchError(this.handleError),);
   }
 
   patch(url:string, body?:any, options?:RequestOptionsArgs):Observable<any> {
-    return this.http.patch(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options))
-      .map(this.mapJson)
-      .catch(this.handleError);
+    return this.http.patch(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
+      map(this.mapJson),
+      catchError(this.handleError),);
   }
 
   head(url:string, options?:RequestOptionsArgs):Observable<any> {
-    return this.http.head(this.apiUrl + url, this.appendHeaders(options))
-      .map(this.mapJson)
-      .catch(this.handleError);
+    return this.http.head(this.apiUrl + url, this.appendHeaders(options)).pipe(
+      map(this.mapJson),
+      catchError(this.handleError),);
   }
 
   private mapJson(res:Response):any {
@@ -95,7 +98,7 @@ export class ApiHttp {
       console.error(error);
     }
 
-    return Observable.throw(json);
+    return observableThrowError(json);
   }
 
   private serializeGetParams(object:any):string {

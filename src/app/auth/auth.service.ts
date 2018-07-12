@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {Observable} from 'rxjs/Observable';
+import {ReplaySubject, Observable} from 'rxjs';
 import {User} from '../user/user.model';
 import {LocalStorageService} from '../shared/services/local-storage.service';
 import {ApiHttp} from '../shared/api-http.service';

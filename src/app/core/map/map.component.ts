@@ -4,8 +4,7 @@ import {Directory} from '../../directory/directory.model';
 import {NavbarService} from '../../shared/services/navbar.service';
 import {environment} from '../../../environments/environment';
 import {CategoryService} from '../../category/services/category.service';
-import {Subscription} from 'rxjs/Subscription';
-import {Observable} from 'rxjs/Observable';
+import {Subscription, Observable} from 'rxjs';
 import {Category} from "app/category/category.model";
 
 @Component({

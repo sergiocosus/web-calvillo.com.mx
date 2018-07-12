@@ -1,3 +1,5 @@
+
+import {filter} from 'rxjs/operators';
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthService} from './auth/auth.service';
 import {NavigationEnd, Router} from '@angular/router';
@@ -25,7 +27,7 @@ export class AppComponent implements OnInit{
               @Inject(DOCUMENT) private document: any) {
     this.authService.updateLoggedUserObservable().subscribe(() => {});
 
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((e: NavigationEnd) => {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((e: NavigationEnd) => {
       if (this.platformService.isPlatformBrowser()){
         this.goToTop();
 

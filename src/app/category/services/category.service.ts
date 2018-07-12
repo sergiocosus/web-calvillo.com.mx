@@ -1,8 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Category} from '../category.model';
-import {Observable} from 'rxjs/Observable';
-import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {Observable, ReplaySubject} from 'rxjs';
 
 @Injectable()
 export class CategoryService {
@@ -14,13 +15,13 @@ export class CategoryService {
   constructor(private apiHttp: ApiHttp) { }
 
   get(category_id: number) {
-    return this.apiHttp.get(this.basePath + category_id)
-      .map(json => new Category().parse(json.category));
+    return this.apiHttp.get(this.basePath + category_id).pipe(
+      map(json => new Category().parse(json.category)));
   }
 
   getAll() {
-    return this.apiHttp.get(this.basePath)
-      .map(json => Category.parseArray(json.categories));
+    return this.apiHttp.get(this.basePath).pipe(
+      map(json => Category.parseArray(json.categories)));
   }
 
   getAllCached(params?, refresh = false) {
@@ -37,29 +38,29 @@ export class CategoryService {
   }
 
   getByLink(link: string) {
-    return this.apiHttp.get(this.basePath + 'link/' + link)
-      .map(json => new Category().parse(json.category));
+    return this.apiHttp.get(this.basePath + 'link/' + link).pipe(
+      map(json => new Category().parse(json.category)));
   }
 
 
   getSubCategoriesByLink(link: string) {
-    return this.apiHttp.get(this.basePath + 'link/' + link + '/sub-categories')
-        .map(json => Category.parseArray(json.categories));
+    return this.apiHttp.get(this.basePath + 'link/' + link + '/sub-categories').pipe(
+        map(json => Category.parseArray(json.categories)));
   }
 
   getNewest(elements?: number) {
-    return this.apiHttp.get(this.basePath + 'newest', {elements: elements})
-      .map(json => Category.parseArray(json.categories));
+    return this.apiHttp.get(this.basePath + 'newest', {elements: elements}).pipe(
+      map(json => Category.parseArray(json.categories)));
   }
 
   put(data) {
-    return this.apiHttp.put(this.basePath + data.id , data)
-      .map(json => new Category().parse(json.category));
+    return this.apiHttp.put(this.basePath + data.id , data).pipe(
+      map(json => new Category().parse(json.category)));
   }
 
   remove(picture_id: number) {
-    return this.apiHttp.delete(this.basePath + picture_id)
-      .map(json => new Category().parse(json.category));
+    return this.apiHttp.delete(this.basePath + picture_id).pipe(
+      map(json => new Category().parse(json.category)));
   }
 
   delete(picture_id: number) {
@@ -67,13 +68,13 @@ export class CategoryService {
   }
 
   restore(picture_id: number) {
-    return this.apiHttp.patch(this.basePath + picture_id)
-      .map(json => new Category().parse(json.category));
+    return this.apiHttp.patch(this.basePath + picture_id).pipe(
+      map(json => new Category().parse(json.category)));
   }
 
   post(data) {
-    return this.apiHttp.post(this.basePath, data)
-      .map(json => new Category().parse(json.category));
+    return this.apiHttp.post(this.basePath, data).pipe(
+      map(json => new Category().parse(json.category)));
   }
 
   facebookPost(category_id, data) {

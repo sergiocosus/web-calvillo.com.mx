@@ -13,12 +13,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import {FacebookModule} from 'ngx-facebook';
 import {SearchModule} from './search/search.module';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/observable/of';
+
+
+
+
+
+
 import {AuthModule} from './auth/auth.module';
 import {PictureModule} from './picture/picture.module';
 import {CoreModule} from './core/core.module';

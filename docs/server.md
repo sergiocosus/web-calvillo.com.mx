@@ -10,7 +10,6 @@ sudo npm install -g pm2
 ```
 
 Start process
-```
 pm2 start  ./dist/server.js
 ```
 

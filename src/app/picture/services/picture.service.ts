@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {ApiHttp} from '../../shared/api-http.service';
 import {Picture} from '../picture.model';
@@ -8,8 +10,8 @@ export class PictureService {
   constructor(private apiHttp: ApiHttp) { }
 
   post(data) {
-    return this.apiHttp.post(this.basePath, data)
-      .map(json => new Picture().parse(json.picture));
+    return this.apiHttp.post(this.basePath, data).pipe(
+      map(json => new Picture().parse(json.picture)));
   }
 
   facebookPost(category_id, picture_id, data) {
@@ -17,13 +19,13 @@ export class PictureService {
   }
 
   put(data) {
-    return this.apiHttp.put(this.basePath + data.id , data)
-      .map(json => new Picture().parse(json.picture));
+    return this.apiHttp.put(this.basePath + data.id , data).pipe(
+      map(json => new Picture().parse(json.picture)));
   }
 
   remove(picture_id: number) {
-    return this.apiHttp.delete(this.basePath + picture_id)
-      .map(json => new Picture().parse(json.picture));
+    return this.apiHttp.delete(this.basePath + picture_id).pipe(
+      map(json => new Picture().parse(json.picture)));
   }
 
   delete(picture_id: number) {
@@ -31,8 +33,8 @@ export class PictureService {
   }
 
   restore(picture_id: number) {
-    return this.apiHttp.patch(this.basePath + picture_id)
-      .map(json => new Picture().parse(json.picture));
+    return this.apiHttp.patch(this.basePath + picture_id).pipe(
+      map(json => new Picture().parse(json.picture)));
   }
 
   getLinkExists(link) {
