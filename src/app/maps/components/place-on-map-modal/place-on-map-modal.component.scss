@@ -1,12 +1,12 @@
 @import "src/app/vars";
 
-:host{
+:host {
   display: inline-block;
   width: 100vw;
   max-width: 100%;
 }
 
-agm-map{
+agm-map {
   height: 80vh;
   width: 100%;
   max-width: 1024px;

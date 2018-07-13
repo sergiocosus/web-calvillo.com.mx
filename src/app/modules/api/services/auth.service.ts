@@ -1,25 +1,26 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {ReplaySubject, Observable} from 'rxjs';
-import {User} from '../user/user.model';
-import {LocalStorageService} from '../shared/services/local-storage.service';
-import {ApiHttp} from '../shared/api-http.service';
-import {UserService} from '../user/user.service';
-import {environment} from '../../environments/environment';
-import {Http, URLSearchParams, Headers} from '@angular/http';
-import {PlatformService} from '../shared/services/platform.service';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, ReplaySubject } from 'rxjs';
+import { User } from '../models/user.model';
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { ApiHttp } from './api-http.service';
+import { UserService } from './user.service';
+import { environment } from '../../../../environments/environment';
+import { Headers, Http } from '@angular/http';
+import { PlatformService } from '../../../shared/services/platform.service';
+import { HttpParams } from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
-  private loggedAccountReplaySubject: ReplaySubject<User>;
-  private loggedUser: User;
-  private loginPath = '/dashboard';
-
-  private path = 'auth/';
   messages = {
     sessionExpired: 'Session expired, please sign in again'
   };
+  private loggedAccountReplaySubject: ReplaySubject<User>;
+  private loggedUser: User;
+  private path = 'auth/';
 
   constructor(private apiHttp: ApiHttp,
               private http: Http,
@@ -36,12 +37,12 @@ export class AuthService {
       var headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-      let urlSearchParams = new URLSearchParams();
-      urlSearchParams.append('grant_type', 'password');
-      urlSearchParams.append('client_id', environment.apiClientID);
-      urlSearchParams.append('client_secret', environment.apiClientSecret);
-      urlSearchParams.append('username', email);
-      urlSearchParams.append('password', password);
+      let urlSearchParams = new HttpParams()
+        .append('grant_type', 'password')
+        .append('client_id', environment.apiClientID)
+        .append('client_secret', environment.apiClientSecret)
+        .append('username', email)
+        .append('password', password);
       let body = urlSearchParams.toString();
 
       this.http.post(environment.apiAuthUrl, body, {headers: headers}).subscribe(
@@ -49,7 +50,8 @@ export class AuthService {
           let json = data.json();
           this.localStorage.set('access_token', json.access_token);
 
-          this.updateLoggedUserObservable().subscribe(() => {});
+          this.updateLoggedUserObservable().subscribe(() => {
+          });
 
           // this.router.navigate(['/myaccount', {'first-login': true}]);
 
@@ -68,7 +70,8 @@ export class AuthService {
 
   logout() {
     this.localStorage.remove('access_token');
-    this.updateLoggedUserObservable({logout: true}).subscribe(() => {});
+    this.updateLoggedUserObservable({logout: true}).subscribe(() => {
+    });
   }
 
   getLoggedUser() {

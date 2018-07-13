@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {DirectoryService} from '../../directory/services/directory.service';
-import {Directory} from '../../directory/directory.model';
-import {NavbarService} from '../../shared/services/navbar.service';
-import {environment} from '../../../environments/environment';
-import {CategoryService} from '../../category/services/category.service';
-import {Subscription, Observable} from 'rxjs';
-import {Category} from "app/category/category.model";
+import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { Directory } from '@calvillo/api/models/directory.model';
+import { NavbarService } from '../../shared/services/navbar.service';
+import { environment } from '../../../environments/environment';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { Observable } from 'rxjs';
+import { Category } from '@calvillo/api/models/category.model';
 
 @Component({
   selector: 'app-map',
@@ -22,7 +22,8 @@ export class MapComponent implements OnInit {
 
   constructor(private directoryService: DirectoryService,
               private navbarService: NavbarService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService) {
+  }
 
   ngOnInit() {
     this.navbarService.setTitle('Mapa');

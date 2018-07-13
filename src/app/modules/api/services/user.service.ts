@@ -1,8 +1,7 @@
-
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {ApiHttp} from '../shared/api-http.service';
-import {User} from './user.model';
+import { ApiHttp } from './api-http.service';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class UserService {

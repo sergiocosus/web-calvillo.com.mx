@@ -27,7 +27,7 @@
   <a *ngFor="let relatedDirectory of directory.related_directories"
      [routerLink]="relatedDirectory.getRouterLink()">
     <app-directory
-                   [directory]="relatedDirectory"></app-directory>
+      [directory]="relatedDirectory"></app-directory>
   </a>
 
 </mat-card>

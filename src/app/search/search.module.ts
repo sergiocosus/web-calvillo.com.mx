@@ -1,9 +1,9 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {SearchService} from './services/search.service';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { SearchService } from '../modules/api/services/search.service';
 import { SearchComponent } from './components/search/search.component';
-import {SharedModule} from '../shared/shared.module';
-import {MatAutocompleteModule} from '@angular/material';
-import {CategoryModule} from '../category/category.module';
+import { SharedModule } from '../shared/shared.module';
+import { MatAutocompleteModule } from '@angular/material';
+import { CategoryModule } from '../category/category.module';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import {CategoryModule} from '../category/category.module';
   declarations: [
     SearchComponent
   ],
-  exports:[
+  exports: [
     SearchComponent
   ]
 })

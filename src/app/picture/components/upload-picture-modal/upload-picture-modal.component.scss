@@ -1,34 +1,33 @@
-.header-form{
+.header-form {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  label{
+  label {
     margin-right: 1em;
   }
 }
 
-mat-card{
+mat-card {
   margin-bottom: .5em;
   padding: .5em;
 }
 
-#file-input
-{
+#file-input {
   display: none;
 }
 
-mat-expansion-panel{
-  img{
+mat-expansion-panel {
+  img {
     height: 2em;
     margin-right: .5em;
   }
-  mat-spinner{
+  mat-spinner {
     margin-right: .5em;
   }
 }
 
-.error{
+.error {
   color: #f44336;
 }

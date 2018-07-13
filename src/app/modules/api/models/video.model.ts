@@ -1,5 +1,6 @@
-import {ImageableModel} from '../shared/classes/imageable.model';
-export class Video extends ImageableModel{
+import { ImageableModel } from './imageable.model';
+
+export class Video extends ImageableModel {
   id: number;
   title: string;
   link: string;
@@ -12,7 +13,9 @@ export class Video extends ImageableModel{
   updated_at: string;
   deleted_at: string;
 
-  static parseArray(objs:any[]):Video[] {
-    return objs.map(obj => {return new Video().parse(obj)})
+  static parseArray(objs: any[]): Video[] {
+    return objs.map(obj => {
+      return new Video().parse(obj)
+    })
   }
 }

@@ -2,7 +2,7 @@
   <section class="first parallax-group">
     <div class="parallax-layer back">
       <div class="gradient"></div>
-      <div class="background"> </div>
+      <div class="background"></div>
     </div>
     <div class="parallax-layer fore">
       <div class="social">
@@ -47,9 +47,9 @@
         </li>
 
 
-
         <li *ngFor="let category of categories">
-          <app-category-thumbnail [category]="category"></app-category-thumbnail>
+          <app-category-thumbnail
+            [category]="category"></app-category-thumbnail>
         </li>
       </ul>
       <div class="bottom">

@@ -16,7 +16,12 @@
       "es2016",
       "dom"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@calvillo/*": [
+        "app/modules/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "genDir": "./dist/ngfactory",

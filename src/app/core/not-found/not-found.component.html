@@ -8,7 +8,7 @@
 </h3>
 
 <div class="results">
-  <ul *ngIf="search | async; let search;" >
+  <ul *ngIf="search | async; let search;">
     <li *ngIf="!search.directories.length
                 && !search.pictures.length &&
                 !search.categories.length"
@@ -29,7 +29,7 @@
 
     <li *ngFor="let directory of search.directories">
       <a *ngFor="let category of directory.categories"
-          [routerLink]="directory.getRouterLink(category)">
+         [routerLink]="directory.getRouterLink(category)">
         <app-directory [category]="directory.category" [directory]="directory">
         </app-directory>
       </a>
@@ -40,8 +40,9 @@
     </li>
 
     <ng-container *ngFor="let picture of search.pictures">
-      <li  *ngFor="let category of picture.categories">
-        <app-picture-thumbnail [category]="category" [picture]="picture"></app-picture-thumbnail>
+      <li *ngFor="let category of picture.categories">
+        <app-picture-thumbnail [category]="category"
+                               [picture]="picture"></app-picture-thumbnail>
       </li>
     </ng-container>
   </ul>

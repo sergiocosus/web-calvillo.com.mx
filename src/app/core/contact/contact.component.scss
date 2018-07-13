@@ -1,12 +1,12 @@
 @import '~app/vars';
 
-.first{
+.first {
   height: 125vh;
   @media (min-width: $smScreen) {
     height: 100vh;
   }
 
-  .background{
+  .background {
     width: 100%;
     height: 100%;
     background: url("/assets/contact-background.jpg");
@@ -16,10 +16,10 @@
 
   }
 
-  .fore{
+  .fore {
     display: flex;
     flex-direction: column;
-    .wrapper{
+    .wrapper {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -27,19 +27,19 @@
       align-items: center;
       flex: 1 0 auto;
 
-      .text{
+      .text {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         background-color: rgba(white, .75);
         padding: 1em;
-        >div{
+        > div {
           margin-bottom: 1em;
-          a{
+          a {
             font-size: 3em;
             padding: .25em;
-            .fa-facebook-official{
+            .fa-facebook-official {
               color: #3b5998;
               margin-top: -.5em;
             }
@@ -48,7 +48,7 @@
       }
     }
 
-    .ad{
+    .ad {
       flex: 1 0 auto;
       padding-top: 1em;
     }
@@ -56,6 +56,6 @@
   }
 }
 
-.cta{
+.cta {
   font-size: .4em;
 }

@@ -7,7 +7,8 @@
 <div class="content"
      *ngIf="expanded"
      [@directory]="'active'">
-  <app-directory-detail [showMap]="showMap" [directory]="directory"></app-directory-detail>
+  <app-directory-detail [showMap]="showMap"
+                        [directory]="directory"></app-directory-detail>
 </div>
 
 <router-outlet></router-outlet>

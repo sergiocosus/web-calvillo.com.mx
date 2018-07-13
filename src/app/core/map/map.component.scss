@@ -1,17 +1,14 @@
 @import "src/app/vars";
 
-:host{
+:host {
   text-align: center;
   display: flex;
   flex-direction: column;
   min-height: $contentHeight;
 
-
-
 }
 
-
-.directory-bar{
+.directory-bar {
   display: flex;
   flex: 0 0 auto;
   overflow-x: auto;
@@ -19,31 +16,31 @@
     display: flex;
     min-width: inherit;
     padding: .2em;
-    /deep/ .mat-button-wrapper{
+    /deep/ .mat-button-wrapper {
       display: flex;
     }
 
-    span{
+    span {
       display: none;
     }
     @media (min-width: $smScreen) {
-      span{
+      span {
         display: inherit;
       }
     }
   }
 }
 
-button.mat-menu-item{
+button.mat-menu-item {
   display: flex;
 }
 
-.agm{
+.agm {
   flex: 1 0 0;
 
-  agm-map{
+  agm-map {
     //height: 100%;
-   //height: calc(100vh - #{$navBarTop} - 50px);
+    //height: calc(100vh - #{$navBarTop} - 50px);
     width: 100%;
     height: calc(100vh - #{$navBarTop} - 100px);
 
@@ -54,7 +51,7 @@ button.mat-menu-item{
 
 }
 
-.ad{
+.ad {
   flex: 0 0 50px;
   height: 50px;
 

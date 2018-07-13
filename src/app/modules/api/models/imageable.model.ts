@@ -1,5 +1,6 @@
-import {Model} from './model';
-export abstract class ImageableModel extends Model{
+import { Model } from './model';
+
+export abstract class ImageableModel extends Model {
   image_url: string;
 
   imageUrl(size = null) {

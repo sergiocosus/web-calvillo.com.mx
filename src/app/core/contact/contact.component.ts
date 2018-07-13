@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
+
 declare var window: any;
 
 @Component({
@@ -10,7 +11,8 @@ declare var window: any;
 export class ContactComponent implements OnInit {
   adSenseEnabled = environment.adSenseEnabled;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     if (window.FB) {

@@ -1,11 +1,10 @@
-import {NgModule} from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {CoreComponent} from './core.component';
-import {landingRoutes} from './landing/landing-routing.module';
-import {galleryRoutes} from './gallery/gallery-routing.module';
-import {routes as notFoundRoutes} from './not-found/not-found-routing.module';
-import {directoryRoutes} from "./directory/directory-routing.module";
-
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CoreComponent } from './core.component';
+import { landingRoutes } from './landing/landing-routing.module';
+import { galleryRoutes } from './gallery/gallery-routing.module';
+import { routes as notFoundRoutes } from './not-found/not-found-routing.module';
+import { directoryRoutes } from "./directory/directory-routing.module";
 
 
 export const coreRoutes: Routes = [
@@ -46,12 +45,13 @@ export const coreRoutes: Routes = [
       }
     ]
   },
-  { path: '**', redirectTo: '/no-encontrado' },
+  {path: '**', redirectTo: '/no-encontrado'},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(coreRoutes)],
   exports: [RouterModule]
 })
-export class CoreRoutingModule {}
+export class CoreRoutingModule {
+}
 

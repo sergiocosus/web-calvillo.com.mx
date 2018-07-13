@@ -4,12 +4,14 @@
 
 <mat-dialog-content>
   <div *ngIf="!exist_token">
-    Para poder postear en facebook vaya <a (click)="close()" routerLink="/cuenta">Cuenta</a>
+    Para poder postear en facebook vaya <a (click)="close()"
+                                           routerLink="/cuenta">Cuenta</a>
     para ligar su cuenta
   </div>
   <form *ngIf="exist_token" (submit)="submit()">
     <mat-form-field>
-      <input matInput placeholder="Mensaje" [(ngModel)]="message" name="message">
+      <input matInput placeholder="Mensaje" [(ngModel)]="message"
+             name="message">
     </mat-form-field>
     <mat-checkbox [(ngModel)]="delay" name="delay">
       Posponer publicación
@@ -19,13 +21,13 @@
                    [(ngModel)]="scheduled_publish_time"></owl-date-time>
 
 
-
     <button mat-raised-button color="primary">
       Postear!
     </button>
   </form>
 
-  <a *ngIf="linkToFacebookPublication" [href]="linkToFacebookPublication" target="_blank">
+  <a *ngIf="linkToFacebookPublication" [href]="linkToFacebookPublication"
+     target="_blank">
     Link a la publicación en facebook
   </a>
 </mat-dialog-content>

@@ -1,18 +1,20 @@
-
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {ApiHttp} from '../../shared/api-http.service';
-import {Category} from '../category.model';
-import {Observable, ReplaySubject} from 'rxjs';
+import { ApiHttp } from './api-http.service';
+import { Category } from '../models/category.model';
+import { Observable, ReplaySubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CategoryService {
   basePath = 'category/';
 
   private categoriesSubject: ReplaySubject<Category[]> = new ReplaySubject(1);
   private categoriesRequest: Observable<Category[]>;
 
-  constructor(private apiHttp: ApiHttp) { }
+  constructor(private apiHttp: ApiHttp) {
+  }
 
   get(category_id: number) {
     return this.apiHttp.get(this.basePath + category_id).pipe(
@@ -25,7 +27,7 @@ export class CategoryService {
   }
 
   getAllCached(params?, refresh = false) {
-      if (refresh || !this.categoriesRequest) {
+    if (refresh || !this.categoriesRequest) {
       this.categoriesRequest = this.getAll();
 
       this.categoriesRequest.subscribe(
@@ -45,7 +47,7 @@ export class CategoryService {
 
   getSubCategoriesByLink(link: string) {
     return this.apiHttp.get(this.basePath + 'link/' + link + '/sub-categories').pipe(
-        map(json => Category.parseArray(json.categories)));
+      map(json => Category.parseArray(json.categories)));
   }
 
   getNewest(elements?: number) {
@@ -54,7 +56,7 @@ export class CategoryService {
   }
 
   put(data) {
-    return this.apiHttp.put(this.basePath + data.id , data).pipe(
+    return this.apiHttp.put(this.basePath + data.id, data).pipe(
       map(json => new Category().parse(json.category)));
   }
 

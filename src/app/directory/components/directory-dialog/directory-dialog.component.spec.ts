@@ -8,9 +8,9 @@ describe('DirectoryDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DirectoryDialogComponent ]
+      declarations: [DirectoryDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

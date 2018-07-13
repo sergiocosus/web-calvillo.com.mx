@@ -2,8 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: { server: './server.ts' },
-  resolve: { extensions: ['.js', '.ts'] },
+  entry: {server: './server.ts'},
+  resolve: {extensions: ['.js', '.ts']},
   target: 'node',
   mode: 'none',
   // this makes sure we include node_modules and other 3rd party libraries
@@ -13,7 +13,7 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    rules: [{ test: /\.ts$/, loader: 'ts-loader' }]
+    rules: [{test: /\.ts$/, loader: 'ts-loader'}]
   },
   plugins: [
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580

@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core';
-import {Category} from '../../category.model';
-import {CategoryService} from '../../services/category.service';
-import {ImageResult} from 'ng2-imageupload';
-import {MatDialogRef} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
-import {CategoryFormService} from '../../services/category-form.service';
-import {CustomValidator} from '../../../shared/classes/custom-validator';
-import {NotifyService} from '../../../shared/services/notify.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Category } from '@calvillo/api/models/category.model';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { ImageResult } from 'ng2-imageupload';
+import { MatDialogRef } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
+import { CategoryFormService } from '../../services/category-form.service';
+import { CustomValidator } from '../../../shared/classes/custom-validator';
+import { NotifyService } from '../../../shared/services/notify.service';
 
 @Component({
   selector: 'app-add-category-modal',
@@ -34,7 +34,7 @@ export class AddCategoryModalComponent implements OnInit {
 
   ngOnInit() {
     this.subs.add = this.categoryService.getAllCached().subscribe(
-        categories => this.categories = categories
+      categories => this.categories = categories
     );
   }
 
@@ -48,24 +48,6 @@ export class AddCategoryModalComponent implements OnInit {
   initEditMode(category: Category) {
     this.createMode = false;
     this.form = this.categoryFormService.createForm(category, true);
-  }
-
-  private createCategory(categoryData) {
-    this.categoryService.post(categoryData).subscribe(
-      category => {
-        this.created.emit(category);
-        this.dialog.close();
-      }
-    );
-  }
-
-  private updateCategory(categoryData) {
-    this.categoryService.put(categoryData).subscribe(
-      category => {
-        this.updated.emit(category);
-        this.dialog.close();
-      }
-    );
   }
 
   selected(imageResult: ImageResult) {
@@ -89,6 +71,24 @@ export class AddCategoryModalComponent implements OnInit {
     } else {
       this.updateCategory(categoryData);
     }
+  }
+
+  private createCategory(categoryData) {
+    this.categoryService.post(categoryData).subscribe(
+      category => {
+        this.created.emit(category);
+        this.dialog.close();
+      }
+    );
+  }
+
+  private updateCategory(categoryData) {
+    this.categoryService.put(categoryData).subscribe(
+      category => {
+        this.updated.emit(category);
+        this.dialog.close();
+      }
+    );
   }
 
 }

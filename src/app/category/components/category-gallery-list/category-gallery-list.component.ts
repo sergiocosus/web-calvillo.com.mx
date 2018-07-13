@@ -1,9 +1,9 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {AddCategoryModalComponent} from '../add-category-modal/add-category-modal.component';
-import {MatDialog} from '@angular/material';
-import {CategoryService} from '../../services/category.service';
-import {NotifyService} from '../../../shared/services/notify.service';
-import {Category} from '../../category.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { AddCategoryModalComponent } from '../add-category-modal/add-category-modal.component';
+import { MatDialog } from '@angular/material';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { NotifyService } from '../../../shared/services/notify.service';
+import { Category } from '@calvillo/api/models/category.model';
 
 @Component({
   selector: 'app-category-gallery-list',
@@ -15,7 +15,8 @@ export class CategoryGalleryListComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
               private categoryService: CategoryService,
-              private notify: NotifyService) { }
+              private notify: NotifyService) {
+  }
 
   ngOnInit() {
   }
@@ -46,7 +47,7 @@ export class CategoryGalleryListComponent implements OnInit {
   }
 
   delete(category) {
-    if(!confirm('¿Está seguro de borrarlo?')) {
+    if (!confirm('¿Está seguro de borrarlo?')) {
       return;
     }
     this.categoryService.delete(category.id).subscribe(

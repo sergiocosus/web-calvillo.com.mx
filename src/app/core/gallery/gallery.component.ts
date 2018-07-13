@@ -1,20 +1,18 @@
-import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID, SecurityContext, ViewChild} from '@angular/core';
-import {CategoryService} from '../../category/services/category.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Category} from '../../category/category.model';
-import {environment} from '../../../environments/environment';
-import {AuthService} from '../../auth/auth.service';
-import {User} from '../../user/user.model';
-import {NotifyService} from '../../shared/services/notify.service';
-import {Meta, Title} from '@angular/platform-browser';
-import {SubscriptionManager} from '../../shared/classes/subscription-manager';
-import {NavbarService} from '../../shared/services/navbar.service';
-import {AutoUnsubscribe} from '../../shared/classes/auto-unsubscribe';
-import {SocialPostDialogComponent} from '../../picture/components/social-post-dialog/social-post-dialog.component';
-import {MatDialog} from '@angular/material';
-import {SocialPostCategoryDialogComponent} from '../../category/social-post-category-dialog/social-post-category-dialog.component';
-import {isPlatformBrowser} from "@angular/common";
-import {AppMetaService} from "../../shared/services/app-meta.service";
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from '@calvillo/api/models/category.model';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '@calvillo/api/services/auth.service';
+import { User } from '@calvillo/api/models/user.model';
+import { NotifyService } from '../../shared/services/notify.service';
+import { SubscriptionManager } from '../../shared/classes/subscription-manager';
+import { NavbarService } from '../../shared/services/navbar.service';
+import { AutoUnsubscribe } from '../../shared/classes/auto-unsubscribe';
+import { MatDialog } from '@angular/material';
+import { SocialPostCategoryDialogComponent } from '../../category/social-post-category-dialog/social-post-category-dialog.component';
+import { isPlatformBrowser } from '@angular/common';
+import { AppMetaService } from '../../shared/services/app-meta.service';
 
 @Component({
   selector: 'app-gallery',
@@ -39,7 +37,8 @@ export class GalleryComponent implements OnInit {
               private router: Router,
               private meta: AppMetaService,
               private navbarService: NavbarService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
 
   ngOnInit() {
@@ -64,7 +63,7 @@ export class GalleryComponent implements OnInit {
     this.categoryService.getByLink(category_link).subscribe(
       category => {
         this.category = category;
-        this.navbarService.setTitle('Galería' + (this.category.title ? ' / ' + this.category.title: ''));
+        this.navbarService.setTitle('Galería' + (this.category.title ? ' / ' + this.category.title : ''));
         this.updateMetaTags()
       },
       error => {
@@ -76,8 +75,8 @@ export class GalleryComponent implements OnInit {
 
   updateMetaTags() {
     this.meta.update(this.category.title,
-                     this.category.description.replace(/<(?:.|\n)*?>/gm, ''),
-                     this.category.imageUrl('xlg')
+      this.category.description.replace(/<(?:.|\n)*?>/gm, ''),
+      this.category.imageUrl('xlg')
     );
   }
 

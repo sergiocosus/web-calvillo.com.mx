@@ -11,13 +11,13 @@
 
   @extend .nice-hover-shadow;
 
-  header{
+  header {
     display: flex;
     flex-direction: row;
 
     /deep/ app-image {
       background-color: white;
-      picture{
+      picture {
         width: 5em;
         height: 5em;
         background-size: contain;
@@ -25,13 +25,12 @@
       }
     }
 
-
-    > div{
+    > div {
       display: flex;
       align-items: center;
       justify-content: center;
       flex: 1 0 0;
-      h4{
+      h4 {
         padding: .5em;
         margin: 0;
         flex: 1 0 auto;
@@ -41,17 +40,17 @@
     }
   }
 
-  &.expanded{
+  &.expanded {
     padding: .5em;
     flex: 1 1 0;
     overflow: hidden;
     color: white;
 
-    &:hover{
+    &:hover {
       background-color: $thumbnail-label-background-color;
     }
 
-    .content{
+    .content {
       text-align: left;
       display: flex;
       flex-direction: column;
@@ -61,8 +60,7 @@
   }
 }
 
-
-:host(.simple){
+:host(.simple) {
   background-color: transparent;
   color: black;
   margin: 0px;
@@ -74,14 +72,14 @@
     align-items: center;
     height: auto;
 
-    >picture{
+    > picture {
       order: 1;
       flex: 0 0 auto;
-      img{
+      img {
         height: 8em;
       }
     }
-    >div {
+    > div {
       flex: 0 0 auto;
       > h4 {
         color: black;
@@ -91,8 +89,7 @@
     }
   }
 
-
-  &:hover{
+  &:hover {
     background-color: transparent;
     box-shadow: none;
   }

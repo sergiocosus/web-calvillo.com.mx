@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 
 import { DirectoryRoutingModule } from './directory-routing.module';
 import { DirectoryRouteComponent } from './directory-route.component';
-import {SharedModule} from '../../shared/shared.module';
-import {DirectoryModule} from '../../directory/directory.module';
+import { SharedModule } from '../../shared/shared.module';
+import { DirectoryModule } from '../../directory/directory.module';
 
 @NgModule({
   imports: [
@@ -13,4 +13,5 @@ import {DirectoryModule} from '../../directory/directory.module';
   ],
   declarations: [DirectoryRouteComponent]
 })
-export class DirectoryRouteModule { }
+export class DirectoryRouteModule {
+}

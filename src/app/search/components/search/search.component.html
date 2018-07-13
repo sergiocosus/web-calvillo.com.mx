@@ -5,14 +5,15 @@
     <i class="fa fa-search" aria-hidden="true"></i>
   </span>
   <input matInput color="accent" [(ngModel)]="query" #input
-         [placeholder]="placeholder" [matAutocomplete]="auto" [formControl]="stateCtrl">
+         [placeholder]="placeholder" [matAutocomplete]="auto"
+         [formControl]="stateCtrl">
 </mat-form-field>
 
 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
-  <ng-container *ngIf="search | async; let search;" >
+  <ng-container *ngIf="search | async; let search;">
 
     <ng-container *ngFor="let directory of search.directories">
-      <mat-option  *ngFor="let category of directory.categories"
+      <mat-option *ngFor="let category of directory.categories"
                   [value]="directory"
                   (onSelectionChange)="selectedModel(category, directory)">
         <a [routerLink]="directory.getRouterLink(category)">
@@ -28,7 +29,8 @@
     </ng-container>
 
     <mat-option *ngFor="let category of search.categories"
-               [value]="category" (onSelectionChange)="selectedCategory(category)">
+                [value]="category"
+                (onSelectionChange)="selectedCategory(category)">
       <a [routerLink]="category.routerLink">
         <app-image [model]="category">
           <i aria-hidden="true" class="fa fa-folder"></i>
@@ -40,8 +42,9 @@
     </mat-option>
 
     <ng-container *ngFor="let picture of search.pictures">
-      <mat-option  *ngFor="let category of picture.categories"
-                  [value]="picture" (onSelectionChange)="selectedModel(category, picture)">
+      <mat-option *ngFor="let category of picture.categories"
+                  [value]="picture"
+                  (onSelectionChange)="selectedModel(category, picture)">
         <a [routerLink]="picture.getRouterLink(category)">
           <app-image [model]="picture">
             <i aria-hidden="true" class="fa fa-camera"></i>
@@ -57,4 +60,5 @@
   </ng-container>
 </mat-autocomplete>
 <div class="void" *ngIf="hide"></div>
-<i *ngIf="!alwaysShow" (click)="toggleHidden()" class="fa fa-search" aria-hidden="true"></i>
+<i *ngIf="!alwaysShow" (click)="toggleHidden()" class="fa fa-search"
+   aria-hidden="true"></i>

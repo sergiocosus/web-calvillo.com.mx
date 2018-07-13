@@ -1,10 +1,9 @@
-import {Model} from '../shared/classes/model';
-import {ImageableModel} from '../shared/classes/imageable.model';
-import {Picture} from '../picture/picture.model';
-import {Directory} from '../directory/directory.model';
-import {Video} from '../video/video.model';
+import { ImageableModel } from './imageable.model';
+import { Picture } from './picture.model';
+import { Directory } from './directory.model';
+import { Video } from './video.model';
 
-export class Category extends ImageableModel{
+export class Category extends ImageableModel {
   id: number;
   title: string;
   link: string;
@@ -28,6 +27,12 @@ export class Category extends ImageableModel{
 
   get routerLink() {
     return '/galeria/' + this.link;
+  }
+
+  static parseArray(objs: any[]): Category[] {
+    return objs.map(obj => {
+      return new Category().parse(obj)
+    })
   }
 
   parse(obj): any {
@@ -70,9 +75,5 @@ export class Category extends ImageableModel{
     }
 
     return category;
-  }
-
-  static parseArray(objs:any[]):Category[] {
-    return objs.map(obj => {return new Category().parse(obj)})
   }
 }

@@ -1,14 +1,14 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialog, MatDialogRef} from '@angular/material';
-import {DirectoryService} from '../../services/directory.service';
-import {ImageResult} from 'ng2-imageupload';
-import {Directory} from '../../directory.model';
-import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
-import {CategoryService} from '../../../category/services/category.service';
-import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
-import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
-import {Category} from '../../../category/category.model';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { ImageResult } from 'ng2-imageupload';
+import { Directory } from '@calvillo/api/models/directory.model';
+import { SelectFromMapModalComponent } from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
+import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
+import { Category } from '@calvillo/api/models/category.model';
 
 @Component({
   selector: 'app-directory-dialog',
@@ -60,7 +60,7 @@ export class DirectoryDialogComponent implements OnInit {
 
   ngOnInit() {
     this.subs.add = this.categoryService.getAllCached().subscribe(
-        categories => this.categories = categories
+      categories => this.categories = categories
     );
   }
 
@@ -69,11 +69,11 @@ export class DirectoryDialogComponent implements OnInit {
     this.createMode = true;
     this.createForm(directory, parent_category_id);
     this.subs.add = this.categoryService.getAllCached().subscribe(
-        categories => {
-          this.form.get('categories').setValue(categories.filter(
-              category => category.id == parent_category_id
-          ));
-        }
+      categories => {
+        this.form.get('categories').setValue(categories.filter(
+          category => category.id == parent_category_id
+        ));
+      }
     );
   }
 
@@ -82,30 +82,12 @@ export class DirectoryDialogComponent implements OnInit {
     this.createForm(directory);
     console.log(directory.categories);
     this.subs.add = this.categoryService.getAllCached().subscribe(
-        categories => {
-          this.form.get('categories').setValue(categories.filter(
-              category => directory.categories.find(
-                  categoryPicture => categoryPicture.id === category.id
-              )
-          ));
-        }
-    );
-  }
-
-  private createCategory(categoryData) {
-    this.directoryService.post(categoryData).subscribe(
-      category => {
-        this.created.emit(category);
-        this.dialogRef.close();
-      }
-    );
-  }
-
-  private updateCategory(categoryData) {
-    this.directoryService.put(categoryData).subscribe(
-      category => {
-        this.updated.emit(category);
-        this.dialogRef.close();
+      categories => {
+        this.form.get('categories').setValue(categories.filter(
+          category => directory.categories.find(
+            categoryPicture => categoryPicture.id === category.id
+          )
+        ));
       }
     );
   }
@@ -115,7 +97,6 @@ export class DirectoryDialogComponent implements OnInit {
     this.form.get('src').setValue(imageResult.dataURL);
     this.form.get('image').setValue(imageResult.dataURL.split(',')[1]);
   }
-
 
   openMapModal() {
     const dialog = this.dialog.open(SelectFromMapModalComponent);
@@ -137,13 +118,31 @@ export class DirectoryDialogComponent implements OnInit {
     const categoryData = this.form.value;
     categoryData.src = undefined;
     categoryData.categories = categoryData.categories.map(
-        category => category.id
+      category => category.id
     );
     if (this.createMode) {
       this.createCategory(categoryData);
     } else {
       this.updateCategory(categoryData);
     }
+  }
+
+  private createCategory(categoryData) {
+    this.directoryService.post(categoryData).subscribe(
+      category => {
+        this.created.emit(category);
+        this.dialogRef.close();
+      }
+    );
+  }
+
+  private updateCategory(categoryData) {
+    this.directoryService.put(categoryData).subscribe(
+      category => {
+        this.updated.emit(category);
+        this.dialogRef.close();
+      }
+    );
   }
 
 }

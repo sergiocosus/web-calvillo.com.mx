@@ -17,13 +17,14 @@
     </div>
 
     <ul *ngIf="category && category.pictures.length">
-      <ng-container *ngFor="let pictureList of category.pictures; let i = index;">
+      <ng-container
+        *ngFor="let pictureList of category.pictures; let i = index;">
         <li *ngIf="indexInPage(i)"
             [matTooltip]="pictureList.title">
           <a [routerLink]="pictureList.getRouterLink(category)"
              [routerLinkActive]="['active']">
             <picture
-                    [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
+              [ngStyle]="{'background-image':  'url(' + pictureList.imageUrl('xs') + ')'}">
             </picture>
           </a>
         </li>
@@ -82,8 +83,8 @@
     También podría gustarte
     <div class="related-categories">
       <app-category-thumbnail
-              *ngFor="let category of category.related_categories"
-              [category]="category"
+        *ngFor="let category of category.related_categories"
+        [category]="category"
       ></app-category-thumbnail>
     </div>
   </div>
@@ -118,7 +119,8 @@
          (click)="openMapModal()">
         <i class="fa fa-map-marker"></i>
       </a>
-      <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button color="primary">
+      <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button
+              color="primary">
         <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
       </button>
     </h2>
@@ -134,11 +136,10 @@
   </div>
 
 
-
   <ng2-adsense *ngIf="adSenseEnabled && isBrowser()"
-        class="adsbygoogle"
-        adSlot="9176120862"
-        adFormat="link"></ng2-adsense>
+               class="adsbygoogle"
+               adSlot="9176120862"
+               adFormat="link"></ng2-adsense>
   <div class="content" [innerHTML]="picture.description">
   </div>
 </div>

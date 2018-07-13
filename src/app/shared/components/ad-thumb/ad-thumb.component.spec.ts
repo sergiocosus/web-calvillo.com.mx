@@ -8,9 +8,9 @@ describe('AdThumbComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdThumbComponent ]
+      declarations: [AdThumbComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

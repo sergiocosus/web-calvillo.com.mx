@@ -4,7 +4,8 @@
     <div class="gradient"></div>
 
     <div class="title">
-      <app-back-button [routerLink]="category.category ? category.category.routerLink: '../'">
+      <app-back-button
+        [routerLink]="category.category ? category.category.routerLink: '../'">
       </app-back-button>
 
       <h1>
@@ -19,13 +20,15 @@
                    [url]="'http://calvillo.com.mx' + currRoute"
     ></share-buttons>
 
-    <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button color="primary">
+    <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button
+            color="primary">
       <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
     </button>
     <!-- TODO put related gallery -->
   </header>
   <section *ngIf="category.categories.length || loggedUser">
-    <app-category-gallery-list [category]="category"></app-category-gallery-list>
+    <app-category-gallery-list
+      [category]="category"></app-category-gallery-list>
   </section>
   <section *ngIf="category.videos.length || loggedUser">
     <h3>
@@ -33,8 +36,8 @@
         <i class="fa fa-video-camera" aria-hidden="true"></i>
         Videos
         <span *appIfLogged="true"
-             class="add-button"
-             (click)="categoryModal.open(category.id)">
+              class="add-button"
+              (click)="categoryModal.open(category.id)">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         </span>
       </span>

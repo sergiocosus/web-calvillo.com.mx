@@ -12,7 +12,8 @@
 <ul>
   <li *ngFor="let picture of pictures"
       (click)="loadPicture(picture.link)">
-    <app-picture-thumbnail [category]="category" [picture]="picture"></app-picture-thumbnail>
+    <app-picture-thumbnail [category]="category"
+                           [picture]="picture"></app-picture-thumbnail>
     <button *appIfLogged="true" mat-mini-fab class="remove"
             (click)="removePicture(picture)">
       <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -35,13 +36,14 @@
   </h3>
   <ul>
     <li *ngFor="let picture of deleted_pictures">
-      <app-picture-thumbnail [category]="category" [picture]="picture"></app-picture-thumbnail>
-      <button  mat-mini-fab class="remove"
-               (click)="deletePicture(picture)">
+      <app-picture-thumbnail [category]="category"
+                             [picture]="picture"></app-picture-thumbnail>
+      <button mat-mini-fab class="remove"
+              (click)="deletePicture(picture)">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
-      <button  mat-mini-fab class="restore"
-               (click)="restorePicture(picture)">
+      <button mat-mini-fab class="restore"
+              (click)="restorePicture(picture)">
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
     </li>

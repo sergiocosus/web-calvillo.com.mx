@@ -1,7 +1,7 @@
-import {ImageableModel} from '../shared/classes/imageable.model';
-import {Category} from '../category/category.model';
+import { ImageableModel } from './imageable.model';
+import { Category } from './category.model';
 
-export class Picture extends ImageableModel{
+export class Picture extends ImageableModel {
   id: number;
   title: string;
   link: string;
@@ -16,12 +16,14 @@ export class Picture extends ImageableModel{
 
   categories: Category[];
 
-  static parseArray(objs:any[]):Picture[] {
-    return objs.map(obj => {return new Picture().parse(obj)})
+  static parseArray(objs: any[]): Picture[] {
+    return objs.map(obj => {
+      return new Picture().parse(obj)
+    })
   }
 
   getRouterLink(category: Category) {
-    return category.routerLink +  '/foto/' + this.link;
+    return category.routerLink + '/foto/' + this.link;
   }
 
   parse(obj): any {
@@ -36,7 +38,7 @@ export class Picture extends ImageableModel{
   }
 }
 
-export class PictureRequest extends Picture{
+export class PictureRequest extends Picture {
   src: string;
   image: string;
   category_id: number;

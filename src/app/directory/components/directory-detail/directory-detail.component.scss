@@ -1,6 +1,6 @@
 @import "src/app/vars";
 
-header{
+header {
   font-weight: bolder;
   font-size: 1.25em;
   text-align: center;
@@ -13,32 +13,30 @@ ul {
   padding: 0;
   justify-content: flex-start;
 
-  li{
+  li {
     display: flex;
     flex-direction: column;
     margin-bottom: .5em;
     margin-right: .5em;
 
-    h5{
+    h5 {
       margin: 0;
       margin-left: 1em;
       font-size: 1em;
     }
 
-    span{
+    span {
       font-size: 1em;
     }
 
-    a{
+    a {
       color: lighten($primaryColor, 25%);
       font-weight: bolder;
     }
   }
 }
 
-
-
-.buttons{
+.buttons {
   display: flex;
   justify-content: flex-end;
 }
@@ -59,18 +57,18 @@ ul {
   }
 }
 
-.facebook{
+.facebook {
   @extend .social;
   background-color: $fb-color;
 }
 
-.youtube{
+.youtube {
   @extend .social;
 
   background-color: $youtube-color;
 }
 
-.map{
+.map {
   @extend .social;
 
   background-color: dimgray;

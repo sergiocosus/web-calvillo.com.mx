@@ -8,9 +8,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { CategoryService } from '../../../category/services/category.service';
-import { Category } from '../../../category/category.model';
-import { Picture } from '../../../picture/picture.model';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { Category } from '@calvillo/api/models/category.model';
+import { Picture } from '@calvillo/api/models/picture.model';
 import { ResolutionService } from '../../../shared/services/resolution.service';
 import { isPlatformBrowser } from '@angular/common';
 import { MatDialog } from '@angular/material';
@@ -20,7 +20,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '../../../../environments/environment';
 import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
 import { SocialPostDialogComponent } from '../../../picture/components/social-post-dialog/social-post-dialog.component';
-import { animate, style, transition, trigger } from "@angular/animations";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 declare var window: any;
 
@@ -69,6 +69,54 @@ declare var window: any;
 @AutoUnsubscribe()
 export class PictureGalleryComponent implements OnInit {
   @ViewChild('list') list: ElementRef;
+  adSenseEnabled = environment.adSenseEnabled;
+  imgSize = null;
+  category_link = null;
+  picture_link = null;
+  category: Category;
+  pictureTail: { picture: Picture, state: string }[] = [];
+  picture: Picture;
+  index: number;
+  oldIndex: number = null;
+  pictureLength: number;
+  pictureWidth = 70;
+  arrows = 37;
+  pages: number;
+  page = 0;
+  elementsByPage;
+  finished = false;
+  currentRoute: string;
+  private sub = new SubscriptionManager;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              private categoryService: CategoryService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private resolutionService: ResolutionService,
+              private dialog: MatDialog,
+              private title: Title,
+              private meta: Meta) {
+    this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
+      this.currentRoute = e.url;
+    });
+  }
+
+  get isFirstPage() {
+    return this.page === 0;
+  }
+
+  get isLastPage() {
+    return this.page === this.pages - 1;
+  }
+
+  get isFirstPicture() {
+    return this.index === 0;
+  }
+
+  get isLastPicture() {
+    //return this.index === this.pictureLength;
+    return this.finished;
+  }
 
   @HostListener('window:resize') resize() {
     this.initImgSize();
@@ -84,45 +132,6 @@ export class PictureGalleryComponent implements OnInit {
         this.prevPicture();
         break;
     }
-  }
-
-  adSenseEnabled = environment.adSenseEnabled;
-
-  imgSize = null;
-
-  category_link = null;
-  picture_link = null;
-
-  category: Category;
-  pictureTail: { picture: Picture, state: string }[] = [];
-  picture: Picture;
-
-  index: number;
-  oldIndex: number = null;
-  pictureLength: number;
-
-  pictureWidth = 70;
-  arrows = 37;
-  pages: number;
-  page = 0;
-  elementsByPage;
-  finished = false;
-
-  currentRoute: string;
-
-  private sub = new SubscriptionManager;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
-              private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private resolutionService: ResolutionService,
-              private dialog: MatDialog,
-              private title: Title,
-              private meta: Meta) {
-    this.sub.add = this.router.events.subscribe((e: NavigationEnd) => {
-      this.currentRoute = e.url;
-    });
   }
 
   ngOnInit() {
@@ -192,7 +201,6 @@ export class PictureGalleryComponent implements OnInit {
     this.prevPicture();
   }
 
-
   preloadImage(src) {
     if (this.isBrowser()) {
       let image = new Image();
@@ -252,7 +260,6 @@ export class PictureGalleryComponent implements OnInit {
       this.changePicture();
     }
   }
-
 
   initPages() {
     this.pictureLength = this.category.pictures.length;
@@ -338,23 +345,6 @@ export class PictureGalleryComponent implements OnInit {
 
   indexInPage(index) {
     return this.pageOfIndex(index) == this.page;
-  }
-
-  get isFirstPage() {
-    return this.page === 0;
-  }
-
-  get isLastPage() {
-    return this.page === this.pages - 1;
-  }
-
-  get isFirstPicture() {
-    return this.index === 0;
-  }
-
-  get isLastPicture() {
-    //return this.index === this.pictureLength;
-    return this.finished;
   }
 
   openMapModal() {

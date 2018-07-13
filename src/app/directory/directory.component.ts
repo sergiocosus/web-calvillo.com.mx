@@ -1,9 +1,13 @@
 import {
-  Component, OnInit, Input, HostBinding, HostListener, ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnInit
 } from '@angular/core';
-import {Directory} from './directory.model';
-import {Category} from '../category/category.model';
-import {animate, style, transition, trigger} from "@angular/animations";
+import { Directory } from '@calvillo/api/models/directory.model';
+import { Category } from '@calvillo/api/models/category.model';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-directory',
@@ -43,13 +47,17 @@ export class DirectoryComponent implements OnInit {
   @Input() category: Category;
   @Input() directory: Directory;
   @Input() showMap = true;
-  @Input() set showExpanded (value) {
-     this.expanded = value;
-  } get data() {
-    return this.expanded;
-}
 
-  constructor() { }
+  constructor() {
+  }
+
+  @Input() set showExpanded(value) {
+    this.expanded = value;
+  }
+
+  get data() {
+    return this.expanded;
+  }
 
   ngOnInit() {
   }

@@ -1,10 +1,10 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Picture} from '../../picture.model';
-import {UploadPictureModalComponent} from '../upload-picture-modal/upload-picture-modal.component';
-import {NotifyService} from '../../../shared/services/notify.service';
-import {PictureService} from '../../services/picture.service';
-import {MatDialog} from '@angular/material';
-import {Category} from '../../../category/category.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Picture } from '../../../modules/api/models/picture.model';
+import { UploadPictureModalComponent } from '../upload-picture-modal/upload-picture-modal.component';
+import { NotifyService } from '../../../shared/services/notify.service';
+import { PictureService } from '../../../modules/api/services/picture.service';
+import { MatDialog } from '@angular/material';
+import { Category } from '../../../modules/api/models/category.model';
 
 @Component({
   selector: 'app-picture-gallery-list',
@@ -18,7 +18,8 @@ export class PictureGalleryListComponent implements OnInit {
 
   constructor(private notify: NotifyService,
               private pictureService: PictureService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
@@ -49,7 +50,7 @@ export class PictureGalleryListComponent implements OnInit {
   }
 
   deletePicture(picture) {
-    if(!confirm('¿Está seguro de borrarlo?')) {
+    if (!confirm('¿Está seguro de borrarlo?')) {
       return;
     }
     this.pictureService.delete(picture.id).subscribe(
@@ -84,7 +85,7 @@ export class PictureGalleryListComponent implements OnInit {
   }
 
   openDialog() {
-    const dialog = this.dialog.open(UploadPictureModalComponent,{data:{createMode: true}});
+    const dialog = this.dialog.open(UploadPictureModalComponent, {data: {createMode: true}});
     dialog.componentInstance.initCreateMode(this.category);
     dialog.componentInstance.created.subscribe(
       picture => this.pushPicture(picture)

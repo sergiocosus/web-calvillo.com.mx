@@ -1,9 +1,10 @@
 @import '~app/vars';
 
-app-nav-bar{
+app-nav-bar {
 
 }
-div{
+
+div {
   box-sizing: border-box;
   margin-top: $navBarTopMobile;
 
@@ -11,7 +12,8 @@ div{
     margin-top: $navBarTop;
   }
 }
-app-nav-pages{
+
+app-nav-pages {
   display: flex;
   align-items: stretch;
   flex-direction: column;
@@ -20,7 +22,7 @@ app-nav-pages{
   font-size: 1em;
   height: 100%;
 
-  /deep/ li{
+  /deep/ li {
     display: flex;
     flex: 0 0 auto;
     text-align: left;
@@ -29,15 +31,15 @@ app-nav-pages{
     line-height: 1em;
     align-items: stretch;
 
-    &.space{
+    &.space {
       flex: 1 0 0px;
     }
 
-    img{
+    img {
       width: 1.75em;
     }
 
-    a{
+    a {
       display: flex;
       flex: 1 0 0;
       align-items: center;
@@ -46,7 +48,7 @@ app-nav-pages{
       padding: .5em 1em;
       background-color: $navbarBackgroundColor;
 
-      span{
+      span {
         padding-left: .25em;
       }
 
@@ -55,18 +57,18 @@ app-nav-pages{
         font-size: 1.2em;
       }
 
-      &:hover, &.active{
+      &:hover, &.active {
         background-color: $navbarBackgroundColorSelected;
-        box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+        box-shadow: 10px 10px 41px -6px rgba(0, 0, 0, 0.66);
       }
     }
   }
 }
 
-
-mat-sidenav-container{
+mat-sidenav-container {
   min-height: 100vh;
 }
-mat-sidenav{
+
+mat-sidenav {
   padding-top: 2.5em;
 }

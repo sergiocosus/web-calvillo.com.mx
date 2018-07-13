@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-declare let EXIF;
 import * as moment from 'moment';
+
+declare let EXIF;
 
 @Injectable()
 export class EXIFService {
 
-  constructor() { }
+  constructor() {
+  }
 
-  getDateTimeFromPicture(base64){
+  getDateTimeFromPicture(base64) {
     try {
       let exif = this.readEXIFFromBase64(base64);
       console.log(exif);
@@ -16,7 +18,7 @@ export class EXIFService {
         return dateTime as any;
       }
     } catch (e) {
-      console.error('Error getting datetime from exif',e);
+      console.error('Error getting datetime from exif', e);
     }
     return null;
   }

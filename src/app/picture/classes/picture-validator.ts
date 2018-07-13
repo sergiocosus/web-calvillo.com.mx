@@ -1,7 +1,6 @@
-
-import {map} from 'rxjs/operators';
-import {PictureService} from '../services/picture.service';
-import {AbstractControl} from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { PictureService } from '../../modules/api/services/picture.service';
+import { AbstractControl } from '@angular/forms';
 
 export class PictureValidator {
   static slugExists(pictureService: PictureService) {
@@ -9,7 +8,7 @@ export class PictureValidator {
       const slug = control.value.slug || control.value;
 
       return pictureService.getLinkExists(slug).pipe(
-        map(response => (response.exists ? {linkUsed: response.exists}: false)));
+        map(response => (response.exists ? {linkUsed: response.exists} : false)));
     };
   }
 }

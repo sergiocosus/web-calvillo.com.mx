@@ -8,9 +8,9 @@ describe('NavPagesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavPagesComponent ]
+      declarations: [NavPagesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

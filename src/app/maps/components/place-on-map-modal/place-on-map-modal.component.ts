@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-place-on-map-modal',
@@ -11,7 +11,8 @@ export class PlaceOnMapModalComponent implements OnInit {
   title: string;
   hidden = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     setTimeout(() => this.hidden = false, 200);

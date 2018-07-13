@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-select-from-map-modal',
@@ -8,7 +8,7 @@ import {MatDialogRef} from '@angular/material';
 })
 export class SelectFromMapModalComponent implements OnInit {
   static lastLongitude = -102.7104999;
-  static lastLatitude= 21.8531537;
+  static lastLatitude = 21.8531537;
   longitude = 0;
   latitude = 0;
   latitudeMap = 0;

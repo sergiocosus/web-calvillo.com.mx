@@ -1,4 +1,10 @@
-import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
 export class CustomValidator {
   static slug(control: AbstractControl) {
@@ -16,7 +22,7 @@ export class CustomValidator {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
+        control.markAsTouched({onlySelf: true});
       } else if (control instanceof FormGroup) {
         this.validateAllFields(control);
       }

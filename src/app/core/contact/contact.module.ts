@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
-import {SharedModule} from '../../shared/shared.module';
-import {FacebookModule} from 'ngx-facebook';
-import {AdsenseModule} from 'ng2-adsense';
+import { SharedModule } from '../../shared/shared.module';
+import { FacebookModule } from 'ngx-facebook';
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   imports: [
@@ -16,4 +15,5 @@ import {AdsenseModule} from 'ng2-adsense';
   ],
   declarations: [ContactComponent]
 })
-export class ContactModule { }
+export class ContactModule {
+}

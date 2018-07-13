@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from "../../../../environments/environment";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'app-ad-thumb',
@@ -9,7 +9,8 @@ import {environment} from "../../../../environments/environment";
 export class AdThumbComponent implements OnInit {
   adSenseEnabled = environment.adSenseEnabled;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

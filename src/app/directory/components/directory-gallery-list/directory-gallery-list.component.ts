@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Directory} from '../../directory.model';
-import {NotifyService} from '../../../shared/services/notify.service';
-import {DirectoryService} from '../../services/directory.service';
-import {MatDialog} from '@angular/material';
-import {DirectoryDialogComponent} from '../directory-dialog/directory-dialog.component';
-import {Category} from '../../../category/category.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Directory } from '@calvillo/api/models/directory.model';
+import { NotifyService } from '../../../shared/services/notify.service';
+import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { MatDialog } from '@angular/material';
+import { DirectoryDialogComponent } from '../directory-dialog/directory-dialog.component';
+import { Category } from '@calvillo/api/models/category.model';
 
 @Component({
   selector: 'app-directory-gallery-list',
@@ -18,7 +18,8 @@ export class DirectoryGalleryListComponent implements OnInit {
 
   constructor(private notify: NotifyService,
               private directoryService: DirectoryService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
@@ -49,7 +50,7 @@ export class DirectoryGalleryListComponent implements OnInit {
   }
 
   deleteDirectory(picture) {
-    if(!confirm('¿Está seguro de borrarlo?')) {
+    if (!confirm('¿Está seguro de borrarlo?')) {
       return;
     }
     this.directoryService.delete(picture.id).subscribe(
@@ -84,7 +85,7 @@ export class DirectoryGalleryListComponent implements OnInit {
   }
 
   openDialog() {
-    const dialog = this.dialog.open(DirectoryDialogComponent,{data:{createMode: true}});
+    const dialog = this.dialog.open(DirectoryDialogComponent, {data: {createMode: true}});
     dialog.componentInstance.initCreateMode(this.category.id);
     dialog.componentInstance.created.subscribe(
       picture => this.pushPicture(picture)

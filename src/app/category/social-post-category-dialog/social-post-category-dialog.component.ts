@@ -1,9 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {CategoryService} from '../services/category.service';
-import {Category} from '../category.model';
-import {UserService} from '../../user/user.service';
-import {NotifyService} from '../../shared/services/notify.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { CategoryService } from '@calvillo/api/services/category.service';
+import { Category } from '@calvillo/api/models/category.model';
+import { UserService } from '@calvillo/api/services/user.service';
+import { NotifyService } from '../../shared/services/notify.service';
 
 @Component({
   selector: 'app-social-post-dialog',
@@ -18,10 +18,11 @@ export class SocialPostCategoryDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
                 category: Category,
-              },private dialogRef: MatDialogRef<SocialPostCategoryDialogComponent>,
+              }, private dialogRef: MatDialogRef<SocialPostCategoryDialogComponent>,
               private categoryService: CategoryService,
               private userService: UserService,
-              private notify: NotifyService) { }
+              private notify: NotifyService) {
+  }
 
   ngOnInit() {
     this.userService.getStatus().subscribe(

@@ -1,22 +1,19 @@
-import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,
-  ViewChild
-} from '@angular/core';
-import {ImageResult} from 'ng2-imageupload';
-import {PictureService} from '../../services/picture.service';
-import {EXIFService} from '../../../shared/services/exif.service';
-import {Picture} from '../../picture.model';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ImageResult } from 'ng2-imageupload';
+import { PictureService } from '../../../modules/api/services/picture.service';
+import { EXIFService } from '../../../shared/services/exif.service';
+import { Picture } from '../../../modules/api/models/picture.model';
 
-import {NotifyService} from '../../../shared/services/notify.service';
-import {SelectFromMapModalComponent} from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialog, MatDialogRef} from '@angular/material';
-import {Category} from '../../../category/category.model';
-import {CategoryService} from '../../../category/services/category.service';
-import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
-import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
-import {PictureFormService} from '../../services/picture-form.service';
-import {CustomValidator} from '../../../shared/classes/custom-validator';
+import { NotifyService } from '../../../shared/services/notify.service';
+import { SelectFromMapModalComponent } from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { Category } from '../../../modules/api/models/category.model';
+import { CategoryService } from '../../../modules/api/services/category.service';
+import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
+import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
+import { PictureFormService } from '../../services/picture-form.service';
+import { CustomValidator } from '../../../shared/classes/custom-validator';
 
 @Component({
   selector: 'app-upload-picture-modal',
@@ -56,6 +53,10 @@ export class UploadPictureModalComponent implements OnInit {
     this.createForm();
   }
 
+  get formArray(): FormArray {
+    return this.formGroup.get('pictures') as FormArray;
+  }
+
   createForm() {
     this.formGroup = this.fb.group({
       pictures: this.fb.array([])
@@ -66,10 +67,6 @@ export class UploadPictureModalComponent implements OnInit {
     this.subs.add = this.categoryService.getAllCached().subscribe(
       categories => this.categories = categories
     );
-  }
-
-  get formArray(): FormArray {
-    return this.formGroup.get('pictures') as FormArray;
   }
 
   initCreateMode(parentCategory: Category) {
@@ -102,7 +99,7 @@ export class UploadPictureModalComponent implements OnInit {
     let image = src ? src.split(',')[1] : null;
 
     picture.patchValue({
-      categories : [this.parent_category.id],
+      categories: [this.parent_category.id],
       description: '',
       src: src,
       image: image,
@@ -166,8 +163,8 @@ export class UploadPictureModalComponent implements OnInit {
   }
 
   putPicture(formGroup: FormGroup) {
-      console.log(formGroup);
-      this.uploading = true;
+    console.log(formGroup);
+    this.uploading = true;
     const pictureData = formGroup.value;
 
     this.pictureService.put(pictureData).subscribe(

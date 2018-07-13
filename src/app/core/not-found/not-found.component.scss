@@ -1,26 +1,24 @@
 @import "src/app/vars";
 
-:host{
+:host {
   display: flex;
   flex-direction: column;
   padding: 5%;
 }
 
-h3{
+h3 {
   text-align: center;
-  .big-font{
+  .big-font {
     font-size: 1.5em;
   }
 }
 
-
-
-.results{
+.results {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 
-  ul{
+  ul {
     display: flex;
     padding: 1em 2%;
     @media (min-width: $smScreen) {
@@ -30,7 +28,6 @@ h3{
     margin: 0;
     flex-wrap: wrap;
     justify-content: space-around;
-
 
     li {
       display: flex;

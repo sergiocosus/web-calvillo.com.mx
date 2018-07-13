@@ -1,6 +1,6 @@
 @import '~app/vars';
 
-nav{
+nav {
   display: flex;
   align-items: stretch;
   position: fixed;
@@ -9,7 +9,7 @@ nav{
   width: 100%;
   flex: 1;
   background-color: $navbarBackgroundColor;
-  box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+  box-shadow: 10px 10px 41px -6px rgba(0, 0, 0, 0.66);
   z-index: 10;
   font-size: 1em;
   height: $navBarTopMobile;
@@ -22,8 +22,7 @@ nav{
     font-size: 1.1em;
   }
 
-
-  /deep/ ul{
+  /deep/ ul {
     &.mobile {
       display: inline-flex;
       @media (min-width: $smScreen) {
@@ -40,13 +39,13 @@ nav{
     }
 
     width: 100%;
-    margin: 0 ;
+    margin: 0;
     padding: 0;
     text-decoration: none;
     list-style: none;
     align-items: stretch;
 
-    app-logo{
+    app-logo {
       font-size: .9em;
 
       @media (min-width: $smScreen) {
@@ -54,12 +53,12 @@ nav{
       }
     }
 
-    app-nav-pages{
+    app-nav-pages {
       display: flex;
       flex: 1;
     }
 
-    li{
+    li {
       display: flex;
       flex: 0 0 auto;
       text-align: left;
@@ -69,7 +68,7 @@ nav{
       line-height: 1em;
       align-items: stretch;
 
-      &.title{
+      &.title {
         display: flex;
         flex: 1 0 0px;
         flex-direction: column;
@@ -80,42 +79,40 @@ nav{
         font-size: 1em;
         transition: all .25s;
 
-
         &.hidden {
           visibility: hidden;
           font-size: 0em;
           flex: 0 0 0px;
         }
 
-        app-logo{
+        app-logo {
           transition: all .25s;
 
-          &.small{
+          &.small {
             font-size: .6em;
             margin-top: 0.5em;
             margin-bottom: .25em;
           }
         }
 
-
-        .subtitle{
+        .subtitle {
           font-size: .8em;
         }
       }
 
-      &.search{
+      &.search {
         display: flex;
         flex: 0 0 auto;
-        &.expanded{
+        &.expanded {
           flex: 1;
         }
       }
 
-      img{
+      img {
         width: 1.75em;
       }
 
-      a{
+      a {
         display: flex;
         flex: 1 0 0;
         align-items: center;
@@ -125,7 +122,7 @@ nav{
         padding: .5em 1em;
         background-color: $navbarBackgroundColor;
 
-        span{
+        span {
           padding-left: .25em;
         }
 
@@ -148,14 +145,14 @@ nav{
           }
         }
 
-        &:hover, &.active{
+        &:hover, &.active {
           background-color: $navbarBackgroundColorSelected;
-          box-shadow: 10px 10px 41px -6px rgba(0,0,0,0.66);
+          box-shadow: 10px 10px 41px -6px rgba(0, 0, 0, 0.66);
         }
       }
 
-      &.main{
-        a{
+      &.main {
+        a {
           padding-left: 1em;
           padding-right: 1em;
         }

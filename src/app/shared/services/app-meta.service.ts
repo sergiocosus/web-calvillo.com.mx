@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Meta, Title} from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Injectable()
 export class AppMetaService {
 
   constructor(private title: Title,
-              private meta: Meta) { }
+              private meta: Meta) {
+  }
 
   update(title: string, description: string, image) {
     this.title.setTitle(title);

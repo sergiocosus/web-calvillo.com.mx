@@ -1,17 +1,17 @@
 @import "src/app/vars";
 
-:host{
+:host {
   @extend .thumb-style;
   min-width: 325px;
   min-height: 150px;
   background-color: transparent;
-  &:hover{
+  &:hover {
     background-color: transparent;
   }
   height: auto;
 }
 
-ng2-adsense{
+ng2-adsense {
   width: 100%;
   height: 100%;
 }

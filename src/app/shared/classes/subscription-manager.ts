@@ -1,4 +1,4 @@
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 /**
  * Class to store subscriptions and clear every one easily
@@ -10,14 +10,14 @@ export class SubscriptionManager {
    * Add a subscription
    * @param subscription
    */
-  set add(subscription:Subscription){
+  set add(subscription: Subscription) {
     this.subscriptions.push(subscription);
   }
 
   /**
    * Unsubscribe all registered subscriptions
    */
-  clear(){
+  clear() {
     console.log('clear', this.subscriptions);
     this.subscriptions.forEach(
       subscription => {

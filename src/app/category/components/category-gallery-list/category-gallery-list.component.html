@@ -34,13 +34,14 @@
   </h3>
   <ul>
     <li *ngFor="let deletedCategory of category.deleted_categories">
-      <app-category-thumbnail [category]="deletedCategory"></app-category-thumbnail>
-      <button  mat-mini-fab class="remove"
-               (click)="delete(deletedCategory)">
+      <app-category-thumbnail
+        [category]="deletedCategory"></app-category-thumbnail>
+      <button mat-mini-fab class="remove"
+              (click)="delete(deletedCategory)">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
-      <button  mat-mini-fab class="restore"
-               (click)="restore(deletedCategory)">
+      <button mat-mini-fab class="restore"
+              (click)="restore(deletedCategory)">
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
     </li>

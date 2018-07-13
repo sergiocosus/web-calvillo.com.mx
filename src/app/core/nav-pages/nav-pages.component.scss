@@ -1,6 +1,6 @@
 @import '~app/vars';
 
-app-logo{
+app-logo {
   display: none;
 
   @media (min-width: $smScreen) {
@@ -16,11 +16,11 @@ app-logo{
   }
 }
 
-app-logo{
+app-logo {
   font-size: 1em;
   transition: all .5s;
 
-  &.hidden{
+  &.hidden {
     visibility: hidden;
     font-size: 0em;
   }

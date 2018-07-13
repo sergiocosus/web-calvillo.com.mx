@@ -8,9 +8,9 @@ describe('DirectoryGalleryListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DirectoryGalleryListComponent ]
+      declarations: [DirectoryGalleryListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,6 @@
 <a [routerLink]="picture.getRouterLink(category)">
-  <picture [ngStyle]="{'background-image':  'url(' + picture.imageUrl(size) + ')'}">
+  <picture
+    [ngStyle]="{'background-image':  'url(' + picture.imageUrl(size) + ')'}">
   </picture>
   <span>{{picture.title}}</span>
 </a>

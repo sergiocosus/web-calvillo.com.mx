@@ -1,5 +1,5 @@
 
-:host{
+:host {
   display: flex;
   align-items: center;
   flex: 1 0 auto;
@@ -8,7 +8,7 @@
   margin-left: .25em;
 }
 
-mat-form-field{
+mat-form-field {
   flex: 1 0 0;
   background-color: white;
   font-size: .75em;
@@ -20,26 +20,26 @@ mat-form-field{
 
   padding-left: .5em;
 
-  &.hidden{
+  &.hidden {
     visibility: hidden;
     max-width: 0;
   }
 
-  /deep/ .mat-input-wrapper{
+  /deep/ .mat-input-wrapper {
     margin-bottom: -1.5em;
     min-width: 15em;
   }
 }
 
-i{
+i {
   flex: 0 0 auto;
 }
-.void{
+
+.void {
   flex: 1 0 0;
 }
 
-
-.fa{
+.fa {
   color: white;
   cursor: pointer;
   font-size: 1.75em;
@@ -47,27 +47,26 @@ i{
   margin-left: .5em;
 }
 
-
-mat-option{
+mat-option {
   min-height: 48px;
   height: auto;
   margin-bottom: 1px;
   padding: 0 .5em;
 
-  a{
+  a {
     display: flex;
     align-items: center;
     font-size: .85em;
     text-decoration: none;
 
-    app-image{
-      i{
+    app-image {
+      i {
         font-size: 1em;
         margin: .1em;
         text-shadow: 1px 1px 5px #666;
       }
     }
-    >span{
+    > span {
       flex: 1 0 0;
       white-space: initial;
       line-height: 1em;
@@ -76,7 +75,7 @@ mat-option{
       flex-direction: column;
       padding-left: .5em;
 
-      .category-title{
+      .category-title {
         font-weight: bolder;
         font-size: .8em;
       }

@@ -1,12 +1,7 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output,
-  ViewChild
-} from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import {CategoryService} from '../../../category/services/category.service';
-import {Category} from '../../../category/category.model';
-import {AutoUnsubscribe} from '../../../shared/classes/auto-unsubscribe';
-import {SubscriptionManager} from '../../../shared/classes/subscription-manager';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Category } from '../../../modules/api/models/category.model';
+import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
 
 @Component({
   selector: 'app-picture-form',
@@ -22,7 +17,8 @@ export class PictureFormComponent implements OnInit {
 
   @Output() coordsRequested = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -6,10 +6,10 @@
 </h1>
 
 <agm-map *ngIf="!hidden"
-                 [latitude]="latitudeMap"
-                 [longitude]="longitudeMap"
-                 [zoom]="14"
-                 [mapTypeControl]="true"
+         [latitude]="latitudeMap"
+         [longitude]="longitudeMap"
+         [zoom]="14"
+         [mapTypeControl]="true"
          (keyup.enter)="close()"
 >
   <agm-marker

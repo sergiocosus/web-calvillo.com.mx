@@ -47,7 +47,8 @@
 
     <owl-date-time formControlName="taken_at"></owl-date-time>
 
-    <button type="button" *ngIf="!showCategories" (click)="showCategories = true">
+    <button type="button" *ngIf="!showCategories"
+            (click)="showCategories = true">
       Editar categorias
     </button>
     <mat-form-field *ngIf="showCategories">

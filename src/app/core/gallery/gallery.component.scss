@@ -1,17 +1,17 @@
 @import "src/app/vars";
 
-:host-context(body){
+:host-context(body) {
   @extend .gradient-background;
 }
 
-:host{
+:host {
   text-align: center;
   display: flex;
   flex-direction: column;
   min-height: $contentHeight;
 }
 
-header{
+header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,13 +40,12 @@ header{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
   }
 
-
   .title, .content {
     position: relative;
     z-index: 1;
   }
 
-  .title{
+  .title {
     display: flex;
     font-size: 1.5em;
     @extend .dark-transparent-gradient-down;
@@ -55,19 +54,19 @@ header{
     @media (min-width: $smScreen) {
       font-size: 2em;
     }
-    a{
+    a {
       color: white;
       text-decoration: none;
-      i{
+      i {
         background-color: $arrowBackgroundColor;
         padding: .25em;
       }
-      &:visited{
+      &:visited {
         color: white;
       }
     }
 
-    h1{
+    h1 {
       flex: 1 0 0px;
       margin: 0;
       font-size: 1em;
@@ -75,7 +74,7 @@ header{
       padding-right: 1em;
     }
   }
-  .content{
+  .content {
     display: inline-block;
     max-width: 1080px;
     padding: 2em;
@@ -88,7 +87,7 @@ header{
     }
   }
 
-  share-buttons{
+  share-buttons {
     position: relative;
     z-index: 5;
 
@@ -109,18 +108,17 @@ section /deep/ {
     }
   }
 
-  app-category-gallery-list{
-    li{
+  app-category-gallery-list {
+    li {
       font-size: .6em;
     }
   }
 
-  app-directory-gallery-list{
-    app-ad-thumb{
+  app-directory-gallery-list {
+    app-ad-thumb {
       font-size: .6em;
     }
   }
-
 
   h3 {
     margin: 0;
@@ -132,32 +130,30 @@ section /deep/ {
     }
 
     @extend .title-divisor;
-    .add-button{
+    .add-button {
       cursor: pointer;
     }
   }
 
-  ul{
+  ul {
     display: flex;
     padding: 1em 2%;
     @media (min-width: $smScreen) {
       padding: 1em 10%;
     }
 
-
     margin: 0;
     flex-wrap: wrap;
     justify-content: space-around;
 
-
-    li{
+    li {
       display: flex;
       list-style: none;
       position: relative;
       overflow: hidden;
       align-items: center;
 
-      app-picture-thumbnail, app-category-thumbnail{
+      app-picture-thumbnail, app-category-thumbnail {
         margin: .5em .25em;
 
         @media (min-width: $smScreen) {
@@ -167,24 +163,21 @@ section /deep/ {
         }
       }
 
-
-
-
-      button.remove{
+      button.remove {
         position: absolute;
         top: 0;
         right: 0;
         margin: .5em;
       }
 
-      button.restore{
+      button.restore {
         position: absolute;
         top: 0;
         left: 0;
         margin: .5em;
       }
 
-      button.edit{
+      button.edit {
         position: absolute;
         top: 0;
         left: 0;
@@ -195,10 +188,11 @@ section /deep/ {
   }
 }
 
-agm-map{
+agm-map {
   height: 80vh;
 }
-ng2-adsense{
+
+ng2-adsense {
   width: 100%;
 }
 

@@ -1,34 +1,35 @@
-
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {ApiHttp} from '../../shared/api-http.service';
-import {Directory} from '../directory.model';
-import {Category} from "../../category/category.model";
+import { ApiHttp } from './api-http.service';
+import { Directory } from '../models/directory.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DirectoryService {
   basePath = 'directory/';
 
-  constructor(private apiHttp: ApiHttp) { }
+  constructor(private apiHttp: ApiHttp) {
+  }
 
   get(data?) {
-    return this.apiHttp.get(this.basePath , data).pipe(
+    return this.apiHttp.get(this.basePath, data).pipe(
       map(json => Directory.parseArray(json.directories)));
   }
 
   getByLink(link: string) {
     return this.apiHttp.get(this.basePath + 'link/' + link).pipe(
-        map(json => new Directory().parse(json.directory)));
+      map(json => new Directory().parse(json.directory)));
   }
 
 
   post(data) {
-    return this.apiHttp.post(this.basePath , data).pipe(
+    return this.apiHttp.post(this.basePath, data).pipe(
       map(json => new Directory().parse(json.directory)));
   }
 
   put(data) {
-    return this.apiHttp.put(this.basePath + data.id , data).pipe(
+    return this.apiHttp.put(this.basePath + data.id, data).pipe(
       map(json => new Directory().parse(json.directory)));
   }
 

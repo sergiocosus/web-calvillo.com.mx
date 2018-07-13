@@ -1,10 +1,9 @@
-
-import {filter} from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
-import {SearchService} from '../../search/services/search.service';
-import {Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
+import { NavigationEnd, Router } from '@angular/router';
+import { SearchService } from '@calvillo/api/services/search.service';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-not-found',
@@ -19,11 +18,12 @@ export class NotFoundComponent implements OnInit {
   constructor(private router: Router,
               private searchService: SearchService) {
     this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd))
-        .subscribe((e: NavigationEnd) => {
-          this.checkUrl(e.url);
-        });
+      filter(event => event instanceof NavigationEnd))
+      .subscribe((e: NavigationEnd) => {
+        this.checkUrl(e.url);
+      });
   }
+
   ngOnInit() {
   }
 

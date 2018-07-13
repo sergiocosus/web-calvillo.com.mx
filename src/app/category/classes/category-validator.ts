@@ -1,9 +1,8 @@
+import { of as observableOf } from 'rxjs';
 
-import {of as observableOf, Observable} from 'rxjs';
-
-import {catchError, map} from 'rxjs/operators';
-import {AbstractControl} from '@angular/forms';
-import {CategoryService} from '../services/category.service';
+import { catchError, map } from 'rxjs/operators';
+import { AbstractControl } from '@angular/forms';
+import { CategoryService } from '@calvillo/api/services/category.service';
 
 export class CategoryValidator {
   static slugExists(categoryService: CategoryService) {
@@ -11,8 +10,8 @@ export class CategoryValidator {
       const slug = control.value.slug || control.value;
 
       return categoryService.getByLink(slug).pipe(
-        map(response => (response ? {linkUsed: true}: false)),
-        catchError( () => observableOf(false)),);
+        map(response => (response ? {linkUsed: true} : false)),
+        catchError(() => observableOf(false)),);
     };
   }
 }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {PlatformService} from './platform.service';
+import { environment } from '../../../environments/environment';
+import { PlatformService } from './platform.service';
 
 @Injectable()
 export class GoogleAnalyticsService {
   production = environment.production;
   trackingId = environment.googleAnalyticsTrakingId;
+
   constructor(private platformService: PlatformService) {
     if (this.platformService.isPlatformServer()) {
       return;

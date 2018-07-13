@@ -1,22 +1,25 @@
-
-import {filter} from 'rxjs/operators';
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
-import {AuthService} from './auth/auth.service';
-import {NavigationEnd, Router} from '@angular/router';
-import {GoogleAnalyticsService} from './shared/services/google-analytics.service';
-import {ScriptService} from './shared/services/script.service';
-import {PlatformService} from './shared/services/platform.service';
-import {Meta} from '@angular/platform-browser';
-import {environment} from '../environments/environment';
-import {PageScrollConfig, PageScrollInstance, PageScrollService} from 'ngx-page-scroll';
-import {DOCUMENT} from '@angular/common';
+import { filter } from 'rxjs/operators';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AuthService } from './modules/api/services/auth.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
+import { ScriptService } from './shared/services/script.service';
+import { PlatformService } from './shared/services/platform.service';
+import { Meta } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
+import {
+  PageScrollConfig,
+  PageScrollInstance,
+  PageScrollService
+} from 'ngx-page-scroll';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router,
               private googleAnalytics: GoogleAnalyticsService,
@@ -25,10 +28,11 @@ export class AppComponent implements OnInit{
               private meta: Meta,
               private pageScrollService: PageScrollService,
               @Inject(DOCUMENT) private document: any) {
-    this.authService.updateLoggedUserObservable().subscribe(() => {});
+    this.authService.updateLoggedUserObservable().subscribe(() => {
+    });
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((e: NavigationEnd) => {
-      if (this.platformService.isPlatformBrowser()){
+      if (this.platformService.isPlatformBrowser()) {
         this.goToTop();
 
         document.body.scrollTop = 0;
@@ -42,12 +46,11 @@ export class AppComponent implements OnInit{
     }
 
 
-
     this.emitPageViews();
 
     this.meta.updateTag({
       property: 'fb:app_id',
-      content:  environment.facebookAppId,
+      content: environment.facebookAppId,
     });
 
 
@@ -77,7 +80,7 @@ export class AppComponent implements OnInit{
 
   }
 
-  goToTop(){
+  goToTop() {
     let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'body');
     setTimeout(() => this.pageScrollService.start(pageScrollInstance), 100)
 

@@ -1,13 +1,16 @@
-
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {ApiHttp} from '../../shared/api-http.service';
-import {Picture} from '../picture.model';
+import { ApiHttp } from './api-http.service';
+import { Picture } from '../models/picture.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PictureService {
   basePath = 'picture/';
-  constructor(private apiHttp: ApiHttp) { }
+
+  constructor(private apiHttp: ApiHttp) {
+  }
 
   post(data) {
     return this.apiHttp.post(this.basePath, data).pipe(
@@ -19,7 +22,7 @@ export class PictureService {
   }
 
   put(data) {
-    return this.apiHttp.put(this.basePath + data.id , data).pipe(
+    return this.apiHttp.put(this.basePath + data.id, data).pipe(
       map(json => new Picture().parse(json.picture)));
   }
 
@@ -38,6 +41,6 @@ export class PictureService {
   }
 
   getLinkExists(link) {
-    return this.apiHttp.get(this.basePath + 'link-exists', {link:link});
+    return this.apiHttp.get(this.basePath + 'link-exists', {link: link});
   }
 }

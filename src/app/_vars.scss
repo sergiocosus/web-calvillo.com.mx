@@ -15,7 +15,7 @@ $youtube-color: #db4437;
 $primaryColor: #D31841;
 
 $navbarBackgroundColor: $primaryColor;
-$navbarBackgroundColorSelected:  darken($navbarBackgroundColor, 10%);
+$navbarBackgroundColorSelected: darken($navbarBackgroundColor, 10%);
 
 $titleColor: white;
 
@@ -33,7 +33,7 @@ $arrowBackgroundColor: rgba(black, .5);
 $imgHeight: 10em;
 $imgHeightMobile: 6em;
 
-.thumbnail-label{
+.thumbnail-label {
   position: absolute;
   bottom: 0;
   padding: .25em;
@@ -45,7 +45,7 @@ $imgHeightMobile: 6em;
   opacity: .85;
   color: #333;
   transition: all .5s;
-  box-shadow: 6px 6px 5px -1px rgba(0,0,0,0.26);
+  box-shadow: 6px 6px 5px -1px rgba(0, 0, 0, 0.26);
   background-color: $thumbnail-label-background-color;
 
   font-size: .8em;
@@ -55,9 +55,9 @@ $imgHeightMobile: 6em;
   }
 }
 
-.gradient-background{
+.gradient-background {
   background-color: white;
- // background-image: url("/assets/images/45-degree-fabric-dark.png");
+  // background-image: url("/assets/images/45-degree-fabric-dark.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
@@ -65,24 +65,21 @@ $colorForGradient: darken($primaryColor, 35%);
 $finalColorForGradient: darken($primaryColor, 40%);
 
 $stopForGradient: .75;
-.dark-transparent-gradient{
-  background: rgba(0,0,0,0);
-  background: -moz-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($colorForGradient,0)), color-stop(3em, rgba($colorForGradient,0.4)), color-stop(100%, rgba($finalColorForGradient,$stopForGradient)));
-  background: -webkit-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: -o-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: -ms-linear-gradient(top, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  background: linear-gradient(to bottom, rgba($colorForGradient,0) 0%, rgba($colorForGradient,0.4) 3em, rgba($finalColorForGradient,$stopForGradient) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+.dark-transparent-gradient {
+  background: rgba(0, 0, 0, 0);
+  background: -moz-linear-gradient(top, rgba($colorForGradient, 0) 0%, rgba($colorForGradient, 0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($colorForGradient, 0)), color-stop(3em, rgba($colorForGradient, 0.4)), color-stop(100%, rgba($finalColorForGradient, $stopForGradient)));
+  background: -webkit-linear-gradient(top, rgba($colorForGradient, 0) 0%, rgba($colorForGradient, 0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  background: -o-linear-gradient(top, rgba($colorForGradient, 0) 0%, rgba($colorForGradient, 0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  background: -ms-linear-gradient(top, rgba($colorForGradient, 0) 0%, rgba($colorForGradient, 0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  background: linear-gradient(to bottom, rgba($colorForGradient, 0) 0%, rgba($colorForGradient, 0.4) 3em, rgba($finalColorForGradient, $stopForGradient) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
 }
 
-
-.dark-transparent-gradient-down{
-  background: rgba(0,0,0,0);
-  background: linear-gradient(to bottom,  rgba($finalColorForGradient,$stopForGradient) 0%, rgba($colorForGradient, .5) 50%,   rgba($colorForGradient,0)  100%);
+.dark-transparent-gradient-down {
+  background: rgba(0, 0, 0, 0);
+  background: linear-gradient(to bottom, rgba($finalColorForGradient, $stopForGradient) 0%, rgba($colorForGradient, .5) 50%, rgba($colorForGradient, 0) 100%);
 }
-
-
 
 .title-divisor {
   position: relative;
@@ -95,8 +92,7 @@ $stopForGradient: .75;
   box-shadow: 6px 6px 5px -1px rgba($titleColor, .26);
 }
 
-
-.thumb-style{
+.thumb-style {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -111,7 +107,7 @@ $stopForGradient: .75;
   cursor: pointer;
   text-decoration: none;
 
-  > picture{
+  > picture {
     background-size: cover;
     background-position: center center;
     flex: 1 0 0;
@@ -134,8 +130,8 @@ $stopForGradient: .75;
   transition: all 0.25s;
 }
 
-.nice-hover-shadow{
-  &:hover{
+.nice-hover-shadow {
+  &:hover {
     box-shadow: 0em 0em .5em $primaryColor;
     background-color: $primaryColor;
   }

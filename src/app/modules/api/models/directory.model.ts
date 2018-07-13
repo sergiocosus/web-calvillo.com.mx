@@ -1,7 +1,7 @@
-import {ImageableModel} from '../shared/classes/imageable.model';
-import {Category} from '../category/category.model';
+import { ImageableModel } from './imageable.model';
+import { Category } from './category.model';
 
-export class Directory extends ImageableModel{
+export class Directory extends ImageableModel {
   id: number;
   title: string;
   link: string;
@@ -22,8 +22,10 @@ export class Directory extends ImageableModel{
   categories: Category[];
   related_directories: Directory[];
 
-  static parseArray(objs:any[]): Directory[] {
-    return objs.map(obj => {return new Directory().parse(obj)})
+  static parseArray(objs: any[]): Directory[] {
+    return objs.map(obj => {
+      return new Directory().parse(obj)
+    })
   }
 
   parse(obj): any {

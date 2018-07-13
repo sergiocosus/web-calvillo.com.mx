@@ -8,9 +8,9 @@ describe('DirectoryDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DirectoryDetailComponent ]
+      declarations: [DirectoryDetailComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

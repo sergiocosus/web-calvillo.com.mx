@@ -3,8 +3,8 @@
      <i class="fa fa-book" aria-hidden="true"></i>
     Directorio
     <span *appIfLogged="true"
-            class="add-button"
-            (click)="openDialog()">
+          class="add-button"
+          (click)="openDialog()">
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </span>
   </span>
@@ -37,13 +37,14 @@
   </h3>
   <ul>
     <li *ngFor="let directory of deleted_directories">
-      <app-directory [category]="category" [directory]="directory"></app-directory>
-      <button  mat-mini-fab class="remove"
-               (click)="deleteDirectory(directory)">
+      <app-directory [category]="category"
+                     [directory]="directory"></app-directory>
+      <button mat-mini-fab class="remove"
+              (click)="deleteDirectory(directory)">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
-      <button  mat-mini-fab class="restore"
-               (click)="restoreDirectory(directory)">
+      <button mat-mini-fab class="restore"
+              (click)="restoreDirectory(directory)">
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
     </li>

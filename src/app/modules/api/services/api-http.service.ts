@@ -1,15 +1,16 @@
+import { Observable, throwError as observableThrowError } from 'rxjs';
 
-import {throwError as observableThrowError, Observable} from 'rxjs';
-
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {Http, RequestOptionsArgs, Response, Headers} from '@angular/http';
+import { Headers, Http, RequestOptionsArgs, Response } from '@angular/http';
 
-import {environment} from "../../environments/environment";
-import {LocalStorageService} from './services/local-storage.service';
+import { environment } from "../../../../environments/environment";
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ApiHttp {
   private apiUrl;
 
@@ -20,32 +21,32 @@ export class ApiHttp {
     this.apiUrl = config.apiUrl;
   }
 
-  get(url:string, data?:any, options?:RequestOptionsArgs):Observable<any> {
-    if(options){
+  get(url: string, data?: any, options?: RequestOptionsArgs): Observable<any> {
+    if (options) {
       options.body = '';
-    }else {
-      options = {body:''};
+    } else {
+      options = {body: ''};
     }
     return this.http.get(this.apiUrl + url + this.serializeGetParams(data), this.appendHeaders(options)).pipe(
       map(this.mapJson),
       catchError(this.handleError),);
   }
 
-  post(url:string, body?:any, options?:RequestOptionsArgs):Observable<any> {
+  post(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
     return this.http.post(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
       map(this.mapJson),
       catchError(this.handleError),);
   }
 
-  put(url:string, body:any, options?:RequestOptionsArgs):Observable<any> {
+  put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     return this.http.put(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
       map(this.mapJson),
       catchError(this.handleError),);
   }
 
-  delete(url:string, options?:RequestOptionsArgs):Observable<any> {
+  delete(url: string, options?: RequestOptionsArgs): Observable<any> {
     if (!options) {
-      options = { body: "" };
+      options = {body: ""};
     }
 
     return this.http.delete(this.apiUrl + url, this.appendHeaders(options)).pipe(
@@ -53,23 +54,23 @@ export class ApiHttp {
       catchError(this.handleError),);
   }
 
-  patch(url:string, body?:any, options?:RequestOptionsArgs):Observable<any> {
+  patch(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
     return this.http.patch(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
       map(this.mapJson),
       catchError(this.handleError),);
   }
 
-  head(url:string, options?:RequestOptionsArgs):Observable<any> {
+  head(url: string, options?: RequestOptionsArgs): Observable<any> {
     return this.http.head(this.apiUrl + url, this.appendHeaders(options)).pipe(
       map(this.mapJson),
       catchError(this.handleError),);
   }
 
-  private mapJson(res:Response):any {
+  private mapJson(res: Response): any {
     return res.json().data;
   }
 
-  private appendHeaders(options?:RequestOptionsArgs):RequestOptionsArgs {
+  private appendHeaders(options?: RequestOptionsArgs): RequestOptionsArgs {
     if (!options) {
       options = {};
     }
@@ -81,7 +82,7 @@ export class ApiHttp {
 
     const access_token = this.localStorage.get('access_token');
 
-    if ( access_token ) {
+    if (access_token) {
       headers.append('Authorization', 'Bearer ' + access_token);
     }
     headers.append('Content-Type', 'application/json');
@@ -89,7 +90,7 @@ export class ApiHttp {
     return options;
   }
 
-  private handleError(error:any, observable:Observable<any>) {
+  private handleError(error: any, observable: Observable<any>) {
     // In a real world app, we might send the error to remote logging infrastructure
     try {
       var json = error.json();
@@ -101,7 +102,7 @@ export class ApiHttp {
     return observableThrowError(json);
   }
 
-  private serializeGetParams(object:any):string {
+  private serializeGetParams(object: any): string {
     if (!object) {
       return "";
     }
@@ -111,7 +112,7 @@ export class ApiHttp {
       if (str != "") {
         str += "&";
       }
-      if(Array.isArray(object[key])){
+      if (Array.isArray(object[key])) {
         object[key].forEach(value => {
           str += key + encodeURIComponent('[]') + "="
             + (value ? encodeURIComponent(value) : '') + '&';
@@ -125,13 +126,12 @@ export class ApiHttp {
 }
 
 export class ApiConfig {
-  constructor(public apiUrl:string) {
+  constructor(public apiUrl: string) {
   }
 }
 
 
-
-export function apiHttpServiceFactory (http: Http, localStorage: LocalStorageService)  {
+export function apiHttpServiceFactory(http: Http, localStorage: LocalStorageService) {
   return new ApiHttp(new ApiConfig(
     environment.apiUrl,
   ), http, localStorage);

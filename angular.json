@@ -78,24 +78,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "upgrade-project:build"
+            "browserTarget": "calvillo-com-mx:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "upgrade-project:build:production"
+              "browserTarget": "calvillo-com-mx:build:production"
             },
             "local": {
-              "browserTarget": "upgrade-project:build:local"
+              "browserTarget": "calvillo-com-mx:build:local"
             },
             "server": {
-              "browserTarget": "upgrade-project:build:server"
+              "browserTarget": "calvillo-com-mx:build:server"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "upgrade-project:build"
+            "browserTarget": "calvillo-com-mx:build"
           }
         },
         "test": {
@@ -147,12 +147,10 @@
               ]
             }
           }
-
-
-        },
+        }
       }
     },
-    "upgrade-project-e2e": {
+    "calvillo-com-mx-e2e": {
       "root": "",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -161,7 +159,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "upgrade-project:serve"
+            "devServerTarget": "calvillo-com-mx:serve"
           }
         },
         "lint": {
@@ -176,7 +174,7 @@
       }
     }
   },
-  "defaultProject": "upgrade-project",
+  "defaultProject": "calvillo-com-mx",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

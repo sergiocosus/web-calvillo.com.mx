@@ -1,6 +1,11 @@
-import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
-import {Picture} from '../../picture.model';
-import {Category} from '../../../category/category.model';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
+import { Picture } from '../../../modules/api/models/picture.model';
+import { Category } from '../../../modules/api/models/category.model';
 
 @Component({
   selector: 'app-picture-thumbnail',
@@ -13,7 +18,8 @@ export class PictureThumbnailComponent implements OnInit {
   @Input() category: Category;
   @Input() size = 'sm';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

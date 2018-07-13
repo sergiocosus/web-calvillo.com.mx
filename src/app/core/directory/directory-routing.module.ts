@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {DirectoryRouteComponent} from './directory-route.component';
-import {VoidComponent} from '../../shared/components/void/void.component';
+import { RouterModule, Routes } from '@angular/router';
+import { DirectoryRouteComponent } from './directory-route.component';
+import { VoidComponent } from '../../shared/components/void/void.component';
 
 export const directoryRoutes: Routes = [
   {
@@ -20,4 +20,5 @@ export const directoryRoutes: Routes = [
   imports: [RouterModule.forChild(directoryRoutes)],
   exports: [RouterModule]
 })
-export class DirectoryRoutingModule { }
+export class DirectoryRoutingModule {
+}

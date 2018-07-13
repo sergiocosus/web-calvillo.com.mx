@@ -1,6 +1,6 @@
 @import 'src/app/vars';
 
-:host{
+:host {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,12 +8,12 @@
   background-color: darkgrey;
 }
 
-.top{
+.top {
   position: relative;
   z-index: 5;
   @extend .dark-transparent-gradient-down;
 
-  header.category{
+  header.category {
     display: flex;
     font-size: $titleFontSize;
     z-index: 5;
@@ -23,7 +23,7 @@
       font-size: $titleFontSize + .5em;
     }
 
-    h1{
+    h1 {
       flex: 1 0 0px;
       text-align: center;
       margin: 0;
@@ -36,7 +36,7 @@
   }
 }
 
-.list{
+.list {
   position: relative;
   display: flex;
   flex: 0 0 auto;
@@ -45,11 +45,11 @@
   transition: all .5s;
   align-items: center;
 
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 
-  .prev, .next{
+  .prev, .next {
     display: flex;
     align-items: center;
     flex: 0 0 auto;
@@ -63,15 +63,15 @@
       font-size: 3em;
     }
 
-    &:hover{
-      i{
+    &:hover {
+      i {
         transition: all .5s;
         transform: scale(1.5, 1.5);
       }
     }
   }
 
-  ul{
+  ul {
     display: flex;
     flex: 1 0 0;
     align-items: center;
@@ -79,18 +79,18 @@
     margin: 0;
     padding: 0;
 
-    li{
+    li {
       list-style: none;
-      a{
+      a {
         display: flex;
         overflow: hidden;
         margin: $thumbMargin;
 
-        &.active{
+        &.active {
           border-bottom: white solid 2px;
         }
 
-        picture{
+        picture {
           display: inline-block;
 
           background-position: center;
@@ -106,7 +106,7 @@
         }
       }
 
-      &:hover{
+      &:hover {
         a {
           picture {
             transform: scale(1.75, 1.75) translate(0, 5%);
@@ -117,7 +117,6 @@
     }
   }
 }
-
 
 .picture {
   position: fixed;
@@ -135,7 +134,7 @@
     top: $navBarTop;
   }
 
-  picture{
+  picture {
     position: absolute;
     top: 0;
     width: 100%;
@@ -147,11 +146,11 @@
     z-index: 1;
   }
 
-  .wrapper{
+  .wrapper {
     flex: 1 0 0;
   }
 
-  .prev, .next{
+  .prev, .next {
     position: absolute;
     display: inline-block;
     height: 50px;
@@ -170,15 +169,15 @@
       padding: 1em;
     }
 
-    i{
+    i {
       padding: 10px;
       border-radius: 5px;
-      text-shadow: 2px 3px rgba(0,0,0,.1)
+      text-shadow: 2px 3px rgba(0, 0, 0, .1)
     }
 
     @media (min-width: $smScreen) {
-      &:hover{
-        i{
+      &:hover {
+        i {
           transition: all .5s;
           transform: scale(1.5, 1.5);
         }
@@ -187,18 +186,17 @@
 
   }
 
-  .prev{
+  .prev {
     left: 0;
   }
 
-  .next{
+  .next {
     right: 0;
     text-align: right;
   }
 }
 
-
-.finished{
+.finished {
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -215,22 +213,20 @@
   text-align: center;
   overflow-y: auto;
 
-
-  >div, >span, >ng2-adsense, >a{
+  > div, > span, > ng2-adsense, > a {
     flex: 0 0 auto;
   }
 
-  share-buttons{
+  share-buttons {
     margin: 1em;
   }
 
-  .related-categories{
+  .related-categories {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    app-category-thumbnail{
+    app-category-thumbnail {
       font-size: .35em;
-
 
       @media (min-width: $mdScreen) {
         font-size: .9em;
@@ -239,7 +235,7 @@
     }
   }
 
-  .back-to-gallery{
+  .back-to-gallery {
     padding: .25em;
     margin-top: 1em;
     text-decoration: underline;
@@ -247,12 +243,11 @@
     min-height: 4em;
   }
 
-
-  .facebook-page{
+  .facebook-page {
     display: flex;
     flex-direction: column;
     margin-top: 1em;
-    span{
+    span {
       max-width: 20em;
     }
   }
@@ -283,23 +278,22 @@
   -webkit-hyphens: auto;
   hyphens: auto;
 
-
-  header{
+  header {
     text-align: center;
     width: 100%;
 
-    h2{
+    h2 {
       font-size: $subtitleFontSize;
       margin-top: 0em;
       margin-bottom: 1em;
     }
 
-    time{
+    time {
       float: right;
     }
   }
 
-  .content{
+  .content {
     display: inline-block;
     max-width: 1080px;
     width: 100%;
@@ -309,27 +303,26 @@
     margin-left: -1em;
     padding: 1em;
 
-   // background: rgba(0,0,0, .5);
+    // background: rgba(0,0,0, .5);
   }
 
   @media (min-width: $mdScreen) {
     margin-top: calc(100vh - 14em - #{$topSpace});
     padding: 2em 2em;
 
-    header{
-      h1{
+    header {
+      h1 {
         font-size: $subtitleFontSize + 1em;
       }
     }
 
-    .content{
+    .content {
       font-size: 1.2em;
     }
   }
 }
 
-
-.map{
+.map {
   display: inline-block;
   color: white;
   border-radius: .2em;
@@ -346,11 +339,11 @@
   }
 }
 
-agm-map{
+agm-map {
   height: 80vh;
 }
 
-share-buttons{
+share-buttons {
   justify-content: flex-end;
   width: 100%;
 }

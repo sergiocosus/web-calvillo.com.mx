@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {CoreRoutingModule, coreRoutes} from './core/core-routing.module';
-
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { coreRoutes } from './core/core-routing.module';
 
 
 export const appRoutes: Routes = [
@@ -10,12 +9,13 @@ export const appRoutes: Routes = [
     children: coreRoutes,
     //loadChildren: 'app/core/core.module#CoreModule',
   },
-  { path: '**', redirectTo: '/' },
+  {path: '**', redirectTo: '/'},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
 

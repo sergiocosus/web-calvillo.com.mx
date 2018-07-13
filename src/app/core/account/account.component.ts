@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FacebookService, InitParams} from 'ngx-facebook';
-import {environment} from '../../../environments/environment';
-import {UserService} from '../../user/user.service';
-import {AuthService} from '../../auth/auth.service';
-import {NotifyService} from '../../shared/services/notify.service';
+import { FacebookService, InitParams } from 'ngx-facebook';
+import { environment } from '../../../environments/environment';
+import { UserService } from '@calvillo/api/services/user.service';
+import { AuthService } from '@calvillo/api/services/auth.service';
+import { NotifyService } from '../../shared/services/notify.service';
 
 @Component({
   selector: 'app-account',
@@ -25,6 +25,7 @@ export class AccountComponent implements OnInit {
 
     fb.init(initParams);
   }
+
   ngOnInit() {
 
   }

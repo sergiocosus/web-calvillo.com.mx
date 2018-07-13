@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {PictureService} from '../../services/picture.service';
-import {Picture} from '../../picture.model';
-import {Category} from '../../../category/category.model';
-import {MatDialogRef} from '@angular/material';
-import {UserService} from '../../../user/user.service';
-import {NotifyService} from '../../../shared/services/notify.service';
+import { PictureService } from '../../../modules/api/services/picture.service';
+import { Picture } from '../../../modules/api/models/picture.model';
+import { Category } from '../../../modules/api/models/category.model';
+import { MatDialogRef } from '@angular/material';
+import { UserService } from '../../../modules/api/services/user.service';
+import { NotifyService } from '../../../shared/services/notify.service';
 
 @Component({
   selector: 'app-social-post-dialog',
@@ -16,13 +16,15 @@ export class SocialPostDialogComponent implements OnInit {
   linkToFacebookPublication = null;
   delay = false;
   scheduled_publish_time;
+  public exist_token: any;
   private picture: Picture;
   private category: Category;
-  public exist_token: any;
+
   constructor(private dialogRef: MatDialogRef<SocialPostDialogComponent>,
               private pictureService: PictureService,
               private userService: UserService,
-              private notify: NotifyService) { }
+              private notify: NotifyService) {
+  }
 
   ngOnInit() {
     this.userService.getStatus().subscribe(

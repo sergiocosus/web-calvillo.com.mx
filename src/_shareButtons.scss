@@ -1,12 +1,9 @@
 @import "~app/vars";
 @import "~@ngx-share/button/styles/variables";
-
-
 @import '~@ngx-share/button/styles/share-buttons';
 @import "~@ngx-share/button/styles/themes/circles/circles-dark-theme";
 
-
-.sb-landing{
+.sb-landing {
   @extend .sb-circles-dark;
 
   &.sb-group {
@@ -24,18 +21,21 @@
           height: 1.7em;
           min-width: 1.7em;
         }
-        .sb-text { /** ... text wrapper */ }
+        .sb-text { /** ... text wrapper */
+        }
       }
-      .sb-count { /** ... count wrapper */ }
+      .sb-count { /** ... count wrapper */
+      }
     }
 
     // For conditional styles
     &.sb-show-icon.sb-show-text.sb-show-count {
       /** ... Apply when icon, text and count are shown */
-      .sb-icon { /** ... icon wrapper */ }
-      .sb-text { /** ... text wrapper */ }
+      .sb-icon { /** ... icon wrapper */
+      }
+      .sb-text { /** ... text wrapper */
+      }
     }
   }
-
 
 }

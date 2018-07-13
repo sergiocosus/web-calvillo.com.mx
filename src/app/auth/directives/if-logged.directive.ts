@@ -1,13 +1,13 @@
-import {Directive, ViewContainerRef, TemplateRef, Input} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {User} from '../../user/user.model';
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { AuthService } from '@calvillo/api/services/auth.service';
+import { User } from '@calvillo/api/models/user.model';
 
 @Directive({
   selector: '[appIfLogged]'
 })
 export class IfLoggedDirective {
-  private user: User;
   toBeLogged;
+  private user: User;
 
   constructor(
     private templateRef: TemplateRef<any>,

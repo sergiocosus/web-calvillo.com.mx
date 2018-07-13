@@ -1,5 +1,10 @@
-import {Component, OnInit, Input, HostBinding, ChangeDetectionStrategy} from '@angular/core';
-import {Category} from '../../category.model';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
+import { Category } from '@calvillo/api/models/category.model';
 
 @Component({
   selector: 'app-category-thumbnail',
@@ -13,7 +18,8 @@ export class CategoryThumbnailComponent implements OnInit {
   @Input() showText = true;
   @Input() fit = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

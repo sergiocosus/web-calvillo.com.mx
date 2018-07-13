@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
-import {SharedModule} from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -11,4 +11,5 @@ import {SharedModule} from '../../shared/shared.module';
   ],
   declarations: [AccountComponent]
 })
-export class AccountModule { }
+export class AccountModule {
+}

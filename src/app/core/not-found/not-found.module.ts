@@ -10,4 +10,5 @@ import { NotFoundRoutingModule } from './not-found-routing.module';
   ],
   declarations: []
 })
-export class NotFoundModule { }
+export class NotFoundModule {
+}

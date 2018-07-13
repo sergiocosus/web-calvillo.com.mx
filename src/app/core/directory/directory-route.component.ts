@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {AutoUnsubscribe} from "../../shared/classes/auto-unsubscribe";
-import {SubscriptionManager} from "../../shared/classes/subscription-manager";
-import {Directory} from "../../directory/directory.model";
-import {ActivatedRoute, Router} from "@angular/router";
-import {DirectoryService} from "../../directory/services/directory.service";
-import {AppMetaService} from "../../shared/services/app-meta.service";
+import { Component, OnInit } from '@angular/core';
+import { AutoUnsubscribe } from '../../shared/classes/auto-unsubscribe';
+import { SubscriptionManager } from '../../shared/classes/subscription-manager';
+import { Directory } from '@calvillo/api/models/directory.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { AppMetaService } from '../../shared/services/app-meta.service';
 
 @Component({
   selector: 'app-directory-route',
@@ -13,14 +13,15 @@ import {AppMetaService} from "../../shared/services/app-meta.service";
 })
 @AutoUnsubscribe()
 export class DirectoryRouteComponent implements OnInit {
-  private sub = new SubscriptionManager;
   directory_link: string;
   directory: Directory;
+  private sub = new SubscriptionManager;
 
   constructor(private activatedRoute: ActivatedRoute,
               private directoryService: DirectoryService,
               private router: Router,
-              private meta: AppMetaService) { }
+              private meta: AppMetaService) {
+  }
 
   ngOnInit() {
     this.checkRoute();
@@ -52,7 +53,6 @@ export class DirectoryRouteComponent implements OnInit {
   redirectToDirectory() {
     this.router.navigateByUrl('/galeria/directorio');
   }
-
 
 
   updateMetaTags() {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ReplaySubject} from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class NavbarService {
@@ -7,7 +7,8 @@ export class NavbarService {
   private title: string;
 
 
-  constructor() { }
+  constructor() {
+  }
 
   setTitle(title: string) {
     this.title = title;
