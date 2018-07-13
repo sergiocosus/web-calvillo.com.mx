@@ -20,8 +20,14 @@ import { PictureModule } from './picture/picture.module';
 import { CoreModule } from './core/core.module';
 import { ShareButtonsOptions } from '@ngx-share/core';
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { ApiModule } from '@calvillo/api/api.module';
 
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
+library.add(fab);
+library.add(fas);
 const options: ShareButtonsOptions = {
   include: ['facebook', 'twitter', 'google', 'pinterest'],
   theme: 'landing',
@@ -50,6 +56,12 @@ const options: ShareButtonsOptions = {
     AdsenseModule.forRoot({
       adClient: environment.adSenseAdClient,
       adSlot: environment.adSenseAdSlot,
+    }),
+    ApiModule.forRoot({
+      apiUrl: environment.apiUrl,
+      apiClientID: environment.apiClientID,
+      apiClientSecret: environment.apiClientSecret,
+      apiAuthUrl: environment.apiAuthUrl,
     }),
     BrowserAnimationsModule,
 

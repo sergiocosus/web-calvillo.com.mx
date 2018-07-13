@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
-import { PlatformService } from './platform.service';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LocalStorageService {
-  constructor(private platformService: PlatformService) {
-    if (this.platformService.isPlatformServer()) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformServer(this.platformId)) {
       return;
     }
     if (!localStorage) {
@@ -13,7 +15,7 @@ export class LocalStorageService {
   }
 
   get(key: string) {
-    if (this.platformService.isPlatformServer()) {
+    if (isPlatformServer(this.platformId)) {
       return;
     }
 
@@ -23,7 +25,7 @@ export class LocalStorageService {
   }
 
   set(key, value) {
-    if (this.platformService.isPlatformServer()) {
+    if (isPlatformServer(this.platformId)) {
       return;
     }
 
@@ -33,7 +35,7 @@ export class LocalStorageService {
   }
 
   remove(key) {
-    if (this.platformService.isPlatformServer()) {
+    if (isPlatformServer(this.platformId)) {
       return;
     }
 

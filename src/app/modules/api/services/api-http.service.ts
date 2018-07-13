@@ -1,11 +1,14 @@
 import { Observable, throwError as observableThrowError } from 'rxjs';
 
 import { catchError, map } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptionsArgs, Response } from '@angular/http';
 
-import { environment } from "../../../../environments/environment";
-import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { LocalStorageService } from './local-storage.service';
+import {
+  CALVILLO_COM_MX_API_CONFIG,
+  CalvilloComMxApiConfig
+} from '@calvillo/api/types/api-config';
 
 
 @Injectable({
@@ -14,9 +17,9 @@ import { LocalStorageService } from '../../../shared/services/local-storage.serv
 export class ApiHttp {
   private apiUrl;
 
-  constructor(private config: ApiConfig,
+  constructor(@Inject(CALVILLO_COM_MX_API_CONFIG) private config: CalvilloComMxApiConfig,
               private http: Http,
-              private localStorage: LocalStorageService,
+              private localStorage: LocalStorageService
   ) {
     this.apiUrl = config.apiUrl;
   }
@@ -29,13 +32,13 @@ export class ApiHttp {
     }
     return this.http.get(this.apiUrl + url + this.serializeGetParams(data), this.appendHeaders(options)).pipe(
       map(this.mapJson),
-      catchError(this.handleError),);
+      catchError(this.handleError));
   }
 
   post(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
     return this.http.post(this.apiUrl + url, JSON.stringify(body), this.appendHeaders(options)).pipe(
       map(this.mapJson),
-      catchError(this.handleError),);
+      catchError(this.handleError));
   }
 
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
@@ -46,7 +49,7 @@ export class ApiHttp {
 
   delete(url: string, options?: RequestOptionsArgs): Observable<any> {
     if (!options) {
-      options = {body: ""};
+      options = {body: ''};
     }
 
     return this.http.delete(this.apiUrl + url, this.appendHeaders(options)).pipe(
@@ -124,25 +127,3 @@ export class ApiHttp {
     return str;
   }
 }
-
-export class ApiConfig {
-  constructor(public apiUrl: string) {
-  }
-}
-
-
-export function apiHttpServiceFactory(http: Http, localStorage: LocalStorageService) {
-  return new ApiHttp(new ApiConfig(
-    environment.apiUrl,
-  ), http, localStorage);
-}
-
-
-export let apiHttpServiceProvider =
-  {
-    provide: ApiHttp,
-    useFactory: apiHttpServiceFactory,
-    deps: [Http, LocalStorageService]
-  };
-
-
