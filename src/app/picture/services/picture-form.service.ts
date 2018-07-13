@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Picture } from '../../modules/api/models/picture.model';
+import { Picture } from '@calvillo/api';
 import { CustomValidators } from 'ng2-validation';
-import { PictureService } from '../../modules/api/services/picture.service';
 import { PictureValidator } from '../classes/picture-validator';
 import { CustomValidator } from '../../shared/classes/custom-validator';
+import { PictureService } from '@calvillo/api';
 
 @Injectable()
 export class PictureFormService {

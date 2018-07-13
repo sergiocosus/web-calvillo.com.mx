@@ -2,7 +2,7 @@ import { of as observableOf } from 'rxjs';
 
 import { catchError, map } from 'rxjs/operators';
 import { AbstractControl } from '@angular/forms';
-import { CategoryService } from '@calvillo/api/services/category.service';
+import { CategoryService } from '@calvillo/api';
 
 export class CategoryValidator {
   static slugExists(categoryService: CategoryService) {

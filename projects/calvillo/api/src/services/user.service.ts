@@ -2,8 +2,11 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ApiHttp } from './api-http.service';
 import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
 
   constructor(private apiHttp: ApiHttp) {

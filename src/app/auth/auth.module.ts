@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { AuthService } from '@calvillo/api/services/auth.service';
+import { AuthService } from '@calvillo/api';
 import { LoginComponent } from './components/login/login.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { SharedModule } from '../shared/shared.module';

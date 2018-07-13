@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Directory } from '@calvillo/api/models/directory.model';
+import { Directory } from '@calvillo/api';
 import { NotifyService } from '../../../shared/services/notify.service';
-import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { DirectoryService } from '@calvillo/api';
 import { MatDialog } from '@angular/material';
 import { DirectoryDialogComponent } from '../directory-dialog/directory-dialog.component';
-import { Category } from '@calvillo/api/models/category.model';
+import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-directory-gallery-list',

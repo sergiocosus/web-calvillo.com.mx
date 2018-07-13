@@ -1,15 +1,12 @@
 import { Observable, throwError as observableThrowError } from 'rxjs';
 
 import { catchError, map } from 'rxjs/operators';
+
 import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptionsArgs, Response } from '@angular/http';
 
 import { LocalStorageService } from './local-storage.service';
-import {
-  CALVILLO_COM_MX_API_CONFIG,
-  CalvilloComMxApiConfig
-} from '@calvillo/api/types/api-config';
-
+import { CALVILLO_COM_MX_API_CONFIG, CalvilloComMxApiConfig } from '../types/api-config';
 
 @Injectable({
   providedIn: 'root'

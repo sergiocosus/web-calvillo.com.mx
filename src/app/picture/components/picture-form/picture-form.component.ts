@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Category } from '../../../modules/api/models/category.model';
+import { Category } from '@calvillo/api';
 import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
 
 @Component({

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DirectoryService } from '@calvillo/api/services/directory.service';
-import { Directory } from '@calvillo/api/models/directory.model';
+import { DirectoryService } from '@calvillo/api';
+import { Directory } from '@calvillo/api';
 import { NavbarService } from '../../shared/services/navbar.service';
 import { environment } from '../../../environments/environment';
-import { CategoryService } from '@calvillo/api/services/category.service';
+import { CategoryService } from '@calvillo/api';
 import { Observable } from 'rxjs';
-import { Category } from '@calvillo/api/models/category.model';
+import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-map',

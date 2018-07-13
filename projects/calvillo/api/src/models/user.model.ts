@@ -1,5 +1,6 @@
 import { Model } from './model';
 
+// @dynamic
 export class User extends Model {
   id: number;
   name: string;

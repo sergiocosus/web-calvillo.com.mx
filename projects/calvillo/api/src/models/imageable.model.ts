@@ -1,5 +1,6 @@
 import { Model } from './model';
 
+// @dynamic
 export abstract class ImageableModel extends Model {
   image_url: string;
 

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Picture } from '../../../modules/api/models/picture.model';
+import { Picture } from '@calvillo/api';
 import { UploadPictureModalComponent } from '../upload-picture-modal/upload-picture-modal.component';
 import { NotifyService } from '../../../shared/services/notify.service';
-import { PictureService } from '../../../modules/api/services/picture.service';
+import { PictureService } from '@calvillo/api';
 import { MatDialog } from '@angular/material';
-import { Category } from '../../../modules/api/models/category.model';
+import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-picture-gallery-list',

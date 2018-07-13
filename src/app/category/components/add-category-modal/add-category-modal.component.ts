@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Category } from '@calvillo/api/models/category.model';
-import { CategoryService } from '@calvillo/api/services/category.service';
+import { Category } from '@calvillo/api';
+import { CategoryService } from '@calvillo/api';
 import { ImageResult } from 'ng2-imageupload';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';

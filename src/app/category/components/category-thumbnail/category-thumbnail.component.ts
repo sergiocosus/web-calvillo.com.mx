@@ -4,7 +4,7 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Category } from '@calvillo/api/models/category.model';
+import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-category-thumbnail',

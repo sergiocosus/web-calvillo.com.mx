@@ -1,6 +1,7 @@
 import { ImageableModel } from './imageable.model';
 import { Category } from './category.model';
 
+// @dynamic
 export class Picture extends ImageableModel {
   id: number;
   title: string;

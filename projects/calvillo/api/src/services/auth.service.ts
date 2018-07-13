@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import { User } from '../models/user.model';
@@ -6,12 +6,10 @@ import { LocalStorageService } from './local-storage.service';
 import { ApiHttp } from './api-http.service';
 import { UserService } from './user.service';
 import { Headers, Http } from '@angular/http';
-import { PlatformService } from '../../../shared/services/platform.service';
 import { HttpParams } from '@angular/common/http';
-import {
-  CALVILLO_COM_MX_API_CONFIG,
-  CalvilloComMxApiConfig
-} from '@calvillo/api/types/api-config';
+
+import { isPlatformServer } from '@angular/common';
+import { CALVILLO_COM_MX_API_CONFIG, CalvilloComMxApiConfig } from '../types/api-config';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +24,12 @@ export class AuthService {
   private path = 'auth/';
 
   constructor(@Inject(CALVILLO_COM_MX_API_CONFIG) private config: CalvilloComMxApiConfig,
+              @Inject(PLATFORM_ID) private platformId: Object,
               private apiHttp: ApiHttp,
               private http: Http,
               private router: Router,
               private userService: UserService,
-              private localStorage: LocalStorageService,
-              private platformService: PlatformService) {
+              private localStorage: LocalStorageService) {
     this.loggedAccountReplaySubject = new ReplaySubject<User>(1);
   }
 
@@ -40,17 +38,17 @@ export class AuthService {
       const headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-      let urlSearchParams = new HttpParams()
+      const urlSearchParams = new HttpParams()
         .append('grant_type', 'password')
         .append('client_id', this.config.apiClientID)
         .append('client_secret', this.config.apiClientSecret)
         .append('username', email)
         .append('password', password);
-      let body = urlSearchParams.toString();
+      const body = urlSearchParams.toString();
 
       this.http.post(this.config.apiAuthUrl, body, {headers: headers}).subscribe(
         data => {
-          let json = data.json();
+          const json = data.json();
           this.localStorage.set('access_token', json.access_token);
 
           this.updateLoggedUserObservable().subscribe(() => {
@@ -87,7 +85,7 @@ export class AuthService {
         this.loggedUser = null;
         this.loggedAccountReplaySubject.next(this.loggedUser);
       } else {
-        if (this.platformService.isPlatformServer()) {
+        if (isPlatformServer(this.platformId)) {
           return;
         }
 

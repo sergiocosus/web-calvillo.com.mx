@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { PictureService } from '../../modules/api/services/picture.service';
+import { PictureService } from '@calvillo/api';
 import { AbstractControl } from '@angular/forms';
 
 export class PictureValidator {

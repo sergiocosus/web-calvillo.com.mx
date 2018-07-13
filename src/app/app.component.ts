@@ -1,6 +1,6 @@
 import { filter } from 'rxjs/operators';
 import { Component, Inject, OnInit } from '@angular/core';
-import { AuthService } from './modules/api/services/auth.service';
+import { AuthService } from '@calvillo/api';
 import { NavigationEnd, Router } from '@angular/router';
 import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
 import { ScriptService } from './shared/services/script.service';

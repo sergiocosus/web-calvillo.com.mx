@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomValidator } from '../../shared/classes/custom-validator';
-import { Category } from '@calvillo/api/models/category.model';
+import { Category } from '@calvillo/api';
 import { CategoryValidator } from '../classes/category-validator';
-import { CategoryService } from '@calvillo/api/services/category.service';
+import { CategoryService } from '@calvillo/api';
 
 @Injectable()
 export class CategoryFormService {

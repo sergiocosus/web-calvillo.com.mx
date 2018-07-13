@@ -1,5 +1,6 @@
 import { ImageableModel } from './imageable.model';
 
+// @dynamic
 export class Video extends ImageableModel {
   id: number;
   title: string;

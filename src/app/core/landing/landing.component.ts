@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CategoryService } from '@calvillo/api/services/category.service';
-import { Category } from '@calvillo/api/models/category.model';
+import { CategoryService } from '@calvillo/api';
+import { Category } from '@calvillo/api';
 import { NavbarService } from '../../shared/services/navbar.service';
 import { environment } from '../../../environments/environment';
 import { Meta } from '@angular/platform-browser';

@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { CategoryService } from '@calvillo/api/services/category.service';
+import { CategoryService } from '@calvillo/api';
 import { CategoryThumbnailComponent } from './components/category-thumbnail/category-thumbnail.component';
 import { AddCategoryModalComponent } from './components/add-category-modal/add-category-modal.component';
 import { ImageUploadModule } from 'ng2-imageupload';

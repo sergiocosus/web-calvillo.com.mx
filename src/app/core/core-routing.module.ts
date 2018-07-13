@@ -19,7 +19,7 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'cuenta',
-        loadChildren: 'app/core/account/account.module#AccountModule',
+        loadChildren: 'src/app/core/account/account.module#AccountModule',
       },
       {
         path: 'galeria',
@@ -27,11 +27,11 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'mapa',
-        loadChildren: 'app/core/map/map.module#MapModule',
+        loadChildren: 'src/app/core/map/map.module#MapModule',
       },
       {
         path: 'contacto',
-        loadChildren: 'app/core/contact/contact.module#ContactModule',
+        loadChildren: 'src/app/core/contact/contact.module#ContactModule',
       },
       {
         path: 'directorio',

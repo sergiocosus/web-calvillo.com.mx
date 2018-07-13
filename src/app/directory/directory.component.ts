@@ -5,8 +5,8 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Directory } from '@calvillo/api/models/directory.model';
-import { Category } from '@calvillo/api/models/category.model';
+import { Directory } from '@calvillo/api';
+import { Category } from '@calvillo/api';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({

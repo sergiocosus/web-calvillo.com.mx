@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PictureService } from '../../../modules/api/services/picture.service';
-import { Picture } from '../../../modules/api/models/picture.model';
-import { Category } from '../../../modules/api/models/category.model';
+import { PictureService } from '@calvillo/api';
+import { Picture } from '@calvillo/api';
+import { Category } from '@calvillo/api';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from '../../../modules/api/services/user.service';
+import { UserService } from '@calvillo/api';
 import { NotifyService } from '../../../shared/services/notify.service';
 
 @Component({

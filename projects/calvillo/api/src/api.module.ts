@@ -1,9 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  CALVILLO_COM_MX_API_CONFIG,
-  CalvilloComMxApiConfig
-} from '@calvillo/api/types/api-config';
+import { CALVILLO_COM_MX_API_CONFIG, CalvilloComMxApiConfig } from './types/api-config';
 
 @NgModule({
   imports: [

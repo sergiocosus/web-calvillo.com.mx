@@ -4,8 +4,8 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Picture } from '../../../modules/api/models/picture.model';
-import { Category } from '../../../modules/api/models/category.model';
+import { Picture } from '@calvillo/api';
+import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-picture-thumbnail',

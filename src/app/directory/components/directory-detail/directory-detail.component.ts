@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Directory } from '@calvillo/api/models/directory.model';
+import { Directory } from '@calvillo/api';
 import { PlaceOnMapModalComponent } from "../../../maps/components/place-on-map-modal/place-on-map-modal.component";
 import { MatDialog } from "@angular/material";
 

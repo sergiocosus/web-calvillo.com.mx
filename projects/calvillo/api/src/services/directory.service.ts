@@ -2,6 +2,7 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ApiHttp } from './api-http.service';
 import { Directory } from '../models/directory.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

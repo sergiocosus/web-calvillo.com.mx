@@ -20,11 +20,11 @@ import { PictureModule } from './picture/picture.module';
 import { CoreModule } from './core/core.module';
 import { ShareButtonsOptions } from '@ngx-share/core';
 import { ShareButtonsModule } from '@ngx-share/buttons';
-import { ApiModule } from '@calvillo/api/api.module';
 
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { ApiModule } from '@calvillo/api';
 
 library.add(fab);
 library.add(fas);
@@ -44,7 +44,7 @@ const options: ShareButtonsOptions = {
     AppRoutingModule,
     SharedModule,
     SharedModule.forRoot(),
-    SearchModule.forRoot(),
+    SearchModule,
     FacebookModule.forRoot(),
     CategoryModule.forRoot(),
     AuthModule.forRoot(),

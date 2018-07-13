@@ -1,5 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SearchService } from '../modules/api/services/search.service';
+import { NgModule } from '@angular/core';
 import { SearchComponent } from './components/search/search.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatAutocompleteModule } from '@angular/material';
@@ -19,12 +18,4 @@ import { CategoryModule } from '../category/category.module';
   ]
 })
 export class SearchModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: SearchModule,
-      providers: [
-        SearchService,
-      ],
-    };
-  }
 }

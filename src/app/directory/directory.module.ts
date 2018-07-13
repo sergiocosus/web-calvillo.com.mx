@@ -6,7 +6,7 @@ import { DirectoryDialogComponent } from './components/directory-dialog/director
 import { DirectoryGalleryListComponent } from './components/directory-gallery-list/directory-gallery-list.component';
 import { AuthModule } from '../auth/auth.module';
 import { ImageUploadModule } from 'ng2-imageupload';
-import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { DirectoryService } from '@calvillo/api';
 import { DirectoryDetailComponent } from './components/directory-detail/directory-detail.component';
 
 @NgModule({

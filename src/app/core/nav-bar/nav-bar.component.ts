@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthService } from '@calvillo/api/services/auth.service';
-import { User } from '@calvillo/api/models/user.model';
+import { AuthService } from '@calvillo/api';
+import { User } from '@calvillo/api';
 import { MatDialog, MatSidenav } from '@angular/material';
 import { LoginModalComponent } from '../../auth/components/login-modal/login-modal.component';
 import { NavbarService } from '../../shared/services/navbar.service';

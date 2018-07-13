@@ -3,6 +3,7 @@ import { Picture } from './picture.model';
 import { Directory } from './directory.model';
 import { Video } from './video.model';
 
+// @dynamic
 export class Category extends ImageableModel {
   id: number;
   title: string;

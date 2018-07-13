@@ -1,7 +1,7 @@
 import { filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { SearchService } from '@calvillo/api/services/search.service';
+import { SearchService } from '@calvillo/api';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 

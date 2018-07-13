@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AddCategoryModalComponent } from '../add-category-modal/add-category-modal.component';
 import { MatDialog } from '@angular/material';
-import { CategoryService } from '@calvillo/api/services/category.service';
+import { CategoryService } from '@calvillo/api';
 import { NotifyService } from '../../../shared/services/notify.service';
-import { Category } from '@calvillo/api/models/category.model';
+import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-category-gallery-list',

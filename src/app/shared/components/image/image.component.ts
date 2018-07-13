@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ImageableModel } from '../../../modules/api/models/imageable.model';
-import { ImageSize } from '../../../modules/api/types/image-size';
+import { ImageableModel } from '@calvillo/api';
+import { ImageSize } from '@calvillo/api';
 
 @Component({
   selector: 'app-image',

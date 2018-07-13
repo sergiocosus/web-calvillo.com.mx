@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AutoUnsubscribe } from '../../shared/classes/auto-unsubscribe';
 import { SubscriptionManager } from '../../shared/classes/subscription-manager';
-import { Directory } from '@calvillo/api/models/directory.model';
+import { Directory } from '@calvillo/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DirectoryService } from '@calvillo/api/services/directory.service';
+import { DirectoryService } from '@calvillo/api';
 import { AppMetaService } from '../../shared/services/app-meta.service';
 
 @Component({

@@ -8,7 +8,7 @@ import {
   MatCheckboxModule,
   MatInputModule
 } from '@angular/material';
-import { PictureService } from '../modules/api/services/picture.service';
+import { PictureService } from '@calvillo/api';
 import { ImageUploadModule } from 'ng2-imageupload';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MapsModule } from '../maps/maps.module';

@@ -9,12 +9,12 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { SearchService } from '../../../modules/api/services/search.service';
+import { SearchService } from '@calvillo/api';
 import { FormControl } from '@angular/forms';
-import { Picture } from '../../../modules/api/models/picture.model';
-import { Category } from '../../../modules/api/models/category.model';
+import { Picture } from '@calvillo/api';
+import { Category } from '@calvillo/api';
 import { Router } from '@angular/router';
-import { Directory } from '../../../modules/api/models/directory.model';
+import { Directory } from '@calvillo/api';
 
 @Component({
   selector: 'app-search',
