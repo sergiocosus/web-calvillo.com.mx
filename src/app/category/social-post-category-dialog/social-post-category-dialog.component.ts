@@ -1,8 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { CategoryService } from '@calvillo/api';
-import { Category } from '@calvillo/api';
-import { UserService } from '@calvillo/api';
+import { Category, CategoryService, UserService } from '@calvillo/api';
 import { NotifyService } from '../../shared/services/notify.service';
 
 @Component({

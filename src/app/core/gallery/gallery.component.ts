@@ -1,10 +1,7 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CategoryService } from '@calvillo/api';
+import { AuthService, Category, CategoryService, User } from '@calvillo/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Category } from '@calvillo/api';
 import { environment } from '../../../environments/environment';
-import { AuthService } from '@calvillo/api';
-import { User } from '@calvillo/api';
 import { NotifyService } from '../../shared/services/notify.service';
 import { SubscriptionManager } from '../../shared/classes/subscription-manager';
 import { NavbarService } from '../../shared/services/navbar.service';

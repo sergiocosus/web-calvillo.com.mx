@@ -4,8 +4,7 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Picture } from '@calvillo/api';
-import { Category } from '@calvillo/api';
+import { Category, Picture } from '@calvillo/api';
 
 @Component({
   selector: 'app-picture-thumbnail',

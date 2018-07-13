@@ -1,15 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ImageResult } from 'ng2-imageupload';
-import { PictureService } from '@calvillo/api';
+import {
+  Category,
+  CategoryService,
+  Picture,
+  PictureService
+} from '@calvillo/api';
 import { EXIFService } from '../../../shared/services/exif.service';
-import { Picture } from '@calvillo/api';
 
 import { NotifyService } from '../../../shared/services/notify.service';
 import { SelectFromMapModalComponent } from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Category } from '@calvillo/api';
-import { CategoryService } from '@calvillo/api';
 import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
 import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
 import { PictureFormService } from '../../services/picture-form.service';

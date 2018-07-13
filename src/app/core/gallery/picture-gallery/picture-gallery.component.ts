@@ -8,9 +8,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { CategoryService } from '@calvillo/api';
-import { Category } from '@calvillo/api';
-import { Picture } from '@calvillo/api';
+import { Category, CategoryService, Picture } from '@calvillo/api';
 import { ResolutionService } from '../../../shared/services/resolution.service';
 import { isPlatformBrowser } from '@angular/common';
 import { MatDialog } from '@angular/material';

@@ -1,14 +1,16 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { DirectoryService } from '@calvillo/api';
+import {
+  Category,
+  CategoryService,
+  Directory,
+  DirectoryService
+} from '@calvillo/api';
 import { ImageResult } from 'ng2-imageupload';
-import { Directory } from '@calvillo/api';
 import { SelectFromMapModalComponent } from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
-import { CategoryService } from '@calvillo/api';
 import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
 import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
-import { Category } from '@calvillo/api';
 
 @Component({
   selector: 'app-directory-dialog',

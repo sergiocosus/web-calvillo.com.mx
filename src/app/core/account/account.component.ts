@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FacebookService, InitParams } from 'ngx-facebook';
 import { environment } from '../../../environments/environment';
-import { UserService } from '@calvillo/api';
-import { AuthService } from '@calvillo/api';
+import { AuthService, UserService } from '@calvillo/api';
 import { NotifyService } from '../../shared/services/notify.service';
 
 @Component({

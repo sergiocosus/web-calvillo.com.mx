@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { MatDialog } from '@angular/material';
 import { LoginModalComponent } from '../../auth/components/login-modal/login-modal.component';
-import { AuthService } from '@calvillo/api';
-import { User } from '@calvillo/api';
+import { AuthService, User } from '@calvillo/api';
 
 @Component({
   selector: 'app-nav-pages',

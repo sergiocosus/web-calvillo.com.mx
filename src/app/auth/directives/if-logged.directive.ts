@@ -1,6 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuthService } from '@calvillo/api';
-import { User } from '@calvillo/api';
+import { AuthService, User } from '@calvillo/api';
 
 @Directive({
   selector: '[appIfLogged]'
