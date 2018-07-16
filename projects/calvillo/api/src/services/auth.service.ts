@@ -6,7 +6,7 @@ import { LocalStorageService } from './local-storage.service';
 import { ApiHttp } from './api-http.service';
 import { UserService } from './user.service';
 import { Headers, Http } from '@angular/http';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { isPlatformServer } from '@angular/common';
 import { CALVILLO_COM_MX_API_CONFIG, CalvilloComMxApiConfig } from '../types/api-config';
@@ -26,7 +26,7 @@ export class AuthService {
   constructor(@Inject(CALVILLO_COM_MX_API_CONFIG) private config: CalvilloComMxApiConfig,
               @Inject(PLATFORM_ID) private platformId: Object,
               private apiHttp: ApiHttp,
-              private http: Http,
+              private http: HttpClient,
               private router: Router,
               private userService: UserService,
               private localStorage: LocalStorageService) {
@@ -35,7 +35,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return new Observable((subscriber) => {
-      const headers = new Headers();
+      const headers = new HttpHeaders();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
       const urlSearchParams = new HttpParams()
@@ -48,7 +48,7 @@ export class AuthService {
 
       this.http.post(this.config.apiAuthUrl, body, {headers: headers}).subscribe(
         data => {
-          const json = data.json();
+          const json = (data as any).json();
           this.localStorage.set('access_token', json.access_token);
 
           this.updateLoggedUserObservable().subscribe(() => {

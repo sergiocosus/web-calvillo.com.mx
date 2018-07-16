@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EXIFService } from './services/exif.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotifyService } from './services/notify.service';
-import { HttpModule } from '@angular/http';
 import {
   MatButtonModule,
   MatCardModule,
@@ -65,7 +64,6 @@ import { AppMetaService } from './services/app-meta.service';
   ],
   exports: [
     CommonModule,
-    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

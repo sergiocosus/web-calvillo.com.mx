@@ -1,11 +1,14 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 
+declare var localStorage;
+
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    console.log('11111111111111');
     if (isPlatformServer(this.platformId)) {
       return;
     }
