@@ -1,0 +1,78 @@
+/*
+In NativeScript, the app.css file is where you place CSS rules that
+you would like to apply to your entire application. Check out
+http://docs.nativescript.org/ui/styling for a full list of the CSS
+selectors and properties you can use to style UI components.
+
+/*
+In many cases you may want to use the NativeScript core theme instead
+of writing your own CSS rules. For a full list of class names in the theme
+refer to http://docs.nativescript.org/ui/theme.
+*/
+
+
+
+@import '~nativescript-theme-core/scss/light';
+@import "vars.scss";
+// Customize any of the theme’s variables here, for instance $btn-color: red;
+
+
+//@import "theme";
+
+// Colors
+$background: #fff;
+$primary: #D31841;
+$secondary: lighten(#000, 46%);
+$disabled: lighten(#000, 62%);
+$accent: $sky;
+
+// SideDrawer
+$item-color-android : #737373;
+$item-active-background: $accent;
+$item-active-color: #fff;
+$item-active-icon-color: #fff;
+$item-color-ios: #949494;
+$image-background: #e0e0e0;
+$side-drawer-header-background: #fafafa;
+$side-drawer-header-brand: #737373;
+$side-drawer-background: #fafafa;
+
+// Import the theme’s main ruleset.
+@import '~nativescript-theme-core/scss/index';
+
+
+
+[tkDrawerContent]{
+  background-color: $primary;
+
+  .sideTitleStackLayout{
+    font-size: 20;
+  }
+
+  Label{
+    color: white;
+    padding: 7.5;
+    font-weight: bold;
+  }
+  .active{
+    background-color: blue;
+  }
+
+  FlexboxLayout{
+    display: flex;
+    align-items: center;
+
+    .mdi{
+      font-size: 25;
+    }
+
+    .sideLabel{
+      flex: 1;
+      font-size: 15;
+    }
+  }
+}
+
+.mdi {
+  font-family: "Material Icons", "MaterialIcons-Regular";
+}

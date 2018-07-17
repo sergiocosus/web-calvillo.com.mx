@@ -1,4 +1,8 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component, ViewChild } from "@angular/core";
+import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import { TNSFontIconService } from "nativescript-ng2-fonticon";
+import { SideDrawerService } from '~/shared/services/side-drawer.service';
 
 @Component({
     selector: "ns-app",
@@ -6,4 +10,31 @@ import { Component } from "@angular/core";
 })
 
 export class AppComponent {
+    constructor(private _changeDetectionRef: ChangeDetectorRef,
+                private fonticon: TNSFontIconService,
+                private sideDrawerService: SideDrawerService) {
+    }
+
+    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this.sideDrawerService.sideDrawer = this.drawer;
+
+        this._changeDetectionRef.detectChanges();
+    }
+
+    ngOnInit() {
+    }
+
+    public openDrawer() {
+        this.drawer.showDrawer();
+    }
+
+    public onCloseDrawerTap() {
+        this.drawer.closeDrawer();
+    }
+
+
 }

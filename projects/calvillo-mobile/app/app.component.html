@@ -1,2 +1,47 @@
+<Page>
+    <RadSideDrawer tkExampleTitle tkToggleNavButton>
+        <StackLayout tkDrawerContent class="sideStackLayout">
+            <StackLayout class="sideTitleStackLayout">
+                <Label text="Calvillo.com.mx"></Label>
+            </StackLayout>
+            <StackLayout class="sideStackLayout">
+                <FlexboxLayout nsRouterLink="/" nsRouterLinkActive>
+                    <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+                    <Label text="Página Principal"
+                           (tap)="onCloseDrawerTap()"
+                           class="sideLabel"></Label>
+                </FlexboxLayout>
+
+                <FlexboxLayout nsRouterLink="/map" nsRouterLinkActive>
+                    <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+                    <Label text="Galería" [nsRouterLink]="['/items']"
+                           (tap)="onCloseDrawerTap()"
+                           class="sideLabel"></Label>
+                </FlexboxLayout>
+
+                <FlexboxLayout nsRouterLink="/map" nsRouterLinkActive>
+                    <Label class="mdi" [text]="'mdi-place' | fonticon"></Label>
+                    <Label text="Mapa"
+                           (tap)="onCloseDrawerTap()"
+                           class="sideLabel"></Label>
+                </FlexboxLayout>
+
+                <FlexboxLayout nsRouterLink="/contact" nsRouterLinkActive>
+                    <Label class="mdi" [text]="'mdi-contact-mail' | fonticon"></Label>
+                    <Label text="Contacto"
+                           (tap)="onCloseDrawerTap()"
+                           class="sideLabel sideLightGrayLabel"></Label>
+                </FlexboxLayout>
+
+            </StackLayout>
+        </StackLayout>
+        <StackLayout tkMainContent>
+
+
+            <page-router-outlet></page-router-outlet>
+        </StackLayout>
+    </RadSideDrawer>
+</Page>
+
+
 <!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<page-router-outlet></page-router-outlet>

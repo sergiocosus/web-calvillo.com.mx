@@ -145,7 +145,7 @@
               "includePaths": [
                 "src/app"
               ]
-            },
+            }
           },
           "configurations": {
             "prod": {

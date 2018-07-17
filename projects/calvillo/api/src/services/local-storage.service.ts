@@ -8,7 +8,6 @@ declare var localStorage;
 })
 export class LocalStorageService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    console.log('11111111111111');
     if (isPlatformServer(this.platformId)) {
       return;
     }
