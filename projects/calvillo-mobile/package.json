@@ -30,12 +30,14 @@
     "rxjs": "~6.1.0",
     "rxjs-compat": "^6.2.2",
     "tns-core-modules": "~4.1.0",
+    "tslint": "^5.11.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "babel-traverse": "6.26.0",
     "babel-types": "6.26.0",
     "babylon": "6.18.0",
+    "codelyzer": "^4.4.2",
     "lazy": "1.0.11",
     "nativescript-dev-sass": "^1.6.0",
     "nativescript-dev-typescript": "~0.7.0",

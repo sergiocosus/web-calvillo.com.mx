@@ -1,0 +1,27 @@
+<FlexboxLayout nsRouterLink="/items" nsRouterLinkActive>
+  <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+  <Label text="Página Principal"
+         (tap)="close()"
+         class="sideLabel"></Label>
+</FlexboxLayout>
+
+<FlexboxLayout nsRouterLink="/map" nsRouterLinkActive>
+  <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+  <Label text="Galería" [nsRouterLink]="['/galeria/', mainCategoryLink ]"
+         (tap)="close()"
+         class="sideLabel"></Label>
+</FlexboxLayout>
+
+<FlexboxLayout nsRouterLink="/map" nsRouterLinkActive>
+  <Label class="mdi" [text]="'mdi-place' | fonticon"></Label>
+  <Label text="Mapa"
+         (tap)="close()"
+         class="sideLabel"></Label>
+</FlexboxLayout>
+
+<FlexboxLayout nsRouterLink="/contact" nsRouterLinkActive>
+  <Label class="mdi" [text]="'mdi-contact-mail' | fonticon"></Label>
+  <Label text="Contacto"
+         (tap)="close()"
+         class="sideLabel sideLightGrayLabel"></Label>
+</FlexboxLayout>

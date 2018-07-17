@@ -1,0 +1,27 @@
+.categories, .pictures{
+  display: flex;
+  flex-wrap: wrap;
+
+  .category, .picture{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 20%;
+    max-width: 50%;
+    margin: 2;
+    background-color: gray;
+    color: white;
+    box-shadow: inset hoff voff blur #000;
+
+    Label{
+      padding: 5;
+    }
+  }
+}
+
+.section{
+  padding: 5;
+  margin: 10;
+
+  background-color: gray;
+  color: white;
+}

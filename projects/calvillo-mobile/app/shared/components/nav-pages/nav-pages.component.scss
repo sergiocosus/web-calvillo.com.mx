@@ -1,0 +1,23 @@
+
+Label{
+  color: white;
+  padding: 7.5;
+  font-weight: bold;
+}
+.active{
+  background-color: blue;
+}
+
+FlexboxLayout{
+  display: flex;
+  align-items: center;
+
+  .mdi{
+    font-size: 25;
+  }
+
+  .sideLabel{
+    flex: 1;
+    font-size: 15;
+  }
+}

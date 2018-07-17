@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { ActionBarComponent } from './components/action-bar/action-bar.component';
-import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
+import { NativeScriptCommonModule } from 'nativescript-angular/common';
+import { NavPagesComponent } from './components/nav-pages/nav-pages.component';
+import { NativeScriptRouterModule } from 'nativescript-angular';
 
 @NgModule({
     imports: [
-        NativeScriptModule,
+        NativeScriptCommonModule,
+        NativeScriptRouterModule,
         TNSFontIconModule
     ],
-    declarations: [ActionBarComponent],
+    declarations: [ActionBarComponent, NavPagesComponent],
     exports: [
-        ActionBarComponent, TNSFontIconModule
+        NativeScriptCommonModule,
+        NativeScriptRouterModule,
+        ActionBarComponent,
+        TNSFontIconModule,
+        NavPagesComponent
     ],
 })
 export class SharedModule {
