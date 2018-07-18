@@ -1,14 +1,12 @@
-<app-action-bar [title]="category.title"></app-action-bar>
+<app-action-bar [title]="category?.title"></app-action-bar>
 
 <ScrollView orientation="vertical">
   <StackLayout>
+    <Button (tap)="toast()" text="Toast"></Button>
     <ActivityIndicator *ngIf="loading"
                        [busy]="loading" width="100" height="100"  class="activity-indicator"></ActivityIndicator>
     <Image *ngIf="category?.image_code"
            [src]="category.imageUrl('md')" ></Image>
-
-    <Label text="Categorías"></Label>
-
 
     <Label class="section" text="Categorías"></Label>
 
@@ -17,8 +15,8 @@
       <flexbox-layout class="category"
                       *ngFor="let subCategory of category?.categories"
                       [nsRouterLink]="subCategory.routerLink">
-        <Image *ngIf="subCategory.image_code"
-               [src]="subCategory.imageUrl('md')" ></Image>
+        <Image *ngIf="subCategory.image_code" stretch="aspectFill"
+               [src]="subCategory.imageUrl('sm')" ></Image>
         <Label [text]="subCategory.title"></Label>
       </flexbox-layout>
     </FlexboxLayout>
@@ -29,11 +27,11 @@
 
     <FlexboxLayout class="pictures">
       <flexbox-layout class="picture"
-                      *ngFor="let subCategory of category?.pictures"
-                      [nsRouterLink]="subCategory.routerLink">
-        <Image *ngIf="subCategory.image_code"
-               [src]="subCategory.imageUrl('md')" ></Image>
-        <Label [text]="subCategory.title"></Label>
+                      *ngFor="let picture of category?.pictures"
+                      [nsRouterLink]="picture.getRouterLink(category)">
+        <Image *ngIf="picture.image_code" stretch="aspectFill"
+               [src]="picture.imageUrl('sm')" ></Image>
+        <Label [text]="picture.title"></Label>
       </flexbox-layout>
     </FlexboxLayout>
 

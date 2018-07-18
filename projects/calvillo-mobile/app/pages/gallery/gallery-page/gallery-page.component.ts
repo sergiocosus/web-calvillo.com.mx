@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, CategoryService } from '@calvillo/api';
-import { ActivatedRoute } from '@angular/router';
-import { finalize } from 'rxjs/operators';
+import { finalize, switchMap } from 'rxjs/operators';
+import { PageRoute } from 'nativescript-angular/router';
 
 @Component({
   selector: 'app-gallery-page',
@@ -16,13 +16,16 @@ export class GalleryPageComponent implements OnInit {
   loading = true;
 
   constructor(private categoryService: CategoryService,
-              private route: ActivatedRoute,
+              private pageRoute: PageRoute,
               ) {
-    this.route.paramMap.subscribe(
+    this.pageRoute.activatedRoute.pipe(
+      switchMap(activatedRoute => activatedRoute.paramMap)
+    ).subscribe(
       params => {
-        this.categoryLink = params.get('categoryLink')
+        this.categoryLink = params.get('categoryLink');
         this.loading = true;
         this.category = null;
+
         this.categoryService.getByLink(this.categoryLink)
           .pipe(finalize(() => this.loading = false)).subscribe(
           category => this.category = category

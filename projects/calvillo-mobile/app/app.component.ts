@@ -4,6 +4,12 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { TNSFontIconService } from "nativescript-ng2-fonticon";
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
 
+
+require('nativescript-localstorage');
+
+import { registerElement } from 'nativescript-angular/element-registry';
+registerElement('ImageZoom', () => require('nativescript-image-zoom').ImageZoom);
+
 @Component({
     selector: "ns-app",
     templateUrl: "app.component.html",

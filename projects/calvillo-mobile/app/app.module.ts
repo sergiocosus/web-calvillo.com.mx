@@ -1,24 +1,23 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { AppRoutingModule } from "./app.routing";
-import { AppComponent } from "./app.component";
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
+import { AppRoutingModule } from './app.routing';
+import { AppComponent } from './app.component';
 
-import { ItemsComponent } from "./item/items.component";
-import { ItemDetailComponent } from "./item/item-detail.component";
+import { ItemsComponent } from './item/items.component';
+import { ItemDetailComponent } from './item/item-detail.component';
 import {
   ApiHttp,
   ApiModule,
   CategoryService,
-  LocalStorageService
+  LocalStorageService,
+  PictureService
 } from '@calvillo/api';
-import { environment } from "./environment";
-import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { environment } from './environment';
+import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 import { SharedModule } from '~/shared/shared.module';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
-
-require("nativescript-localstorage");
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";
@@ -50,6 +49,7 @@ require("nativescript-localstorage");
   ],
   providers: [
     CategoryService,
+    PictureService,
     ApiHttp,
     LocalStorageService,
     SideDrawerService,
