@@ -2,38 +2,47 @@
 
 <ScrollView orientation="vertical">
   <StackLayout>
-    <Button (tap)="toast()" text="Toast"></Button>
     <ActivityIndicator *ngIf="loading"
-                       [busy]="loading" width="100" height="100"  class="activity-indicator"></ActivityIndicator>
-    <Image *ngIf="category?.image_code"
-           [src]="category.imageUrl('md')" ></Image>
+                       [busy]="loading"
+                       width="100" height="100"
+                       class="activity-indicator"></ActivityIndicator>
+    <ng-container *ngIf="category">
+      <Image *ngIf="category.image_code"
+             [src]="category.imageUrl('md')"
+             (loaded)="categoryImageLoading = false"></Image>
+      <ActivityIndicator *ngIf="categoryImageLoading"
+                         [busy]="categoryImageLoading"
+                         width="100" height="100"
+                         class="activity-indicator"></ActivityIndicator>
 
-    <Label class="section" text="Categorías"></Label>
-
-
-    <FlexboxLayout class="categories">
-      <flexbox-layout class="category"
-                      *ngFor="let subCategory of category?.categories"
-                      [nsRouterLink]="subCategory.routerLink">
-        <Image *ngIf="subCategory.image_code" stretch="aspectFill"
-               [src]="subCategory.imageUrl('sm')" ></Image>
-        <Label [text]="subCategory.title"></Label>
-      </flexbox-layout>
-    </FlexboxLayout>
+      <Label class="section" text="Categorías"></Label>
 
 
-    <Label class="section" text="Fotografías"></Label>
+      <FlexboxLayout class="categories">
+        <flexbox-layout class="category"
+                        *ngFor="let subCategory of category.categories"
+                        [nsRouterLink]="subCategory.routerLink">
+          <Image *ngIf="subCategory.image_code" stretch="aspectFill"
+                 [src]="subCategory.imageUrl('sm')" ></Image>
+          <Label [text]="subCategory.title"></Label>
+        </flexbox-layout>
+      </FlexboxLayout>
 
 
-    <FlexboxLayout class="pictures">
-      <flexbox-layout class="picture"
-                      *ngFor="let picture of category?.pictures"
-                      [nsRouterLink]="picture.getRouterLink(category)">
-        <Image *ngIf="picture.image_code" stretch="aspectFill"
-               [src]="picture.imageUrl('sm')" ></Image>
-        <Label [text]="picture.title"></Label>
-      </flexbox-layout>
-    </FlexboxLayout>
+      <Label class="section" text="Fotografías"></Label>
+
+
+      <FlexboxLayout class="pictures">
+        <flexbox-layout class="picture"
+                        *ngFor="let picture of category.pictures"
+                        [nsRouterLink]="picture.getRouterLink(category)">
+          <Image *ngIf="picture.image_code" stretch="aspectFill"
+                 [src]="picture.imageUrl('sm')" ></Image>
+          <Label [text]="picture.title"></Label>
+        </flexbox-layout>
+      </FlexboxLayout>
+
+    </ng-container>
 
   </StackLayout>
 </ScrollView>

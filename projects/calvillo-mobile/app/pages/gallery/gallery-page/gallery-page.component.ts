@@ -14,6 +14,7 @@ export class GalleryPageComponent implements OnInit {
   category: Category;
 
   loading = true;
+  categoryImageLoading: boolean;
 
   constructor(private categoryService: CategoryService,
               private pageRoute: PageRoute,
@@ -23,12 +24,16 @@ export class GalleryPageComponent implements OnInit {
     ).subscribe(
       params => {
         this.categoryLink = params.get('categoryLink');
+        console.log(this.categoryLink);
         this.loading = true;
         this.category = null;
 
         this.categoryService.getByLink(this.categoryLink)
           .pipe(finalize(() => this.loading = false)).subscribe(
-          category => this.category = category
+          category => {
+            this.category = category;
+            this.categoryImageLoading = true;
+          }
         );
       }
     )

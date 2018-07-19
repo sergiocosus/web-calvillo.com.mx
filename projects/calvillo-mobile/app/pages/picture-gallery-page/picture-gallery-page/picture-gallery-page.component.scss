@@ -1,0 +1,20 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+
+  .pictures{
+    height: 100;
+    Image{
+      margin: 5;
+    }
+
+
+  }
+
+  ImageZoom{
+    flex: 1;
+    height: 100%;
+  }
+}
