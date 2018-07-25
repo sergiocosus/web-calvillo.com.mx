@@ -1,3 +1,5 @@
+@import "../../../_vars.scss";
+
 .container{
   display: flex;
   flex-direction: column;
@@ -8,13 +10,22 @@
     height: 100;
     Image{
       margin: 5;
+
+      &.active{
+        border-color: $primary;
+        border-width: 0 0 2 0;
+      }
     }
-
-
   }
 
   ImageZoom{
     flex: 1;
     height: 100%;
   }
+}
+
+.title{
+  background-color: rgba(0,0,0, .5);
+  position: absolute;
+  bottom: 0;
 }

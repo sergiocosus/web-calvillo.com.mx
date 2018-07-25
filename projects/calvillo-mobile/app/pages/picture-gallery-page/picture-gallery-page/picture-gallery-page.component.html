@@ -1,0 +1,26 @@
+<app-action-bar [title]="category?.title"></app-action-bar>
+
+<FlexboxLayout class="container"  *ngIf="category">
+  <ScrollView #scrollView  orientation="horizontal">
+    <FlexboxLayout  class="pictures">
+      <Image #thumb *ngFor="let pic of category?.pictures; let i = index"
+        [class.active]="index === i"
+        (tap)="select(pic)"
+        [src]="pic.imageUrl('xs')"></Image>
+    </FlexboxLayout>
+  </ScrollView>
+
+  <Pager [items]="category?.pictures" #pager
+         [selectedIndex]="index"
+         (selectedIndexChange)="selectedIndexChange($event)" class="pager">
+    <ng-template let-i="index" let-picture="item">
+      <GridLayout class="pager-item" rows="auto, *" columns="*" >
+        <Label class="title" [text]="picture.title"></Label>
+        <ImageZoom loadMode="async"
+                   [src]="picture.imageUrl('xlg')"
+                   maxZoom="5"
+                   minZoom="1"></ImageZoom>
+      </GridLayout>
+    </ng-template>
+  </Pager>
+</FlexboxLayout>
