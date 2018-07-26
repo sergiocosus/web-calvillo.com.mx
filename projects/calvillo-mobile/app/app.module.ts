@@ -8,7 +8,7 @@ import { ItemDetailComponent } from './item/item-detail.component';
 import {
   ApiHttp,
   ApiModule,
-  CategoryService,
+  CategoryService, DirectoryService,
   LocalStorageService,
   PictureService
 } from '@calvillo/api';
@@ -50,6 +50,7 @@ import { SideDrawerService } from '~/shared/services/side-drawer.service';
   providers: [
     CategoryService,
     PictureService,
+    DirectoryService,
     ApiHttp,
     LocalStorageService,
     SideDrawerService,

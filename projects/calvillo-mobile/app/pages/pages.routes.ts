@@ -10,4 +10,8 @@ export const PagesRoutes: Routes = [
     path: '',
     loadChildren: './pages/gallery/gallery-page.module#GalleryPageModule'
   },
+  {
+    path: '',
+    loadChildren: './pages/directory-page/directory-page.module#DirectoryPageModule'
+  },
 ];

@@ -1,0 +1,26 @@
+@import "../../../../_vars.scss";
+
+FlexboxLayout{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 2;
+  background-color: $thumbnail-label-background-color;
+  color: white;
+  box-shadow: inset hoff voff blur #000;
+
+  &:highlighted {
+    background-color: $primary;
+  }
+
+  Image{
+    width: 100;
+    height: 100;
+    flex: 0;
+  }
+
+  Label{
+    flex: 1;
+    padding: 5;
+  }
+}

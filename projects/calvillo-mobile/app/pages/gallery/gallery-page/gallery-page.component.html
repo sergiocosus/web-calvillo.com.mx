@@ -15,31 +15,30 @@
                          width="100" height="100"
                          class="activity-indicator"></ActivityIndicator>
 
-      <Label class="section" text="Categorías"></Label>
-
-
+      <Label *ngIf="category.categories.length"
+             class="section" text="Categorías"></Label>
       <FlexboxLayout class="categories">
-        <flexbox-layout class="category"
-                        *ngFor="let subCategory of category.categories"
-                        [nsRouterLink]="subCategory.routerLink">
-          <Image *ngIf="subCategory.image_code" stretch="aspectFill"
-                 [src]="subCategory.imageUrl('sm')" ></Image>
-          <Label [text]="subCategory.title"></Label>
-        </flexbox-layout>
+        <app-category
+          *ngFor="let subCategory of category.categories"
+          [category]="subCategory"></app-category>
       </FlexboxLayout>
 
-
-      <Label class="section" text="Fotografías"></Label>
-
-
+      <Label *ngIf="category.pictures.length"
+             class="section" text="Fotografías"></Label>
       <FlexboxLayout class="pictures">
-        <flexbox-layout class="picture"
-                        *ngFor="let picture of category.pictures"
-                        [nsRouterLink]="picture.getRouterLink(category)">
-          <Image *ngIf="picture.image_code" stretch="aspectFill"
-                 [src]="picture.imageUrl('sm')" ></Image>
-          <Label [text]="picture.title"></Label>
-        </flexbox-layout>
+        <app-picture-item
+          *ngFor="let picture of category.pictures"
+          [category]="category"
+          [picture]="picture"></app-picture-item>
+      </FlexboxLayout>
+
+      <Label *ngIf="category.directories.length"
+             class="section" text="Directorio"></Label>
+      <FlexboxLayout class="pictures">
+        <app-directory-item
+          *ngFor="let directory of category.directories"
+          [category]="category"
+          [directory]="directory"></app-directory-item>
       </FlexboxLayout>
 
     </ng-container>

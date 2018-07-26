@@ -1,0 +1,5 @@
+<FlexboxLayout [nsRouterLink]="picture.getRouterLink(category)">
+  <Image *ngIf="picture.image_code" stretch="aspectFill"
+         [src]="picture.imageUrl('sm')" ></Image>
+  <Label [text]="picture.title"></Label>
+</FlexboxLayout>

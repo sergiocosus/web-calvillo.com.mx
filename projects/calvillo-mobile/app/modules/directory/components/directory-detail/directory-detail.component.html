@@ -1,0 +1,49 @@
+<StackLayout>
+  <HtmlView [html]="directory.description"></HtmlView>
+
+  <StackLayout>
+    <FlexboxLayout *ngIf="directory.address && directory.address.length">
+      <Label text="Dirección"></Label>
+      <Label [text]="directory.address"></Label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="directory.email && directory.email.length">
+      <Label text="Email"></Label>
+      <Label [text]="directory.email" (tap)="openUrl('mailto:' + directory.email)"></Label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="directory.phone && directory.phone.length">
+      <Label text="Teléfono"></Label>
+      <Label [text]="directory.phone"></Label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="directory.cellphone && directory.cellphone.length">
+      <Label text="Celular"></Label>
+      <Label [text]="directory.cellphone"></Label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="directory.website_url && directory.website_url.length">
+      <Label text="Sitio web"></Label>
+      <Label [text]="directory.website_url" (tap)="openUrl(directory.website_url)"></Label>
+    </FlexboxLayout>
+  </StackLayout>
+  <StackLayout class="buttons">
+    <Label class="map"
+           *ngIf="showMap && directory.longitude && directory.latitude"
+           (tap)="openMapModal()">
+      <Label class="mdi" [text]="'mdi-location-on' | fonticon"></Label>
+
+      <i class="fa fa-map-marker"></i>
+    </Label>
+    <Label class="facebook"
+           *ngIf="directory.facebook_url && directory.facebook_url.length"
+           (tap)="openUrl(directory.facebook_url)" target="_blank">
+      <Label class="mdi" [text]="'mdi-fa-facebook' | fonticon"></Label>
+      <!-- TODO icon -->
+    </Label>
+    <Label class="youtube"
+           *ngIf="directory.youtube_url && directory.youtube_url.length"
+           (tap)="openUrl(directory.youtube_url)" target="_blank">
+      <!-- TODO icon -->
+      <Label class="mdi" [text]="'mdi-fa-youtube' | fonticon"></Label>
+
+    </Label>
+  </StackLayout>
+
+</StackLayout>
