@@ -1,10 +1,13 @@
 @import "../../../_vars.scss";
+.main-container{
+
+}
 
 .container{
   display: flex;
   flex-direction: column;
-  height: 100%;
   align-items: stretch;
+  flex: 1;
 
   .pictures{
     height: 100;
@@ -18,14 +21,39 @@
     }
   }
 
-  ImageZoom{
+  Pager{
     flex: 1;
     height: 100%;
+    min-height: 100%;
+
+    ImageZoom{
+      flex: 1;
+      height: 100%;
+      width: 100%;
+    }
+
+    Label{
+      width: 100%;
+    }
+
+    Button{
+      top: 20;
+    }
+
+    ImageZoom{
+      top: 0;
+      left: 0;
+    }
   }
+  AbsoluteLayout{
+    height: 100%;
+  }
+
 }
 
-.title{
-  background-color: rgba(0,0,0, .5);
-  position: absolute;
-  bottom: 0;
+
+HtmlView{
+  flex: 0;
+  padding: 10;
+  margin: 10;
 }

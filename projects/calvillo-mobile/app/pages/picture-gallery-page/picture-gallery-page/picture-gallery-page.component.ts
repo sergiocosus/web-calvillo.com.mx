@@ -1,9 +1,9 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   OnInit,
   QueryList,
+  ViewChild,
   ViewChildren
 } from '@angular/core';
 import { finalize, switchMap } from 'rxjs/operators';
@@ -16,9 +16,13 @@ import {
 import { PageRoute, RouterExtensions } from 'nativescript-angular/router';
 
 import * as _ from 'lodash';
-import { ViewChild } from '@angular/core';
 import { ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { FlexboxLayout } from 'tns-core-modules/ui/layouts/flexbox-layout';
+import * as SocialShare from 'nativescript-social-share';
+import {screen} from 'platform';
+import { NavigationEnd, Router } from '@angular/router';
+import { environment } from '~/environment';
+import * as app from 'tns-core-modules/application';
 
 
 @Component({
@@ -40,12 +44,27 @@ export class PictureGalleryPageComponent implements OnInit {
   pictureLength: number;
   private picture: Picture;
   private oldIndex: number;
+  private currentRoute: string;
+  private deviceHeight: number;
+
+  get currentPicture(): Picture {
+    if (this.category && this.category.pictures.length > this.index) {
+      return this.category.pictures[this.index];
+    }
+  }
 
   constructor(private categoryService: CategoryService,
               private pictureService: PictureService,
               private pageRoute: PageRoute,
-              private routerExtensions: RouterExtensions
+              private routerExtensions: RouterExtensions,
+              private router: Router
   ) {
+    this.deviceHeight = screen.mainScreen.heightDIPs;
+
+    this.router.events.subscribe((e: NavigationEnd) => {
+      this.currentRoute = e.url;
+    });
+
     this.pageRoute.activatedRoute.pipe(
       switchMap(activatedRoute => activatedRoute.paramMap)
     ).subscribe(
@@ -62,11 +81,19 @@ export class PictureGalleryPageComponent implements OnInit {
 
         console.log(this.categoryLink, this.pictureLink);
       }
-    )
+    );
 
+    app.on('orientationChanged', (dat) => {
+      if (dat.newValue === 'portrait') {
+        this.deviceHeight = screen.mainScreen.heightDIPs;
+      } else {
+        this.deviceHeight = screen.mainScreen.widthDIPs;
+      }
+    })
   }
 
   ngOnInit() {
+
   }
 
   scrollToIndex(index: number): void {
@@ -77,7 +104,7 @@ export class PictureGalleryPageComponent implements OnInit {
 
     const firstPictureRef = <FlexboxLayout>this.thumbsRef.first.nativeElement;
     const pictureRef = <FlexboxLayout>this.thumbsRef
-      .find((el, currentIndex) => index === currentIndex ).nativeElement;
+      .find((el, currentIndex) => index === currentIndex).nativeElement;
 
     scrollView.scrollToHorizontalOffset(
       pictureRef.getLocationRelativeTo(firstPictureRef).x,
@@ -149,6 +176,11 @@ export class PictureGalleryPageComponent implements OnInit {
     this.oldIndex = this.index;
   }
 
+  share() {
+    const url = environment.webUrl + this.routerExtensions.router.url;
+    console.log(url);
+    SocialShare.shareUrl(url, '¡Comparte a Calvilo!');
+  }
 
   nextPicture() {
     if (this.index + 1 >= this.pictureLength) {
