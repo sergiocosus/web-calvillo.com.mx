@@ -121,6 +121,10 @@
   version "4.14.113"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.113.tgz#1d1cb063f17fec4cc46f1a90d978ebf441113061"
 
+"@types/node@10.3.6":
+  version "10.3.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.6.tgz#ea8aab9439b59f40d19ec5f13b44642344872b11"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -4160,6 +4164,10 @@ nativescript-pager@^8.0.2:
 nativescript-performance-monitor@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/nativescript-performance-monitor/-/nativescript-performance-monitor-1.0.0.tgz#44643ad24996cd03a2253b3afcb73855cd77a810"
+
+nativescript-social-share@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/nativescript-social-share/-/nativescript-social-share-1.5.0.tgz#b4ed85e37694916379073c092562abf897215633"
 
 nativescript-theme-core@~1.0.4:
   version "1.0.4"

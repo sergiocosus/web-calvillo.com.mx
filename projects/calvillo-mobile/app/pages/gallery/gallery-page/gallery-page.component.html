@@ -1,47 +1,63 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
 
-<ScrollView orientation="vertical">
+<ScrollView class="page" #scrollView
+            (scroll)="onScroll($event, scrollView, topView)"
+            orientation="vertical">
   <StackLayout>
-    <ActivityIndicator *ngIf="loading"
-                       [busy]="loading"
-                       width="100" height="100"
-                       class="activity-indicator"></ActivityIndicator>
-    <ng-container *ngIf="category">
-      <Image *ngIf="category.image_code"
-             [src]="category.imageUrl('md')"
-             (loaded)="categoryImageLoading = false"></Image>
-      <ActivityIndicator *ngIf="categoryImageLoading"
-                         [busy]="categoryImageLoading"
+    <StackLayout #topView
+                 class="top-view"
+                 [height]="category.image_code ? 250 : 0"
+                 [style.backgroundImage]=" category.imageUrl('sm')">
+
+      <StackLayout orientation="horizontal">
+
+      </StackLayout>
+    </StackLayout>
+    <StackLayout class="content">
+      <ActivityIndicator *ngIf="loading"
+                         [busy]="loading"
                          width="100" height="100"
                          class="activity-indicator"></ActivityIndicator>
+      <ng-container *ngIf="category">
+        <!--
+        <Image *ngIf="category.image_code"
+               [src]="category.imageUrl('md')"
+               (loaded)="categoryImageLoading = false"></Image>
+        <ActivityIndicator *ngIf="categoryImageLoading"
+                           [busy]="categoryImageLoading"
+                           width="100" height="100"
+                           class="activity-indicator"></ActivityIndicator>
+               -->
 
-      <Label *ngIf="category.categories.length"
-             class="section" text="Categorías"></Label>
-      <FlexboxLayout class="categories">
-        <app-category
-          *ngFor="let subCategory of category.categories"
-          [category]="subCategory"></app-category>
-      </FlexboxLayout>
+        <Label *ngIf="category.categories.length"
+               class="section" text="Álbumes"></Label>
+        <FlexboxLayout class="categories">
+          <app-category
+            *ngFor="let subCategory of category.categories"
+            [category]="subCategory"></app-category>
+        </FlexboxLayout>
 
-      <Label *ngIf="category.pictures.length"
-             class="section" text="Fotografías"></Label>
-      <FlexboxLayout class="pictures">
-        <app-picture-item
-          *ngFor="let picture of category.pictures"
-          [category]="category"
-          [picture]="picture"></app-picture-item>
-      </FlexboxLayout>
+        <Label *ngIf="category.pictures.length"
+               class="section" text="Fotografías"></Label>
+        <FlexboxLayout class="pictures">
+          <app-picture-item
+            *ngFor="let picture of category.pictures"
+            [category]="category"
+            [picture]="picture"></app-picture-item>
+        </FlexboxLayout>
 
-      <Label *ngIf="category.directories.length"
-             class="section" text="Directorio"></Label>
-      <FlexboxLayout class="pictures">
-        <app-directory-item
-          *ngFor="let directory of category.directories"
-          [category]="category"
-          [directory]="directory"></app-directory-item>
-      </FlexboxLayout>
+        <Label *ngIf="category.directories.length"
+               class="section" text="Directorio"></Label>
+        <FlexboxLayout class="pictures">
+          <app-directory-item
+            *ngFor="let directory of category.directories"
+            [category]="category"
+            [directory]="directory"></app-directory-item>
+        </FlexboxLayout>
 
-    </ng-container>
+      </ng-container>
+    </StackLayout>
+
 
   </StackLayout>
 </ScrollView>
