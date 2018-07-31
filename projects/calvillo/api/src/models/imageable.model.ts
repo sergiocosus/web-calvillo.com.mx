@@ -3,9 +3,10 @@ import { Model } from './model';
 // @dynamic
 export abstract class ImageableModel extends Model {
   image_url: string;
+  image_code: string;
 
   imageUrl(size = null) {
-    if (!this.image_url) {
+    if (!this.image_code) {
       return null;
     }
     if (size) {

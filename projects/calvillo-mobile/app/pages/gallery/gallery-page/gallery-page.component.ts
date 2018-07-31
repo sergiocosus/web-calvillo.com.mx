@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, CategoryService } from '@calvillo/api';
+import { Category, CategoryService, Directory, Picture } from '@calvillo/api';
 import { finalize, switchMap } from 'rxjs/operators';
 import { PageRoute } from 'nativescript-angular/router';
 import { ScrollEventData, ScrollView } from 'tns-core-modules/ui/scroll-view';
@@ -17,6 +17,7 @@ export class GalleryPageComponent implements OnInit {
 
   loading = true;
   categoryImageLoading: boolean;
+  results: (Directory | Category | Picture)[];
 
   constructor(private categoryService: CategoryService,
               private pageRoute: PageRoute,
@@ -34,6 +35,7 @@ export class GalleryPageComponent implements OnInit {
           .pipe(finalize(() => this.loading = false)).subscribe(
           category => {
             this.category = category;
+            this.results = [...category.directories, ...category.categories, ...category.pictures];
             this.categoryImageLoading = true;
           }
         );
@@ -46,6 +48,7 @@ export class GalleryPageComponent implements OnInit {
   }
 
   onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+    console.log('hooliii');
     // If the header content is still visiible
     if (scrollView.verticalOffset < 250) {
       const offset = scrollView.verticalOffset / 2;
@@ -56,6 +59,16 @@ export class GalleryPageComponent implements OnInit {
         // Android, animations are jerky so instead just adjust the position without animation.
         topView.translateY = Math.floor(offset);
       }
+    }
+  }
+
+  getType(result: (Picture | Directory | Category)) {
+    if (result instanceof Picture) {
+      return 'picture';
+    } else if (result instanceof  Directory) {
+      return 'directory';
+    } else {
+      return 'category';
     }
   }
 }

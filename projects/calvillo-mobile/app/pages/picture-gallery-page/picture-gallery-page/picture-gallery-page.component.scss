@@ -10,10 +10,10 @@
   flex: 1;
 
   .pictures{
-    height: 100;
-    Image{
+    WebImage{
       margin: 5;
-
+      width: 50;
+      height: 50;
       &.active{
         border-color: $primary;
         border-width: 0 0 2 0;

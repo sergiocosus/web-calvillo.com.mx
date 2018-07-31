@@ -3,7 +3,7 @@
 FlexboxLayout{
   display: flex;
   flex-direction: column;
-  width: 48%;
+  width: 100%;
   margin: 2;
   background-color: $thumbnail-label-background-color;
   color: white;
@@ -13,7 +13,7 @@ FlexboxLayout{
     background-color: $primary;
   }
 
-  Image{
+  WebImage{
     width: 100%;
     height: 150;
     flex: 1;

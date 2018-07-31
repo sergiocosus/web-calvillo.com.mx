@@ -1,18 +1,23 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
 
-<ScrollView>
-  <StackLayout class="main-container">
-    <FlexboxLayout [height]="deviceHeight" class="container" *ngIf="category">
-      <ScrollView #scrollView orientation="horizontal">
-        <FlexboxLayout class="pictures">
-          <Image #thumb *ngFor="let pic of category?.pictures; let i = index"
-                 [class.active]="index === i"
-                 (tap)="select(pic)"
-                 [src]="pic.imageUrl('xs')"></Image>
-        </FlexboxLayout>
-      </ScrollView>
-
-      <Pager height="100%" [items]="category?.pictures" #pager
+<GridLayout [height]="deviceHeight" rows="auto, *" columns="*" class="container" *ngIf="category">
+  <RadListView row="0" col="0" class="pictures" [items]="category?.pictures">
+    <ListViewLinearLayout tkListViewLayout scrollDirection="Horizontal"
+                          itemInsertAnimation="Default"
+                          itemDeleteAnimation="Default"></ListViewLinearLayout>
+    <ng-template tkListItemTemplate let-pic="item" let-i="index">
+      <FlexboxLayout (tap)="select(pic)" [class.active]="index === i"
+                     class="item list-group-item">
+        <WebImage *ngIf="pic.image_code" stretch="aspectFill"
+                  placeholder="~/assets/images/Spinner-1s-200px.gif"
+                  [src]="pic.imageUrl('xs')">
+        </WebImage>
+      </FlexboxLayout>
+    </ng-template>
+  </RadListView>
+  <ScrollView row="1" col="0">
+    <StackLayout>
+      <Pager [height]="deviceHeight - 120" [items]="category?.pictures" #pager
              [selectedIndex]="index"
              (selectedIndexChange)="selectedIndexChange($event)" class="pager">
         <ng-template let-i="index" let-picture="item">
@@ -25,7 +30,7 @@
                 </FormattedString>
               </Button>
               <ImageZoom loadMode="async"
-                         [src]="picture.imageUrl('xlg')"
+                         [src]="picture.imageUrl('lg')"
                          maxZoom="5"
                          minZoom="1"></ImageZoom>
             </AbsoluteLayout>
@@ -33,9 +38,9 @@
 
         </ng-template>
       </Pager>
-    </FlexboxLayout>
-    <HtmlView *ngIf="currentPicture"
-              [html]="currentPicture.description"></HtmlView>
-  </StackLayout>
+      <HtmlView *ngIf="currentPicture"
+                [html]="currentPicture.description"></HtmlView>
+    </StackLayout>
+  </ScrollView>
 
-</ScrollView>
+</GridLayout>

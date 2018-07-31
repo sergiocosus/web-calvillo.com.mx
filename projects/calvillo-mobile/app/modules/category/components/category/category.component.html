@@ -1,5 +1,5 @@
 <FlexboxLayout [nsRouterLink]="category.routerLink">
-  <Image *ngIf="category.image_code" stretch="aspectFill"
-         [src]="category.imageUrl('sm')" ></Image>
+  <WebImage *ngIf="category.image_code" stretch="aspectFill"
+         [src]="category.imageUrl('sm')" ></WebImage>
   <Label [text]="category.title"></Label>
 </FlexboxLayout>

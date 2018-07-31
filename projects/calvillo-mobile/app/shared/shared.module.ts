@@ -24,7 +24,7 @@ import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
     NativeScriptRouterModule,
     NativeScriptFormsModule,
     ReactiveFormsModule,
-
+    NativeScriptUIListViewModule,
     ActionBarComponent,
     TNSFontIconModule,
     NavPagesComponent,

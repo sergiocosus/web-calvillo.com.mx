@@ -34,7 +34,7 @@ export class SearchBarComponent implements OnInit {
       mergeMap( text => this.searchService.get(text))
     ).subscribe(results => {
       this.results = [...results.directories, ...results.categories, ...results.pictures];
-    })
+    });
   }
 
   ngOnInit(): void {

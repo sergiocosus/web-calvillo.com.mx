@@ -1,7 +1,7 @@
 
 FlexboxLayout{
   align-items: center;
-  ImageCacheIt, WebImage{
+  WebImage{
     flex: 0;
     width: 50;
     margin-right: 5;
@@ -9,7 +9,7 @@ FlexboxLayout{
   }
 
   Label{
-    flex: 1;;
+    flex: 1;
   }
 }
 
