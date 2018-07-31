@@ -10,6 +10,9 @@ require('nativescript-localstorage');
 import { registerElement } from 'nativescript-angular/element-registry';
 registerElement('ImageZoom', () => require('nativescript-image-zoom').ImageZoom);
 
+import {initializeOnAngular} from "nativescript-web-image-cache";
+
+
 @Component({
     selector: "ns-app",
     templateUrl: "app.component.html",
@@ -19,6 +22,7 @@ export class AppComponent {
     constructor(private _changeDetectionRef: ChangeDetectorRef,
                 private fonticon: TNSFontIconService,
                 private sideDrawerService: SideDrawerService) {
+      initializeOnAngular();
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;

@@ -10,7 +10,7 @@ import {
   ApiModule,
   CategoryService, DirectoryService,
   LocalStorageService,
-  PictureService
+  PictureService, SearchService
 } from '@calvillo/api';
 import { environment } from './environment';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -18,6 +18,10 @@ import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angul
 import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 import { SharedModule } from '~/shared/shared.module';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
+
+
+import { registerElement } from 'nativescript-angular/element-registry';
+registerElement('ImageCacheIt', () => require('nativescript-image-cache-it').ImageCacheIt);
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";
@@ -51,6 +55,7 @@ import { SideDrawerService } from '~/shared/services/side-drawer.service';
     CategoryService,
     PictureService,
     DirectoryService,
+    SearchService,
     ApiHttp,
     LocalStorageService,
     SideDrawerService,

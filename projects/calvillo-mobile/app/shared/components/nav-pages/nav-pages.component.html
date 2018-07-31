@@ -1,6 +1,6 @@
 <FlexboxLayout nsRouterLink="/items" nsRouterLinkActive>
   <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
-  <Label text="Página Principal"
+  <Label text="Página Principal"  [nsRouterLink]="['/']"
          (tap)="close()"
          class="sideLabel"></Label>
 </FlexboxLayout>

@@ -1,0 +1,56 @@
+<SearchBar row="0" [hint]="placeholder"
+           [formControl]="formControl"
+           (submit)="onSubmit($event)"></SearchBar>
+<GridLayout rows="*">
+  <ListView row="1" [items]="results"
+            [iosEstimatedRowHeight]="0"
+            (itemTap)="onTap($event)"
+            [itemTemplateSelector]="getType" class="list-group">
+    <ng-template nsTemplateKey="directory" let-directory="item">
+      <FlexboxLayout class="item list-group-item">
+        <WebImage *ngIf="directory.image_code" stretch="aspectFill"
+                  placeholder="~/assets/images/Spinner-1s-200px.gif"
+                  [src]="directory.imageUrl('xs')">
+        </WebImage>
+
+        <!--
+        <ImageCacheIt *ngIf="directory.image_code"
+                      resize="300, 300"
+                      stretch="aspectFill"
+                      [imageUri]="directory.imageUrl('xs')"></ImageCacheIt>
+                      -->
+        <Label [text]="directory.title" class="list-group-item-heading"></Label>
+      </FlexboxLayout>
+    </ng-template>
+    <ng-template nsTemplateKey="category" let-category="item">
+      <FlexboxLayout class="item list-group-item">
+        <WebImage *ngIf="category.image_code" stretch="aspectFill"
+                  placeholder="~/assets/images/Spinner-1s-200px.gif"
+                  [src]="category.imageUrl('xs')">
+        </WebImage>
+        <!--
+        <ImageCacheIt *ngIf="category.image_code"
+                      resize="300, 300"
+                      stretch="aspectFill"
+                      [imageUri]="category.imageUrl('xs')" ></ImageCacheIt>
+                      -->
+        <Label [text]="category.title" class="list-group-item-heading"></Label>
+      </FlexboxLayout>
+    </ng-template>
+    <ng-template nsTemplateKey="picture" let-picture="item">
+      <FlexboxLayout class="item list-group-item">
+        <WebImage *ngIf="picture.image_code" stretch="aspectFill"
+                  placeholder="~/assets/images/Spinner-1s-200px.gif"
+                  [src]="picture.imageUrl('xs')">
+        </WebImage>
+        <!--
+        <ImageCacheIt *ngIf="picture.image_code"
+                      resize="300, 300"
+                      stretch="aspectFill"
+                      [imageUri]="picture.imageUrl('xs')" ></ImageCacheIt>
+                      -->
+        <Label [text]="picture.title" class="list-group-item-heading"></Label>
+      </FlexboxLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>

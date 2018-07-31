@@ -6,8 +6,8 @@
   <StackLayout>
     <StackLayout #topView
                  class="top-view"
-                 [height]="category.image_code ? 250 : 0"
-                 [style.backgroundImage]=" category.imageUrl('sm')">
+                 [height]="category?.image_code ? 250 : 0"
+                 [style.backgroundImage]=" category?.imageUrl('sm')">
 
       <StackLayout orientation="horizontal">
 

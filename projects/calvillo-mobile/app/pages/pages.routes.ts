@@ -4,6 +4,10 @@ import { Routes } from '@angular/router';
 export const PagesRoutes: Routes = [
   {
     path: '',
+    loadChildren: './pages/home-page/home-page.module#HomePageModule'
+  },
+  {
+    path: '',
     loadChildren: './pages/picture-gallery-page/picture-gallery-page.module#PictureGalleryPageModule'
   },
   {

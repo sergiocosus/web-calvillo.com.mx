@@ -18,10 +18,11 @@ export class SearchService {
   get(query) {
     return this.apiHttp.get(this.basePath, {query: query}).pipe(
       map(json => {
-        json.pictures = Picture.parseArray(json.pictures);
-        json.directories = Directory.parseArray(json.directories);
-        json.categories = Category.parseArray(json.categories);
-        return json;
+        return {
+          pictures: Picture.parseArray(json.pictures),
+          directories: Directory.parseArray(json.directories),
+          categories: Category.parseArray(json.categories),
+        };
       }));
   }
 }

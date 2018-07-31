@@ -1,0 +1,25 @@
+
+FlexboxLayout{
+  align-items: center;
+  ImageCacheIt, WebImage{
+    flex: 0;
+    width: 50;
+    margin-right: 5;
+    height: 40;
+  }
+
+  Label{
+    flex: 1;;
+  }
+}
+
+GridLayout{
+  background-image: url("~/assets/images/landing-page-background-night.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: fit;
+}
+
+ListView{
+  background-color: white;
+}
