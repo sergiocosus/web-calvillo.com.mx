@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Directory } from '@calvillo/api';
 import * as utils from 'utils/utils';
+import { MapView } from 'nativescript-google-maps-sdk';
 
 @Component({
   selector: 'app-directory-detail',
@@ -9,6 +10,22 @@ import * as utils from 'utils/utils';
   styleUrls: ['./directory-detail.component.scss']
 })
 export class DirectoryDetailComponent implements OnInit {
+  @ViewChild('mapView') mapViewRef: ElementRef;
+  private mapView: MapView;
+
+  onMapReady(event) {
+    this.mapView = <MapView>this.mapViewRef.nativeElement;
+
+    console.log('Map Ready');
+    this.mapView.latitude  = this.directory.latitude;
+    this.mapView.longitude  = this.directory.longitude;
+    this.mapView.zoom  = 11;
+
+    console.log(this.mapView.latitude);
+    console.log(this.mapView.longitude);
+    console.log(this.mapView.zoom);
+  };
+
   @Input() directory: Directory;
   @Input() showMap = true;
 
@@ -16,6 +33,7 @@ export class DirectoryDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   openMapModal() {

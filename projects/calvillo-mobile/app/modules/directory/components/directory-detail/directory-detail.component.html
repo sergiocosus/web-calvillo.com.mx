@@ -1,31 +1,37 @@
-<StackLayout>
+<StackLayout *ngIf="directory">
+  <WebImage *ngIf="directory.image_code" stretch="aspectFill"
+            placeholder="~/assets/images/Spinner-1s-200px.gif"
+            [src]="directory.imageUrl('xs')">
+  </WebImage>
   <HtmlView [html]="directory.description"></HtmlView>
 
-  <StackLayout>
+  <StackLayout class="elements">
     <FlexboxLayout *ngIf="directory.address && directory.address.length">
-      <Label text="Dirección"></Label>
-      <Label [text]="directory.address"></Label>
+      <Label class="label" text="Dirección"></Label>
+      <Label class="content" [text]="directory.address"></Label>
     </FlexboxLayout>
     <FlexboxLayout *ngIf="directory.email && directory.email.length">
-      <Label text="Email"></Label>
-      <Label [text]="directory.email" (tap)="openUrl('mailto:' + directory.email)"></Label>
+      <Label class="label" text="Email"></Label>
+      <Label class="content" [text]="directory.email" (tap)="openUrl('mailto:' + directory.email)"></Label>
     </FlexboxLayout>
     <FlexboxLayout *ngIf="directory.phone && directory.phone.length">
-      <Label text="Teléfono"></Label>
-      <Label [text]="directory.phone"></Label>
+      <Label class="label" text="Teléfono"></Label>
+      <Label class="content" [text]="directory.phone"></Label>
     </FlexboxLayout>
     <FlexboxLayout *ngIf="directory.cellphone && directory.cellphone.length">
-      <Label text="Celular"></Label>
-      <Label [text]="directory.cellphone"></Label>
+      <Label class="label" text="Celular"></Label>
+      <Label class="content" [text]="directory.cellphone"></Label>
     </FlexboxLayout>
     <FlexboxLayout *ngIf="directory.website_url && directory.website_url.length">
-      <Label text="Sitio web"></Label>
-      <Label [text]="directory.website_url" (tap)="openUrl(directory.website_url)"></Label>
+      <Label class="far" [text]="'far-3d-rotation' | fonticon"></Label>
+
+      <Label class="label" text="Sitio web"></Label>
+      <Label class="content" [text]="directory.website_url" (tap)="openUrl(directory.website_url)"></Label>
     </FlexboxLayout>
   </StackLayout>
   <StackLayout class="buttons">
     <Label class="map"
-           *ngIf="showMap && directory.longitude && directory.latitude"
+           *ngIf=" directory.longitude && directory.latitude"
            (tap)="openMapModal()">
       <Label class="mdi" [text]="'mdi-location-on' | fonticon"></Label>
 
@@ -34,16 +40,23 @@
     <Label class="facebook"
            *ngIf="directory.facebook_url && directory.facebook_url.length"
            (tap)="openUrl(directory.facebook_url)" target="_blank">
-      <Label class="mdi" [text]="'mdi-fa-facebook' | fonticon"></Label>
+      <Label class="fa" [text]="'fa-facebook' | fonticon"></Label>
       <!-- TODO icon -->
     </Label>
     <Label class="youtube"
            *ngIf="directory.youtube_url && directory.youtube_url.length"
            (tap)="openUrl(directory.youtube_url)" target="_blank">
       <!-- TODO icon -->
-      <Label class="mdi" [text]="'mdi-fa-youtube' | fonticon"></Label>
+      <Label class="far" [text]="'far-3d-rotation' | fonticon"></Label>
 
     </Label>
+
+
   </StackLayout>
+  <MapView #mapView [latitude]="directory.latitude"
+           [longitude]="directory.longitude"
+           zoom="11"
+           (mapReady)="onMapReady($event)"></MapView>
 
 </StackLayout>
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Category, CategoryService, Directory, Picture } from '@calvillo/api';
 import { finalize, switchMap } from 'rxjs/operators';
 import { PageRoute } from 'nativescript-angular/router';
@@ -11,7 +11,7 @@ import { View } from 'tns-core-modules/ui/core/view';
   templateUrl: './gallery-page.component.html',
   styleUrls: ['./gallery-page.component.scss']
 })
-export class GalleryPageComponent implements OnInit {
+export class GalleryPageComponent implements OnInit, OnDestroy {
   categoryLink: string;
   category: Category;
 
@@ -70,5 +70,10 @@ export class GalleryPageComponent implements OnInit {
     } else {
       return 'category';
     }
+  }
+
+  ngOnDestroy(): void {
+    // @ts-ignore
+    gc();
   }
 }

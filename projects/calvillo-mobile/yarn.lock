@@ -88,6 +88,10 @@
   dependencies:
     tslib "^1.9.0"
 
+"@fortawesome/fontawesome-free@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.2.0.tgz#50cd9856774351c56c0b1b0db4efe122d7913e58"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -121,9 +125,9 @@
   version "4.14.113"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.113.tgz#1d1cb063f17fec4cc46f1a90d978ebf441113061"
 
-"@types/node@10.3.6":
-  version "10.3.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.6.tgz#ea8aab9439b59f40d19ec5f13b44642344872b11"
+"@types/node@^10.1.4":
+  version "10.5.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.4.tgz#6eccc158504357d1da91434d75e86acde94bb10b"
 
 abbrev@1:
   version "1.1.1"
@@ -4080,10 +4084,6 @@ nativescript-angular@~6.0.0:
     nativescript-intl "^3.0.0"
     reflect-metadata "^0.1.8"
 
-nativescript-carousel@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/nativescript-carousel/-/nativescript-carousel-3.1.1.tgz#0dffb8f46a952f34d9e998d865a2c5cbd1be6038"
-
 nativescript-dev-sass@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/nativescript-dev-sass/-/nativescript-dev-sass-1.6.0.tgz#4ce8bc10126d1995a3104015c2348eaf6453b508"
@@ -4153,9 +4153,9 @@ nativescript-material-icons@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/nativescript-material-icons/-/nativescript-material-icons-1.0.3.tgz#77fa8fdb78ec091dc4a6a7854e7685ea2895008c"
 
-nativescript-ng2-fonticon@^1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/nativescript-ng2-fonticon/-/nativescript-ng2-fonticon-1.3.4.tgz#d66f09b0e58c88f7afe527fb1cf36f48e9abc9c8"
+nativescript-ngx-fonticon@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/nativescript-ngx-fonticon/-/nativescript-ngx-fonticon-4.2.0.tgz#0b09736b4d5ca69b68d91e07ff62390311553f2e"
 
 nativescript-pager@^8.0.2:
   version "8.0.2"
@@ -4181,11 +4181,21 @@ nativescript-ui-core@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/nativescript-ui-core/-/nativescript-ui-core-1.0.1.tgz#4767717b926ad61d250a3a80852a6058816e7dd9"
 
+nativescript-ui-listview@^3.5.11:
+  version "3.5.11"
+  resolved "https://registry.yarnpkg.com/nativescript-ui-listview/-/nativescript-ui-listview-3.5.11.tgz#28a801e39aecefa2f288b6b3d406f8531feadafb"
+  dependencies:
+    nativescript-ui-core "^1.0.0"
+
 nativescript-ui-sidedrawer@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/nativescript-ui-sidedrawer/-/nativescript-ui-sidedrawer-4.1.1.tgz#9e5a44d33db837bfbf3a77a707dfa71c63c54c3e"
   dependencies:
     nativescript-ui-core "^1.0.0"
+
+nativescript-web-image-cache@^4.2.6:
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/nativescript-web-image-cache/-/nativescript-web-image-cache-4.2.6.tgz#506265ba2e6e3c8e702482e760ef70d55191c7aa"
 
 nativescript-worker-loader@~0.9.0:
   version "0.9.1"

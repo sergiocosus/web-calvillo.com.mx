@@ -15,8 +15,8 @@ export class Directory extends ImageableModel {
   website_url: string;
   youtube_url: string;
   facebook_url: string;
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
   created_at: string;
   updated_at: string;
   deleted_at: string;

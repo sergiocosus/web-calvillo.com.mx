@@ -1,6 +1,6 @@
 import {
   Component,
-  ElementRef,
+  ElementRef, OnDestroy,
   OnInit,
   QueryList,
   ViewChild,
@@ -31,7 +31,7 @@ import * as app from 'tns-core-modules/application';
   templateUrl: './picture-gallery-page.component.html',
   styleUrls: ['./picture-gallery-page.component.scss']
 })
-export class PictureGalleryPageComponent implements OnInit {
+export class PictureGalleryPageComponent implements OnInit, OnDestroy {
   @ViewChild('scrollView') scrollview: ElementRef;
   @ViewChildren('thumb') thumbsRef: QueryList<ElementRef>;
 
@@ -196,6 +196,11 @@ export class PictureGalleryPageComponent implements OnInit {
     } else {
       this.changeRoutePicture(this.index - 1);
     }
+  }
+
+  ngOnDestroy(): void {
+    // @ts-ignore
+    gc();
   }
 
 }

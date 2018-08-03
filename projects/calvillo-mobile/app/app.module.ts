@@ -15,16 +15,17 @@ import {
 import { environment } from './environment';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
-import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 import { SharedModule } from '~/shared/shared.module';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
 
-
-import { registerElement } from 'nativescript-angular/element-registry';
-registerElement('ImageCacheIt', () => require('nativescript-image-cache-it').ImageCacheIt);
+import {
+  TNSFontIconModule,
+  TNSFontIconService
+} from 'nativescript-ngx-fonticon';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";
+TNSFontIconService.debug = true;
 
 @NgModule({
   bootstrap: [
@@ -36,7 +37,8 @@ registerElement('ImageCacheIt', () => require('nativescript-image-cache-it').Ima
     NativeScriptHttpClientModule,
     NativeScriptUISideDrawerModule,
     TNSFontIconModule.forRoot({
-      'mdi': 'material-design-icons.css'
+      'fa': './assets/font-awesome.css',
+      'mdi': './assets/material-design-icons.css',
     }),
     ApiModule.forRoot({
       apiClientID: environment.apiClientID,
@@ -64,8 +66,6 @@ registerElement('ImageCacheIt', () => require('nativescript-image-cache-it').Ima
     NO_ERRORS_SCHEMA
   ]
 })
-/*
-Pass your application module to the bootstrapModule function located in main.ts to start your app
-*/
+
 export class AppModule {
 }
