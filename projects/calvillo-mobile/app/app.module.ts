@@ -20,12 +20,11 @@ import { SideDrawerService } from '~/shared/services/side-drawer.service';
 
 import {
   TNSFontIconModule,
-  TNSFontIconService
 } from 'nativescript-ngx-fonticon';
 
-// Uncomment and add to NgModule imports if you need to use two-way binding
+require( 'nativescript-orientation' );
+
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";
-TNSFontIconService.debug = true;
 
 @NgModule({
   bootstrap: [

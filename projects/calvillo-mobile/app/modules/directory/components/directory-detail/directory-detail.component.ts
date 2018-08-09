@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Directory } from '@calvillo/api';
 import * as utils from 'utils/utils';
-import { MapView } from 'nativescript-google-maps-sdk';
+import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
 
 @Component({
   selector: 'app-directory-detail',
@@ -11,40 +11,38 @@ import { MapView } from 'nativescript-google-maps-sdk';
 })
 export class DirectoryDetailComponent implements OnInit {
   @ViewChild('mapView') mapViewRef: ElementRef;
+  @Input() directory: Directory;
+
   private mapView: MapView;
 
   onMapReady(event) {
     this.mapView = <MapView>this.mapViewRef.nativeElement;
 
-    console.log('Map Ready');
     this.mapView.latitude  = this.directory.latitude;
     this.mapView.longitude  = this.directory.longitude;
-    this.mapView.zoom  = 11;
+    this.mapView.zoom  = 13;
+    const marker = this.createMarker(this.directory);
 
-    console.log(this.mapView.latitude);
-    console.log(this.mapView.longitude);
-    console.log(this.mapView.zoom);
-  };
+    this.mapView.addMarker(marker);
+  }
 
-  @Input() directory: Directory;
-  @Input() showMap = true;
+  private createMarker(directory: Directory) {
+    const marker = new Marker();
+    marker.position = Position.positionFromLatLng(
+      directory.latitude,
+      directory.longitude
+    );
+    marker.title = this.directory.title;
+    marker.draggable = false;
 
-  constructor(/*private dialog: MatDialog*/) {
+    return marker;
+  }
+
+  constructor() {
   }
 
   ngOnInit() {
 
-  }
-
-  openMapModal() {
-    /*
-    const dialog = this.dialog.open(PlaceOnMapModalComponent);
-    dialog.componentInstance.setData(
-      this.directory.longitude,
-      this.directory.latitude,
-      this.directory.title
-    );
-    */
   }
 
   openUrl(url) {

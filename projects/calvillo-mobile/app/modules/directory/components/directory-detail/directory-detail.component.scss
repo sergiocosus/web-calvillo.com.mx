@@ -1,20 +1,72 @@
 @import "../../../../_vars.scss";
 
-FlexboxLayout{
-  .label{
-    flex: 1;
-    margin-right: 10;
-    font-weight: bold;
-  }
 
-  Label:last-child{
-    flex: 4;
+.main{
+  orientation: vertical;
+  WebImage{
+    height: 200;
   }
 }
 
-StackLayout.elements{
+::ng-deep .landscape .main{
+  orientation: horizontal;
+
+  WebImage{
+    height: auto;
+    width: 200;
+    padding: 20;
+  }
+}
+
+.info{
   padding: 5;
-  FlexboxLayout{
-    margin-top: 5;
+
+
+  StackLayout.field{
+    Label{
+      padding-left: 20;
+      font-weight: bold;
+      font-size: 15;
+      z-index: 10;
+    }
+
+    TextView{
+      flex: 1;
+      background-color: white;
+      font-size: 15;
+      text-align: left;
+     // line-height: 15;
+      margin-top: -10;
+    }
+
+    .link{
+      text-decoration: underline;
+    }
   }
 }
+
+
+.buttons{
+  horizontal-align: right;
+
+  .fa{
+    font-size: 25;
+    padding: 10;
+    color: white;
+    border-radius: 10;
+    margin-left: 5;
+    margin-right: 5;
+    width: 45;
+    height: 45;
+    text-align: center;
+  }
+
+  .youtube{
+    background-color: $youtube-color;
+  }
+
+  .facebook{
+    background-color: $fb-color;
+  }
+}
+

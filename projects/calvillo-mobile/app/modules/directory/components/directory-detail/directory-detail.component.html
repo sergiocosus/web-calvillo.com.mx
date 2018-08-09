@@ -1,62 +1,76 @@
-<StackLayout *ngIf="directory">
+<StackLayout *ngIf="directory" class="main">
   <WebImage *ngIf="directory.image_code" stretch="aspectFill"
             placeholder="~/assets/images/Spinner-1s-200px.gif"
             [src]="directory.imageUrl('xs')">
   </WebImage>
-  <HtmlView [html]="directory.description"></HtmlView>
+  <TabView [(ngModel)]="tabSelectedIndex"
+           selectedColor="#FF0000"
+           iosIconRenderingMode="alwaysOriginal">
+    <ScrollView *tabItem="{title: 'Información'}">
+      <StackLayout class="info">
+        <StackLayout class="field"
+                     *ngIf="directory.address && directory.address.length">
+          <Label class="label" text="Dirección"></Label>
+          <TextView editable="false"
+                    [text]="directory.address"></TextView>
+        </StackLayout>
 
-  <StackLayout class="elements">
-    <FlexboxLayout *ngIf="directory.address && directory.address.length">
-      <Label class="label" text="Dirección"></Label>
-      <Label class="content" [text]="directory.address"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout *ngIf="directory.email && directory.email.length">
-      <Label class="label" text="Email"></Label>
-      <Label class="content" [text]="directory.email" (tap)="openUrl('mailto:' + directory.email)"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout *ngIf="directory.phone && directory.phone.length">
-      <Label class="label" text="Teléfono"></Label>
-      <Label class="content" [text]="directory.phone"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout *ngIf="directory.cellphone && directory.cellphone.length">
-      <Label class="label" text="Celular"></Label>
-      <Label class="content" [text]="directory.cellphone"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout *ngIf="directory.website_url && directory.website_url.length">
-      <Label class="far" [text]="'far-3d-rotation' | fonticon"></Label>
+        <StackLayout class="field"
+                     *ngIf="directory.phone && directory.phone.length">
+          <Label class="label" text="Teléfono"></Label>
+          <TextView editable="false"
+                    [text]="directory.phone"></TextView>
+        </StackLayout>
 
-      <Label class="label" text="Sitio web"></Label>
-      <Label class="content" [text]="directory.website_url" (tap)="openUrl(directory.website_url)"></Label>
-    </FlexboxLayout>
-  </StackLayout>
-  <StackLayout class="buttons">
-    <Label class="map"
-           *ngIf=" directory.longitude && directory.latitude"
-           (tap)="openMapModal()">
-      <Label class="mdi" [text]="'mdi-location-on' | fonticon"></Label>
+        <StackLayout class="field"
+                     *ngIf="directory.cellphone && directory.cellphone.length">
+          <Label class="label" text="Celular"></Label>
+          <TextView editable="false"
+                    [text]="directory.cellphone"></TextView>
+        </StackLayout>
 
-      <i class="fa fa-map-marker"></i>
-    </Label>
-    <Label class="facebook"
-           *ngIf="directory.facebook_url && directory.facebook_url.length"
-           (tap)="openUrl(directory.facebook_url)" target="_blank">
-      <Label class="fa" [text]="'fa-facebook' | fonticon"></Label>
-      <!-- TODO icon -->
-    </Label>
-    <Label class="youtube"
-           *ngIf="directory.youtube_url && directory.youtube_url.length"
-           (tap)="openUrl(directory.youtube_url)" target="_blank">
-      <!-- TODO icon -->
-      <Label class="far" [text]="'far-3d-rotation' | fonticon"></Label>
+        <StackLayout class="field"
+                     *ngIf="directory.website_url && directory.website_url.length">
+          <Label class="far"  [text]="'far-3d-rotation' | fonticon"></Label>
 
-    </Label>
+          <Label class="label" text="Sitio web"></Label>
+          <TextView class="link" editable="false"
+                    [text]="directory.website_url" (tap)="openUrl(directory.website_url)"></TextView>
+        </StackLayout>
 
+        <StackLayout class="field"
+                     *ngIf="directory.email && directory.email.length">
+          <Label class="label" text="Email"></Label>
+          <TextView class="link" editable="false"
+                    [text]="directory.email"
+                    (tap)="openUrl('mailto:' + directory.email)"></TextView>
+        </StackLayout>
 
-  </StackLayout>
-  <MapView #mapView [latitude]="directory.latitude"
-           [longitude]="directory.longitude"
-           zoom="11"
-           (mapReady)="onMapReady($event)"></MapView>
+        <StackLayout class="buttons" orientation="horizontal">
+          <Label class="fa facebook" [text]="'fa-facebook' | fonticon"
+                 *ngIf="directory.facebook_url && directory.facebook_url.length"
+                 (tap)="openUrl(directory.facebook_url)" target="_blank">
+          </Label>
 
+          <Label class="fa youtube" [text]="'fa-youtube' | fonticon"
+                 *ngIf="directory.youtube_url && directory.youtube_url.length"
+                 (tap)="openUrl(directory.youtube_url)" target="_blank">
+          </Label>
+        </StackLayout>
+
+        <HtmlView [html]="directory.description"></HtmlView>
+      </StackLayout>
+    </ScrollView>
+
+    <ng-container *ngIf="directory.longitude && directory.latitude">
+      <StackLayout *tabItem="{title: 'Ubicación'}">
+        <MapView #mapView [latitude]="directory.latitude"
+                 [longitude]="directory.longitude"
+                 zoom="11"
+                 (mapReady)="onMapReady($event)"></MapView>
+      </StackLayout>
+    </ng-container>
+
+  </TabView>
 </StackLayout>
 
