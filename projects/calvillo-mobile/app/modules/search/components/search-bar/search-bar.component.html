@@ -1,7 +1,8 @@
-<SearchBar row="0" [hint]="placeholder"
+<SearchBar [hint]="placeholder"
+           [class.searched]="results?.length"
            [formControl]="formControl"
            (submit)="onSubmit($event)"></SearchBar>
-<GridLayout rows="*">
+<GridLayout  *ngIf="results?.length">
   <ListView row="1" [items]="results"
             [iosEstimatedRowHeight]="0"
             (itemTap)="onTap($event)"

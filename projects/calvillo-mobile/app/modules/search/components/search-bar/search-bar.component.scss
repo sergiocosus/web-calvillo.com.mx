@@ -1,5 +1,17 @@
 
+SearchBar{
+  background-color: white;
+  margin-bottom: 200;
+  margin-top: 10;
+  height: 50;
+}
+
+.searched{
+  margin-bottom: 10;
+}
+
 FlexboxLayout{
+  flex: 1;
   align-items: center;
   WebImage{
     flex: 0;
@@ -23,3 +35,5 @@ GridLayout{
 ListView{
   background-color: white;
 }
+
+

@@ -16,9 +16,12 @@ import {
   SwipeDirection,
   SwipeGestureEventData
 } from 'tns-core-modules/ui/gestures';
+import GoogleMapsUtils = require('nativescript-google-maps-utils')
+
 import * as geolocation from 'nativescript-geolocation';
 import { Accuracy } from 'ui/enums';
 
+var GoogleMaps = require('nativescript-google-maps-sdk');
 
 const timeElapsed = defer(() => {
   const start = animationFrame.now();
@@ -73,22 +76,28 @@ export class DirectoryMapComponent implements OnInit {
       categories => this.categories = categories
     );
 
+    // Not working
+    /*
     setTimeout(() => {
       geolocation.enableLocationRequest();
     }, 1000)
-
+    */
 
   }
 
   onMapReady(event) {
     this.mapView = <MapView>this.mapViewRef.nativeElement;
 
-    this.categories.forEach(category => {
-      category.directories.forEach(
-        directory => this.mapView.addMarker(this.createMarker(directory))
-      );
-    });
+    // const markers = [];
+    this.addAllMarkers();
 
+    // This is not working
+    // GoogleMapsUtils.setupMarkerCluster(this.mapView, markers, {});
+
+    this.setDefaultPosition();
+
+    // Not working
+    /*
     setInterval(10000, () => {
       console.log('a');
       if (geolocation.isEnabled()) {
@@ -103,10 +112,24 @@ export class DirectoryMapComponent implements OnInit {
           console.log(location.latitude);
         });
       }
-
     });
+    */
 
-    this.setDefaultPosition();
+
+  }
+
+  private addAllMarkers() {
+    this.mapView.removeAllMarkers();
+    this.categories.forEach(category => {
+      this.addDirectoryMarker(category.directories)
+    });
+  }
+
+  addDirectoryMarker(directories: Directory[]) {
+    directories.forEach(
+      // directory => markers.push(this.createMarker(directory))
+      directory => this.mapView.addMarker(this.createMarker(directory))
+    );
   }
 
   onMarkerSelect(args) {
@@ -122,11 +145,15 @@ export class DirectoryMapComponent implements OnInit {
     this.mapView.zoom = 13;
   }
 
-  select(category: Category) {
+  selectCategory(category: Category) {
     this.selectedCategory = category;
     this.directoriesWithLocation = this.selectedCategory.directories.filter(
       directory => directory.longitude
     );
+
+    this.mapView.removeAllMarkers();
+    this.addDirectoryMarker(category.directories);
+
     this.animateCategoriesList();
   }
 
@@ -154,6 +181,7 @@ export class DirectoryMapComponent implements OnInit {
     this.infoExpanded = true;
     this.setDefaultPosition();
     this.animateCategoriesList();
+    this.addAllMarkers();
   }
 
   toggleTop() {
@@ -201,7 +229,7 @@ export class DirectoryMapComponent implements OnInit {
   }
 
   private animateTop() {
-    const height = 60;
+    const height = 80;
 
     elasticAnimation(1000,  height)
       .subscribe(curFrame => {

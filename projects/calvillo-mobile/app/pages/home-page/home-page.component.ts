@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Page } from 'tns-core-modules/ui/page';
 
 @Component({
   selector: 'app-home-page',
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private page: Page) {}
 
   ngOnInit() {
+    this.page.backgroundImage = '~/assets/images/landing-page-background-night.jpg';
   }
 
 }

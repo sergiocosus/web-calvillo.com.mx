@@ -7,7 +7,7 @@
                           itemInsertAnimation="Default"
                           itemDeleteAnimation="Default"></ListViewLinearLayout>
     <ng-template tkListItemTemplate let-category="item" let-i="index">
-      <FlexboxLayout (tap)="select(category)" [class.active]="index === i"
+      <FlexboxLayout (tap)="selectCategory(category)" [class.active]="index === i"
                      class="item list-group-item">
         <WebImage *ngIf="category.image_code" stretch="aspectFill"
                   placeholder="~/assets/images/Spinner-1s-200px.gif"
@@ -51,6 +51,7 @@
                     placeholder="~/assets/images/Spinner-1s-200px.gif"
                     [src]="directory.imageUrl('xs')">
           </WebImage>
+          <Label [text]="directory.title"></Label>
         </FlexboxLayout>
       </ng-template>
     </RadListView>
