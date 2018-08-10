@@ -1,6 +1,7 @@
 <GridLayout rows="auto, auto,  *, auto" columns="*" class="container">
-  <RadListView row="0" col="0" class="directories"
-               *ngIf="!selectedCategory"
+  <RadListView row="0" col="0"
+               #categoriesList
+               class="categories"
                [items]="categories">
     <ListViewLinearLayout tkListViewLayout scrollDirection="Horizontal"
                           itemInsertAnimation="Default"
@@ -12,10 +13,14 @@
                   placeholder="~/assets/images/Spinner-1s-200px.gif"
                   [src]="category.imageUrl('xs')">
         </WebImage>
+        <Label [text]="category.title"></Label>
       </FlexboxLayout>
     </ng-template>
   </RadListView>
-  <StackLayout *ngIf="selectedCategory" class="selected-category">
+
+  <StackLayout *ngIf="selectedCategory"
+               row="1" col="0"
+               class="selected-category">
     <FlexboxLayout orientation="horizontal" class="category">
       <Label class="fa back" [text]="'fa-chevron-circle-left' | fonticon"
              (tap)="unSelect()" target="_blank">
@@ -25,9 +30,17 @@
                 [src]="selectedCategory.imageUrl('xs')">
       </WebImage>
       <Label [text]="selectedCategory.title"></Label>
+
+      <Label class="spacer"></Label>
+      <Label class="fa top-toggle"
+             (tap)="toggleTop()"
+             [text]="(topExpanded ? 'fa-angle-up' : 'fa-angle-down') | fonticon">
+      </Label>
     </FlexboxLayout>
-    <RadListView row="1" col="0" class="directories"
-                 [items]="selectedCategory?.directories">
+
+    <RadListView class="directories"
+                 #directoriesList
+                 [items]="directoriesWithLocation">
       <ListViewLinearLayout tkListViewLayout scrollDirection="Horizontal"
                             itemInsertAnimation="Default"
                             itemDeleteAnimation="Default"></ListViewLinearLayout>
@@ -48,9 +61,20 @@
            row="2" col="0"
            (markerSelect)="onMarkerSelect($event)"
            (mapReady)="onMapReady($event)"></MapView>
-  <ScrollView row="3" col="0"
-              *ngIf="selectedDirectory"
-              class="directory-data">
-    <app-directory-data [directory]="selectedDirectory"></app-directory-data>
-  </ScrollView>
+
+  <StackLayout row="3" col="0" *ngIf="selectedDirectory"
+               class="directory-data"
+               (swipe)="swipe($event)">
+    <FlexboxLayout class="top">
+      <Label class="title" [text]="selectedDirectory.title"></Label>
+      <Label class="fa info-toggle"
+             (tap)="toggle()"
+             [text]="(infoExpanded ? 'fa-angle-down' : 'fa-angle-up') | fonticon">
+      </Label>
+    </FlexboxLayout>
+    <ScrollView #scrollData class="scroll-data">
+      <app-directory-data [directory]="selectedDirectory"></app-directory-data>
+    </ScrollView>
+  </StackLayout>
+
 </GridLayout>

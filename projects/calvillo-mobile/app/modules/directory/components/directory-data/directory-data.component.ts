@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Directory } from '@calvillo/api';
+import * as utils from 'tns-core-modules/utils/utils';
 
 @Component({
   selector: 'app-directory-data',
@@ -9,9 +10,13 @@ import { Directory } from '@calvillo/api';
 })
 export class DirectoryDataComponent implements OnInit {
   @Input() directory: Directory;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  openUrl(url) {
+    utils.openUrl(url);
+  }
 }

@@ -4130,6 +4130,28 @@ nativescript-dev-webpack@^0.14.4:
     webpack-cli "~2.1.3"
     webpack-sources "~1.1.0"
 
+nativescript-dom@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/nativescript-dom/-/nativescript-dom-2.0.2.tgz#846b9a419ab1a4c6809ff4ab52fab5e325c88545"
+
+nativescript-drop-down@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/nativescript-drop-down/-/nativescript-drop-down-4.0.1.tgz#46b85ea1fd28f4b2bf2ed2f3dcfb59cca7553c62"
+
+nativescript-geolocation@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/nativescript-geolocation/-/nativescript-geolocation-4.3.0.tgz#f03682bc955e6e4075c9c86940b2e9d6367e0142"
+  dependencies:
+    nativescript-permissions "~1.2.3"
+
+nativescript-globalevents@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/nativescript-globalevents/-/nativescript-globalevents-1.2.2.tgz#d3c7bb375795f82198354b212515d5c76d8ebdf2"
+
+nativescript-google-maps-sdk@^2.6.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/nativescript-google-maps-sdk/-/nativescript-google-maps-sdk-2.6.1.tgz#9fe896e24affc5efedcba0d72580e87ebdd99306"
+
 nativescript-hook@0.2.4, nativescript-hook@^0.2.0:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/nativescript-hook/-/nativescript-hook-0.2.4.tgz#e591e1d9ad415a8b4f3309c15731577af44a3dd4"
@@ -4157,6 +4179,13 @@ nativescript-ngx-fonticon@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/nativescript-ngx-fonticon/-/nativescript-ngx-fonticon-4.2.0.tgz#0b09736b4d5ca69b68d91e07ff62390311553f2e"
 
+nativescript-orientation@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/nativescript-orientation/-/nativescript-orientation-2.2.1.tgz#d8619e078010413fbfb2b245621b62a7b13d6153"
+  dependencies:
+    nativescript-dom "^2.0.0"
+    nativescript-globalevents "^1.2.1"
+
 nativescript-pager@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/nativescript-pager/-/nativescript-pager-8.0.2.tgz#69f6c09778f9e216a7a929b17dc7a46553e76170"
@@ -4164,6 +4193,10 @@ nativescript-pager@^8.0.2:
 nativescript-performance-monitor@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/nativescript-performance-monitor/-/nativescript-performance-monitor-1.0.0.tgz#44643ad24996cd03a2253b3afcb73855cd77a810"
+
+nativescript-permissions@~1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/nativescript-permissions/-/nativescript-permissions-1.2.3.tgz#e3e65545f98fe488dd5578f7ff90ebae3088e700"
 
 nativescript-social-share@^1.5.0:
   version "1.5.0"
