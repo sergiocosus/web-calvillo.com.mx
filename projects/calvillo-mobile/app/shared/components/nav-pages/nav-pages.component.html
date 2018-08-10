@@ -1,27 +1,27 @@
-<FlexboxLayout nsRouterLink="/items" nsRouterLinkActive>
+<FlexboxLayout nsRouterLinkActive
+               nsRouterLink="/" (tap)="close()">
   <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
-  <Label text="Página Principal"  [nsRouterLink]="['/']"
-         (tap)="close()"
+  <Label text="Página Principal"
          class="sideLabel"></Label>
 </FlexboxLayout>
 
-<FlexboxLayout nsRouterLink="/map" nsRouterLinkActive>
+<FlexboxLayout  nsRouterLinkActive
+                [nsRouterLink]="['/galeria/', mainCategoryLink]" (tap)="close()">
   <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
-  <Label text="Galería" [nsRouterLink]="['/galeria/', mainCategoryLink ]"
-         (tap)="close()"
+  <Label text="Galería"
          class="sideLabel"></Label>
 </FlexboxLayout>
 
-<FlexboxLayout nsRouterLink="/map" nsRouterLinkActive>
+<FlexboxLayout nsRouterLinkActive
+               nsRouterLink="/mapa/" (tap)="close()">
   <Label class="mdi" [text]="'mdi-place' | fonticon"></Label>
   <Label text="Mapa"
-         (tap)="close()"
          class="sideLabel"></Label>
 </FlexboxLayout>
 
-<FlexboxLayout nsRouterLink="/contact" nsRouterLinkActive>
+<FlexboxLayout nsRouterLinkActive
+               nsRouterLink="/contact/" (tap)="close()">
   <Label class="mdi" [text]="'mdi-contact-mail' | fonticon"></Label>
   <Label text="Contacto"
-         (tap)="close()"
          class="sideLabel sideLightGrayLabel"></Label>
 </FlexboxLayout>

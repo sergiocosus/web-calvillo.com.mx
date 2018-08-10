@@ -1,0 +1,54 @@
+@import "../../../../_vars.scss";
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+
+  .directories{
+    WebImage{
+      margin: 5;
+      width: 50;
+      height: 50;
+      &.active{
+        border-color: $primary;
+        border-width: 0 0 2 0;
+      }
+    }
+  }
+
+}
+
+
+.selected-category{
+  .category{
+    background-color: rgba($primary, .9);
+    align-items: center;
+    color: white;
+    font-weight: bold;
+
+    .back{
+      font-size: 35;
+      padding: 5;
+      margin: 5;
+      color: white;
+    }
+
+    WebImage{
+      margin: 5;
+      width: 40;
+      height: 40;
+    }
+  }
+}
+
+MapView{
+  flex: 1;
+}
+
+.directory-data{
+
+  height: 200;
+}

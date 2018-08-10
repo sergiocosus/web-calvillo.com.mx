@@ -10,6 +10,7 @@ import {
 import { PagerModule } from 'nativescript-pager/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
+import { DropDownModule } from 'nativescript-drop-down/angular';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
     ActionBarComponent,
     TNSFontIconModule,
     NavPagesComponent,
-    PagerModule
+    PagerModule,
+    DropDownModule,
   ],
 })
 export class SharedModule {

@@ -23,14 +23,15 @@ registerElement('MapView', () => require('nativescript-google-maps-sdk').MapView
 })
 
 export class AppComponent implements AfterViewInit, OnInit {
+  @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+  private drawer: RadSideDrawer;
+
   constructor(private _changeDetectionRef: ChangeDetectorRef,
               private fonticon: TNSFontIconService,
               private sideDrawerService: SideDrawerService) {
     initializeOnAngular();
   }
 
-  @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
-  private drawer: RadSideDrawer;
 
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;

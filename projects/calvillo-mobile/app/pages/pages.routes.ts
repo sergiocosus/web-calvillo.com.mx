@@ -18,4 +18,8 @@ export const PagesRoutes: Routes = [
     path: '',
     loadChildren: './pages/directory-page/directory-page.module#DirectoryPageModule'
   },
+  {
+    path: '',
+    loadChildren: './pages/map-page/map-page.module#MapPageModule'
+  },
 ];

@@ -1,6 +1,8 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
 
-<GridLayout [height]="deviceHeight" rows="auto, *" columns="*" class="container" *ngIf="category">
+<GridLayout [height]="deviceHeight"
+            rows="auto, *" columns="*"
+            class="container" *ngIf="category">
   <RadListView row="0" col="0" class="pictures" [items]="category?.pictures">
     <ListViewLinearLayout tkListViewLayout scrollDirection="Horizontal"
                           itemInsertAnimation="Default"
