@@ -1,18 +1,19 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
 
-<GridLayout [height]="deviceHeight"
+<GridLayout class="container" [height]="deviceHeight"
             rows="auto, *" columns="*"
-            class="container" *ngIf="category">
-  <RadListView row="0" col="0" class="pictures" [items]="category?.pictures">
+             *ngIf="category">
+  <RadListView #listView row="0" col="0" class="pictures" [items]="category?.pictures">
     <ListViewLinearLayout tkListViewLayout scrollDirection="Horizontal"
                           itemInsertAnimation="Default"
                           itemDeleteAnimation="Default"></ListViewLinearLayout>
     <ng-template tkListItemTemplate let-pic="item" let-i="index">
-      <FlexboxLayout (tap)="select(pic)" [class.active]="index === i"
+      <FlexboxLayout (tap)="select(pic)"
                      class="item list-group-item">
-        <WebImage *ngIf="pic.image_code" stretch="aspectFill"
+        <WebImage *ngIf="pic?.image_code" stretch="aspectFill"
+                  [class.active]="index === i"
                   placeholder="~/assets/images/Spinner-1s-200px.gif"
-                  [src]="pic.imageUrl('xs')">
+                  [src]="pic?.imageUrl('xs')">
         </WebImage>
       </FlexboxLayout>
     </ng-template>
@@ -26,11 +27,7 @@
           <StackLayout>
             <AbsoluteLayout class="pager-item">
               <Label class="title" [text]="picture.title"></Label>
-              <Button (tap)="share()" text="Share">
-                <FormattedString>
-                  <Span class="mdi" [text]="'mdi-share' | fonticon"></Span>
-                </FormattedString>
-              </Button>
+
               <ImageZoom loadMode="async"
                          [src]="picture.imageUrl('lg')"
                          maxZoom="5"

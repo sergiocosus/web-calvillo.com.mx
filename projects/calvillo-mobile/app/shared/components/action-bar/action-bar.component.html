@@ -1,4 +1,9 @@
 <ActionBar [title]="title" class="action-bar">
-    <NavigationButton icon="res://baseline_menu_white_24"
+  <NavigationButton icon="res://baseline_menu_white_24"
                       (tap)="open()"></NavigationButton>
+
+  <ActionItem (tap)="onShare()"
+              icon="res://baseline_share_white_24"
+              ios.systemIcon="9" ios.position="left"
+              android.position="actionBar"></ActionItem>
 </ActionBar>

@@ -2,9 +2,7 @@ import {
   Component,
   ElementRef, OnDestroy,
   OnInit,
-  QueryList,
   ViewChild,
-  ViewChildren
 } from '@angular/core';
 import { finalize, switchMap } from 'rxjs/operators';
 import {
@@ -16,13 +14,9 @@ import {
 import { PageRoute, RouterExtensions } from 'nativescript-angular/router';
 
 import * as _ from 'lodash';
-import { ScrollView } from 'tns-core-modules/ui/scroll-view';
-import { FlexboxLayout } from 'tns-core-modules/ui/layouts/flexbox-layout';
-import * as SocialShare from 'nativescript-social-share';
 import {screen} from 'platform';
-import { NavigationEnd, Router } from '@angular/router';
-import { environment } from '~/environment';
 import * as app from 'tns-core-modules/application';
+import { RadListView } from 'nativescript-ui-listview';
 
 
 @Component({
@@ -32,8 +26,7 @@ import * as app from 'tns-core-modules/application';
   styleUrls: ['./picture-gallery-page.component.scss']
 })
 export class PictureGalleryPageComponent implements OnInit, OnDestroy {
-  @ViewChild('scrollView') scrollview: ElementRef;
-  @ViewChildren('thumb') thumbsRef: QueryList<ElementRef>;
+  @ViewChild('listView') listView: ElementRef;
 
   private categoryLink: string | null;
   private loading: boolean;
@@ -44,7 +37,6 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
   pictureLength: number;
   private picture: Picture;
   private oldIndex: number;
-  private currentRoute: string;
   private deviceHeight: number;
 
   get currentPicture(): Picture {
@@ -56,14 +48,9 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
   constructor(private categoryService: CategoryService,
               private pictureService: PictureService,
               private pageRoute: PageRoute,
-              private routerExtensions: RouterExtensions,
-              private router: Router
+              private routerExtensions: RouterExtensions
   ) {
     this.deviceHeight = screen.mainScreen.heightDIPs;
-
-    this.router.events.subscribe((e: NavigationEnd) => {
-      this.currentRoute = e.url;
-    });
 
     this.pageRoute.activatedRoute.pipe(
       switchMap(activatedRoute => activatedRoute.paramMap)
@@ -97,19 +84,9 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
   }
 
   scrollToIndex(index: number): void {
-    if (!this.thumbsRef.length) {
-      return;
-    }
-    let scrollView = <ScrollView>this.scrollview.nativeElement;
+    const scrollView = <RadListView>this.listView.nativeElement;
 
-    const firstPictureRef = <FlexboxLayout>this.thumbsRef.first.nativeElement;
-    const pictureRef = <FlexboxLayout>this.thumbsRef
-      .find((el, currentIndex) => index === currentIndex).nativeElement;
-
-    scrollView.scrollToHorizontalOffset(
-      pictureRef.getLocationRelativeTo(firstPictureRef).x,
-      true
-    );
+    scrollView.scrollToIndex(index, true);
   }
 
   private loadCategory() {
@@ -121,7 +98,8 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
       category => {
         this.category = category;
         this.pictureLength = this.category.pictures.length;
-        this.changeRoutePicture(0);
+        this.loadPicture();
+       // this.changeRoutePicture(0);
       }
     );
   }
@@ -131,7 +109,7 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const index = _.findIndex(this.category.pictures, {link: this.pictureLink});
+    const index = _.findIndex(this.category.pictures, {link: this.pictureLink}) || 0;
     if (!index) {
       return;
     }
@@ -168,18 +146,15 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
     }
 
     this.changeRoutePicture($event.value)
-      .then(() => this.scrollToIndex(this.index));
+      .then(() => {
+        this.scrollToIndex(this.index);
+        global.gc();
+      });
   }
 
 
   changePicture() {
     this.oldIndex = this.index;
-  }
-
-  share() {
-    const url = environment.webUrl + this.routerExtensions.router.url;
-    console.log(url);
-    SocialShare.shareUrl(url, '¡Comparte a Calvilo!');
   }
 
   nextPicture() {

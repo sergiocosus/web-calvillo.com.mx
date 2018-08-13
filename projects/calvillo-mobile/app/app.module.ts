@@ -3,8 +3,6 @@ import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 
-import { ItemsComponent } from './item/items.component';
-import { ItemDetailComponent } from './item/item-detail.component';
 import {
   ApiHttp,
   ApiModule,
@@ -49,8 +47,6 @@ require( 'nativescript-orientation' );
   ],
   declarations: [
     AppComponent,
-    ItemsComponent,
-    ItemDetailComponent
   ],
   providers: [
     CategoryService,
