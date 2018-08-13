@@ -11,6 +11,8 @@ import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
 import { initializeOnAngular } from 'nativescript-web-image-cache';
 import { registerElement } from 'nativescript-angular/element-registry';
+import { Router } from '@angular/router';
+import * as utils from 'tns-core-modules/utils/utils';
 
 require('nativescript-localstorage');
 
@@ -28,7 +30,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   constructor(private _changeDetectionRef: ChangeDetectorRef,
               private fonticon: TNSFontIconService,
-              private sideDrawerService: SideDrawerService) {
+              private sideDrawerService: SideDrawerService,
+              private router: Router) {
     initializeOnAngular();
   }
 
@@ -41,6 +44,9 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
+    this.router.events.subscribe(() => {
+      utils.ad.dismissSoftInput();
+    })
   }
 
 

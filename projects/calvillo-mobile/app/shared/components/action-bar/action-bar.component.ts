@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
+import * as utils from 'utils/utils';
 
 @Component({
   selector: 'app-action-bar',
@@ -15,6 +16,8 @@ export class ActionBarComponent implements OnInit {
   }
 
   open() {
+    utils.ad.dismissSoftInput();
+
     this.sideDrawerService.open();
   }
 
