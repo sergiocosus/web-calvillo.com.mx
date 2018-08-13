@@ -33,13 +33,13 @@
     tslib "^1.9.0"
 
 "@angular/compiler-cli@~6.1.0-beta.3":
-  version "6.1.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-6.1.0-rc.3.tgz#8c80f9f7c0df32080cdc129bd11ffe749e65841f"
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-6.1.2.tgz#00829df848210a8a06c3641428f36525fdf41e53"
   dependencies:
     chokidar "^1.4.2"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
-    tsickle "^0.30.0"
+    tsickle "^0.32.1"
 
 "@angular/compiler@~6.0.0":
   version "6.0.9"
@@ -122,12 +122,12 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
 "@types/lodash@^4.14.113":
-  version "4.14.113"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.113.tgz#1d1cb063f17fec4cc46f1a90d978ebf441113061"
+  version "4.14.116"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
 
 "@types/node@^10.1.4":
-  version "10.5.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.4.tgz#6eccc158504357d1da91434d75e86acde94bb10b"
+  version "10.5.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.8.tgz#6f14ccecad1d19332f063a6a764f8907801fece0"
 
 abbrev@1:
   version "1.1.1"
@@ -256,7 +256,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-app-root-path@^2.0.1:
+app-root-path@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.1.0.tgz#98bf6599327ecea199309866e8140368fd2e646a"
 
@@ -1212,8 +1212,8 @@ browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7.6:
     electron-to-chromium "^1.2.7"
 
 buffer-from@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.0.tgz#87fcaa3a298358e0ade6e442cfce840740d1ad04"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
 
 buffer-xor@^1.0.3:
   version "1.0.3"
@@ -1556,10 +1556,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
 codelyzer@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-4.4.2.tgz#af11fed6ddf9362ed5b174495467fb7315306fb1"
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-4.4.3.tgz#367841b9a8dba94fbae55b1606f0c4321593c72e"
   dependencies:
-    app-root-path "^2.0.1"
+    app-root-path "^2.1.0"
     css-selector-tokenizer "^0.7.0"
     cssauron "^1.4.0"
     semver-dsl "^1.0.1"
@@ -3982,8 +3982,8 @@ minimist@^1.1.3, minimist@^1.2.0:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
 minipass@^2.2.1, minipass@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.3.tgz#a7dcc8b7b833f5d368759cce544dccb55f50f233"
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.4.tgz#4768d7605ed6194d6d576169b9e12ef71e9d9957"
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
@@ -4148,9 +4148,15 @@ nativescript-globalevents@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/nativescript-globalevents/-/nativescript-globalevents-1.2.2.tgz#d3c7bb375795f82198354b212515d5c76d8ebdf2"
 
-nativescript-google-maps-sdk@^2.6.0:
+nativescript-google-maps-sdk@*, nativescript-google-maps-sdk@^2.6.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/nativescript-google-maps-sdk/-/nativescript-google-maps-sdk-2.6.1.tgz#9fe896e24affc5efedcba0d72580e87ebdd99306"
+
+nativescript-google-maps-utils@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/nativescript-google-maps-utils/-/nativescript-google-maps-utils-0.1.3.tgz#9c9d89166f3f80e47b9b406f01b4ccc1cea44184"
+  dependencies:
+    nativescript-google-maps-sdk "*"
 
 nativescript-hook@0.2.4, nativescript-hook@^0.2.0:
   version "0.2.4"
@@ -4221,8 +4227,8 @@ nativescript-ui-listview@^3.5.11:
     nativescript-ui-core "^1.0.0"
 
 nativescript-ui-sidedrawer@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/nativescript-ui-sidedrawer/-/nativescript-ui-sidedrawer-4.1.1.tgz#9e5a44d33db837bfbf3a77a707dfa71c63c54c3e"
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/nativescript-ui-sidedrawer/-/nativescript-ui-sidedrawer-4.2.1.tgz#edfba9a354708243c7bfa4c6272500d8d05e2037"
   dependencies:
     nativescript-ui-core "^1.0.0"
 
@@ -4238,8 +4244,8 @@ nativescript-worker-loader@~0.9.0:
     schema-utils "^0.3.0"
 
 needle@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/needle/-/needle-2.2.1.tgz#b5e325bd3aae8c2678902fa296f729455d1d3a7d"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/needle/-/needle-2.2.2.tgz#1120ca4c41f2fcc6976fd28a8968afe239929418"
   dependencies:
     debug "^2.1.2"
     iconv-lite "^0.4.4"
@@ -4402,12 +4408,12 @@ normalize-url@^1.4.0:
     sort-keys "^1.0.0"
 
 npm-bundled@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.3.tgz#7e71703d973af3370a9591bafe3a63aca0be2308"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.5.tgz#3c1732b7ba936b3a10325aef616467c0ccbcc979"
 
 npm-packlist@^1.1.6:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.1.10.tgz#1039db9e985727e464df066f4cf0ab6ef85c398a"
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.1.11.tgz#84e8c683cbe7867d34b1d357d893ce29e28a02de"
   dependencies:
     ignore-walk "^3.0.1"
     npm-bundled "^1.0.1"
@@ -5140,8 +5146,8 @@ querystring@0.2.0:
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
 randomatic@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.0.0.tgz#d35490030eb4f7578de292ce6dfb04a91a128923"
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.1.0.tgz#36f2ca708e9e567f5ed2ec01949026d50aa10116"
   dependencies:
     is-number "^4.0.0"
     kind-of "^6.0.0"
@@ -5869,7 +5875,14 @@ source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.5.0, source-map-support@^0.5.3:
+source-map-support@^0.5.0:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.8.tgz#04f5581713a8a65612d0175fbf3a01f80a162613"
+  dependencies:
+    buffer-from "^1.0.0"
+    source-map "^0.6.0"
+
+source-map-support@^0.5.3:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.6.tgz#4435cee46b1aab62b8e8610ce60f788091c51c13"
   dependencies:
@@ -6135,8 +6148,8 @@ tar@^2.0.0:
     inherits "2"
 
 tar@^4:
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.4.tgz#ec8409fae9f665a4355cc3b4087d0820232bb8cd"
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.6.tgz#63110f09c00b4e60ac8bcfe1bf3c8660235fbc9b"
   dependencies:
     chownr "^1.0.1"
     fs-minipass "^1.2.5"
@@ -6188,19 +6201,19 @@ tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
-tns-core-modules-widgets@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/tns-core-modules-widgets/-/tns-core-modules-widgets-4.1.0.tgz#bfb706fb5f246d2f44e7c652dbe4564fdf9c0261"
+tns-core-modules-widgets@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/tns-core-modules-widgets/-/tns-core-modules-widgets-4.2.0.tgz#cf340d279071def8ac60bcef6ab931fdd6ead8f7"
 
-tns-core-modules@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/tns-core-modules/-/tns-core-modules-4.1.1.tgz#df33f47d278de7e123a88ccbeea385131d548002"
+tns-core-modules@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/tns-core-modules/-/tns-core-modules-4.2.0.tgz#27552eea5702cd8ade8d154af306b74aaa7112a3"
   dependencies:
-    tns-core-modules-widgets "4.1.0"
+    tns-core-modules-widgets "4.2.0"
 
 tns-platform-declarations@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/tns-platform-declarations/-/tns-platform-declarations-4.1.0.tgz#58c6deca64e4715850be2a8897db58003fd06bf7"
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/tns-platform-declarations/-/tns-platform-declarations-4.2.0.tgz#34360a75e837f64c366daeaff56953b66f84e49e"
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
@@ -6260,9 +6273,9 @@ tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
 
-tsickle@^0.30.0:
-  version "0.30.0"
-  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.30.0.tgz#7941146ae92933854a8742fa1047606c4536649b"
+tsickle@^0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.32.1.tgz#f16e94ba80b32fc9ebe320dc94fbc2ca7f3521a5"
   dependencies:
     jasmine-diff "^0.1.3"
     minimist "^1.2.0"
