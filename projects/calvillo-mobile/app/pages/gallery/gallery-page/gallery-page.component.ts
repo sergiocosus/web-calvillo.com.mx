@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { Category, CategoryService, Directory, Picture } from '@calvillo/api';
 import { finalize, switchMap } from 'rxjs/operators';
 import { PageRoute } from 'nativescript-angular/router';
@@ -12,12 +18,15 @@ import { View } from 'tns-core-modules/ui/core/view';
   styleUrls: ['./gallery-page.component.scss']
 })
 export class GalleryPageComponent implements OnInit, OnDestroy {
+  @ViewChild('htmlView') htmlView: ElementRef;
+
   categoryLink: string;
   category: Category;
 
   loading = true;
   categoryImageLoading: boolean;
   results: (Directory | Category | Picture)[];
+  infoExpanded: boolean = false;
 
   constructor(private categoryService: CategoryService,
               private pageRoute: PageRoute,
@@ -45,6 +54,7 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
   }
 
   onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
@@ -73,7 +83,10 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // @ts-ignore
-    gc();
+    global.gc();
+  }
+
+  toggle() {
+    this.infoExpanded = !this.infoExpanded;
   }
 }

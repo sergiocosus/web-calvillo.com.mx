@@ -1,4 +1,9 @@
 $primary: #D31841;
+
+$primary-dark: darken($primary, 10%);
+
+$primary-dark-alpha: rgba($primary-dark, .5);
+
 $thumbnail-label-background-color: #4E4E4E;
 
 $fb-color: #4267b2;

@@ -58,16 +58,32 @@
       top: 30;
       font-size: 20;
       padding: 5;
-      background-color: rgba(0, 0, 0, .25);
+      background-color: $primary-dark-alpha;
       color: white;
       text-align: center;
     }
   }
 }
 
-
 HtmlView{
   flex: 0;
   padding: 10;
   margin: 10;
+}
+
+FlexboxLayout{
+  justify-content: flex-end;
+}
+
+.actions{
+  top: 75;
+  z-index: 100;
+  width: 100%;
+
+  Button{
+    background-color: $primary-dark-alpha;
+    width: 70;
+    font-size: 25;
+    color: white;
+  }
 }

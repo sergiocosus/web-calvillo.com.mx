@@ -1,34 +1,49 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
+
 <StackLayout>
+  <ActivityIndicator *ngIf="!results">
+  </ActivityIndicator>
+
   <RadListView *ngIf="results"
                [items]="results"
                #scrollView
                (scroll)="onScroll($event, scrollView, topView)"
                [itemTemplateSelector]="getType">
+
     <ListViewGridLayout tkListViewLayout
                         scrollDirection='Vertical'
                         spanCount="2"></ListViewGridLayout>
-    <ng-template tkListViewHeader >
-      <StackLayout class="top-view"
+
+    <StackLayout *tkListViewHeader>
+      <AbsoluteLayout class="top-view"
                    [height]="category?.image_code ? 250 : 0"
                    [style.backgroundImage]=" category?.imageUrl('sm')">
+      </AbsoluteLayout>
 
-        <StackLayout orientation="horizontal">
+      <FlexboxLayout class="toggle-description" *ngIf="category?.description?.trim().length"
+                     (tap)="toggle()">
+        <Label class="title" text="Más información"></Label>
+        <Label class="fa info-toggle"
+               [text]="(!infoExpanded ? 'fa-angle-down' : 'fa-angle-up') | fonticon">
+        </Label>
+      </FlexboxLayout>
 
-        </StackLayout>
-      </StackLayout>
-    </ng-template>
+      <HtmlView #htmlView *ngIf="infoExpanded"
+                class="category-data"
+                [html]="category?.description"></HtmlView>
+    </StackLayout>
 
     <ng-template tkTemplateKey="category" let-item="item">
       <FlexboxLayout class="categories">
         <app-category
+          *ngIf="item"
           [category]="item"></app-category>
       </FlexboxLayout>
     </ng-template>
 
     <ng-template tkTemplateKey="picture" let-item="item">
       <FlexboxLayout class="pictures">
-        <app-picture-item
+        <app-picture-item *ngIf="item && category"
           [category]="category"
           [picture]="item"></app-picture-item>
       </FlexboxLayout>
@@ -36,37 +51,10 @@
 
     <ng-template tkTemplateKey="directory" let-item="item">
       <FlexboxLayout class="directories">
-        <app-directory-item
+        <app-directory-item *ngIf="item && category"
           [category]="category"
           [directory]="item"></app-directory-item>
       </FlexboxLayout>
     </ng-template>
   </RadListView>
 </StackLayout>
-
-<!--
-<ScrollView class="page" #scrollView
-            (scroll)="onScroll($event, scrollView, topView)"
-            orientation="vertical">
-  <StackLayout>
-    <StackLayout #topView
-                 class="top-view"
-                 [height]="category?.image_code ? 250 : 0"
-                 [style.backgroundImage]=" category?.imageUrl('sm')">
-
-      <StackLayout orientation="horizontal">
-
-      </StackLayout>
-    </StackLayout>
-    <StackLayout class="content">
-      <ActivityIndicator *ngIf="loading"
-                         [busy]="loading"
-                         width="100" height="100"
-                         class="activity-indicator"></ActivityIndicator>
-
-    </StackLayout>
-
-
-  </StackLayout>
-</ScrollView>
--->

@@ -1,8 +1,10 @@
 import {
   Component,
-  ElementRef, OnDestroy,
+  ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import { finalize, switchMap } from 'rxjs/operators';
 import {
@@ -14,9 +16,11 @@ import {
 import { PageRoute, RouterExtensions } from 'nativescript-angular/router';
 
 import * as _ from 'lodash';
-import {screen} from 'platform';
+import { screen } from 'platform';
 import * as app from 'tns-core-modules/application';
 import { RadListView } from 'nativescript-ui-listview';
+import { ModalDialogService } from 'nativescript-angular';
+import { PictureMapPageComponent } from '~/pages/picture-gallery-page/picture-map-page/picture-map-page.component';
 
 
 @Component({
@@ -35,20 +39,16 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
 
   index = 0;
   pictureLength: number;
-  private picture: Picture;
+  picture: Picture;
   private oldIndex: number;
   private deviceHeight: number;
-
-  get currentPicture(): Picture {
-    if (this.category && this.category.pictures.length > this.index) {
-      return this.category.pictures[this.index];
-    }
-  }
 
   constructor(private categoryService: CategoryService,
               private pictureService: PictureService,
               private pageRoute: PageRoute,
-              private routerExtensions: RouterExtensions
+              private routerExtensions: RouterExtensions,
+              private modalService: ModalDialogService,
+              private vcRef: ViewContainerRef
   ) {
     this.deviceHeight = screen.mainScreen.heightDIPs;
 
@@ -99,7 +99,7 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
         this.category = category;
         this.pictureLength = this.category.pictures.length;
         this.loadPicture();
-       // this.changeRoutePicture(0);
+        // this.changeRoutePicture(0);
       }
     );
   }
@@ -111,10 +111,12 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
 
     const index = _.findIndex(this.category.pictures, {link: this.pictureLink}) || 0;
     if (!index) {
+      this.picture = null;
       return;
     }
 
     this.picture = this.category.pictures[index];
+
     if (this.oldIndex !== null) {
       this.oldIndex = this.index;
     }
@@ -148,13 +150,22 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
     this.changeRoutePicture($event.value)
       .then(() => {
         this.scrollToIndex(this.index);
-        global.gc();
       });
   }
 
-
   changePicture() {
     this.oldIndex = this.index;
+  }
+
+  showMap() {
+    this.modalService.showModal(PictureMapPageComponent, {
+      viewContainerRef: this.vcRef,
+      context: {picture: this.picture},
+      fullscreen: true
+    })
+      .then((result: string) => {
+        console.log(result);
+      });
   }
 
   nextPicture() {

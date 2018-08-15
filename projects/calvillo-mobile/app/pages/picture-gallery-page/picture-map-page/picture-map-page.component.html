@@ -1,0 +1,7 @@
+<FlexboxLayout>
+  <app-action-bar [title]="picture?.title"></app-action-bar>
+
+  <MapView #mapView *ngIf="picture"
+           (mapReady)="onMapReady($event)"></MapView>
+  <Button text="Cerrar" (tap)="onClose()"></Button>
+</FlexboxLayout>

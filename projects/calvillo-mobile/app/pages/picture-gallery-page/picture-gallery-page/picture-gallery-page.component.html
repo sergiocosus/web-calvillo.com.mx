@@ -18,27 +18,37 @@
       </FlexboxLayout>
     </ng-template>
   </RadListView>
+
   <ScrollView row="1" col="0">
     <StackLayout>
-      <Pager [height]="deviceHeight - 120" [items]="category?.pictures" #pager
+      <Pager [height]="deviceHeight - 120"
+             [items]="category?.pictures" #pager
              [selectedIndex]="index"
              (selectedIndexChange)="selectedIndexChange($event)" class="pager">
         <ng-template let-i="index" let-picture="item">
-          <StackLayout>
-            <AbsoluteLayout class="pager-item">
-              <Label class="title" [text]="picture.title"></Label>
+          <AbsoluteLayout class="pager-item">
+            <Label class="title" [text]="picture.title"></Label>
 
-              <ImageZoom loadMode="async"
-                         [src]="picture.imageUrl('lg')"
-                         maxZoom="5"
-                         minZoom="1"></ImageZoom>
-            </AbsoluteLayout>
-          </StackLayout>
+            <FlexboxLayout class="actions">
+              <Button [visibility]="picture?.longitude && picture?.latitude ? 'visible' : 'collapsed'"
+                      (tap)="showMap()">
+                <FormattedString>
+                  <Span class="mdi" [text]="'mdi-location-on' | fonticon">
+                  </Span>
+                </FormattedString>
+              </Button>
+            </FlexboxLayout>
 
+            <ImageZoom loadMode="async"
+                       [src]="picture.imageUrl('lg')"
+                       maxZoom="5"
+                       minZoom="1"></ImageZoom>
+          </AbsoluteLayout>
         </ng-template>
       </Pager>
-      <HtmlView *ngIf="currentPicture"
-                [html]="currentPicture.description"></HtmlView>
+
+      <HtmlView *ngIf="picture"
+                [html]="picture.description"></HtmlView>
     </StackLayout>
   </ScrollView>
 

@@ -21,6 +21,28 @@
   background-size: cover;
 }
 
+.toggle-description{
+  top: 218;
+  align-items: center;
+  padding: 3 10;
+  background-color: $primary-dark;
+  width: 100%;
+  color: white;
+
+  .title{
+    flex: 1;
+    font-size: 20;
+  }
+}
+
+
+.category-data{
+  padding: 10;
+  margin: 10;
+}
+
+
 .content{
   background-color: white;
 }
+

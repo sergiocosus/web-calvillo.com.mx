@@ -6,43 +6,12 @@ import {
   DirectoryService
 } from '@calvillo/api';
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
-
-import { defer } from 'rxjs/observable/defer';
-import { interval } from 'rxjs/observable/interval';
-import { map } from 'rxjs/operators/map';
-import { takeWhile } from 'rxjs/operators/takeWhile';
-import { animationFrame } from 'rxjs/scheduler/animationFrame';
 import {
   SwipeDirection,
   SwipeGestureEventData
 } from 'tns-core-modules/ui/gestures';
-import GoogleMapsUtils = require('nativescript-google-maps-utils')
+import { elasticAnimation } from '~/shared/functions/elastic-animation';
 
-import * as geolocation from 'nativescript-geolocation';
-import { Accuracy } from 'ui/enums';
-
-var GoogleMaps = require('nativescript-google-maps-sdk');
-
-const timeElapsed = defer(() => {
-  const start = animationFrame.now();
-  return interval(1).pipe(
-    map(() => Math.floor((Date.now() - start))
-  ));
-});
-export const durationForAnimation = (totalMs) => timeElapsed.pipe(
-  map((elapsedMs: number) => elapsedMs / totalMs),
-  takeWhile(t => t <= 1)
-);
-export const amount = (d) => (t) => t * d;
-export const elasticOut = (t) => Math.sin(-5.0 * (t + 1.0) * Math.PI / 2) * Math.pow(2.0, -10.0 * t) + 1.0;
-
-export const elasticAnimation = (time = 1000, value) => {
-  return durationForAnimation(time)
-    .pipe(
-      map(elasticOut),
-      map(amount(value))
-    );
-};
 
 
 @Component({
@@ -64,11 +33,11 @@ export class DirectoryMapComponent implements OnInit {
   selectedDirectory: Directory;
 
   topExpanded = true;
-
   infoExpanded = true;
 
   constructor(private directoryService: DirectoryService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService) {
+  }
 
   ngOnInit() {
 
@@ -164,7 +133,7 @@ export class DirectoryMapComponent implements OnInit {
     this.mapView.zoom = 16;
 
     const marketFound = this.mapView.findMarker(
-      marker =>  marker.userData === directory
+      marker => marker.userData === directory
     );
 
     this.topExpanded = false;
@@ -204,7 +173,7 @@ export class DirectoryMapComponent implements OnInit {
   private animateCategoriesList() {
     const height = 80;
 
-    elasticAnimation(1000,  height)
+    elasticAnimation(1000, height)
       .subscribe(curFrame => {
           if (!this.selectedCategory) {
             this.categoriesList.nativeElement.style.height = curFrame;
@@ -214,10 +183,11 @@ export class DirectoryMapComponent implements OnInit {
         }
       );
   }
+
   private animateData() {
     const height = 200;
 
-    elasticAnimation(1000,  height)
+    elasticAnimation(1000, height)
       .subscribe(curFrame => {
           if (this.infoExpanded) {
             this.scrollData.nativeElement.style.height = curFrame;
@@ -231,7 +201,7 @@ export class DirectoryMapComponent implements OnInit {
   private animateTop() {
     const height = 80;
 
-    elasticAnimation(1000,  height)
+    elasticAnimation(1000, height)
       .subscribe(curFrame => {
           if (this.topExpanded) {
             this.directoriesList.nativeElement.style.height = curFrame;
