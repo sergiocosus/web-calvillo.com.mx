@@ -4,6 +4,7 @@ import { RouterExtensions } from 'nativescript-angular';
 import { PageRoute } from 'nativescript-angular/router';
 import { switchMap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-directory-page',
   moduleId: module.id,

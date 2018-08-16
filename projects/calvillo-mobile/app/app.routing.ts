@@ -6,10 +6,11 @@ import { environment } from '~/environment';
 
 const routes: Routes = [
    // {path: '', redirectTo: '/galeria/guayabas-de-el-portn_1/foto/guayabas-del-portn', pathMatch: 'full'},
-    {path: '', redirectTo: '/galeria/guayabas-de-el-portn_1', pathMatch: 'full'},
+   // {path: '', redirectTo: '/galeria/guayabas-de-el-portn_1', pathMatch: 'full'},
   //  {path: '', redirectTo: '/galeria/' + environment.defaultCategoryId, pathMatch: 'full'},
    // {path: '', redirectTo: '/directorio/quesos-"el-fraile"', pathMatch: 'full'},
    // {path: '', redirectTo: '/mapa', pathMatch: 'full'},
+    {path: '', redirectTo: '/contacto', pathMatch: 'full'},
     {path: '', loadChildren: './pages/pages.module#PagesModule'},
 ];
 

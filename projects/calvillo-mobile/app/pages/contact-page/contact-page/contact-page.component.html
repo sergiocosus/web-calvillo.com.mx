@@ -1,0 +1,117 @@
+<app-action-bar title="Calvillo App / Contacto"></app-action-bar>
+
+<ScrollView>
+
+<StackLayout class="info">
+
+  <StackLayout class="field">
+    <TextView editable="false"
+              class="label"
+              text="¿Te gustaría que tu negocio aparezca en nuestro directorio?">
+    </TextView>
+    <Button text="¡Déjanos tus datos!"
+            (tap)="openUrl(directoryFormUrl)"></Button>
+  </StackLayout>
+
+  <StackLayout class="buttons" orientation="horizontal">
+    <Label class="fa facebook" [text]="'fa-facebook' | fonticon"
+           (tap)="openUrl('https://www.facebook.com/calvillo.com.mx')">
+    </Label>
+
+    <Label class="fa youtube" [text]="'fa-youtube' | fonticon"
+           (tap)="openUrl('https://www.youtube.com/channel/UCz4R5spU9lrtKX3YQAyxRpg')">
+    </Label>
+  </StackLayout>
+
+
+  <StackLayout class="creators">
+
+    <StackLayout class="creator">
+
+      <StackLayout class="header"
+                   orientation="horizontal">
+        <Label class="fa" [text]="'fa-file-image-o' | fonticon"></Label>
+        <StackLayout>
+          <Label class="title" text="Fotografías"></Label>
+          <TextView editable="false"
+                    class="name"
+                    text="Ricardo Contreras Sustaita"></TextView>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout class="field-with-icon"
+                   orientation="horizontal">
+        <Label class="fa phone" [text]="'fa-envelope' | fonticon"
+               (tap)="openUrl('mailto:richardconsus@gmail.com')">
+        </Label>
+
+        <StackLayout class="field">
+          <Label class="label" text="Email"
+                 (tap)="openUrl('mailto:richardconsus@gmail.com')"></Label>
+          <TextView class="link" editable="false"
+                    text="richardconsus@gmail.com"
+                    (tap)="openUrl('mailto:richardconsus@gmail.com')"></TextView>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout class="field-with-icon"
+                   orientation="horizontal">
+
+        <Label class="fa phone" [text]="'fa-mobile' | fonticon"
+               (tap)="dial('4951063364')">
+        </Label>
+
+        <StackLayout class="field">
+          <Label class="label" text="Celular"
+                 (tap)="dial('4951063364')"></Label>
+          <TextView class="link" editable="false"
+                    text="4951063364"
+                    (tap)="dial('4951063364')"></TextView>
+        </StackLayout>
+      </StackLayout>
+
+
+
+      <StackLayout class="buttons" orientation="horizontal">
+        <Label class="fa facebook" [text]="'fa-facebook' | fonticon"
+               (tap)="openUrl('https://www.facebook.com/ricardofotoyvideo/')">
+        </Label>
+        <Label class="fa youtube" [text]="'fa-youtube' | fonticon"
+               (tap)="openUrl('https://www.youtube.com/user/MrRichardCS')">
+        </Label>
+      </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="creator">
+
+      <StackLayout class="header"
+                   orientation="horizontal">
+        <Label class="fa" [text]="'fa-terminal' | fonticon"></Label>
+        <StackLayout>
+          <Label class="title" text="Programación"></Label>
+          <TextView editable="false"
+                    class="name"
+                    text="Sergio Contreras Sustaita"></TextView>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout class="field-with-icon"
+                   orientation="horizontal">
+        <Label class="fa phone" [text]="'fa-envelope' | fonticon"
+               (tap)="openUrl('mailto:richardconsus@gmail.com')">
+        </Label>
+
+        <StackLayout class="field">
+          <Label class="label" text="Email"
+                 (tap)="openUrl('mailto:sergiocosus@gmail.com')"></Label>
+          <TextView class="link" editable="false"
+                    text="sergiocosus@gmail.com"
+                    (tap)="openUrl('mailto:sergiocosus@gmail.com')"></TextView>
+        </StackLayout>
+      </StackLayout>
+
+    </StackLayout>
+  </StackLayout>
+</StackLayout>
+
+</ScrollView>

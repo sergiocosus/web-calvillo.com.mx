@@ -3,6 +3,13 @@
 .info{
   padding: 5;
 
+  .field-with-icon{
+    vertical-align: center;
+
+    .phone{
+      color: $thumbnail-label-background-color;
+    }
+  }
 
   StackLayout.field{
     Label{
@@ -31,18 +38,6 @@
 .buttons{
   horizontal-align: right;
 
-  .fa{
-    font-size: 25;
-    padding: 10;
-    color: white;
-    border-radius: 10;
-    margin-left: 5;
-    margin-right: 5;
-    width: 45;
-    height: 45;
-    text-align: center;
-  }
-
   .youtube{
     background-color: $youtube-color;
   }
@@ -50,4 +45,16 @@
   .facebook{
     background-color: $fb-color;
   }
+}
+
+.fa{
+  font-size: 25;
+  padding: 10;
+  color: white;
+  border-radius: 10;
+  margin-left: 5;
+  margin-right: 5;
+  width: 45;
+  height: 45;
+  text-align: center;
 }

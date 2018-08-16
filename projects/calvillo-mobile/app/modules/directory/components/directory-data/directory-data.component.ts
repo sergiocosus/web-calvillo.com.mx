@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Directory } from '@calvillo/api';
-import * as utils from 'tns-core-modules/utils/utils';
+import { UtilsService } from '~/shared/services/utils.service';
+
 
 @Component({
   selector: 'app-directory-data',
@@ -11,12 +12,16 @@ import * as utils from 'tns-core-modules/utils/utils';
 export class DirectoryDataComponent implements OnInit {
   @Input() directory: Directory;
 
-  constructor() { }
+  constructor(public utilsService: UtilsService) { }
 
   ngOnInit() {
   }
 
   openUrl(url) {
-    utils.openUrl(url);
+    this.utilsService.openUrl(url);
+  }
+
+  dial(number) {
+    this.utilsService.dialPhone(number);
   }
 }

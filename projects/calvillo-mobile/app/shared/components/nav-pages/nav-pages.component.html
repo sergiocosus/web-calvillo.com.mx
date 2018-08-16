@@ -5,13 +5,6 @@
          class="sideLabel"></Label>
 </FlexboxLayout>
 
-<FlexboxLayout  nsRouterLinkActive
-                [nsRouterLink]="['/galeria/', mainCategoryLink]" (tap)="close()">
-  <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
-  <Label text="Galería"
-         class="sideLabel"></Label>
-</FlexboxLayout>
-
 <FlexboxLayout nsRouterLinkActive
                nsRouterLink="/mapa/" (tap)="close()">
   <Label class="mdi" [text]="'mdi-place' | fonticon"></Label>
@@ -19,8 +12,16 @@
          class="sideLabel"></Label>
 </FlexboxLayout>
 
+<FlexboxLayout  nsRouterLinkActive
+                [nsRouterLink]="['/galeria/', mainCategoryLink]" (tap)="close()">
+  <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+  <Label text="Galería"
+         class="sideLabel"></Label>
+</FlexboxLayout>
+
+
 <FlexboxLayout nsRouterLinkActive
-               nsRouterLink="/contact/" (tap)="close()">
+               nsRouterLink="/contacto/" (tap)="close()">
   <Label class="mdi" [text]="'mdi-contact-mail' | fonticon"></Label>
   <Label text="Contacto"
          class="sideLabel sideLightGrayLabel"></Label>

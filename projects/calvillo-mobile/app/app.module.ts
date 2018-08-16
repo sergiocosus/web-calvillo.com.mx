@@ -19,6 +19,7 @@ import { SideDrawerService } from '~/shared/services/side-drawer.service';
 import {
   TNSFontIconModule,
 } from 'nativescript-ngx-fonticon';
+import { UtilsService } from '~/shared/services/utils.service';
 
 require( 'nativescript-orientation' );
 
@@ -56,6 +57,7 @@ require( 'nativescript-orientation' );
     ApiHttp,
     LocalStorageService,
     SideDrawerService,
+    UtilsService,
   ],
   schemas: [
     NO_ERRORS_SCHEMA

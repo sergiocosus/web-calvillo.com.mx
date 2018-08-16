@@ -22,4 +22,8 @@ export const PagesRoutes: Routes = [
     path: '',
     loadChildren: './pages/map-page/map-page.module#MapPageModule'
   },
+  {
+    path: 'contacto',
+    loadChildren: './pages/contact-page/contact-page.module#ContactPageModule'
+  },
 ];
