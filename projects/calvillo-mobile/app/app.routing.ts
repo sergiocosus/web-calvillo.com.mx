@@ -10,7 +10,7 @@ const routes: Routes = [
   //  {path: '', redirectTo: '/galeria/' + environment.defaultCategoryId, pathMatch: 'full'},
    // {path: '', redirectTo: '/directorio/quesos-"el-fraile"', pathMatch: 'full'},
    // {path: '', redirectTo: '/mapa', pathMatch: 'full'},
-    {path: '', redirectTo: '/contacto', pathMatch: 'full'},
+    //{path: '', redirectTo: '/contacto', pathMatch: 'full'},
     {path: '', loadChildren: './pages/pages.module#PagesModule'},
 ];
 
