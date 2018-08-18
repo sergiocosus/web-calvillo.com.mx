@@ -4,26 +4,26 @@ import { Routes } from '@angular/router';
 export const PagesRoutes: Routes = [
   {
     path: '',
-    loadChildren: './pages/home-page/home-page.module#HomePageModule'
+    loadChildren: '~/pages/home-page/home-page.module#HomePageModule'
   },
   {
     path: '',
-    loadChildren: './pages/picture-gallery-page/picture-gallery-page.module#PictureGalleryPageModule'
+    loadChildren: '~/pages/picture-gallery-page/picture-gallery-page.module#PictureGalleryPageModule'
   },
   {
     path: '',
-    loadChildren: './pages/gallery/gallery-page.module#GalleryPageModule'
+    loadChildren: '~/pages/gallery/gallery-page.module#GalleryPageModule'
   },
   {
     path: '',
-    loadChildren: './pages/directory-page/directory-page.module#DirectoryPageModule'
+    loadChildren: '~/pages/directory-page/directory-page.module#DirectoryPageModule'
   },
   {
     path: '',
-    loadChildren: './pages/map-page/map-page.module#MapPageModule'
+    loadChildren: '~/pages/map-page/map-page.module#MapPageModule'
   },
   {
     path: 'contacto',
-    loadChildren: './pages/contact-page/contact-page.module#ContactPageModule'
+    loadChildren: '~/pages/contact-page/contact-page.module#ContactPageModule'
   },
 ];

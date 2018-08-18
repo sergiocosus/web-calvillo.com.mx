@@ -17,11 +17,14 @@ import { SharedModule } from '~/shared/shared.module';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
 
 import {
-  TNSFontIconModule,
+  TNSFontIconModule, TNSFontIconService,
 } from 'nativescript-ngx-fonticon';
 import { UtilsService } from '~/shared/services/utils.service';
 
 require( 'nativescript-orientation' );
+
+TNSFontIconService.debug = true;
+
 
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";
 
@@ -35,7 +38,7 @@ require( 'nativescript-orientation' );
     NativeScriptHttpClientModule,
     NativeScriptUISideDrawerModule,
     TNSFontIconModule.forRoot({
-      'fa': './assets/font-awesome.css',
+      'fa': 'assets/font-awesome.css',
       'mdi': './assets/material-design-icons.css',
     }),
     ApiModule.forRoot({
