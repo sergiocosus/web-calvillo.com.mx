@@ -8,6 +8,7 @@ import { Page } from 'tns-core-modules/ui/page';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  results: any[];
 
   constructor(private page: Page) {}
 
