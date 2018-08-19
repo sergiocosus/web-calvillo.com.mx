@@ -1,5 +1,9 @@
 <app-action-bar title="Calvillo App"></app-action-bar>
 
-<FlexboxLayout>
-  <app-search-bar></app-search-bar>
+<FlexboxLayout class="container">
+  <app-search-bar (resultsChanged)="results = $event"></app-search-bar>
+
+  <FlexboxLayout class="pages" *ngIf="!results">
+    <app-nav-pages [displayHome]="false"></app-nav-pages>
+  </FlexboxLayout>
 </FlexboxLayout>

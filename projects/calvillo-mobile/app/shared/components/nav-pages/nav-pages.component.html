@@ -1,28 +1,38 @@
-<FlexboxLayout nsRouterLinkActive
+<FlexboxLayout *ngIf="displayHome"
+               nsRouterLinkActive="active"
+               [nsRouterLinkActiveOptions]="{exact: true}"
                nsRouterLink="/" (tap)="close()">
-  <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+  <Label class="icon fa" [text]="'fa-home' | fonticon"></Label>
   <Label text="Página Principal"
          class="sideLabel"></Label>
 </FlexboxLayout>
 
-<FlexboxLayout nsRouterLinkActive
+<FlexboxLayout nsRouterLinkActive="active"
                nsRouterLink="/mapa/" (tap)="close()">
-  <Label class="mdi" [text]="'mdi-place' | fonticon"></Label>
+  <Label class="icon mdi" [text]="'mdi-place' | fonticon"></Label>
   <Label text="Mapa"
          class="sideLabel"></Label>
 </FlexboxLayout>
 
-<FlexboxLayout  nsRouterLinkActive
+<FlexboxLayout  nsRouterLinkActive="active"
+                [nsRouterLink]="['/galeria/', 'directorio']" (tap)="close()">
+  <Label class="icon fa" [text]="'fa-book' | fonticon"></Label>
+  <Label text="Directorio"
+         class="sideLabel"></Label>
+</FlexboxLayout>
+
+
+<FlexboxLayout  nsRouterLinkActive="active"
                 [nsRouterLink]="['/galeria/', mainCategoryLink]" (tap)="close()">
-  <Label class="mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
+  <Label class="icon mdi" [text]="'mdi-camera-alt' | fonticon"></Label>
   <Label text="Galería"
          class="sideLabel"></Label>
 </FlexboxLayout>
 
 
-<FlexboxLayout nsRouterLinkActive
+<FlexboxLayout nsRouterLinkActive="active"
                nsRouterLink="/contacto/" (tap)="close()">
-  <Label class="mdi" [text]="'mdi-contact-mail' | fonticon"></Label>
+  <Label class="icon mdi" [text]="'mdi-contact-mail' | fonticon"></Label>
   <Label text="Contacto"
          class="sideLabel sideLightGrayLabel"></Label>
 </FlexboxLayout>

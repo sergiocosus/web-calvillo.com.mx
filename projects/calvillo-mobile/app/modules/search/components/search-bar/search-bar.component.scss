@@ -1,18 +1,23 @@
 
 SearchBar{
+  flex: 0;
   background-color: white;
-  margin-bottom: 200;
-  margin-top: 10;
-  height: 50;
+  padding-bottom: 200;
+  padding-top: 10;
+  margin: 0;
 }
 
 .searched{
   margin-bottom: 10;
+  height: 100;
+  min-height: 100;
+  background-color: white;
 }
 
 FlexboxLayout{
   flex: 1;
   align-items: center;
+
   WebImage{
     flex: 0;
     width: 50;
@@ -37,3 +42,12 @@ ListView{
 }
 
 
+ActivityIndicator{
+  background-color: white;
+  width: 100%;
+  margin-top: 10;
+}
+
+.loading{
+  background-color: white;
+}

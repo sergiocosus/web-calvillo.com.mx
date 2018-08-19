@@ -1,7 +1,11 @@
 <SearchBar [hint]="placeholder"
            [class.searched]="results?.length"
            [formControl]="formControl"
+           (clear)="clear()"
            (submit)="onSubmit($event)"></SearchBar>
+  <ActivityIndicator *ngIf="loading" busy="true">
+  </ActivityIndicator>
+
 <GridLayout  *ngIf="results?.length">
   <ListView row="1" [items]="results"
             [iosEstimatedRowHeight]="0"

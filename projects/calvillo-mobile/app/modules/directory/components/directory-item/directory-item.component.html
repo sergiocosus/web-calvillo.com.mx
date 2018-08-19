@@ -1,5 +1,5 @@
-<FlexboxLayout [nsRouterLink]="directory.getRouterLink(category)">
-  <WebImage *ngIf="directory.image_code" stretch="aspectFit"
-         [src]="directory.imageUrl('sm')" ></WebImage>
-  <Label [text]="directory.title"></Label>
-</FlexboxLayout>
+<GridLayout rows="*" columns="*, *" [nsRouterLink]="directory.getRouterLink(category)">
+  <WebImage row="0" col="0" *ngIf="directory.image_code" stretch="aspectFit"
+         [src]="directory.imageUrl('xs')" ></WebImage>
+  <TextView row="0" col="1" [text]="directory.title"></TextView>
+</GridLayout>

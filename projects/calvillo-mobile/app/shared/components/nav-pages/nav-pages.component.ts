@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
 import { environment } from '~/environment';
 
@@ -9,6 +9,7 @@ import { environment } from '~/environment';
   styleUrls: ['./nav-pages.component.scss']
 })
 export class NavPagesComponent implements OnInit {
+  @Input() displayHome = true;
   mainCategoryLink = environment.defaultCategoryId;
 
   constructor(private sideDrawerService: SideDrawerService) { }

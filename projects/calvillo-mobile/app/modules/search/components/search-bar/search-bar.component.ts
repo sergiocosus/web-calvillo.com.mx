@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category, Directory, Picture, SearchService } from '@calvillo/api';
 import { RouterExtensions } from 'nativescript-angular';
 import { FormControl } from '@angular/forms';
 import {
   debounceTime,
   distinctUntilChanged,
-  filter,
-  mergeMap
+  filter, finalize,
+  mergeMap, tap
 } from 'rxjs/operators';
 import { Page } from 'tns-core-modules/ui/page';
 
@@ -18,10 +18,12 @@ import { Page } from 'tns-core-modules/ui/page';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
-  results: (Picture | Directory | Category)[];
   @Input() placeholder = '¿Qué deseas buscar? Restaurant, Hoteles... ';
+  @Output() resultsChanged = new EventEmitter();
 
+  results: (Picture | Directory | Category)[];
   formControl = new FormControl();
+  loading: boolean;
 
   constructor(private searchService: SearchService,
               private routerExtensions: RouterExtensions,
@@ -31,9 +33,16 @@ export class SearchBarComponent implements OnInit {
       filter(value => value && value.length),
       distinctUntilChanged(),
       debounceTime(300),
+      tap(() => {
+        this.loading = true;
+        this.results = null;
+        this.resultsChanged.emit(this.results);
+      }),
+      finalize(() => this.loading = false),
       mergeMap( text => this.searchService.get(text))
     ).subscribe(results => {
       this.results = [...results.directories, ...results.categories, ...results.pictures];
+      this.resultsChanged.emit(this.results);
     });
   }
 
@@ -56,6 +65,12 @@ export class SearchBarComponent implements OnInit {
         this.getRouterLinkResult(this.results[0])
       );
     }
+  }
+
+  clear() {
+    this.results = null;
+    this.resultsChanged.emit(this.results);
+    this.loading = false;
   }
 
   onTap(event) {

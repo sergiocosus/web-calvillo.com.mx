@@ -1,6 +1,6 @@
 @import "../../../../_vars.scss";
 
-FlexboxLayout{
+GridLayout{
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -8,6 +8,7 @@ FlexboxLayout{
   background-color: $thumbnail-label-background-color;
   color: white;
   box-shadow: inset hoff voff blur #000;
+  vertical-align: center;
 
   &:highlighted {
     background-color: $primary;
@@ -16,11 +17,15 @@ FlexboxLayout{
   WebImage{
     width: 100;
     height: 100;
-    flex: 0;
+    min-width: 50%;
+    flex: 1;
   }
 
-  Label{
+  TextView{
     flex: 1;
     padding: 5;
+    max-width: 50%;
+    font-size: 14;
+    background-color: $thumbnail-label-background-color;
   }
 }

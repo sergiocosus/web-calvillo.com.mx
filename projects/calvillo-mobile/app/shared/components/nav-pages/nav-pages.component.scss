@@ -1,3 +1,4 @@
+@import "../../../_vars.scss";
 
 Label{
   color: white;
@@ -5,14 +6,15 @@ Label{
   font-weight: bold;
 }
 .active{
-  background-color: blue;
+  background-color: $primary-light;
 }
 
 FlexboxLayout{
   display: flex;
   align-items: center;
+  background-color: $primary;
 
-  .mdi{
+  .mdi, .fa{
     font-size: 25;
   }
 
