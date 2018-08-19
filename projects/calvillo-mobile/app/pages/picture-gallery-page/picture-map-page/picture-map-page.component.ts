@@ -14,7 +14,7 @@ import { ModalDialogParams } from 'nativescript-angular';
 export class PictureMapPageComponent implements OnInit {
   @ViewChild('mapView') mapViewRef: ElementRef;
   private mapView: MapView;
-  private picture: Picture;
+  picture: Picture;
 
   constructor(private pageRoute: PageRoute,
               private params: ModalDialogParams,

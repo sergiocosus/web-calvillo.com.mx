@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActionBarComponent } from './components/action-bar/action-bar.component';
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { NativeScriptCommonModule } from 'nativescript-angular/common';
@@ -32,6 +32,9 @@ import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
     PagerModule,
     //DropDownModule,
   ],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class SharedModule {
 }

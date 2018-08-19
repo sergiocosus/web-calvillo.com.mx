@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MapPageComponent } from './map-page.component';
 import { NativeScriptRouterModule } from 'nativescript-angular';
@@ -12,6 +12,9 @@ import { MapModule } from '~/modules/map/map.module';
     NativeScriptRouterModule.forChild(<any>MapPageRoutes),
     MapModule,
   ],
-  declarations: [MapPageComponent]
+  declarations: [MapPageComponent],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class MapPageModule { }

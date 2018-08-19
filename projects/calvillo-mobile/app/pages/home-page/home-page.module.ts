@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { HomePageComponent } from './home-page.component';
 import { NativeScriptRouterModule } from 'nativescript-angular';
@@ -12,6 +12,9 @@ import { HomePageRoutes } from '~/pages/home-page/home-page-routing.module';
     NativeScriptRouterModule.forChild(<any>HomePageRoutes),
     SearchModule,
   ],
-  declarations: [HomePageComponent]
+  declarations: [HomePageComponent],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class HomePageModule { }

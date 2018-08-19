@@ -23,7 +23,7 @@ import { UtilsService } from '~/shared/services/utils.service';
 
 require( 'nativescript-orientation' );
 
-TNSFontIconService.debug = true;
+//TNSFontIconService.debug = true;
 
 
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";

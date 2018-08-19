@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { NativeScriptRouterModule } from 'nativescript-angular';
 import { GalleryRoutes } from '~/pages/gallery/gallery.routes';
@@ -17,7 +17,10 @@ import { DirectoryModule } from '~/modules/directory/directory.module';
     PictureModule,
     DirectoryModule,
   ],
-  declarations: [GalleryPageComponent]
+  declarations: [GalleryPageComponent],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class GalleryPageModule {
 }
