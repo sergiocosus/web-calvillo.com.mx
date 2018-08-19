@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectorRef,
-  Component,
+  Component, OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -13,6 +13,7 @@ import { initializeOnAngular } from 'nativescript-web-image-cache';
 import { registerElement } from 'nativescript-angular/element-registry';
 import { Router } from '@angular/router';
 import * as utils from 'tns-core-modules/utils/utils';
+import { UtilsService } from '~/shared/services/utils.service';
 
 require('nativescript-localstorage');
 
@@ -24,15 +25,17 @@ registerElement('MapView', () => require('nativescript-google-maps-sdk').MapView
   templateUrl: 'app.component.html',
 })
 
-export class AppComponent implements AfterViewInit, OnInit {
+export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: RadSideDrawer;
 
   constructor(private _changeDetectionRef: ChangeDetectorRef,
               private fonticon: TNSFontIconService,
               private sideDrawerService: SideDrawerService,
-              private router: Router) {
+              private router: Router,
+              private utilsService: UtilsService) {
     initializeOnAngular();
+    this.utilsService.checkConnectivity();
   }
 
 
@@ -49,5 +52,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     })
   }
 
+  ngOnDestroy(): void {
+    this.utilsService.cancelCheckConnectivity()
+  }
 
 }

@@ -1,5 +1,7 @@
 <GridLayout rows="*" columns="*, *" [nsRouterLink]="directory.getRouterLink(category)">
   <WebImage row="0" col="0" *ngIf="directory.image_code" stretch="aspectFit"
          [src]="directory.imageUrl('xs')" ></WebImage>
-  <TextView row="0" col="1" [text]="directory.title"></TextView>
+  <TextView row="0" col="1" editable="false"
+         [nsRouterLink]="directory.getRouterLink(category)"
+         [text]="directory.title"></TextView>
 </GridLayout>
