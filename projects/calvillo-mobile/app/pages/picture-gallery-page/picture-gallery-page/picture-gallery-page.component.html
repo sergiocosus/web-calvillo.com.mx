@@ -1,9 +1,14 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
 
+<app-activity-status-indicator [loading]="loading" [failed]="failed">
+</app-activity-status-indicator>
+
 <GridLayout class="container" [height]="deviceHeight"
-            rows="auto, *" columns="*"
+            rows="auto, auto, *" columns="*"
              *ngIf="category">
-  <RadListView #listView row="0" col="0" class="pictures" [items]="category?.pictures">
+
+
+  <RadListView #listView row="1" col="0" class="pictures" [items]="category?.pictures">
     <ListViewLinearLayout tkListViewLayout scrollDirection="Horizontal"
                           itemInsertAnimation="Default"
                           itemDeleteAnimation="Default"></ListViewLinearLayout>
@@ -19,7 +24,7 @@
     </ng-template>
   </RadListView>
 
-  <ScrollView row="1" col="0">
+  <ScrollView row="2" col="0">
     <StackLayout>
       <Pager [height]="deviceHeight - 120"
              [items]="category?.pictures" #pager

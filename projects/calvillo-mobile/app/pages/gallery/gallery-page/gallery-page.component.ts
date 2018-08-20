@@ -6,7 +6,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { Category, CategoryService, Directory, Picture } from '@calvillo/api';
-import { finalize, switchMap } from 'rxjs/operators';
+import { finalize, switchMap, tap } from 'rxjs/operators';
 import { PageRoute } from 'nativescript-angular/router';
 import { ScrollEventData, ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { View } from 'tns-core-modules/ui/core/view';
@@ -26,13 +26,16 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
   loading = true;
   categoryImageLoading: boolean;
   results: (Directory | Category | Picture)[];
-  infoExpanded: boolean = false;
+  infoExpanded = false;
+  failed: boolean;
 
   constructor(private categoryService: CategoryService,
               private pageRoute: PageRoute,
               ) {
     this.pageRoute.activatedRoute.pipe(
-      switchMap(activatedRoute => activatedRoute.paramMap)
+      switchMap(activatedRoute => activatedRoute.paramMap),
+      tap(() => this.loading = true),
+      finalize(() => this.loading = false)
     ).subscribe(
       params => {
         this.categoryLink = params.get('categoryLink');
@@ -46,6 +49,10 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
             this.category = category;
             this.results = [...category.directories, ...category.categories, ...category.pictures];
             this.categoryImageLoading = true;
+          },
+          error => {
+            this.failed = true;
+            console.error(error);
           }
         );
       }

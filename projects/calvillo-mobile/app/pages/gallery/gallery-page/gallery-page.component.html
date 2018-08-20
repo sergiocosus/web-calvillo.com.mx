@@ -1,8 +1,9 @@
 <app-action-bar [title]="category?.title"></app-action-bar>
 
 <StackLayout>
-  <ActivityIndicator *ngIf="!results">
-  </ActivityIndicator>
+  <app-activity-status-indicator
+    [failed]="failed" [loading]="loading">
+  </app-activity-status-indicator>
 
   <RadListView *ngIf="results"
                [items]="results"

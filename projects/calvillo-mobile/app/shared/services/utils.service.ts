@@ -4,6 +4,7 @@ import Uri = android.net.Uri;
 import Intent = android.content.Intent;
 const app = require('application');
 import * as Connectivity from 'tns-core-modules/connectivity';
+let application = require('application');
 
 @Injectable({
   providedIn: 'root'
@@ -25,22 +26,43 @@ export class UtilsService {
 
   toast(text) {
     console.log(text);
-    //Toast.makeText(text).show();
+    let Toast = android.widget.Toast;
+    let d = Toast.LENGTH_SHORT;
+
+    let centeredText = new android.text.SpannableString(text);
+    centeredText.setSpan(
+      new android.text.style.AlignmentSpan.Standard(android.text.Layout.Alignment.ALIGN_CENTER),
+      0,
+      text.length - 1,
+      android.text.Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+    Toast.makeText(application.android.context, <any>centeredText, d).show();
+  }
+
+  monitorConnectivity() {
+    Connectivity.startMonitoring((newConnectionType: number) => {
+      this.checkConnectivity();
+    });
   }
 
   checkConnectivity() {
-    Connectivity.startMonitoring((newConnectionType: number) => {
-      switch (newConnectionType) {
-        case Connectivity.connectionType.none:
-          this.toast('No hay conexión a internet, necesitas conexión para ver el contenido')
-          break;
-        case Connectivity.connectionType.wifi:
-          break;
-        case Connectivity.connectionType.mobile:
-          break;
-      }
-    });
+    const connectionType = Connectivity.getConnectionType();
+
+    switch (connectionType) {
+      case Connectivity.connectionType.none:
+        this.toast('No hay conexión a internet, necesitas conexión para ver el contenido')
+        break;
+      case Connectivity.connectionType.wifi:
+        break;
+      case Connectivity.connectionType.mobile:
+        break;
+    }
   }
+
+  thereIsConnection() {
+    return !!Connectivity.getConnectionType();
+  }
+
 
   cancelCheckConnectivity() {
     Connectivity.stopMonitoring();

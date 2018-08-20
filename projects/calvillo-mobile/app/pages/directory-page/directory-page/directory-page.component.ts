@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Directory, DirectoryService } from '@calvillo/api';
 import { RouterExtensions } from 'nativescript-angular';
 import { PageRoute } from 'nativescript-angular/router';
-import { switchMap } from 'rxjs/operators';
+import { finalize, switchMap, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -14,6 +14,8 @@ import { switchMap } from 'rxjs/operators';
 export class DirectoryPageComponent implements OnInit {
   directory: Directory;
   directory_link: string;
+  failed: boolean;
+  loading: boolean;
 
   constructor(private pageRoute: PageRoute,
               private directoryService: DirectoryService,
@@ -40,11 +42,19 @@ export class DirectoryPageComponent implements OnInit {
 
   loadDirectory(directory_link: string) {
     this.directory_link = directory_link;
-    this.directoryService.getByLink(directory_link).subscribe(
+    this.directoryService.getByLink(directory_link).
+      pipe(
+        tap(() => this.loading = true),
+        finalize(() => this.loading = false),
+      )
+      .subscribe(
       directory => {
         this.directory = directory;
       },
-      error => this.redirectToDirectory.bind(this)
+      error => {
+        this.failed = true;
+        this.redirectToDirectory.bind(this);
+      }
     );
   }
 

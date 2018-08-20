@@ -1,7 +1,9 @@
 <FlexboxLayout *ngIf="displayHome"
                nsRouterLinkActive="active"
                [nsRouterLinkActiveOptions]="{exact: true}"
-               nsRouterLink="/" (tap)="close()">
+               nsRouterLink="/"
+               clearHistory="true"
+               (tap)="close()">
   <Label class="icon fa" [text]="'fa-home' | fonticon"></Label>
   <Label text="Página Principal"
          class="sideLabel"></Label>
@@ -15,7 +17,7 @@
 </FlexboxLayout>
 
 <FlexboxLayout  nsRouterLinkActive="active"
-                [nsRouterLink]="['/galeria/', 'directorio']" (tap)="close()">
+                [nsRouterLink]="['/galeria/', 'directorioz']" (tap)="close()">
   <Label class="icon fa" [text]="'fa-book' | fonticon"></Label>
   <Label text="Directorio"
          class="sideLabel"></Label>

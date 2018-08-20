@@ -6,7 +6,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { finalize, switchMap } from 'rxjs/operators';
+import { finalize, switchMap, tap } from 'rxjs/operators';
 import {
   Category,
   CategoryService,
@@ -33,8 +33,9 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
   @ViewChild('listView') listView: ElementRef;
 
   private categoryLink: string | null;
-  private loading: boolean;
   category: Category;
+  loading: boolean;
+  failed: boolean;
   private pictureLink: string | null;
 
   index = 0;
@@ -91,16 +92,23 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
 
   private loadCategory() {
     this.category = null;
-    this.loading = true;
 
     this.categoryService.getByLink(this.categoryLink)
-      .pipe(finalize(() => this.loading = false)).subscribe(
+      .pipe(
+        tap(() => this.loading = true),
+        finalize(() => this.loading = false)
+      )
+      .subscribe(
       category => {
         this.category = category;
         this.pictureLength = this.category.pictures.length;
         this.loadPicture();
         // this.changeRoutePicture(0);
-      }
+      },
+        error => {
+          this.failed = true;
+          console.error(error);
+        }
     );
   }
 

@@ -1,4 +1,6 @@
 <app-action-bar [title]="directory?.title"></app-action-bar>
 
+<app-activity-status-indicator [loading]="loading" [failed]="failed">
+</app-activity-status-indicator>
 <app-directory-detail *ngIf="directory"
                       [directory]="directory"></app-directory-detail>

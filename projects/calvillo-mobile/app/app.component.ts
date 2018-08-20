@@ -11,9 +11,10 @@ import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
 import { initializeOnAngular } from 'nativescript-web-image-cache';
 import { registerElement } from 'nativescript-angular/element-registry';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import * as utils from 'tns-core-modules/utils/utils';
 import { UtilsService } from '~/shared/services/utils.service';
+import { filter } from 'rxjs/operators';
 
 require('nativescript-localstorage');
 
@@ -35,7 +36,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
               private router: Router,
               private utilsService: UtilsService) {
     initializeOnAngular();
-    this.utilsService.checkConnectivity();
+    this.utilsService.monitorConnectivity();
   }
 
 
@@ -47,8 +48,11 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.router.events.subscribe(() => {
-      utils.ad.dismissSoftInput();
+    this.router.events
+      .pipe(filter(val => val instanceof NavigationEnd))
+      .subscribe(() => {
+        utils.ad.dismissSoftInput();
+        // this.utilsService.checkConnectivity();
     })
   }
 

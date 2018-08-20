@@ -10,6 +10,7 @@ import {
 import { PagerModule } from 'nativescript-pager/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
+import { ActivityStatusIndicatorComponent } from './components/activity-status-indicator/activity-status-indicator.component';
 //import { DropDownModule } from 'nativescript-drop-down/angular';
 
 @NgModule({
@@ -19,7 +20,7 @@ import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
     TNSFontIconModule,
     NativeScriptUIListViewModule,
   ],
-  declarations: [ActionBarComponent, NavPagesComponent],
+  declarations: [ActionBarComponent, NavPagesComponent, ActivityStatusIndicatorComponent],
   exports: [
     NativeScriptCommonModule,
     NativeScriptRouterModule,
@@ -27,6 +28,7 @@ import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
     ReactiveFormsModule,
     NativeScriptUIListViewModule,
     ActionBarComponent,
+    ActivityStatusIndicatorComponent,
     TNSFontIconModule,
     NavPagesComponent,
     PagerModule,

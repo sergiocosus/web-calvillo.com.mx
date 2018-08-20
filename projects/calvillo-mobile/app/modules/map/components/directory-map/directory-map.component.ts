@@ -11,6 +11,7 @@ import {
   SwipeGestureEventData
 } from 'tns-core-modules/ui/gestures';
 import { elasticAnimation } from '~/shared/functions/elastic-animation';
+import { finalize, tap } from 'rxjs/operators';
 
 
 
@@ -34,6 +35,8 @@ export class DirectoryMapComponent implements OnInit {
 
   topExpanded = true;
   infoExpanded = true;
+  failed: boolean;
+  loading: boolean;
 
   constructor(private directoryService: DirectoryService,
               private categoryService: CategoryService) {
@@ -41,8 +44,16 @@ export class DirectoryMapComponent implements OnInit {
 
   ngOnInit() {
 
-    this.categoryService.getSubCategoriesByLink('directorio').subscribe(
-      categories => this.categories = categories
+    this.categoryService.getSubCategoriesByLink('directorio')
+      .pipe(
+        tap(() => this.loading = true),
+        finalize(() => this.loading = false),
+      ).subscribe(
+      categories => this.categories = categories,
+      error => {
+        this.failed = true;
+        console.error(error);
+      }
     );
 
     // Not working

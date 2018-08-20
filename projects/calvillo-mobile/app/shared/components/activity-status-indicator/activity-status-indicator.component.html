@@ -1,0 +1,14 @@
+<StackLayout *ngIf="loading || failed">
+  <ActivityIndicator busy="true" *ngIf="loading">
+  </ActivityIndicator>
+
+  <ng-container *ngIf="failed">
+    <Label class="fa failed" [text]="'fa-frown-o' | fonticon"></Label>
+    <Label class="failed"
+           text="Algo ha salido mal... vuelve a intentarlo más tarde"></Label>
+    <Label class="failed" *ngIf="noConnection"
+           text="Parece que no tienes conexión a internet"></Label>
+
+    <Button text="Volver" (tap)="back()"></Button>
+  </ng-container>
+</StackLayout>

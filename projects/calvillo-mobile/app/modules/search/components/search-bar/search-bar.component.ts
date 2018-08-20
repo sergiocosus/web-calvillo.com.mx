@@ -3,12 +3,15 @@ import { Category, Directory, Picture, SearchService } from '@calvillo/api';
 import { RouterExtensions } from 'nativescript-angular';
 import { FormControl } from '@angular/forms';
 import {
+  catchError,
   debounceTime,
   distinctUntilChanged,
   filter, finalize,
   mergeMap, tap
 } from 'rxjs/operators';
 import { Page } from 'tns-core-modules/ui/page';
+import { UtilsService } from '~/shared/services/utils.service';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -27,6 +30,7 @@ export class SearchBarComponent implements OnInit {
 
   constructor(private searchService: SearchService,
               private routerExtensions: RouterExtensions,
+              private utilService: UtilsService,
               private page: Page) {
 
     this.formControl.valueChanges.pipe(
@@ -39,11 +43,21 @@ export class SearchBarComponent implements OnInit {
         this.resultsChanged.emit(this.results);
       }),
       finalize(() => this.loading = false),
-      mergeMap( text => this.searchService.get(text))
-    ).subscribe(results => {
-      this.results = [...results.directories, ...results.categories, ...results.pictures];
-      this.resultsChanged.emit(this.results);
-    });
+      mergeMap(
+        text => this.searchService.get(text)
+          .pipe(catchError(error => {
+            console.error(error);
+            this.utilService.checkConnectivity();
+            this.loading = false;
+            return from([]);
+          }))
+      )
+    ).subscribe(
+      results => {
+        this.results = [...results.directories, ...results.categories, ...results.pictures];
+        this.resultsChanged.emit(this.results);
+      }
+    );
   }
 
   ngOnInit(): void {
