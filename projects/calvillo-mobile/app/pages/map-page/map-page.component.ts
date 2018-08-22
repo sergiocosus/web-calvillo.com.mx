@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { firebase } from 'nativescript-plugin-firebase/firebase-common';
+import { UtilsService } from '~/shared/services/utils.service';
 
 @Component({
   selector: 'app-map-page',
@@ -9,7 +10,7 @@ import { firebase } from 'nativescript-plugin-firebase/firebase-common';
 })
 export class MapPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private utilsService: UtilsService) { }
 
   ngOnInit() {
     firebase.analytics.setScreenName({

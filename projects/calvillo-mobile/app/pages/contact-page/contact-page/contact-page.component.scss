@@ -41,7 +41,7 @@
       background-color: $thumbnail-label-background-color;
       font-size: 15;
       text-align: left;
-      margin-top: -10;
+      padding-top: 0;
     }
 
     .link{
@@ -72,7 +72,7 @@
       .name{
         font-size: 17;
         font-weight: 900;
-        margin-top: -10;
+        padding-top: 0;
         background-color: $thumbnail-label-background-color;
       }
     }

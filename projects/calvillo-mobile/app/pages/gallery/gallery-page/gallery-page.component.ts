@@ -67,8 +67,6 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
     firebase.analytics.setScreenName({
       screenName: 'gallery-page'
     });
-
-    this.utilsService.createAdBanner();
   }
 
   onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {

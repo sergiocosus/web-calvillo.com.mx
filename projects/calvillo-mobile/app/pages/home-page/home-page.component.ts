@@ -24,9 +24,5 @@ export class HomePageComponent implements OnInit {
     this.page.backgroundImage = '~/assets/images/landing-page-background-night.jpg';
   }
 
-  showBanner() {
-    this.utilsService.createAdBanner();
-
-  }
 
 }

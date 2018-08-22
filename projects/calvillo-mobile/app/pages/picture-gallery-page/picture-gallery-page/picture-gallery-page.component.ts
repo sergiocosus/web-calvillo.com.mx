@@ -22,6 +22,7 @@ import { RadListView } from 'nativescript-ui-listview';
 import { ModalDialogService } from 'nativescript-angular';
 import { PictureMapPageComponent } from '~/pages/picture-gallery-page/picture-map-page/picture-map-page.component';
 import { firebase } from 'nativescript-plugin-firebase/firebase-common';
+import { UtilsService } from '~/shared/services/utils.service';
 
 
 @Component({
@@ -50,7 +51,8 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
               private pageRoute: PageRoute,
               private routerExtensions: RouterExtensions,
               private modalService: ModalDialogService,
-              private vcRef: ViewContainerRef
+              private vcRef: ViewContainerRef,
+              private utilsService: UtilsService,
   ) {
     this.deviceHeight = screen.mainScreen.heightDIPs;
 

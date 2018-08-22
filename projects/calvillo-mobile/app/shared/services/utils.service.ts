@@ -106,4 +106,17 @@ export class UtilsService {
       }
     );
   }
+
+  public createAdInterstitial() {
+    admob.showInterstitial({
+      testing: true,
+      //iosInterstitialId: this.iosInterstitialId,
+      androidInterstitialId: environment.adMob.interstitialAd,
+      //iosTestDeviceIds: ["yourTestDeviceUDIDs"]
+    }).then(function() {
+      console.log("admob createInterstitial done");
+    }, function(error) {
+      console.log("admob createInterstitial error: " + error);
+    });
+  }
 }

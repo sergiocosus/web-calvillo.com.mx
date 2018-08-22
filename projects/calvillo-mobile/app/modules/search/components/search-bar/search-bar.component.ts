@@ -6,12 +6,15 @@ import {
   catchError,
   debounceTime,
   distinctUntilChanged,
-  filter, finalize,
-  mergeMap, tap
+  filter,
+  finalize,
+  mergeMap,
+  tap
 } from 'rxjs/operators';
-import { Page } from 'tns-core-modules/ui/page';
+import { isAndroid, Page } from 'tns-core-modules/ui/page';
 import { UtilsService } from '~/shared/services/utils.service';
 import { from } from 'rxjs';
+import { SearchBar } from 'tns-core-modules/ui/search-bar';
 
 
 @Component({
@@ -54,6 +57,7 @@ export class SearchBarComponent implements OnInit {
       )
     ).subscribe(
       results => {
+        this.loading = false;
         this.results = [...results.directories, ...results.categories, ...results.pictures];
         this.resultsChanged.emit(this.results);
       }
@@ -66,7 +70,7 @@ export class SearchBarComponent implements OnInit {
   getType(result: (Picture | Directory | Category)) {
     if (result instanceof Picture) {
       return 'picture';
-    } else if (result instanceof  Directory) {
+    } else if (result instanceof Directory) {
       return 'directory';
     } else {
       return 'category';
@@ -90,22 +94,30 @@ export class SearchBarComponent implements OnInit {
   onTap(event) {
     const result = this.results[event.index];
     this.routerExtensions.navigateByUrl(
-        this.getRouterLinkResult(result)
+      this.getRouterLinkResult(result)
     );
   }
 
   getRouterLinkResult(result: (Picture | Directory | Category)) {
-      if (result instanceof Picture) {
-          if (result.categories.length) {
-              return result.getRouterLink(result.categories[0])
-          }
-      } else if (result instanceof  Directory) {
-          if (result.categories.length) {
-              return result.getRouterLink(result.categories[0])
-          }
-      } else {
-          return result.routerLink;
+    if (result instanceof Picture) {
+      if (result.categories.length) {
+        return result.getRouterLink(result.categories[0])
       }
+    } else if (result instanceof Directory) {
+      if (result.categories.length) {
+        return result.getRouterLink(result.categories[0])
+      }
+    } else {
+      return result.routerLink;
+    }
+  }
+
+  sbLoaded(args) {
+    const searchbar: SearchBar = args.object;
+
+    if (isAndroid) {
+      searchbar.android.clearFocus();
+    }
   }
 
 }

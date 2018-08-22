@@ -1,10 +1,14 @@
 <SearchBar [hint]="placeholder"
            [class.searched]="results?.length"
            [formControl]="formControl"
+           (loaded)="sbLoaded($event)"
            (clear)="clear()"
            (submit)="onSubmit($event)"></SearchBar>
-  <ActivityIndicator *ngIf="loading" busy="true">
-  </ActivityIndicator>
+<ActivityIndicator *ngIf="loading" busy="true">
+</ActivityIndicator>
+
+<TextView *ngIf="!loading && results && !results.length" text="No hay resultados, intenta con otras palabras">
+</TextView>
 
 <GridLayout  *ngIf="results?.length">
   <ListView row="1" [items]="results"
