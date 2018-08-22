@@ -3,6 +3,7 @@ import { Directory, DirectoryService } from '@calvillo/api';
 import { RouterExtensions } from 'nativescript-angular';
 import { PageRoute } from 'nativescript-angular/router';
 import { finalize, switchMap, tap } from 'rxjs/operators';
+import { firebase } from 'nativescript-plugin-firebase/firebase-common';
 
 
 @Component({
@@ -23,6 +24,9 @@ export class DirectoryPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    firebase.analytics.setScreenName({
+      screenName: 'directory-page'
+    });
     this.checkRoute();
   }
 

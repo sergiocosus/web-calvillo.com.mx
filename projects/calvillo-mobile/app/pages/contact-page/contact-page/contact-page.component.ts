@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilsService } from '~/shared/services/utils.service';
+import { firebase } from 'nativescript-plugin-firebase/firebase-common';
 
 @Component({
   selector: 'app-contact-page',
@@ -13,6 +14,9 @@ export class ContactPageComponent implements OnInit {
   constructor(private utilsService: UtilsService) { }
 
   ngOnInit() {
+    firebase.analytics.setScreenName({
+      screenName: 'contact-page'
+    });
   }
 
   openUrl(url) {
@@ -20,5 +24,16 @@ export class ContactPageComponent implements OnInit {
   }
   dial(phone) {
     this.utilsService.dialPhone(phone);
+  }
+
+  directoryForm() {
+    firebase.analytics.logEvent({
+      key: 'directory-request-form',
+    }).then(
+      function () {
+        console.log('Firebase Analytics event logged');
+      }
+    );;
+    this.openUrl(this.directoryFormUrl);
   }
 }

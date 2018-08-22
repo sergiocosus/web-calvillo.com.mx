@@ -10,6 +10,7 @@ import { finalize, switchMap, tap } from 'rxjs/operators';
 import { PageRoute } from 'nativescript-angular/router';
 import { ScrollEventData, ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { View } from 'tns-core-modules/ui/core/view';
+import { firebase } from 'nativescript-plugin-firebase/firebase-common';
 
 @Component({
   selector: 'app-gallery-page',
@@ -61,7 +62,9 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    firebase.analytics.setScreenName({
+      screenName: 'gallery-page'
+    });
   }
 
   onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {

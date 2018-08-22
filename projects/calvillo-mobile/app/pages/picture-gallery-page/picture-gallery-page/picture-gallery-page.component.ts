@@ -21,6 +21,7 @@ import * as app from 'tns-core-modules/application';
 import { RadListView } from 'nativescript-ui-listview';
 import { ModalDialogService } from 'nativescript-angular';
 import { PictureMapPageComponent } from '~/pages/picture-gallery-page/picture-map-page/picture-map-page.component';
+import { firebase } from 'nativescript-plugin-firebase/firebase-common';
 
 
 @Component({
@@ -81,7 +82,9 @@ export class PictureGalleryPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    firebase.analytics.setScreenName({
+      screenName: 'picture-gallery-page'
+    });
   }
 
   scrollToIndex(index: number): void {

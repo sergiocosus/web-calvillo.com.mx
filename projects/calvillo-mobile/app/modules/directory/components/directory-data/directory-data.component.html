@@ -3,6 +3,7 @@
                *ngIf="directory.address && directory.address.length">
     <Label class="label" text="Dirección"></Label>
     <TextView editable="false"
+
               [text]="directory.address"></TextView>
   </StackLayout>
 
@@ -15,6 +16,8 @@
     <StackLayout class="field">
       <Label class="label" text="Teléfono" (tap)="dial(directory.phone)"></Label>
       <TextView editable="false"(tap)="dial(directory.phone)"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp"
                 [text]="directory.phone"></TextView>
     </StackLayout>
   </StackLayout>
