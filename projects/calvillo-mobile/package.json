@@ -37,6 +37,7 @@
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-listview": "^3.5.11",
     "nativescript-ui-sidedrawer": "^4.1.1",
+    "nativescript-urlhandler": "^1.2.2",
     "nativescript-web-image-cache": "^4.2.6",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~6.0.0 || >=6.1.0",

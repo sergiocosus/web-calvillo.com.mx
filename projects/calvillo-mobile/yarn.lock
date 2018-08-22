@@ -4256,6 +4256,10 @@ nativescript-ui-sidedrawer@^4.1.1:
   dependencies:
     nativescript-ui-core "^1.0.0"
 
+nativescript-urlhandler@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/nativescript-urlhandler/-/nativescript-urlhandler-1.2.2.tgz#1d300bfd87aec602b5440e6f878420e280539d43"
+
 nativescript-web-image-cache@^4.2.6:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/nativescript-web-image-cache/-/nativescript-web-image-cache-4.2.6.tgz#506265ba2e6e3c8e702482e760ef70d55191c7aa"

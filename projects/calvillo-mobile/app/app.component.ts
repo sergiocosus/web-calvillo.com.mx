@@ -37,6 +37,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
               private utilsService: UtilsService) {
     initializeOnAngular();
     this.utilsService.monitorConnectivity();
+    this.utilsService.handleOpenUrl();
   }
 
 

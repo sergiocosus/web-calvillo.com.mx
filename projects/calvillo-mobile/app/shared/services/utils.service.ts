@@ -4,6 +4,8 @@ import Uri = android.net.Uri;
 import Intent = android.content.Intent;
 const app = require('application');
 import * as Connectivity from 'tns-core-modules/connectivity';
+import { AppURL, handleOpenURL } from 'nativescript-urlhandler';
+import { RouterExtensions } from 'nativescript-angular';
 let application = require('application');
 
 @Injectable({
@@ -11,7 +13,7 @@ let application = require('application');
 })
 export class UtilsService {
 
-  constructor() {
+  constructor(private routerExtensions: RouterExtensions) {
   }
 
   openUrl(url) {
@@ -66,5 +68,17 @@ export class UtilsService {
 
   cancelCheckConnectivity() {
     Connectivity.stopMonitoring();
+  }
+
+  handleOpenUrl() {
+    handleOpenURL((appURL: AppURL) => {
+      console.log('Got the following appURL', appURL);
+
+      const parts = appURL.path.split('calvillo.com.mx');
+      if (parts.length === 2) {
+        console.log('Navigating to: ', parts[1]);
+        this.routerExtensions.navigateByUrl(parts[1]);
+      }
+    });
   }
 }
