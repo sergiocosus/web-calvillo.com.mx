@@ -11,6 +11,7 @@ import { PageRoute } from 'nativescript-angular/router';
 import { ScrollEventData, ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { firebase } from 'nativescript-plugin-firebase/firebase-common';
+import { UtilsService } from '~/shared/services/utils.service';
 
 @Component({
   selector: 'app-gallery-page',
@@ -32,6 +33,7 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
 
   constructor(private categoryService: CategoryService,
               private pageRoute: PageRoute,
+              private utilsService: UtilsService,
               ) {
     this.pageRoute.activatedRoute.pipe(
       switchMap(activatedRoute => activatedRoute.paramMap),
@@ -65,6 +67,8 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
     firebase.analytics.setScreenName({
       screenName: 'gallery-page'
     });
+
+    this.utilsService.createAdBanner();
   }
 
   onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {

@@ -1,0 +1,11 @@
+export const environment = {
+  apiUrl: 'http://api.calvillo.com.mx/api/',
+  apiAuthUrl: 'http://api.calvillo.com.mx/oauth/token',
+  apiClientID: '2',
+  apiClientSecret: 'YNIvZzkxJ0co82d6LCk2NTnZVLTKyMcJvQZ8EbiJ',
+  defaultCategoryId: 'principal',
+  webUrl: 'https://calvillo.com.mx',
+  adMob: {
+
+  }
+};

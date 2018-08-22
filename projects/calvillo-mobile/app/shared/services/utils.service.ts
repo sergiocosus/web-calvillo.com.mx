@@ -7,6 +7,8 @@ import * as Connectivity from 'tns-core-modules/connectivity';
 import { AppURL, handleOpenURL } from 'nativescript-urlhandler';
 import { RouterExtensions } from 'nativescript-angular';
 let application = require('application');
+import { environment } from '~/environment';
+import { admob } from 'nativescript-plugin-firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +82,28 @@ export class UtilsService {
         this.routerExtensions.navigateByUrl(parts[1]);
       }
     });
+  }
+
+  createAdBanner() {
+    admob.showBanner({
+      size: admob.AD_SIZE.SMART_BANNER, // see firebase.admob.AD_SIZE for all options
+      margins: { // optional nr of device independent pixels from the top or bottom (don't set both)
+        bottom: 10,
+        top: 0
+      },
+      androidBannerId: environment.adMob.bannerId,
+      //iosBannerId: "ca-app-pub-9517346003011652/3985369721",
+      testing: true, // when not running in production set this to true, Google doesn't like it any other way
+      iosTestDeviceIds: [ //Android automatically adds the connected device as test device with testing:true, iOS does not
+      ],
+    //  keywords: ["keyword1", "keyword2"] // add keywords for ad targeting
+    }).then(
+      function () {
+        console.log("AdMob banner showing");
+      },
+      function (errorMessage) {
+        console.error(errorMessage);
+      }
+    );
   }
 }

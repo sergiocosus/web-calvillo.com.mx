@@ -10,7 +10,7 @@
     "storage": false,
     "facebook_auth": false,
     "google_auth": false,
-    "admob": false,
+    "admob": true,
     "invites": false,
     "ml_kit": false
 }

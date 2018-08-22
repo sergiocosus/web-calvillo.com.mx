@@ -44,8 +44,6 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
     this.sideDrawerService.sideDrawer = this.drawer;
-
-    this._changeDetectionRef.detectChanges();
   }
 
   ngOnInit() {
