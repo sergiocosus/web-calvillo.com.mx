@@ -8,6 +8,7 @@ import { EXIFService } from './services/exif.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotifyService } from './services/notify.service';
 import {
+  MatBottomSheetModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -15,6 +16,7 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
+  MatListModule,
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule
@@ -36,6 +38,7 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
 import { AgmCoreModule } from '@agm/core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { AppMetaService } from './services/app-meta.service';
+import { AndroidInstallSheetComponent } from './components/android-install-sheet/android-install-sheet.component';
 
 
 @NgModule({
@@ -49,6 +52,8 @@ import { AppMetaService } from './services/app-meta.service';
     MatInputModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
+    MatBottomSheetModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
@@ -61,6 +66,7 @@ import { AppMetaService } from './services/app-meta.service';
     ImageComponent,
     AdThumbComponent,
     BackButtonComponent,
+    AndroidInstallSheetComponent,
   ],
   exports: [
     CommonModule,
@@ -88,6 +94,10 @@ import { AppMetaService } from './services/app-meta.service';
     LogoComponent,
     AdThumbComponent,
     BackButtonComponent,
+    AndroidInstallSheetComponent,
+  ],
+  entryComponents: [
+    AndroidInstallSheetComponent,
   ]
 })
 export class SharedModule {

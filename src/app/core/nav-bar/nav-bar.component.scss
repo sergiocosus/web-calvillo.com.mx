@@ -106,6 +106,10 @@ nav {
         &.expanded {
           flex: 1;
         }
+
+        ::ng-deep mat-form-field{
+          max-height: 86%;
+        }
       }
 
       img {

@@ -1,5 +1,5 @@
 import { filter } from 'rxjs/operators';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { AuthService } from '@calvillo/api';
 import { NavigationEnd, Router } from '@angular/router';
 import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
@@ -12,7 +12,9 @@ import {
   PageScrollInstance,
   PageScrollService
 } from 'ngx-page-scroll';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AndroidInstallSheetComponent } from './shared/components/android-install-sheet/android-install-sheet.component';
+import { MatBottomSheet } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +29,15 @@ export class AppComponent implements OnInit {
               private platformService: PlatformService,
               private meta: Meta,
               private pageScrollService: PageScrollService,
-              @Inject(DOCUMENT) private document: any) {
+              @Inject(DOCUMENT) private document: any,
+              private bottomSheet: MatBottomSheet,
+              @Inject(PLATFORM_ID) private platformId: Object) {
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.showBanner();
+    }
+
+
     this.authService.updateLoggedUserObservable().subscribe(() => {
     });
 
@@ -66,6 +76,14 @@ export class AppComponent implements OnInit {
     };
     PageScrollConfig.defaultDuration = 500;
 
+  }
+
+  private showBanner() {
+    if (!localStorage.getItem('hiddenBanner')) {
+      this.bottomSheet.open(AndroidInstallSheetComponent);
+
+      localStorage.setItem('hiddenBanner', 'true');
+    }
   }
 
   emitPageViews() {

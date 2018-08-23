@@ -42,6 +42,23 @@ section {
   position: relative;
   height: 80vh;
 
+  .google-play{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 1em;
+
+    img{
+      height: 4em;
+
+      @media (min-width: $mdScreen) {
+        img {
+          height: 5em;
+        }
+      }
+    }
+  }
+
   .magic {
     position: absolute;
     right: 0;
@@ -133,7 +150,7 @@ section {
           max-width: 600px;
           flex: 0 0 auto;
 
-          /deep/ .mat-input-infix {
+          .mat-form-field-infix {
             border: none;
           }
 
@@ -141,7 +158,7 @@ section {
             width: 100%;
           }
 
-          /deep/ .mat-input-prefix {
+          .mat-form-field-prefix {
             .fa {
               color: $primaryColor;
             }

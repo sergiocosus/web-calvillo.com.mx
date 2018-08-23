@@ -56,6 +56,6 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
   color: gray;
 }
 
-.mat-form-field.app-input-no-underline .mat-input-underline {
+.mat-form-field.app-input-no-underline .mat-form-field-underline {
   display: none;
 }
