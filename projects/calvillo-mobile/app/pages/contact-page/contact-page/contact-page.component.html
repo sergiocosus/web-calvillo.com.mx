@@ -13,12 +13,17 @@
             (tap)="directoryForm()"></Button>
   </StackLayout>
 
+  <TextView editable="false"
+            class="label social-title"
+            text="Nuestras redes sociales">
+  </TextView>
+
   <StackLayout class="buttons" orientation="horizontal">
     <Label class="fa facebook" [text]="'fa-facebook' | fonticon"
            (tap)="openUrl('https://www.facebook.com/calvillo.com.mx')">
     </Label>
 
-    <Label class="fa youtube" [text]="'fa-youtube' | fonticon"
+    <Label class="fa youtube" [text]="'fa-youtube-play' | fonticon"
            (tap)="openUrl('https://www.youtube.com/channel/UCz4R5spU9lrtKX3YQAyxRpg')">
     </Label>
   </StackLayout>
@@ -76,7 +81,7 @@
         <Label class="fa facebook" [text]="'fa-facebook' | fonticon"
                (tap)="openUrl('https://www.facebook.com/ricardofotoyvideo/')">
         </Label>
-        <Label class="fa youtube" [text]="'fa-youtube' | fonticon"
+        <Label class="fa youtube" [text]="'fa-youtube-play' | fonticon"
                (tap)="openUrl('https://www.youtube.com/user/MrRichardCS')">
         </Label>
       </StackLayout>
