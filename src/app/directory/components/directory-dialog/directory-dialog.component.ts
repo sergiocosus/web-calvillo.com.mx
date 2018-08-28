@@ -40,6 +40,7 @@ export class DirectoryDialogComponent implements OnInit {
   createForm(directory: Directory, parent_category_id?: number) {
     this.form = this.fb.group({
       id: [directory.id, []],
+      type: [directory.type, [Validators.required]],
       title: [directory.title, [Validators.required]],
       link: [directory.link, [Validators.required]],
       description: [directory.description, []],
@@ -47,9 +48,11 @@ export class DirectoryDialogComponent implements OnInit {
       email: [directory.email, []],
       phone: [directory.phone, []],
       cellphone: [directory.cellphone, []],
+      schedule: [directory.schedule, []],
       website_url: [directory.website_url, []],
       youtube_url: [directory.youtube_url, []],
       facebook_url: [directory.facebook_url, []],
+      twitter_url: [directory.twitter_url, []],
       latitude: [directory.latitude, []],
       longitude: [directory.longitude, []],
       image: [],

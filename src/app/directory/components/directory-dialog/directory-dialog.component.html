@@ -11,6 +11,16 @@
   <form *ngIf="form" [formGroup]="form"
         id="category-form" (submit)="submit()">
     <mat-form-field>
+      <mat-select placeholder="Tipo" formControlName="type">
+        <mat-option value="business">
+          Negocio
+        </mat-option>
+        <mat-option value="touristic-place">
+          Lugar Turístico
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="title"
              placeholder="Título">
     </mat-form-field>
@@ -39,6 +49,10 @@
              placeholder="Celular">
     </mat-form-field>
     <mat-form-field>
+      <input matInput formControlName="schedule"
+             placeholder="Horario">
+    </mat-form-field>
+    <mat-form-field>
       <input matInput formControlName="website_url"
              placeholder="Url del sitio web">
     </mat-form-field>
@@ -50,8 +64,12 @@
       <input matInput formControlName="facebook_url"
              placeholder="Url de facebook">
     </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="twitter_url"
+             placeholder="Url de twitter">
+    </mat-form-field>
     <section class="coordinates">
-      <a class="map" (click)="openMapModal(picture)">
+      <a class="map" (click)="openMapModal()">
         <i class="fa fa-map-marker"></i>
       </a>
       <mat-form-field>
@@ -88,5 +106,5 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-raised-button form="category-form">Subir álbum</button>
+  <button mat-raised-button form="category-form">Subir directorio</button>
 </mat-dialog-actions>

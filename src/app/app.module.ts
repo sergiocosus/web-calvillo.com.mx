@@ -61,7 +61,6 @@ const options: ShareButtonsOptions = {
       apiUrl: environment.apiUrl,
       apiClientID: environment.apiClientID,
       apiClientSecret: environment.apiClientSecret,
-      apiAuthUrl: environment.apiAuthUrl,
     }),
     BrowserAnimationsModule,
 

@@ -23,6 +23,7 @@
       imagePath="https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m">
       <agm-marker
         *ngFor="let directory of directories"
+        [iconUrl]="directory.type === 'touristic-place' ? touristicIcon : null"
         [label]="directory.title"
         [openInfoWindow]="true"
         [latitude]="directory.latitude"

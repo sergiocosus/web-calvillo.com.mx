@@ -22,6 +22,8 @@ export class MapComponent implements OnInit {
   adSenseEnabled = environment.adSenseEnabled;
   categories: Observable<Category[]>;
 
+  touristicIcon = 'http://maps.google.com/mapfiles/ms/icons/blue.png';
+
   constructor(private directoryService: DirectoryService,
               private navbarService: NavbarService,
               private categoryService: CategoryService) {

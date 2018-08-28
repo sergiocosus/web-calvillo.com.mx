@@ -1,29 +1,52 @@
 <div [innerHTML]="directory.description"><</div>
 
 <ul>
-  <li *ngIf="directory.address && directory.address.length">
-    <h5>Dirección</h5>
-    <span>{{directory.address}}</span>
+  <li *ngIf="directory.address?.length">
+    <i class="fa fa-location-arrow" aria-hidden="true"></i>
+    <div>
+      <h5>Dirección</h5>
+      <span>{{directory.address}}</span>
+    </div>
   </li>
-  <li *ngIf="directory.email && directory.email.length">
-    <h5>Email</h5>
-    <a [href]="'mailto:' + directory.email">{{directory.email}}</a>
+  <li *ngIf="directory.schedule?.length">
+    <i class="fa fa-clock-o" aria-hidden="true"></i>
+    <div>
+      <h5>Horario</h5>
+      <span>{{directory.schedule}}</span>
+    </div>
   </li>
-  <li *ngIf="directory.phone && directory.phone.length">
-    <h5>Teléfono</h5>
-    <span>{{directory.phone}}</span>
+  <li *ngIf="directory.email?.length">
+    <i class="fa fa-envelope"></i>
+    <div>
+      <h5>Email</h5>
+      <a [href]="'mailto:' + directory.email">{{directory.email}}</a>
+    </div>
   </li>
-  <li *ngIf="directory.cellphone && directory.cellphone.length">
-    <h5>Celular</h5>
-    <span>{{directory.cellphone}}</span>
+  <li *ngIf="directory.phone?.length">
+    <i class="fa fa-phone"></i>
+    <div>
+      <h5>Teléfono</h5>
+      <span>{{directory.phone}}</span>
+    </div>
+  </li>
+  <li *ngIf="directory.cellphone?.length">
+    <i class="fa fa-mobile"></i>
+    <div>
+      <h5>Celular</h5>
+      <span>{{directory.cellphone}}</span>
+    </div>
+
   </li>
   <li *ngIf="directory.website_url && directory.website_url.length">
-    <h5>Sitio web</h5>
-    <span>
+    <i class="fa fa-globe"></i>
+    <div>
+      <h5>Sitio web</h5>
+      <span>
         <a [href]="directory.website_url" target="_blank">
           {{directory.website_url}}
         </a>
       </span>
+    </div>
   </li>
 </ul>
 <div class="buttons">
@@ -33,13 +56,18 @@
     <i class="fa fa-map-marker"></i>
   </a>
   <a class="facebook"
-     *ngIf="directory.facebook_url && directory.facebook_url.length"
+     *ngIf="directory.facebook_url?.length"
      [href]="directory.facebook_url" target="_blank">
     <i class="fa fa-facebook"></i>
   </a>
   <a class="youtube"
-     *ngIf="directory.youtube_url && directory.youtube_url.length"
+     *ngIf="directory.youtube_url?.length"
      [href]="directory.youtube_url" target="_blank">
     <i class="fa fa-youtube"></i>
+  </a>
+  <a class="twitter"
+     *ngIf="directory.twitter_url?.length"
+     [href]="directory.twitter_url" target="_blank">
+    <i class="fa fa-twitter"></i>
   </a>
 </div>

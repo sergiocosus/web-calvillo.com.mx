@@ -4,6 +4,7 @@ import { Category } from './category.model';
 // @dynamic
 export class Directory extends ImageableModel {
   id: number;
+  type: null | 'touristic-place' | 'business';
   title: string;
   link: string;
   image_code: string;
@@ -12,9 +13,11 @@ export class Directory extends ImageableModel {
   email: string;
   phone: string;
   cellphone: string;
+  schedule: string;
   website_url: string;
   youtube_url: string;
   facebook_url: string;
+  twitter_url: string;
   latitude: number;
   longitude: number;
   created_at: string;

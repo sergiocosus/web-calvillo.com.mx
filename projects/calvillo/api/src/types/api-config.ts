@@ -4,7 +4,6 @@ export const CALVILLO_COM_MX_API_CONFIG = new InjectionToken<CalvilloComMxApiCon
 
 export interface CalvilloComMxApiConfig {
   apiUrl?: string;
-  apiAuthUrl?: string;
   apiClientID?: string;
   apiClientSecret?: string;
 }

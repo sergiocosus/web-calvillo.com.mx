@@ -15,13 +15,27 @@ ul {
 
   li {
     display: flex;
-    flex-direction: column;
-    margin-bottom: .5em;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: .25em;
+    margin-top: .25em;
     margin-right: .5em;
+
+    i{
+      font-size: 2em;
+      margin: .25em;
+      min-width: 1em;
+      text-align: center;
+      margin-top: .4em;
+    }
+
+    >div{
+      display: flex;
+      flex-direction: column;
+    }
 
     h5 {
       margin: 0;
-      margin-left: 1em;
       font-size: 1em;
     }
 
@@ -66,6 +80,12 @@ ul {
   @extend .social;
 
   background-color: $youtube-color;
+}
+
+.twitter {
+  @extend .social;
+
+  background-color: $twitter-color;
 }
 
 .map {

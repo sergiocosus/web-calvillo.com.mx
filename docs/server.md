@@ -1,5 +1,6 @@
 Compile app for server 
 ```
+ng build --prod @calvillo/api
 ENV=local npm run build:ssr
 ```
 
