@@ -38,6 +38,8 @@ export class DirectoryMapComponent implements OnInit {
   failed: boolean;
   loading: boolean;
 
+  touristicIcon = 'http://maps.google.com/mapfiles/ms/icons/blue.png';
+
   constructor(private directoryService: DirectoryService,
               private categoryService: CategoryService) {
   }
@@ -232,6 +234,9 @@ export class DirectoryMapComponent implements OnInit {
     marker.title = directory.title;
     marker.draggable = false;
     marker.userData = directory;
+    if (directory.type === 'touristic-place' ) {
+      marker.color = '#0000FF';
+    }
 
     return marker;
   }

@@ -45,7 +45,6 @@ require( 'nativescript-orientation' );
       apiClientID: environment.apiClientID,
       apiClientSecret: environment.apiClientSecret,
       apiUrl: environment.apiUrl,
-      apiAuthUrl: environment.apiAuthUrl,
     }),
     SharedModule,
   ],

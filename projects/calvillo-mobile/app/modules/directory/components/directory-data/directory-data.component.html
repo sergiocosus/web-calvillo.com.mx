@@ -1,13 +1,29 @@
 <StackLayout class="info">
-  <StackLayout class="field"
-               *ngIf="directory.address && directory.address.length">
-    <Label class="label" text="Dirección"></Label>
-    <TextView editable="false"
+  <StackLayout class="field-with-icon" orientation="horizontal"
+               *ngIf="directory.address?.length">
+    <Label class="fa phone" [text]="'fa-location-arrow' | fonticon">
+    </Label>
 
-              [text]="directory.address"></TextView>
+    <StackLayout class="field">
+      <Label class="label" text="Dirección"></Label>
+      <TextView editable="false"
+                [text]="directory.address"></TextView>
+    </StackLayout>
   </StackLayout>
 
-  <StackLayout class="field-with-icon" *ngIf="directory.phone && directory.phone.length"
+  <StackLayout class="field-with-icon" orientation="horizontal"
+               *ngIf="directory.schedule?.length">
+    <Label class="fa phone" [text]="'fa-clock-o' | fonticon">
+    </Label>
+
+    <StackLayout class="field">
+      <Label class="label" text="Horario"></Label>
+      <TextView editable="false"
+                [text]="directory.schedule"></TextView>
+    </StackLayout>
+  </StackLayout>
+
+  <StackLayout class="field-with-icon" *ngIf="directory.phone?.length"
                orientation="horizontal">
     <Label class="fa phone" [text]="'fa-phone' | fonticon"
            (tap)="dial(directory.phone)">
@@ -24,7 +40,7 @@
 
 
   <StackLayout class="field-with-icon"
-               *ngIf="directory.cellphone && directory.cellphone.length"
+               *ngIf="directory.cellphone?.length"
                orientation="horizontal">
 
     <Label class="fa phone"
@@ -44,7 +60,7 @@
 
 
   <StackLayout class="field-with-icon"
-               *ngIf="directory.website_url && directory.website_url.length"
+               *ngIf="directory.website_url?.length"
                orientation="horizontal">
 
     <Label class="fa phone" [text]="'fa-globe' | fonticon"
@@ -62,7 +78,7 @@
   </StackLayout>
 
   <StackLayout class="field-with-icon"
-               *ngIf="directory.email && directory.email.length"
+               *ngIf="directory.email?.length"
                orientation="horizontal">
 
     <Label class="fa phone" [text]="'fa-envelope' | fonticon"
@@ -80,15 +96,23 @@
 
   <StackLayout class="buttons" orientation="horizontal">
     <Label class="fa facebook" [text]="'fa-facebook' | fonticon"
-           *ngIf="directory.facebook_url && directory.facebook_url.length"
+           *ngIf="directory.facebook_url?.length"
            (tap)="openUrl(directory.facebook_url)">
     </Label>
 
     <Label class="fa youtube" [text]="'fa-youtube-play' | fonticon"
-           *ngIf="directory.youtube_url && directory.youtube_url.length"
+           *ngIf="directory.youtube_url?.length"
            (tap)="openUrl(directory.youtube_url)">
+    </Label>
+
+    <Label class="fa twitter" [text]="'fa-twitter' | fonticon"
+           *ngIf="directory.twitter_url?.length"
+           (tap)="openUrl(directory.twitter_url)">
     </Label>
   </StackLayout>
 
   <HtmlView [html]="directory.description"></HtmlView>
+
+  <WebImage *ngIf="showImage && directory.image_code" stretch="aspectFit"
+            [src]="directory.imageUrl('sm')" ></WebImage>
 </StackLayout>

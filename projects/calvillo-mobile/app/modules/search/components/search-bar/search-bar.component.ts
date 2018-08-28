@@ -99,12 +99,15 @@ export class SearchBarComponent implements OnInit {
   }
 
   getRouterLinkResult(result: (Picture | Directory | Category)) {
+    console.log(result);
+
     if (result instanceof Picture) {
       if (result.categories.length) {
         return result.getRouterLink(result.categories[0])
       }
     } else if (result instanceof Directory) {
       if (result.categories.length) {
+        console.log(result);
         return result.getRouterLink(result.categories[0])
       }
     } else {

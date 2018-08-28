@@ -11,6 +11,7 @@ import { UtilsService } from '~/shared/services/utils.service';
 })
 export class DirectoryDataComponent implements OnInit {
   @Input() directory: Directory;
+  @Input() showImage = false;
 
   constructor(public utilsService: UtilsService) { }
 

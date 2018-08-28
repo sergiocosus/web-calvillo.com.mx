@@ -13,7 +13,7 @@
 
   StackLayout.field{
     Label{
-      padding-left: 20;
+      padding-left: 5;
       font-weight: bold;
       font-size: 15;
       z-index: 10;
@@ -44,6 +44,9 @@
   .facebook{
     background-color: $fb-color;
   }
+  .twitter{
+    background-color: $twitter-color;
+  }
 }
 
 .fa{
@@ -56,4 +59,8 @@
   width: 45;
   height: 45;
   text-align: center;
+}
+
+WebImage{
+  height: 200;
 }
