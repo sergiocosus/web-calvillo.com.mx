@@ -1,7 +1,7 @@
 import { Injectable, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { NotificationsService } from 'angular2-notifications';
+import { NotificationsService, NotificationType } from 'angular2-notifications';
 
 @Injectable()
 export class NotifyService {
@@ -30,11 +30,11 @@ export class NotifyService {
     return this.notification.bare(title, content, override);
   }
 
-  create(title: string, content: string, type: string, override?: any) {
+  create(title: string, content: string, type: NotificationType, override?: any) {
     return this.notification.create(title, content, type, override);
   }
 
-  html(html: any, type: string, override?: any) {
+  html(html: any, type: NotificationType, override?: any) {
     return this.notification.html(html, type, override);
   }
 
@@ -52,7 +52,7 @@ export class NotifyService {
         ${message} </br>Code: ${code}
       </div>
   `);
-    return this.html(html, 'error');
+    return this.html(html, NotificationType.Error);
   }
 
 }

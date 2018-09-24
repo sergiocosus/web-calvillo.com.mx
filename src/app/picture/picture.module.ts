@@ -9,7 +9,6 @@ import {
   MatInputModule
 } from '@angular/material';
 import { PictureService } from '@calvillo/api';
-import { ImageUploadModule } from 'ng2-imageupload';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MapsModule } from '../maps/maps.module';
 import { PictureFormComponent } from './components/picture-form/picture-form.component';
@@ -17,6 +16,7 @@ import { PictureGalleryListComponent } from './components/picture-gallery-list/p
 import { AuthModule } from '../auth/auth.module';
 import { SocialPostDialogComponent } from './components/social-post-dialog/social-post-dialog.component';
 import { PictureFormService } from './services/picture-form.service';
+import { ImageToDataUrlModule } from 'ngx-image2dataurl';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import { PictureFormService } from './services/picture-form.service';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    ImageUploadModule,
+    ImageToDataUrlModule,
     SimpleNotificationsModule,
     MapsModule,
     AuthModule,

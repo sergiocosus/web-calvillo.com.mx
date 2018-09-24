@@ -7,10 +7,10 @@ import {
   Directory,
   DirectoryService
 } from '@calvillo/api';
-import { ImageResult } from 'ng2-imageupload';
 import { SelectFromMapModalComponent } from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
 import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
 import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
+import { ImageResult } from 'ngx-image2dataurl';
 
 @Component({
   selector: 'app-directory-dialog',

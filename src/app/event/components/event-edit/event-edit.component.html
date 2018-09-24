@@ -1,0 +1,119 @@
+<form [formGroup]="form"
+      id="event-form" (submit)="submit()">
+
+  <div class="group">
+    <mat-form-field>
+      <input matInput formControlName="title"
+             placeholder="Título">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="slug"
+             placeholder="Titulo para enlace">
+      <mat-error *ngIf="form.get('slug').hasError('linkUsed')">
+        El link esta siendo utilizado, cambielo por otro
+      </mat-error>
+      <mat-error *ngIf="form.get('slug').hasError('slug')">
+        El formato del link es inválido. Ejemplo mi-foto-1
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div class="group">
+    <mat-form-field>
+      <input matInput [owlDateTime]="dt1"
+             selectMode="range"
+             [owlDateTimeTrigger]="dt1"
+             formControlName="range_at"
+             placeholder="Fechas del evento">
+      <owl-date-time #dt1></owl-date-time>
+      <span matSuffix class="trigger" [owlDateTimeTrigger]="dt1">
+        <i class="fa fa-calendar"></i>
+    </span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             [owlDateTime]="dt2"
+             [owlDateTimeTrigger]="dt2"
+             formControlName="notify_at"
+             placeholder="Fecha de notificación">
+      <owl-date-time #dt2></owl-date-time>
+      <span matSuffix class="trigger" [owlDateTimeTrigger]="dt2">
+        <i class="fa fa-calendar"></i>
+    </span>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <input matInput formControlName="description"
+           placeholder="Descripción">
+    <mat-error *ngIf="form.get('description').hasError('required')">
+      Este campo es obligatorio
+    </mat-error>
+  </mat-form-field>
+
+  <div class="group">
+    <mat-form-field>
+      <input matInput formControlName="address"
+             placeholder="Dirección">
+      <mat-error *ngIf="form.get('address').hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <section class="coordinates" (click)="openMapModal()">
+      <a class="map">
+        <i class="fa fa-map-marker"></i>
+      </a>
+      <div>
+        <span>
+          Lat: {{form.get('latitude').value}},
+        </span>
+        <span>
+          Lon: {{form.get('longitude').value}}
+        </span>
+      </div>
+    </section>
+  </div>
+
+
+
+  <input class="input-picture" imageToDataUrl
+         (imageSelected)="selected($event)"
+         accept="image/*" name="picture" type="file">
+  <picture *ngIf="form.get('src')" [ngStyle]="{
+      'background-image' : 'url('+form.get('src').value+')'
+    }">
+  </picture>
+
+  <mat-form-field>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let category of form.get('categories').value"
+                (removed)="removeCategory(category)">
+        {{category.title}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input [matChipInputFor]="chipList"
+             [matAutocomplete]="auto"
+             [formControl]="categorySearchControl"
+             #peopleSearchInput
+             placeholder="Categorias">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete"
+                      (optionSelected)="addCategory($event); peopleSearchInput.value = ''">
+      <mat-option *ngFor="let category of categoriesFound$ | async" [value]="category">
+        <span>
+         <app-image [model]="category">
+            <i aria-hidden="true" class="fa fa-folder"></i>
+          </app-image>
+          <span>{{category.title}}</span>
+        </span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-error *ngIf="form.get('src').hasError('required')">
+    Es necesaria una imagen
+  </mat-error>
+</form>

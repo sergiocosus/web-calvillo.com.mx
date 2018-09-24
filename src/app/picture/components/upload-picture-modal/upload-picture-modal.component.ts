@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ImageResult } from 'ng2-imageupload';
 import {
   Category,
   CategoryService,
@@ -16,6 +15,7 @@ import { SubscriptionManager } from '../../../shared/classes/subscription-manage
 import { AutoUnsubscribe } from '../../../shared/classes/auto-unsubscribe';
 import { PictureFormService } from '../../services/picture-form.service';
 import { CustomValidator } from '../../../shared/classes/custom-validator';
+import { ImageResult } from 'ngx-image2dataurl';
 
 @Component({
   selector: 'app-upload-picture-modal',

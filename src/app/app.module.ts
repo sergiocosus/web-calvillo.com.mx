@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { CategoryModule } from './category/category.module';
 import { environment } from '../environments/environment';
 import { AdsenseModule } from 'ng2-adsense';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -25,9 +24,18 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { ApiModule } from '@calvillo/api';
+import { CalendarModule, DateAdapter, } from 'angular-calendar';
+import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common'; // to register french
 
 library.add(fab);
 library.add(fas);
+
+registerLocaleData(localeEs);
+
+
 const options: ShareButtonsOptions = {
   include: ['facebook', 'twitter', 'google', 'pinterest'],
   theme: 'landing',
@@ -46,9 +54,12 @@ const options: ShareButtonsOptions = {
     SharedModule.forRoot(),
     SearchModule,
     FacebookModule.forRoot(),
-    CategoryModule.forRoot(),
     AuthModule.forRoot(),
     PictureModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     ShareButtonsModule.forRoot({options: options}),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsApiKey
@@ -68,6 +79,9 @@ const options: ShareButtonsOptions = {
     CoreModule,
 
     // RouterModule.forRoot(appRoutes)
+  ],
+  providers: [
+    {provide: OWL_DATE_TIME_LOCALE, useValue: 'es'},
   ]
 })
 export class AppModule {

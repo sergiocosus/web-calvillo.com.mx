@@ -39,6 +39,10 @@ export const coreRoutes: Routes = [
         //loadChildren: 'app/core/directory/directory-route.module#DirectoryRouteModule',
       },
       {
+        path: 'eventos',
+        loadChildren: 'src/app/core/events-page/events-page.module#EventsPageModule',
+      },
+      {
         path: 'no-encontrado',
         children: notFoundRoutes,
         //loadChildren: 'app/core/contact/contact.module#ContactModule',

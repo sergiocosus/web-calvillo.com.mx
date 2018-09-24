@@ -16,12 +16,16 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
-  MatSidenavModule
+  MatSidenavModule, MatToolbarModule
 } from '@angular/material';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {
+  OWL_DATE_TIME_LOCALE,
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule
+} from 'ng-pick-datetime';
 import { LogoComponent } from './components/logo/logo.component';
 import { NavbarService } from './services/navbar.service';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -39,6 +43,7 @@ import { AgmCoreModule } from '@agm/core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { AppMetaService } from './services/app-meta.service';
 import { AndroidInstallSheetComponent } from './components/android-install-sheet/android-install-sheet.component';
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 
 
 @NgModule({
@@ -86,10 +91,12 @@ import { AndroidInstallSheetComponent } from './components/android-install-sheet
     MatExpansionModule,
     MatIconModule,
     MatCardModule,
+    MatToolbarModule,
+    MatProgressBarModule,
     AgmCoreModule,
     NgxPageScrollModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule,
+    OwlMomentDateTimeModule,
     ShareButtonsModule,
     LogoComponent,
     AdThumbComponent,

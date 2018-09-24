@@ -1,0 +1,62 @@
+<button mat-raised-button
+        *appIfLogged="true"
+        (click)="create()">
+  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  Crear evento
+</button>
+
+<app-calendar-header
+  [(view)]="view"
+  [(viewDate)]="viewDate">
+</app-calendar-header>
+
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+
+<div *ngIf="events; else loading; let events">
+  <mat-card [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="'month'"
+      [viewDate]="viewDate"
+      [events]="calendarEvents"
+      locale="es"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="eventClicked($event.event)">
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+      *ngSwitchCase="'week'"
+      [viewDate]="viewDate"
+      [events]="calendarEvents"
+      locale="es"
+      (eventClicked)="eventClicked($event.event)">
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+      *ngSwitchCase="'day'"
+      [viewDate]="viewDate"
+      [events]="calendarEvents"
+      locale="es"
+      (eventClicked)="eventClicked($event.event)">
+    </mwl-calendar-day-view>
+    <mat-nav-list *ngSwitchCase="'list'">
+      <a mat-list-item *ngFor="let event of calendarEvents"
+         [routerLink]="event.meta.getRouterLink()"
+         role="listitem">
+        <picture mat-list-icon
+                 [ngStyle]="{'background-image':  'url(' + event.meta.imageUrl('xs') + ')'}">
+        </picture>
+        <h4 mat-line>
+          {{event.meta.title}}
+        </h4>
+        <p mat-line>
+          {{event.meta.description}}
+        </p>
+        <p mat-line>
+          {{event.meta.begin_at | date : 'medium'}} /
+          {{event.meta.end_at | date : 'medium'}}
+        </p>
+      </a>
+    </mat-nav-list>
+  </mat-card>
+</div>

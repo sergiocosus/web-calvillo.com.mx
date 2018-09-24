@@ -4,7 +4,9 @@ import { CustomValidator } from '../../shared/classes/custom-validator';
 import { Category, CategoryService } from '@calvillo/api';
 import { CategoryValidator } from '../classes/category-validator';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CategoryFormService {
 
   constructor(private fb: FormBuilder,

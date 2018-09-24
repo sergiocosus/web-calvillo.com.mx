@@ -1,0 +1,18 @@
+<h4 mat-dialog-title>
+  {{event ? 'Actualizar' : 'Crear'}} evento
+  <button class="button-close" mat-dialog-close>
+    <i class="fa fa-times"></i>
+  </button>
+</h4>
+<button type="button" class="corner" mat-dialog-close>
+  <span aria-hidden="true">&times;</span>
+</button>
+<mat-dialog-content>
+  <app-event-edit [event]="event"
+                  (created)="close($event)"
+                  (updated)="close($event)"></app-event-edit>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button form="event-form">Subir álbum</button>
+</mat-dialog-actions>

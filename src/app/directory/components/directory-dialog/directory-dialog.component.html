@@ -94,7 +94,7 @@
       </mat-select>
     </mat-form-field>
 
-    <input class="input-picture" imageUpload
+    <input class="input-picture" imageToDataUrl
            (imageSelected)="selected($event)"
            accept="image/*" name="picture" type="file">
     <picture *ngIf="form.get('src')" [ngStyle]="{

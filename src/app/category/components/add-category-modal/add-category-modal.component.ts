@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Category, CategoryService } from '@calvillo/api';
-import { ImageResult } from 'ng2-imageupload';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
 import { CategoryFormService } from '../../services/category-form.service';
 import { CustomValidator } from '../../../shared/classes/custom-validator';
 import { NotifyService } from '../../../shared/services/notify.service';
+import { ImageResult } from 'ngx-image2dataurl';
 
 @Component({
   selector: 'app-add-category-modal',
@@ -50,6 +50,7 @@ export class AddCategoryModalComponent implements OnInit {
   }
 
   selected(imageResult: ImageResult) {
+    console.log(imageResult);
     this.form.get('src').setValue(imageResult.dataURL);
     this.form.get('image').setValue(imageResult.dataURL.split(',')[1]);
   }
