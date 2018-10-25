@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   getLoggedUser() {
-    return this.loggedAccountReplaySubject;
+    return this.loggedAccountReplaySubject.asObservable();
   }
 
   updateLoggedUserObservable(data = {logout: false}) {

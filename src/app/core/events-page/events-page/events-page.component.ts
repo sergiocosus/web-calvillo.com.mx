@@ -6,6 +6,7 @@ import { Event, EventService } from '@calvillo/api';
 import { MatDialog } from '@angular/material';
 import { EventEditDialogComponent } from '../../../event/components/event-edit-dialog/event-edit-dialog.component';
 import { Router } from '@angular/router';
+import { User, AuthService } from '@calvillo/api';
 
 interface Film {
   id: number;
@@ -36,9 +37,16 @@ export class EventsPageComponent implements OnInit {
     }
   ];
 
+  user: User;
+
   constructor(private eventService: EventService,
               private dialog: MatDialog,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthService) {
+
+    this.authService.getLoggedUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   ngOnInit(): void {
@@ -55,7 +63,7 @@ export class EventsPageComponent implements OnInit {
       end: new Date(event.end_at),
       color: colors.main,
       meta: event,
-      actions: this.actions,
+      actions: this.user ? this.actions : [],
     };
   }
 

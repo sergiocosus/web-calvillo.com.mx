@@ -8,7 +8,7 @@
                                            routerLink="/cuenta">Cuenta</a>
     para ligar su cuenta
   </div>
-  <form *ngIf="exist_token" (submit)="submit()">
+  <form *ngIf="exist_token" (ngSubmit)="submit()">
     <mat-form-field>
       <input matInput placeholder="Mensaje" [(ngModel)]="message"
              name="message">

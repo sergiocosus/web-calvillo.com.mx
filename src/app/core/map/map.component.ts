@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setTitle('Mapa');
 
-    this.directoryService.get().subscribe(
+    this.directoryService.getAll().subscribe(
       directories => {
         this.directories = directories;
       }

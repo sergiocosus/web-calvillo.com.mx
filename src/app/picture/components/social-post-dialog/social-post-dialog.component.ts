@@ -51,7 +51,7 @@ export class SocialPostDialogComponent implements OnInit {
       response => {
         this.message = null;
         this.delay = false;
-        this.linkToFacebookPublication = 'https://www.facebook.com/calvillo.com.mx/posts/' + response.facebook_post_id;
+        this.linkToFacebookPublication = 'https://www.facebook.com/calvillo.com.mx/posts/' + response['facebook_post_id'];
         this.notify.success('Post publicado con éxito');
       },
       error => this.notify.serviceError(error)

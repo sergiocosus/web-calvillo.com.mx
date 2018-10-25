@@ -65,7 +65,7 @@ export class AddCategoryModalComponent implements OnInit {
     const categoryData = this.form.value;
     categoryData.src = undefined;
     categoryData.category_id = categoryData.category_id;
-    categoryData.category = undefined;
+    categoryData.picture = undefined;
     if (this.createMode) {
       this.createCategory(categoryData);
     } else {

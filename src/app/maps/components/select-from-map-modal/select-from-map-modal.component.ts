@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-select-from-map-modal',
@@ -9,48 +10,43 @@ import { MatDialogRef } from '@angular/material';
 export class SelectFromMapModalComponent implements OnInit {
   static lastLongitude = -102.7104999;
   static lastLatitude = 21.8531537;
-  longitude = 0;
-  latitude = 0;
   latitudeMap = 0;
   longitudeMap = 0;
-
-  @Output() closed = new EventEmitter;
-
   hidden = true;
 
-  constructor(private dialog: MatDialogRef<SelectFromMapModalComponent>) {
+  constructor(private dialogRef: MatDialogRef<SelectFromMapModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public coordinates: {
+                latitude: number,
+                longitude: number,
+              }) {
+    if (!this.coordinates || !this.coordinates.latitude) {
+      this.coordinates = {
+        latitude: SelectFromMapModalComponent.lastLatitude,
+        longitude: SelectFromMapModalComponent.lastLongitude,
+      };
+    }
+
+    console.log(this.coordinates);
+
+    this.latitudeMap = this.coordinates.latitude;
+    this.longitudeMap = this.coordinates.longitude;
   }
 
   ngOnInit() {
-    setTimeout(() => this.hidden = false, 200);
-    this.dialog.afterClosed().subscribe(
+    this.dialogRef.afterClosed().subscribe(
       () => {
-        this.closed.emit({
-          latitude: this.latitude,
-          longitude: this.longitude,
-        });
-        SelectFromMapModalComponent.lastLongitude = this.longitude;
-        SelectFromMapModalComponent.lastLatitude = this.latitude;
+        SelectFromMapModalComponent.lastLongitude = this.coordinates.longitude;
+        SelectFromMapModalComponent.lastLatitude = this.coordinates.latitude;
       }
     )
   }
 
-  setCoords(lon, lat) {
-    if (!lon) {
-      this.longitudeMap = this.longitude = SelectFromMapModalComponent.lastLongitude;
-      this.latitudeMap = this.latitude = SelectFromMapModalComponent.lastLatitude;
-    } else {
-      this.longitudeMap = this.longitude = lon;
-      this.latitudeMap = this.latitude = lat;
-    }
-  }
-
   dragged($event) {
-    this.longitude = $event.coords.lng;
-    this.latitude = $event.coords.lat;
+    this.coordinates.longitude = $event.coords.lng;
+    this.coordinates.latitude = $event.coords.lat;
   }
 
   close() {
-    this.dialog.close();
+    this.dialogRef.close(this.coordinates);
   }
 }

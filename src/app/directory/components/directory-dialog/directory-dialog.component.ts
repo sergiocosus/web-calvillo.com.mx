@@ -104,18 +104,12 @@ export class DirectoryDialogComponent implements OnInit {
   }
 
   openMapModal() {
-    const dialog = this.dialog.open(SelectFromMapModalComponent);
-    dialog.componentInstance.setCoords(
-      +this.form.get('longitude').value,
-      +this.form.get('latitude').value,
-    );
-    dialog.componentInstance.closed.subscribe(
-      coordinates => {
-        this.form.patchValue({
-          longitude: coordinates.longitude,
-          latitude: coordinates.latitude
-        });
-      }
+    this.dialog.open(SelectFromMapModalComponent, {
+      data: {
+        longitude: +this.form.get('longitude').value,
+        latitude: +this.form.get('latitude').value
+      }}).afterClosed().subscribe(
+      coordinates => this.form.patchValue(coordinates)
     );
   }
 

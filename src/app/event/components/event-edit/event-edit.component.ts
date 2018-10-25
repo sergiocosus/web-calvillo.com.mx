@@ -1,29 +1,13 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
-import { Event } from '@calvillo/api';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Category, CategoryService, Event, EventService } from '@calvillo/api';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { SubscriptionManager } from '../../../shared/classes/subscription-manager';
 import { NotifyService } from '../../../shared/services/notify.service';
 import { CustomValidator } from '../../../shared/classes/custom-validator';
-import { EventService } from '../../../../../projects/calvillo/api/src/services/event.service';
-import { Category } from '../../../../../projects/calvillo/api/src/models/category.model';
-import { CategoryService } from '../../../../../projects/calvillo/api/src/services/category.service';
 import { EventFormService } from '../../services/event-form.service';
 import { ImageResult } from 'ngx-image2dataurl';
 import { SelectFromMapModalComponent } from '../../../maps/components/select-from-map-modal/select-from-map-modal.component';
-import { MatAutocompleteSelectedEvent, MatDialog } from '@angular/material';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  flatMap,
-  startWith
-} from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-event-edit',
@@ -40,8 +24,6 @@ export class EventEditComponent implements OnInit {
 
   subs = new SubscriptionManager();
   categories: Category[];
-  categorySearchControl = new FormControl();
-  categoriesFound$: Observable<Category[]>;
 
   constructor(private eventService: EventService,
               private categoryService: CategoryService,
@@ -59,7 +41,6 @@ export class EventEditComponent implements OnInit {
       categories => this.categories = categories
     );
 
-    this.initSearch();
   }
 
   selected(imageResult: ImageResult) {
@@ -75,9 +56,20 @@ export class EventEditComponent implements OnInit {
     }
 
     const eventData = this.form.value;
-    eventData.src = undefined;
+    delete eventData.src;
+    delete eventData.picture;
+
+    console.log(eventData);
+
+
     eventData.category_ids = eventData.categories.map(category => category.id);
-    eventData.category = undefined;
+    eventData.picture_ids = eventData.pictures.map(picture => picture.id);
+    eventData.directory_ids = eventData.directories.map(directory => directory.id);
+
+    delete eventData.categories;
+    delete eventData.pictures;
+    delete eventData.directories;
+
     if (this.event) {
       this.updateEvent(eventData);
     } else {
@@ -104,60 +96,14 @@ export class EventEditComponent implements OnInit {
   }
 
   openMapModal() {
-    const dialog = this.dialog.open(SelectFromMapModalComponent);
-    dialog.componentInstance.setCoords(
-      +this.form.get('longitude').value,
-      +this.form.get('latitude').value,
-    );
-    dialog.componentInstance.closed.subscribe(
-      coordinates => this.setCoordinates(coordinates)
-    );
-  }
-
-  setCoordinates(coordinates) {
-    this.form.patchValue({
-      longitude: coordinates.longitude,
-      latitude: coordinates.latitude
-    });
-  }
-
-
-  /**
-   * Add resident to the people form control
-   * @param {Person} category
-   */
-  removeCategory(category: Category): void {
-    const index = this.form.get('categories').value.findIndex(person2 => person2.id === category.id);
-
-    this.form.get('categories').value.splice(index, 1);
-  }
-
-  /**
-   * Remove residet to the people form control
-   * @param {MatAutocompleteSelectedEvent} event
-   */
-  addCategory(event: MatAutocompleteSelectedEvent) {
-    const category: Category = event.option.value;
-
-    const index = this.form.get('categories').value.findIndex(person2 => person2.id === category.id);
-    if (index === -1) {
-      this.form.get('categories').value.push(category);
-      // The next line is not working so there is a fix in the template
-      this.categorySearchControl.setValue('');
-    }
-  }
-
-  /**
-   * Initialize the search input for residentes
-   */
-  private initSearch() {
-    this.categoriesFound$ = this.categorySearchControl.valueChanges.pipe(
-      distinctUntilChanged(),
-      debounceTime(250),
-      startWith(' '),
-      flatMap(
-        value => this.categoryService.getAll({search: value})
-      )
+    this.dialog.open(SelectFromMapModalComponent, {
+      data: {
+        longitude: +this.form.get('longitude').value,
+        latitude: +this.form.get('latitude').value
+      }}).afterClosed().subscribe(
+      coordinates => this.form.patchValue(coordinates)
     );
   }
+
+
 }

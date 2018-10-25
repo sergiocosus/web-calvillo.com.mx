@@ -8,7 +8,7 @@ export class PictureValidator {
       const slug = control.value.slug || control.value;
 
       return pictureService.getLinkExists(slug).pipe(
-        map(response => (response.exists ? {linkUsed: response.exists} : false)));
+        map(response => (response['exists'] ? {linkUsed: response['exists']} : false)));
     };
   }
 }

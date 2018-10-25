@@ -15,6 +15,7 @@
     <ng-container *ngFor="let directory of search.directories">
       <mat-option *ngFor="let category of directory.categories"
                   [value]="directory"
+                  class="search-option"
                   (onSelectionChange)="selectedModel(category, directory)">
         <a [routerLink]="directory.getRouterLink(category)">
           <app-image [model]="directory">
@@ -30,6 +31,7 @@
 
     <mat-option *ngFor="let category of search.categories"
                 [value]="category"
+                class="search-option"
                 (onSelectionChange)="selectedCategory(category)">
       <a [routerLink]="category.routerLink">
         <app-image [model]="category">
@@ -44,6 +46,7 @@
     <ng-container *ngFor="let picture of search.pictures">
       <mat-option *ngFor="let category of picture.categories"
                   [value]="picture"
+                  class="search-option"
                   (onSelectionChange)="selectedModel(category, picture)">
         <a [routerLink]="picture.getRouterLink(category)">
           <app-image [model]="picture">

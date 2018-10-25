@@ -6,11 +6,15 @@ import { CategoryGalleryListComponent } from './components/category-gallery-list
 import { AuthModule } from '../auth/auth.module';
 import { SocialPostCategoryDialogComponent } from './social-post-category-dialog/social-post-category-dialog.component';
 import { ImageToDataUrlModule } from 'ngx-image2dataurl';
+import { CategoryChipListComponent } from './components/category-chip-list/category-chip-list.component';
+import { MatAutocompleteModule, MatChipsModule } from '@angular/material';
 
 @NgModule({
   imports: [
     SharedModule,
     ImageToDataUrlModule,
+    MatChipsModule,
+    MatAutocompleteModule,
     AuthModule,
   ],
   declarations: [
@@ -18,6 +22,7 @@ import { ImageToDataUrlModule } from 'ngx-image2dataurl';
     AddCategoryModalComponent,
     CategoryGalleryListComponent,
     SocialPostCategoryDialogComponent,
+    CategoryChipListComponent,
   ],
   entryComponents: [
     AddCategoryModalComponent,
@@ -28,6 +33,7 @@ import { ImageToDataUrlModule } from 'ngx-image2dataurl';
     AddCategoryModalComponent,
     CategoryGalleryListComponent,
     SocialPostCategoryDialogComponent,
+    CategoryChipListComponent,
   ]
 })
 export class CategoryModule {

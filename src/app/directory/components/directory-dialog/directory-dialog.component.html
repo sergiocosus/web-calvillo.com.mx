@@ -9,7 +9,7 @@
 </button>
 <mat-dialog-content>
   <form *ngIf="form" [formGroup]="form"
-        id="category-form" (submit)="submit()">
+        id="category-form" (ngSubmit)="submit()">
     <mat-form-field>
       <mat-select placeholder="Tipo" formControlName="type">
         <mat-option value="business">

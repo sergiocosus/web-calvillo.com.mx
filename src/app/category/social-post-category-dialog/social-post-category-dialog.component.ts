@@ -40,7 +40,7 @@ export class SocialPostCategoryDialogComponent implements OnInit {
       response => {
         this.message = null;
         this.linkToFacebookPublications =
-          response.facebook_post_ids.map(id => 'https://www.facebook.com/calvillo.com.mx/posts/' + id);
+          response['facebook_post_ids'].map(id => 'https://www.facebook.com/calvillo.com.mx/posts/' + id);
 
         this.notify.success('Post publicado con éxito');
       },

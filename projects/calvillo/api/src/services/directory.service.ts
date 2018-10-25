@@ -1,8 +1,9 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ApiHttp } from './api-http.service';
 import { Directory } from '../models/directory.model';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { PaginationService } from './pagination.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,41 +11,45 @@ import { Observable } from 'rxjs';
 export class DirectoryService {
   basePath = 'directory/';
 
-  constructor(private apiHttp: ApiHttp) {
+  constructor(private http: HttpClient,
+              private paginationService: PaginationService) {
   }
 
-  get(data?) {
-    return this.apiHttp.get(this.basePath, data).pipe(
-      map(json => Directory.parseArray(json.directories)));
+  getAll(filters?: { search?: string, limit?: number }) {
+    const params = this.paginationService.addFilterParams(filters);
+
+    return this.http.get(this.basePath, {params}).pipe(
+      map(json => Directory.parseArray(json['directories']))
+    );
   }
 
   getByLink(link: string) {
-    return this.apiHttp.get(this.basePath + 'link/' + link).pipe(
-      map(json => new Directory().parse(json.directory)));
+    return this.http.get(this.basePath + 'link/' + link).pipe(
+      map(json => new Directory().parse(json['directory'])));
   }
 
 
   post(data) {
-    return this.apiHttp.post(this.basePath, data).pipe(
-      map(json => new Directory().parse(json.directory)));
+    return this.http.post(this.basePath, data).pipe(
+      map(json => new Directory().parse(json['directory'])));
   }
 
   put(data) {
-    return this.apiHttp.put(this.basePath + data.id, data).pipe(
-      map(json => new Directory().parse(json.directory)));
+    return this.http.put(this.basePath + data.id, data).pipe(
+      map(json => new Directory().parse(json['directory'])));
   }
 
   remove(picture_id: number) {
-    return this.apiHttp.delete(this.basePath + picture_id).pipe(
-      map(json => new Directory().parse(json.directory)));
+    return this.http.delete(this.basePath + picture_id).pipe(
+      map(json => new Directory().parse(json['directory'])));
   }
 
   delete(picture_id: number) {
-    return this.apiHttp.delete(this.basePath + 'force/' + picture_id);
+    return this.http.delete(this.basePath + 'force/' + picture_id);
   }
 
   restore(picture_id: number) {
-    return this.apiHttp.patch(this.basePath + picture_id).pipe(
-      map(json => new Directory().parse(json.directory)));
+    return this.http.patch(this.basePath + picture_id, {}).pipe(
+      map(json => new Directory().parse(json['directory'])));
   }
 }

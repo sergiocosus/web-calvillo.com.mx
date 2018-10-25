@@ -1,17 +1,33 @@
-picture {
-  height: 200px;
-  width: 100%;
-  display: inline-block;
-
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 form {
   display: flex;
   flex-direction: column;
 }
+
+.image-data{
+  cursor: pointer;
+  text-align: center;
+
+  picture {
+    height: 200px;
+    width: 100%;
+    display: inline-block;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .fa{
+    text-align: center;
+    width: 100%;
+    font-size: 3em;
+  }
+
+  .no-image{
+    text-align: center;
+  }
+}
+
 
 
 .group{
@@ -45,39 +61,3 @@ form {
 
 
 
-mat-option {
-  min-height: 48px;
-  height: auto;
-  margin-bottom: 1px;
-  padding: 0 .5em;
-
-  span {
-    display: flex;
-    align-items: center;
-    font-size: .85em;
-    text-decoration: none;
-
-    app-image {
-      i {
-        font-size: 1em;
-        margin: .1em;
-        text-shadow: 1px 1px 5px #666;
-        color: white;
-      }
-    }
-    > span {
-      flex: 1 0 0;
-      white-space: initial;
-      line-height: 1em;
-      color: black;
-      display: flex;
-      flex-direction: column;
-      padding-left: .5em;
-      text-align: left;
-      .category-title {
-        font-weight: bolder;
-        font-size: .8em;
-      }
-    }
-  }
-}

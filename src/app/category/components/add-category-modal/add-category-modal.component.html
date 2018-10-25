@@ -9,7 +9,7 @@
 </button>
 <mat-dialog-content>
   <form [formGroup]="form"
-        id="category-form" (submit)="submit()">
+        id="category-form" (ngSubmit)="submit()">
     <mat-form-field>
       <input matInput formControlName="title"
              placeholder="Título">

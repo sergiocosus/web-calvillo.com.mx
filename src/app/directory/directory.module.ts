@@ -5,9 +5,10 @@ import { MapsModule } from '../maps/maps.module';
 import { DirectoryDialogComponent } from './components/directory-dialog/directory-dialog.component';
 import { DirectoryGalleryListComponent } from './components/directory-gallery-list/directory-gallery-list.component';
 import { AuthModule } from '../auth/auth.module';
-import { DirectoryService } from '@calvillo/api';
 import { DirectoryDetailComponent } from './components/directory-detail/directory-detail.component';
 import { ImageToDataUrlModule } from 'ngx-image2dataurl';
+import { DirectoryChipListComponent } from './components/directory-chip-list/directory-chip-list.component';
+import { MatAutocompleteModule, MatChipsModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -15,15 +16,15 @@ import { ImageToDataUrlModule } from 'ngx-image2dataurl';
     MapsModule,
     AuthModule,
     ImageToDataUrlModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
   declarations: [
     DirectoryComponent,
     DirectoryDialogComponent,
     DirectoryGalleryListComponent,
     DirectoryDetailComponent,
-  ],
-  providers: [
-    DirectoryService,
+    DirectoryChipListComponent,
   ],
   entryComponents: [
     DirectoryDialogComponent,
@@ -33,6 +34,7 @@ import { ImageToDataUrlModule } from 'ngx-image2dataurl';
     DirectoryDialogComponent,
     DirectoryGalleryListComponent,
     DirectoryDetailComponent,
+    DirectoryChipListComponent,
   ]
 })
 export class DirectoryModule {

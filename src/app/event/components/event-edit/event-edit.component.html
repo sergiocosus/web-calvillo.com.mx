@@ -1,5 +1,5 @@
 <form [formGroup]="form"
-      id="event-form" (submit)="submit()">
+      id="event-form" (ngSubmit)="submit()">
 
   <div class="group">
     <mat-form-field>
@@ -68,7 +68,7 @@
       </a>
       <div>
         <span>
-          Lat: {{form.get('latitude').value}},
+          Lat: {{form.get('latitude').value}}
         </span>
         <span>
           Lon: {{form.get('longitude').value}}
@@ -77,43 +77,29 @@
     </section>
   </div>
 
-
-
   <input class="input-picture" imageToDataUrl
+         #input
          (imageSelected)="selected($event)"
          accept="image/*" name="picture" type="file">
-  <picture *ngIf="form.get('src')" [ngStyle]="{
-      'background-image' : 'url('+form.get('src').value+')'
-    }">
-  </picture>
+  <div (click)="input.click()" class="image-data">
+    <picture *ngIf="form.get('src')?.value"
+             [style.backgroundImage]="'url('+form.get('src').value+')'">
+    </picture>
 
-  <mat-form-field>
-    <mat-chip-list #chipList>
-      <mat-chip *ngFor="let category of form.get('categories').value"
-                (removed)="removeCategory(category)">
-        {{category.title}}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-      <input [matChipInputFor]="chipList"
-             [matAutocomplete]="auto"
-             [formControl]="categorySearchControl"
-             #peopleSearchInput
-             placeholder="Categorias">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete"
-                      (optionSelected)="addCategory($event); peopleSearchInput.value = ''">
-      <mat-option *ngFor="let category of categoriesFound$ | async" [value]="category">
-        <span>
-         <app-image [model]="category">
-            <i aria-hidden="true" class="fa fa-folder"></i>
-          </app-image>
-          <span>{{category.title}}</span>
-        </span>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+    <i *ngIf="!form.get('src')?.value"
+       class="fa fa-upload" aria-hidden="true"></i>
 
-  <mat-error *ngIf="form.get('src').hasError('required')">
-    Es necesaria una imagen
-  </mat-error>
+    <mat-error class="no-image"
+               *ngIf="form.get('src').hasError('required')">
+      Es necesaria una imagen
+    </mat-error>
+  </div>
+
+
+  <app-category-chip-list
+    [fieldControl]="form.get('categories')"></app-category-chip-list>
+  <app-picture-chip-list
+    [fieldControl]="form.get('pictures')"></app-picture-chip-list>
+  <app-directory-chip-list
+    [fieldControl]="form.get('directories')"></app-directory-chip-list>
 </form>

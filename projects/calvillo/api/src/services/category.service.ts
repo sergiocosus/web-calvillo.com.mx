@@ -24,7 +24,7 @@ export class CategoryService {
       map(json => new Category().parse(json['category'])));
   }
 
-  getAll(filters?: {search?: string}) {
+  getAll(filters?: {search?: string, limit?: number}) {
     const params = this.paginationService.addFilterParams(filters);
 
     return this.apiHttp.get(this.basePath, {params}).pipe(

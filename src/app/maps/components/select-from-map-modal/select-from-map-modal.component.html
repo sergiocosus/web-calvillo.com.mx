@@ -1,22 +1,27 @@
-<h1 mat-dialog-title>
+<h4 mat-dialog-title>
   Seleccione la ubicación
+
   <button class="button-close" mat-dialog-close>
     <i class="fa fa-times"></i>
   </button>
-</h1>
+</h4>
 
-<agm-map *ngIf="!hidden"
-         [latitude]="latitudeMap"
+<agm-map [latitude]="latitudeMap"
          [longitude]="longitudeMap"
          [zoom]="14"
          [mapTypeControl]="true"
          (keyup.enter)="close()"
 >
   <agm-marker
-    [latitude]="latitude"
-    [longitude]="longitude"
+    [latitude]="coordinates.latitude"
+    [longitude]="coordinates.longitude"
     [markerDraggable]="true"
     (dragEnd)="dragged($event)"
   >
   </agm-marker>
 </agm-map>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="close()">
+    Aceptar
+  </button>
+</mat-dialog-actions>

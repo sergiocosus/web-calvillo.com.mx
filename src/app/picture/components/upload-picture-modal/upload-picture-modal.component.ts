@@ -185,21 +185,13 @@ export class UploadPictureModalComponent implements OnInit {
 
   openMapModal(picture: FormGroup) {
     this.pictureOnModal = picture;
-    const dialog = this.dialog.open(SelectFromMapModalComponent);
-    dialog.componentInstance.setCoords(
-      +picture.get('longitude').value,
-      +picture.get('latitude').value,
+    this.dialog.open(SelectFromMapModalComponent, {
+      data: {
+        longitude: +picture.get('longitude').value,
+        latitude: +picture.get('latitude').value
+      }}).afterClosed().subscribe(
+      coordinates => this.pictureOnModal.patchValue(coordinates)
     );
-    dialog.componentInstance.closed.subscribe(
-      coordinates => this.setCoordinates(coordinates)
-    );
-  }
-
-  setCoordinates(coordinates) {
-    this.pictureOnModal.patchValue({
-      longitude: coordinates.longitude,
-      latitude: coordinates.latitude
-    });
   }
 
   setStep(index: number) {

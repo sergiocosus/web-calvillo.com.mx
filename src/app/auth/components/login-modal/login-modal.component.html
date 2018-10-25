@@ -5,7 +5,7 @@
   <span aria-hidden="true">&times;</span>
 </button>
 <mat-dialog-content>
-  <form id="login-modal-form" (submit)="login()">
+  <form id="login-modal-form" (ngSubmit)="login()">
     <mat-form-field>
       <input matInput
              [(ngModel)]="email"

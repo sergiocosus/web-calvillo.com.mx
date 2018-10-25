@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomValidator } from '../../shared/classes/custom-validator';
-import { Event } from '@calvillo/api';
+import { Event, EventService } from '@calvillo/api';
 import { EventValidator } from '../classes/event-validator';
-import { EventService } from '@calvillo/api';
 import { CustomValidators } from 'ng2-validation';
 
 @Injectable({
@@ -32,7 +31,7 @@ export class EventFormService {
       begin_at: [event ? event.begin_at : null, [Validators.required]],
       end_at: [event ? event.end_at : null, [Validators.required]],
       range_at: [event ? [event.begin_at, event.end_at] : null, [Validators.required]],
-      notify_at: [event ? event.begin_at: null, [Validators.required]],
+      notify_at: [event ? event.begin_at : null, []],
       src: [event ? event.imageUrl('sm') : null, [Validators.required]],
       image: null,
       latitude: [event ? event.latitude : null, [
@@ -49,12 +48,12 @@ export class EventFormService {
     });
 
     form.get('title').valueChanges.forEach(
-      (title) => form.get('slug').setValue(title.replace(/[^a-z0-9]/gi, '-').toLowerCase())
+      title => form.get('slug').setValue(title.replace(/[^a-z0-9]/gi, '-').toLowerCase())
     );
     form.get('range_at').valueChanges.forEach(
-      (title) => {
-        form.get('begin_at').setValue(title[0]);
-        form.get('end_at').setValue(title[1]);
+      range_at => {
+        form.get('begin_at').setValue(range_at[0]);
+        form.get('end_at').setValue(range_at[1]);
       }
     );
 
