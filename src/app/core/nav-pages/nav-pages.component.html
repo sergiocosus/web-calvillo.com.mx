@@ -20,12 +20,14 @@
     <span>Mapa</span>
   </a>
 </li>
+<!--
 <li>
   <a routerLink="/eventos" routerLinkActive="active">
     <i class="fa fa-calendar" aria-hidden="true"></i>
     <span>Eventos</span>
   </a>
 </li>
+-->
 <li>
   <a routerLink="/galeria/directorio" routerLinkActive="active">
     <i class="fa fa-book" aria-hidden="true"></i>
@@ -41,7 +43,7 @@
 <li class="title">
   <app-logo [class.hidden]="!hiddenSearch"></app-logo>
 </li>
-<li>
+<li class="search">
   <app-search (hidden)="hiddenSearch = true"
               (shown)="hiddenSearch = false"
               class="hide-on-small"></app-search>

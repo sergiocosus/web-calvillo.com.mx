@@ -17,7 +17,7 @@
         <span class="greeting">
           {{greeting}}
         </span>
-        <app-search [showUnderline]="false" [alwaysShow]="true"></app-search>
+        <app-search [showUnderline]="false" [alwaysShow]="true" [showSuffix]="true"></app-search>
       </div>
 
       <a class="google-play"
@@ -27,7 +27,7 @@
       </a>
 
       <div class="magic">
-        <img src="/assets/calvillo-pueblo-magico-blanco.png">
+        <img src="/assets/images/calvillo-pueblo-magico.svg">
       </div>
     </div>
 
@@ -36,31 +36,19 @@
   <section class="second">
     <div class="base">
       <h1>
-        <span>Últimas fotografías</span>
+        <img src="assets/images/wonder-pictures.svg"/>
       </h1>
-      <!--
-      <div class="options">
-        <span>
-          Galeria
-        </span>
-        <span>
-          Populares
-        </span>
-      </div>
-      -->
+
       <ul *ngIf="categories">
-        <li>
-          <app-ad-thumb></app-ad-thumb>
-        </li>
-
-
         <li *ngFor="let category of categories">
           <app-category-thumbnail
             [category]="category"></app-category-thumbnail>
         </li>
+        <li>
+        </li>
       </ul>
       <div class="bottom">
-
+        <app-ad-thumb></app-ad-thumb>
       </div>
     </div>
   </section>
@@ -69,16 +57,51 @@
       <div class="background3"></div>
     </div>
     <div class="base">
-      <a routerLink="/galeria/principal">
-        Galería
+      <a routerLink="/galeria/cabaas_dir">
+        <img src="assets/images/cabins.svg"/>
+        <span>Cabañas</span>
+
       </a>
-      <a routerLink="/mapa">
-        Directorio
+      <a routerLink="/galeria/restaurantes_dir">
+        <img src="assets/images/restaurants.svg"/>
+        <span>Restaurantes</span>
+      </a>
+      <a routerLink="/galeria/balnearios_dir">
+        <img src="assets/images/watering-place.svg"/>
+        <span>Balnearios</span>
+      </a>
+      <a routerLink="/galeria/hoteles">
+        <img src="assets/images/hotels.svg"/>
+        <span>Hoteles</span>
+      </a>
+      <a routerLink="/galeria/spas_dir">
+        <img src="assets/images/spa.svg"/>
+        <span>Spa</span>
       </a>
     </div>
+  </section>
 
-    <div class="ssl-logo">
-      <img src="assets/images/comodo_secure_seal_76x26_transp.png">
+
+  <section class="fourth">
+    <div class="back">
+      <div class="background3"></div>
+    </div>
+    <div class="base">
+        <div class="person">
+          <span class="title">Programación</span>
+          <span class="name">Sergio Contreras Sustaita</span>
+          <a class="email" href="mailto:sergiocosus@gmail.com">
+            sergiocosus@gmail.com
+          </a>
+        </div>
+        <div class="person">
+          <span class="title">Fotógrafo</span>
+          <span class="name">Ricardo Contreras Sustaita</span>
+          <a class="email" href="mailto:richardconsus@gmail.com">
+            richardconsus@gmail.com
+          </a>
+          <span class="phone">4951063364</span>
+        </div>
     </div>
   </section>
 </div>

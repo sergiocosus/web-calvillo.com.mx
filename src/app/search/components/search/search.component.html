@@ -1,12 +1,16 @@
 <mat-form-field [class.hidden]="hide"
-                floatPlaceholder="never"
+                floatLabel="never"
                 [class.app-input-no-underline]="true">
-  <span matPrefix *ngIf="alwaysShow">
+  <span matPrefix *ngIf="alwaysShow && showPrefix">
     <i class="fa fa-search" aria-hidden="true"></i>
   </span>
+
   <input matInput color="accent" [(ngModel)]="query" #input
          [placeholder]="placeholder" [matAutocomplete]="auto"
          [formControl]="stateCtrl">
+  <span class="search-icon" matSuffix *ngIf="showSuffix">
+    <img src="/assets/images/search-icon.svg"/>
+  </span>
 </mat-form-field>
 
 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">

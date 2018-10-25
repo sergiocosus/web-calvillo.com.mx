@@ -12,22 +12,16 @@ mat-form-field {
   flex: 1 0 0;
   background-color: white;
   font-size: .75em;
-  border-radius: .25em;
+  border-radius: .1em;
 
   visibility: visible;
   transition: all .25s;
-  max-width: 600px;
-
-  padding-left: .5em;
+  padding-left: 1em;
+  max-width: 60em;
 
   &.hidden {
     visibility: hidden;
     max-width: 0;
-  }
-
-  /deep/ .mat-input-wrapper {
-    margin-bottom: -1.5em;
-    min-width: 15em;
   }
 }
 
@@ -45,4 +39,14 @@ i {
   font-size: 1.75em;
   margin: .2em;
   margin-left: .5em;
+}
+
+.search-icon {
+  position: relative;
+  img{
+    position: absolute;
+    top: -1em;
+    right: 0;
+    height: 1.5em;
+  }
 }

@@ -24,6 +24,8 @@ export class SearchComponent implements OnInit {
   @Output() shown = new EventEmitter();
   @Input() showUnderline = true;
   @Input() alwaysShow = false;
+  @Input() showSuffix = false;
+  @Input() showPrefix = false;
   @Input() placeholder = "¿Qué deseas buscar? Restaurant, Hoteles... ";
   hide = true;
   stateCtrl = new FormControl();

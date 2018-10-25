@@ -127,13 +127,16 @@ $stopForGradient: .75;
   min-height: 1.5em;
   text-align: center;
   padding: .3em .5em;
+  padding-top: .5em;
   font-weight: bolder;
   transition: all 0.25s;
+  font-family: just_tell_me_whatregular;
+  text-transform: uppercase;
 }
 
 .nice-hover-shadow {
   &:hover {
-    box-shadow: 0em 0em .5em $primaryColor;
+    box-shadow: 0em 0em 1.5em $primaryColor;
     background-color: $primaryColor;
   }
 }

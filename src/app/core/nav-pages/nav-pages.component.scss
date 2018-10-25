@@ -17,11 +17,26 @@ app-logo {
 }
 
 app-logo {
-  font-size: 1em;
+  height: 90%;
+  ::ng-deep{
+    img{
+      width: auto !important;
+      height: 100%;
+    }
+  }
   transition: all .5s;
 
   &.hidden {
     visibility: hidden;
     font-size: 0em;
+  }
+}
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  app-search{
+    height: 2.5em;
   }
 }

@@ -46,10 +46,12 @@ nav {
     align-items: stretch;
 
     app-logo {
-      font-size: .9em;
-
-      @media (min-width: $smScreen) {
-        font-size: 1em;
+      height: 90%;
+      ::ng-deep{
+        img{
+          width: auto !important;
+          height: 100%;
+        }
       }
     }
 

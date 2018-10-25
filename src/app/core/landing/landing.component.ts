@@ -33,7 +33,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getNewest(6).subscribe(
+    this.categoryService.getNewest(5).subscribe(
       categories => this.categories = categories
     );
     this.navbarService.setTitle(null);
