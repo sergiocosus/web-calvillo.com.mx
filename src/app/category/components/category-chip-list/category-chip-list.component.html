@@ -1,0 +1,26 @@
+
+<mat-form-field>
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let category of fieldControl.value"
+              (removed)="removeCategory(category)">
+      {{category.title}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input [matChipInputFor]="chipList"
+           [matAutocomplete]="auto"
+           [formControl]="categorySearchControl"
+           #searchInput
+           placeholder="Categorias">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="addCategory($event); searchInput.value = ''">
+    <mat-option class="search-option" *ngFor="let category of categoriesFound$ | async" [value]="category">
+      <span>
+       <app-image [model]="category">
+          <i aria-hidden="true" class="fa fa-folder"></i>
+        </app-image>
+        <span>{{category.title}}</span>
+      </span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

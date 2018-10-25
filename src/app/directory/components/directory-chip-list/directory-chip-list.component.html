@@ -1,0 +1,27 @@
+
+<mat-form-field>
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let directory of fieldControl.value"
+              (removed)="removeDirectory(directory)">
+      {{directory.title}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input [matChipInputFor]="chipList"
+           [matAutocomplete]="auto"
+           [formControl]="directorySearchControl"
+           #searchInput
+           placeholder="Directorios relacionadas">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="addDirectory($event); searchInput.value = ''">
+    <mat-option class="search-option" *ngFor="let directory of directoriesFound$ | async"
+                [value]="directory">
+      <span>
+       <app-image [model]="directory">
+          <i aria-hidden="true" class="fa fa-folder"></i>
+        </app-image>
+        <span>{{directory.title}}</span>
+      </span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

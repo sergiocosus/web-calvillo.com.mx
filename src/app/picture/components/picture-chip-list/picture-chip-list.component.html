@@ -1,0 +1,27 @@
+
+<mat-form-field>
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let picture of fieldControl.value"
+              (removed)="removePicture(picture)">
+      {{picture.title}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input [matChipInputFor]="chipList"
+           [matAutocomplete]="auto"
+           [formControl]="pictureSearchControl"
+           #searchInput
+           placeholder="Fotografías relacionadas">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="addPicture($event); searchInput.value = ''">
+    <mat-option class="search-option" *ngFor="let picture of picturesFound$ | async"
+                [value]="picture">
+      <span>
+       <app-image [model]="picture">
+          <i aria-hidden="true" class="fa fa-folder"></i>
+        </app-image>
+        <span>{{picture.title}}</span>
+      </span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
