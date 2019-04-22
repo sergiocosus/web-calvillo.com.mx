@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { AdsenseModule } from 'ng2-adsense';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { FacebookModule } from 'ngx-facebook';
@@ -48,6 +48,7 @@ const options: ShareButtonsOptions = {
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({appId: 'web-calvillo-com-mx'}),
+    BrowserTransferStateModule,
     FormsModule,
     AppRoutingModule,
     SharedModule,

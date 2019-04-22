@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -28,7 +29,7 @@
   },
   "angularCompilerOptions": {
     "genDir": "./dist/ngfactory",
-    "entryModule": "./src/app/app.module#AppModule"
+    "entryModule": "./app/app.module#AppModule"
   },
   "exclude": [
     "./projects/calvillo-mobile/*"

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 export const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: 'src/app/core/core.module#CoreModule',
+    loadChildren: './core/core.module#CoreModule',
   },
   {path: '**', redirectTo: '/'},
 ];
