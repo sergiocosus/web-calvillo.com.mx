@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { isArray } from 'util';
 import { Model } from '../models/model';
 
 @Injectable({
@@ -35,7 +34,7 @@ export class PaginationService {
     if (filters) {
       for (const filter in filters) {
         if (filters[filter]) {
-          if (isArray(filters[filter])) {
+          if (filters[filter] instanceof Array) {
             params = params.set(filter, filters[filter].join(','));
           } else if (filters[filter]._isAMomentObject) {
             params = params.set(filter, filters[filter].toJSON());
