@@ -9,7 +9,6 @@ import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
-import { initializeOnAngular } from 'nativescript-web-image-cache';
 import { registerElement } from 'nativescript-angular/element-registry';
 import { NavigationEnd, Router } from '@angular/router';
 import * as utils from 'tns-core-modules/utils/utils';
@@ -35,7 +34,6 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
               private sideDrawerService: SideDrawerService,
               private router: Router,
               private utilsService: UtilsService) {
-    initializeOnAngular();
     this.utilsService.monitorConnectivity();
     this.utilsService.handleOpenUrl();
   }

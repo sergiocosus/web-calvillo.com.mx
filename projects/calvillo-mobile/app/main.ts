@@ -3,16 +3,6 @@ import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app.module";
 
-import { on as applicationOn, launchEvent, ApplicationEventData } from 'application';
-let imageCache = require('nativescript-web-image-cache');
-
-applicationOn(launchEvent, (args: ApplicationEventData) => {
-  if (args.android) {
-    imageCache.setCacheLimit(5);
-  } else if (args.ios !== undefined) {
-  }
-});
-
 
 // A traditional NativeScript application starts by initializing global objects, setting up global CSS rules, creating, and navigating to the main page. 
 // Angular applications need to take care of their own initialization: modules, components, directives, routes, DI providers. 

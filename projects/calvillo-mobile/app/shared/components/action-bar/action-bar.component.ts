@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SideDrawerService } from '~/shared/services/side-drawer.service';
-import * as utils from 'utils/utils';
+import * as utils from 'tns-core-modules/utils/utils';
 import { environment } from '~/environment';
 import * as SocialShare from 'nativescript-social-share';
 import { RouterExtensions } from 'nativescript-angular/router';

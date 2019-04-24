@@ -23,10 +23,21 @@ import { UtilsService } from '~/shared/services/utils.service';
 
 require( 'nativescript-orientation' );
 
-//TNSFontIconService.debug = true;
+TNSFontIconService.debug = true;
 
 
 // import { NativeScriptFormsModule r} from "nativescript-angular/forms";
+
+import { registerElement } from "nativescript-angular";
+registerElement("WebImage", () => require("nativescript-web-image-cache").WebImage);
+import * as application from "tns-core-modules/application";
+const imageCache = require("nativescript-web-image-cache");
+
+if(application.android){
+  application.on("launch", function () {
+    imageCache.initialize();
+  });
+}
 
 @NgModule({
   bootstrap: [
