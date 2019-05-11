@@ -355,7 +355,7 @@
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@nguniversal/module-map-ngfactory-loader/-/module-map-ngfactory-loader-7.1.1.tgz#488a6f8c5890d44b7ad8468180919644a4d1a1ae"
 
-"@ngx-share/button@^6.0.1":
+"@ngx-share/button@6":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@ngx-share/button/-/button-6.0.1.tgz#e7522dc1a3ee2f23aa72dfa02fd9fc69bc578c00"
   dependencies:
@@ -367,7 +367,7 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngx-share/core@^6.0.1":
+"@ngx-share/core@6":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@ngx-share/core/-/core-6.0.1.tgz#f4f1c492e35f22e172f50cf721c4fb4d4d89392d"
   dependencies:

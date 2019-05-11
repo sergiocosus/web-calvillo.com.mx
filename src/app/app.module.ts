@@ -37,7 +37,7 @@ registerLocaleData(localeEs);
 
 
 const options: ShareButtonsOptions = {
-  include: ['facebook', 'twitter', 'google', 'pinterest'],
+  include: ['facebook', 'twitter', 'pinterest'],
   theme: 'landing',
   gaTracking: true,
 };

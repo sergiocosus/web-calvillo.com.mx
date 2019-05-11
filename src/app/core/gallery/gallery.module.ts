@@ -9,8 +9,13 @@ import { DirectoryModule } from '../../directory/directory.module';
 import { AgmCoreModule } from '@agm/core';
 import { AdsenseModule } from 'ng2-adsense';
 import { AuthModule } from '../../auth/auth.module';
-import { MatButtonModule, MatTooltipModule } from '@angular/material';
-import { FacebookModule } from "ngx-facebook";
+import {
+  MatButtonModule,
+  MatMenuModule,
+  MatTooltipModule
+} from '@angular/material';
+import { FacebookModule } from 'ngx-facebook';
+import { ShareButtonModule } from '@ngx-share/button';
 
 @NgModule({
   imports: [
@@ -25,6 +30,8 @@ import { FacebookModule } from "ngx-facebook";
     AdsenseModule,
     AuthModule,
     FacebookModule,
+    MatMenuModule,
+    ShareButtonModule,
   ],
   declarations: [
     GalleryComponent,

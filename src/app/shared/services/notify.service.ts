@@ -43,15 +43,26 @@ export class NotifyService {
   }
 
   serviceError(json: any) {
-    let message = this.satinizer.sanitize(SecurityContext.HTML, json.message);
-    let code = this.satinizer.sanitize(SecurityContext.HTML, json.code);
+    const message = this.satinizer.sanitize(SecurityContext.HTML, json.message);
+    const code = this.satinizer.sanitize(SecurityContext.HTML, json.code);
 
-    let html = this.satinizer.bypassSecurityTrustHtml(`
-      <div class="sn-title">Error</div>
-      <div class="sn-content">
-        ${message} </br>Code: ${code}
-      </div>
-  `);
+    let html;
+    if (code !== '400') {
+      html = `
+        <div class="sn-title">Error</div>
+        <div class="sn-content">
+          ${message} </br>Code: ${code}
+        </div>
+      `;
+    } else {
+      html = `
+        <div class="sn-title">Error</div>
+        <div class="sn-content">
+          ${message}
+        </div>
+      `;
+    }
+
     return this.html(html, NotificationType.Error);
   }
 

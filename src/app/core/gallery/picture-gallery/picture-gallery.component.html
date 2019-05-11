@@ -89,9 +89,8 @@
     </div>
   </div>
 
-
-  <ng2-adsense></ng2-adsense>
-
+  <ng2-adsense *ngIf="adSenseEnabled && isBrowser()"
+               adSlot="9176120862"></ng2-adsense>
 
   <div class="facebook-page">
     <span>
@@ -119,22 +118,34 @@
          (click)="openMapModal()">
         <i class="fa fa-map-marker"></i>
       </a>
-      <button *appIfLogged="true" (click)="postOnFacebook()" mat-raised-button
+      <button *appIfLogged="true" (click)="postOnFacebook()"
+              mat-raised-button
               color="primary">
         <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
       </button>
+
+      <ng-container *ngIf="currentRoute && isBrowser()">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon class="fa fa-share-alt"></mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <share-button [size]="-4"
+                        [url]="'http://calvillo.com.mx' + currentRoute"
+                        button="facebook"
+          ></share-button>
+          <share-button [size]="-4"
+                        [url]="'http://calvillo.com.mx' + currentRoute"
+                        button="twitter"
+          ></share-button>
+          <share-button [size]="-4"
+                        [url]="'http://calvillo.com.mx' + currentRoute"
+                        button="pinterest"
+          ></share-button>
+        </mat-menu>
+      </ng-container>
     </h2>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
-  <div class="actions">
-
-    Comparte
-    <share-buttons *ngIf="currentRoute && isBrowser()"
-                   [size]="-4"
-                   [url]="'http://calvillo.com.mx' + currentRoute"
-    ></share-buttons>
-  </div>
-
 
   <ng2-adsense *ngIf="adSenseEnabled && isBrowser()"
                class="adsbygoogle"

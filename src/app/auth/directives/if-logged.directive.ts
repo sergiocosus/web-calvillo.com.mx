@@ -26,7 +26,7 @@ export class IfLoggedDirective {
   }
 
   check() {
-    if ((!!this.user) == this.toBeLogged) {
+    if ((!!this.user) === this.toBeLogged) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();
