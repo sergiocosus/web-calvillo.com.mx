@@ -17,6 +17,10 @@ export class Picture extends ImageableModel {
 
   categories: Category[];
 
+  get hasCoordinates() {
+    return this.longitude && this.latitude;
+  }
+
   static parseArray(objs: any[]): Picture[] {
     return objs.map(obj => {
       return new Picture().parse(obj)

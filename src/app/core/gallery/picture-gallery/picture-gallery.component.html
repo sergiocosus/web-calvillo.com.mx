@@ -112,18 +112,11 @@
      (swiperight)="onSwipeRight($event.type)">
 
   <header>
-    <h2>
-      {{picture.title}}
-      <a class="map"
-         *ngIf="picture.longitude && picture.latitude"
+    <div class="actions">
+      <a mat-icon-button *ngIf="picture.hasCoordinates"
          (click)="openMapModal()">
-        <i class="fa fa-map-marker"></i>
+        <mat-icon class="fa fa-map-marker"></mat-icon>
       </a>
-      <button *appIfLogged="true" (click)="postOnFacebook()"
-              mat-raised-button
-              color="primary">
-        <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
-      </button>
 
       <ng-container *ngIf="currentRoute && isBrowser()">
         <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -144,6 +137,20 @@
           ></share-button>
         </mat-menu>
       </ng-container>
+
+      <button *appIfLogged="true" (click)="postOnFacebook()"
+              mat-raised-button
+              color="primary">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i> Post
+      </button>
+    </div>
+
+
+
+
+    <h2>
+      {{picture.title}}
+
     </h2>
     <time>{{picture.taken_at | date: 'short'}}</time>
   </header>
